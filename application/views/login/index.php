@@ -1,20 +1,23 @@
 <div class="container">
-    <h2>You are in the View: application/views/song/index.php (everything in this box comes from that file)</h2>
-    <!-- add song form -->
+    <h2>You are in the View: application/views/login/index.php (everything in this box comes from that file)</h2>
+    
     <div>
-        <h3>Add a song</h3>
-        <form action="<?php echo URL; ?>songs/addsong" method="POST">
-            <label>Artist</label>
-            <input type="text" name="artist" value="" required />
-            <label>Track</label>
-            <input type="text" name="track" value="" required />
-            <label>Link</label>
-            <input type="text" name="link" value="" />
-            <input type="submit" name="submit_add_song" value="Submit" />
+        <h3>Sign In</h3>
+        <form action="<?php echo URL; ?>login/login" method="post">
+                <label>Username (or email)</label><br/>
+                <input type="text" name="user_name" required /><br/>
+                <label>Password</label><br/>
+                <input type="password" name="user_password" required /><br/>
+                <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
+                <label class="remember-me-label">Keep me logged in (for 2 weeks)</label><br/>
+                <input type="submit" class="login-submit-button" />
         </form>
+        <a href="<?php echo URL; ?>login/register">Register</a>
+        |
+        <a href="<?php echo URL; ?>login/requestpasswordreset">Forgot my Password</a>
     </div>
     <!-- main content output -->
-    <div>
+   <!--  <div>
         <h3>Amount of songs (data from second model)</h3>
         <div>
             <?php echo $amount_of_songs; ?>
@@ -47,4 +50,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->

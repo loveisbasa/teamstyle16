@@ -2,6 +2,10 @@
 
 class Login extends Controller
 {
+	function __construct()
+    	{
+        		parent::__construct();
+    	}
 	public function index()
 	{
 		echo 'Message from Controller: You are in the controller login, using the method index()';
@@ -16,9 +20,11 @@ class Login extends Controller
 	{
 		echo 'Message from Controller: You are in the controller login, using the method register()';
 
-		require 'application/views/_templates/header.php';
-		require 'application/views/login/register.php';
-		require 'application/views/_templates/footer.php';
+		$login_model = $this->loadModel('loginmodel');
+		$this->view->render('login/register');
+		// require 'application/views/_templates/header.php';
+		// require 'application/views/login/register.php';
+		// require 'application/views/_templates/footer.php';
 	}
 
 	// function login()

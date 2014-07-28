@@ -3,13 +3,13 @@
     
     <div>
         <h3>Create your personal account</h3>
-        <form action="<?php echo URL; ?>login/login" method="post">
+        <form action="<?php echo URL; ?>login/register" method="post">
                 <label>Nickname</label><br/>
                 <input type="text" name="user_nickname" required /><br/>
                 <label>Password</label><br/>
-                <input type="password" name="user_password" required /><br/>
+                <input type="password" name="user_password_new" required /><br/>
                 <label>Confirm your password</label><br/>
-                <input type="password" name="user_password_confirm" required /><br/>
+                <input type="password" name="user_password_repeat" required /><br/>
                 <label>Email address</label><br/>
                 <input type="text" name="user_email" required /><br/>
                 <label>Real name</label><br/>

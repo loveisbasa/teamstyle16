@@ -1,4 +1,4 @@
-CREATE TABLE `php-mvc-test`.`users` (
+CREATE TABLE `info`.`users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_nickname` varchar(20) NOT NULL,
   `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -12,5 +12,5 @@ CREATE TABLE `php-mvc-test`.`users` (
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_nickname`),
-  UNIQUE KEY `user_email` (`user_email`),
+  UNIQUE KEY `user_email` (`user_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';

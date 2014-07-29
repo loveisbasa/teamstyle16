@@ -20,6 +20,8 @@ ini_set("display_errors", 1);
  */
 define('URL', 'http://127.0.0.1/teamstyle16/');
 
+define("HASH_COST_FACTOR", "10");
+
 
 define('LIBS_PATH', 'application/libs/');
 define('CONTROLLER_PATH', 'application/controllers/');

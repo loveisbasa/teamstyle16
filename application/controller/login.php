@@ -32,8 +32,8 @@ class Login extends Controller
 
 		$login_model = $this->loadModel('Login');
 		$register_success = $login_model->RegisterNewUser();
-		if ($register_success) {
-			header('location:'.URL.'index');
+		if ($register_success == true) {
+			header('location:' .URL. 'login/index');
 		} else {
 			header('location:' .URL. 'login/register');
 		}

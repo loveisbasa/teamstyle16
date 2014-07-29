@@ -1,9 +1,14 @@
 <div class="container">
     <h2>You are in the View: application/views/login/register.php (everything in this box comes from that file)</h2>
     
+    <?php require  'application/views/_templates/feedback.php'; 
+        Session::set('feedback_positive', null);
+        Session::set('feedback_negative', null);
+        //Session::set('row_count', null);
+        ?>
     <div>
         <h3>Create your personal account</h3>
-        <form action="<?php echo URL; ?>login/register" method="post">
+        <form action="<?php echo URL; ?>login/register_action" method="post">
                 <label>Nickname</label><br/>
                 <input type="text" name="user_nickname" required /><br/>
                 <label>Password</label><br/>

@@ -1,6 +1,8 @@
 <div class="container">
     <h2>You are in the View: application/views/login/index.php (everything in this box comes from that file)</h2>
-    
+    <?php require  'application/views/_templates/feedback.php'; 
+    Session::set('feedback_positive', null);
+        Session::set('feedback_negative', null);?>
     <div>
         <h3>Sign In</h3>
         <form action="<?php echo URL; ?>login/login" method="post">

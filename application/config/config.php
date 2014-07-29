@@ -20,6 +20,11 @@ ini_set("display_errors", 1);
  */
 define('URL', 'http://127.0.0.1/teamstyle16/');
 
+
+define('LIBS_PATH', 'application/libs/');
+define('CONTROLLER_PATH', 'application/controllers/');
+define('MODELS_PATH', 'application/models/');
+define('VIEWS_PATH', 'application/views/');
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.

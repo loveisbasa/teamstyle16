@@ -24,24 +24,24 @@
     </div>
     <h1>The header (used on all pages)</h1>
     <!-- demo image -->
-    <h3>Demo image, to show usage of public/img folder</h3>
+    <!-- <h3>Demo image, to show usage of public/img folder</h3>
     <div>
         <img src="<?php echo URL; ?>public/img/test.png" />
-    </div>
+    </div> -->
     <!-- navigation -->
     <h3>Demo Navigation</h3>
     <div class="navigation">
         <ul>
             <!-- same like "home" or "home/index" -->
             <li><a href="<?php echo URL; ?>">home</a></li>
-            <li><a href="<?php echo URL; ?>home/exampleone">home/exampleone</a></li>
-            <li><a href="<?php echo URL; ?>home/exampletwo">home/exampletwo</a></li>
+            <!-- <li><a href="<?php echo URL; ?>home/exampleone">home/exampleone</a></li>
+            <li><a href="<?php echo URL; ?>home/exampletwo">home/exampletwo</a></li> -->
             <!-- "songs" and "songs/index" are the same -->
             <li><a href="<?php echo URL; ?>login/index">Log In</a></li>
         </ul>
     </div>
     <!-- simple div for javascript output, just to show how to integrate js into this MVC construct -->
-    <h3>Demo JavaScript</h3>
+    <!-- <h3>Demo JavaScript</h3>
     <div id="javascript-header-demo-box">
-    </div>
+    </div> -->
 </div>

@@ -45,14 +45,17 @@ class Login extends Controller
 		//require 'application/views/_templates/footer.php';
 	}
 
-	// function login()
-	// {
-	// 	$login_model = $this->loadModel('LoginModel');
-	// 	$login_successful = $login_model->login();
+	public function login()
+	{
+		echo 'Message from Controller: You are in the controller login, using the method login()';
+		$login_model = $this->loadModel('Login');
+		$login_success = $login_model->Login();
 
-	// 	if($login_successful) {
-
-	// 	}
-	// }
+		if($login_success == true) {
+			header('location:' .URL. 'dashboard/index');
+		} else {
+			header('location:' .URL. 'login/index');
+		}
+	}
 }
 

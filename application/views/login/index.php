@@ -7,7 +7,7 @@
         <h3>Sign In</h3>
         <form action="<?php echo URL; ?>login/login" method="post">
                 <label>Username (or email)</label><br/>
-                <input type="text" name="user_name" required /><br/>
+                <input type="text" name="user_nickname" required /><br/>
                 <label>Password</label><br/>
                 <input type="password" name="user_password" required /><br/>
                 <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />

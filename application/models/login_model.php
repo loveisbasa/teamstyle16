@@ -29,6 +29,9 @@ class LoginModel
 
 		$user_nickname = strip_tags($_POST['user_nickname']);
               $user_email = strip_tags($_POST['user_email']);
+              $user_real_name = strip_tags($_POST['user_real_name']);
+              $user_phone = strip_tags($_POST['user_phone']);
+              $user_class = strip_tags($_POST['user_class']);
 
            	$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
             	$user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));

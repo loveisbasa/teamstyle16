@@ -27,6 +27,26 @@ define('LIBS_PATH', 'application/libs/');
 define('CONTROLLER_PATH', 'application/controllers/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
+
+/**
+ * Configuration for: Cookies
+ * Please note: The COOKIE_DOMAIN needs the domain where your app is,
+ * in a format like this: .mydomain.com
+ * Note the . in front of the domain. No www, no http, no slash here!
+ * For local development .127.0.0.1 is fine, but when deploying you should
+ * change this to your real domain, like '.mydomain.com' ! The leading dot makes the cookie available for
+ * sub-domains too.
+ * @see http://stackoverflow.com/q/9618217/1114320
+ * @see php.net/manual/en/function.setcookie.php
+ */
+// 1209600 seconds = 2 weeks
+define('COOKIE_RUNTIME', 1209600);
+// the domain where the cookie is valid for, for local development ".127.0.0.1" and ".localhost" will work
+// IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
+define('COOKIE_DOMAIN', '.localhost');
+
+
+
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.

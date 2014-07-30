@@ -57,5 +57,14 @@ class Login extends Controller
 			header('location:' .URL. 'login/index');
 		}
 	}
+
+	public function logout()
+	{
+		echo 'Message from Controller: You are in the controller login, using the method logout()';
+		$login_model = $this->loadModel('Login');
+		$logout_success = $login_model->Logout();
+
+		header('location:' .URL. 'login/index');
+	}
 }
 

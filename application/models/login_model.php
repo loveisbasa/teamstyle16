@@ -41,7 +41,7 @@ class LoginModel
             		return false;
         	}
 
-        	// check if hash of provided password matches the hash in the database
+        	
         	if (password_verify($_POST['user_password'], $result->user_password_hash)) {
         		session_start();
             		$_SESSION['user_logged_in'] = true;
@@ -87,23 +87,74 @@ class LoginModel
                 		setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);
                 	}
             // return true to make clear the login was successful
-              $_SESSION["feedback_positive"][] = "Login in successfully! Cong!";
-            	return true;
+              	$_SESSION["feedback_positive"][] = "Login in successfully! Cong!";
+            		return true;
 
-        	} else {
-            // increment the failed login counter for that user
-            		$sql = "UPDATE users
+        		} else {
+            // crement the failed login counter for that user
+            			$sql = "UPDATE users
                     			SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
                     			WHERE user_nickname = :user_nickname OR user_email = :user_nickname";
-                    	$sth = $this->db->prepare($sql);
-                    	$sth->execute(array(':user_nickname' => $_POST['user_nickname'], ':user_last_failed_login' => time() ));
+                    		$sth = $this->db->prepare($sql);
+                    		$sth->execute(array(':user_nickname' => $_POST['user_nickname'], ':user_last_failed_login' => time() ));
             // feedback message
-            		$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
-            		return false;
-        	}
+            			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
+            			return false;
+        		}
         // default return
-        return false;
- 	}
+               	return false;
+              }
+
+              public function Logout()
+              {
+              	setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
+              	session_destroy();
+              }
+
+             public function LoginWithCookie() 
+             {
+             		$cookie = isset($_COOKIE['rememberme']) ? $_COOKIE['rememberme'] : '';
+
+             		if(!$cookie) {
+             			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+             			return false;
+             		}
+
+             		list($user_id, $theoken, $hash) = explode(':', $cookie);
+             		if($hash !== hash('sha256', $user_id . ':' . $token)) {
+             			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+             			return false;
+             		}
+
+             		if(empty($token)) {
+             			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+             			return false;
+             		}
+
+             		$query = $this->db->prepare("SELECT user_id, user_name, user_email, user_password_hash,
+             			user_failed_logins, user_last_failed_login
+             			FROM users 
+             			WHERE user_id = :user_id
+                                       AND user_rememberme_token = :user_rememberme_token
+                                       AND user_rememberme_token IS NOT NULL");
+             		$query->execute(array('user_id' => $user_id, 'user_rememberme_token' => $token));
+             		$count = $query->rowCount();
+             		if ($count == 1) {
+             			$result = $query->fetch();
+
+             			session_start();
+            			$_SESSION['user_logged_in'] = true;
+            			$_SESSION['user_id'] = $result->user_id;
+            			$_SESSION['user_nickname'] = $result->user_nickname;
+            			$_SESSION['user_email'] = $result->user_email;
+
+            			$_SESSION['feedback_positive'][] = FEEDBACK_LOGIN_SUCCESSFUL;
+            			return true;
+             		} else {
+             			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+            			return false;
+             		}
+             }
 
 	public function RegisterNewUser()
 	{

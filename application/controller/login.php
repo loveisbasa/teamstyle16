@@ -3,9 +3,9 @@
 class Login extends Controller
 {
 	function __construct()
-    	{
-        		parent::__construct();
-    	}
+	{
+		parent::__construct();
+	}
     	
 	public function index()
 	{
@@ -56,6 +56,15 @@ class Login extends Controller
 		} else {
 			header('location:' .URL. 'login/index');
 		}
+	}
+
+	public function logout()
+	{
+		echo 'Message from Controller: You are in the controller login, using the method logout()';
+		$login_model = $this->loadModel('Login');
+		$logout_success = $login_model->Logout();
+
+		header('location:' .URL. 'login/index');
 	}
 }
 

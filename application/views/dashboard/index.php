@@ -10,6 +10,11 @@
         <ul>
             <li><a href="<?php echo URL. 'login/logout'; ?>">Log out</a></li>
         </ul>
+        <?php
+        if ($_SESSION['user_first_login'] == 1) {
+            echo 'This is your first login!';
+        }
+        ?>
             You can protect a whole section in your app within the according controller (here: controllers/dashboard.php)
             by placing <span style='font-style: italic;'>Auth::handleLogin();</span> into the constructor.
 </div>

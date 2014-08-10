@@ -45,7 +45,8 @@ define('COOKIE_RUNTIME', 1209600);
 // IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
 define('COOKIE_DOMAIN', '.127.0.0.1');
 
-
+define("TEAM_INVITATION", "");
+define("TEAM_INVITATION_CONTENT", "");
 
 /**
  * Configuration for: Database
@@ -67,7 +68,7 @@ define("FEEDBACK_PHONE_FIELD_EMPTY", "Phone number is empty.");
 define("FEEDBACK_CLASS_FIELD_EMPTY", "Class is empty");
 define("FEEDBACL_REAL_NAME_FIELD_EMPTY", "Real name is empty.");
 
-define("FEEDBACK_MEMNER_ALREADY_HAS_TEAM",$_SESSION['invlid_member_name']. "has already joined another team.");
+define("FEEDBACK_MEMNER_ALREADY_HAS_TEAM", "Has already joined another team.");
 define("FEEDBACK_TEAM_CREATE_FAILED", "Something wrong. You failed.");
 define("FEEDBACK_TEAM_CREATE_SUCCESSFULLY", "Your team is created successfully! Voila!");
 

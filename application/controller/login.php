@@ -10,7 +10,7 @@ class Login extends Controller
 	public function index()
 	{
 		echo 'Message from Controller: You are in the controller login, using the method index()';
-		echo $_COOKIE['rememberme'].'|||'.$_SESSION['user_logged_in'];
+		//echo $_COOKIE['rememberme'].'|||'.$_SESSION['user_logged_in'];
 		//$login_model = $this->loadModel('LoginModel');
 
 		if (isset($_SESSION['user_logged_in'])) {

@@ -13,7 +13,7 @@ class TeamModel
 	}
 
 	//创建新队伍
-	//当队伍名已存在，队员名不存在，队员已加入其他队伍返回false；成功insert新队伍信息返回true
+	//
 	public function CreateTeam()
 	{
 		//前面这些if语句用来验证输入，只有完全符合要求才进入与数据库交互的模块
@@ -118,8 +118,6 @@ class TeamModel
 	}
 
 	//team_id通过参数来传递；
-	//将操作用户的id作为team_member之一，更新数据库teams表
-	//密码验证通过则返回true,否则返回false
 	public function JoinTeam($team_id)
 	{
 		$user_id = $_SESSION['user_id'];

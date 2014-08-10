@@ -14,19 +14,20 @@ class Home extends Controller
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
      */
-	public function index()
+	public function index($user_nickname )
 	{
 		// debug message to show where you are, just for the demo
 		echo 'Message from Controller: You are in the controller home, using the method index()';
-
-		if (isset($_SESSION['user_logged_in'])) {
-			header('location:' .URL. 'dashboard');
-		} elseif (isset($_COOKIE['rememberme'])) {
-			header('location:' .URL. 'login/loginWithCookie');
+		if ($user_nickname == '') {
+			if (isset($_SESSION['user_logged_in'])) {
+				header('location:' .URL. 'dashboard');
+			} else {
+				require 'application/views/_templates/header.php';
+				require 'application/views/home/index.php';
+				require 'application/views/_templates/footer.php';
+			}
 		} else {
-			require 'application/views/_templates/header.php';
-			require 'application/views/home/index.php';
-			require 'application/views/_templates/footer.php';
+			echo 'You are visiting ' .$user_nickname. '\'s home page.';
 		}
 	}
 }

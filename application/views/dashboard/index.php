@@ -9,6 +9,8 @@
     <h3><?php echo 'Welcome ' .$_SESSION['user_nickname']. '!'?></h3>
         <ul>
             <li><a href="<?php echo URL. 'login/logout'; ?>">Log out</a></li>
+            <li><a href="<?php echo URL. 'team/create_team'; ?>">Create a team</a></li>
+            <li><a href="<?php echo URL. 'team/team_display'; ?>">Show all teams</a></li>
         </ul>
         <?php
         if ($_SESSION['user_first_login'] == 1) {

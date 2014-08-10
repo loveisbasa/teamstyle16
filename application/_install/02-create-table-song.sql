@@ -23,22 +23,24 @@ CREATE TABLE `info`.`users` (
 CREATE TABLE `info`.`teams` (
 `team_id` int(11) NOT NULL AUTO_INCREMENT,
 `team_name` varchar(20) NOT NULL,
+`team_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 `team_slogan` text NOT NULL DEFAULT "",
 `team_captain` int(11) NOT NULL,
 `team_member_1` int(11) NOT NULL DEFAULT '0',
 `team_member_2` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+`team_full` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`team_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
 
 CREATE TABLE `info`.`messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(20) NOT NULL,
-  `to` varchar(20) NOT NULL,
+  `message_from` varchar(20) NOT NULL,
+  `message_to` varchar(20) NOT NULL,
   `message_title` varchar(30) NOT NULL,
   `message_content` text NOT NULL,
-  `date` datetime NOT NULL,
+  `meassage_send_date` datetime NOT NULL,
   `message_is_read` tinyint(1) NOT NULL,
   `message_type` varchar(5) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`message_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

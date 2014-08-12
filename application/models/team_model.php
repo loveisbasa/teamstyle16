@@ -32,7 +32,7 @@ class TeamModel
 			AND strlen($_POST['team_name']) >= 2
 			AND !empty($_POST['user_password_new'])
 			AND !empty($_POST['user_password_repeat'])
-			AND ($_POST['user_password_new'] === $_POST['user_password_repeat']) {
+			AND ($_POST['user_password_new'] === $_POST['user_password_repeat'])) {
 		//获取输入，其中队长名由SESSION得到；同样使用strip_tags
 			$team_name = strip_tags($_POST['team_name']);
 			$team_slogan = strip_tags($_POST['team_slogan']);
@@ -44,7 +44,8 @@ class TeamModel
 			$query = $this->db->prepare("SELECT team_id FROM teams WHERE team_name = :team_nickname");
 			$query->execute(array(':team_name' => $team_name));
 			$count = $query->rowCount();
-			if ($count ==1) {
+			if ($count ==1) 
+			{
 				$_SESSION["feedback_negative"][] = FEEDBACK_TEAMNAME_ALREADY_TAKEN;
 				return false;
 			}

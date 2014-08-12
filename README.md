@@ -44,3 +44,7 @@ clone之前建议先看一下原地址中的[README](https://github.com/panique/
 - 登陆后的用户界面为dashboard，向该页面中新增了两个按钮：创建队伍，显示所有队伍；
 - 修改了一下controller/home/index的内容，给它增加了一个参数
 
+#### 8-12 by ricky
+- 每个php文件头都要输入<?php，BUT文件尾不要输入?>
+- yue定：类名第一个字母大写
+

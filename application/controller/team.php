@@ -1,8 +1,6 @@
 <?php
-/**
-*  
-*/
-class team extends Controller
+
+class Team extends Controller
 {
 	
 	function __construct()
@@ -10,10 +8,7 @@ class team extends Controller
 		parent::__construct();
 	}
 
-	public function index()
-	{
-
-	}
+	//public function index() {}
 
 	public function join_team()
 	{
@@ -44,10 +39,12 @@ class team extends Controller
 		echo "create";
 		$team_model = $this->loadModel('Team');
 		$create_team_success = $team_model->CreateTeam();
-		if ($create_team_success==true)
-			{echo "successful";}
-		else 
-			{echo "failed";}
+		if ($create_team_success == true) {
+			echo "successful";
+			header('location:' .URL. 'dashboard');
+		} else {
+			echo "failed";
+			header('location:' .URL. 'team/create_team');
+		}
 	}
 }
-?>

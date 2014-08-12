@@ -2,7 +2,7 @@ CREATE TABLE `info`.`users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_nickname` varchar(20) NOT NULL,
   `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `user_team` varchar(5) DEFAULT NULL,
+  `user_team` varchar(20) DEFAULT NULL,
   `user_email` varchar(128) NOT NULL,
   #`user_confirmed` tinyint(1) NOT NULL,
   `user_real_name` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
@@ -26,8 +26,8 @@ CREATE TABLE `info`.`teams` (
 `team_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
 `team_slogan` text NOT NULL DEFAULT "",
 `team_captain` int(11) NOT NULL,
-`team_member_1` int(11) NOT NULL DEFAULT '0',
-`team_member_2` int(11) NOT NULL DEFAULT '0',
+`team_member1` int(11) NOT NULL DEFAULT '0',
+`team_member2` int(11) NOT NULL DEFAULT '0',
 `team_full` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`team_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 

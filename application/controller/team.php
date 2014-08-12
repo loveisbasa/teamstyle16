@@ -17,8 +17,7 @@ class team extends Controller
 
 	public function join_team()
 	{
-
-
+		echo "join";
 	}
 
 	public function create_team()
@@ -32,7 +31,12 @@ class team extends Controller
 	{
 		echo "display";
 		$team_model = $this->loadModel('Team');
-		$display_team_model = $team_model->GetAllTeams();
+		$all_team = $team_model->GetAllTeams();
+		while ($row = mysql_fetch_array($all_team)) 
+		{
+			echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
+		}
+
 	}
 
 	public function create_action()

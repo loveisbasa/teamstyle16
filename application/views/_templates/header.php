@@ -10,6 +10,7 @@
     <link href="<?php echo URL; ?>public/css/style.css" rel="stylesheet">
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="<?php echo URL;?>public/js/jquery.leanModal.min.js"></script>
     <!-- our JavaScript -->
     <script src="<?php echo URL; ?>public/js/application.js"></script>
 </head>

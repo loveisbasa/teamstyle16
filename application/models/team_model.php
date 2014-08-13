@@ -36,7 +36,7 @@ class TeamModel
 			//获取输入，其中队长名由SESSION得到；同样使用strip_tags
 			$team_name = strip_tags($_POST['team_name']);
 			$team_slogan = strip_tags($_POST['team_slogan']);
-			$team_captain = strip_tags($_SESSION['user_id']);
+			$team_captain = $_SESSION['user_id'];
 			$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
 			$team_password_hash = password_hash($_POST['team_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
 			
@@ -73,7 +73,7 @@ class TeamModel
 				}
 				$team_member1 = $result->user_id;
 			} else {
-				$team_member1 = 0;
+				$team_member1 = '';
 				$team_full = 0;//member1为空，队伍不满
 			}
 
@@ -95,16 +95,18 @@ class TeamModel
 				}
 				$team_member1 = $result->user_id;
 			} else {	
-				$team_member2 = 0;
+				$team_member2 = '';
 				$team_full = 0;//member2为空，队伍不满
 			}	
 			//更新team_full
 			//if ($result->team_member1 != '' && $result->team_member2 != '')
 			//	$team_full = 1;
 			//向数据库中插入新队伍数据
-			// $query = $this->db->prepare("UPDATE users SET user_team = $team_name WHERE user_id = :user_id");
-			// $query->execute(array(':user_id' => $team_captain));
-			// $count = $query->rowCount();
+			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+			$query->execute(array('user_team' => $team_name, ':user_id' => $team_captain));
+			$query->execute(array('user_team' => $team_name, ':user_id' => $team_member1));
+			$query->execute(array('user_team' => $team_name, ':user_id' => $team_member2));
+			//$count = $query->rowCount();
 			// if ($count != 1) {
 			// 	$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_CREATE_FAIED;
 			// 	return false;
@@ -192,11 +194,39 @@ class TeamModel
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams()
 	{
-		$query = $this->db->prepare("SELECT team_name, team_slogan, team_captain, team_member1, team_member2
+		$query = $this->db->prepare("SELECT team_id, team_name, team_slogan, team_captain, team_member1, team_member2
 			FROM teams");
 		$query->execute();
-
-		return $query->fecthAll();
+		$result = $query->fetchAll();
+		foreach ($result as $test) {
+			$query = $this->db->prepare("SELECT user_nickname FROM users WHERE user_id = :user_id");
+			$query->execute(array(':user_id' => $test->team_captain));
+			$sth = $query->fetch();
+			$test->team_captain = $sth->user_nickname; 
+		}
+		foreach ($result as $test) {
+			$query = $this->db->prepare("SELECT user_nickname FROM users WHERE user_id = :user_id");
+			$query->execute(array(':user_id' => $test->team_member1));
+			$count = $query->rowCount();
+			if ($count == 1) {  
+				$sth = $query->fetch();
+				$test->team_member1 = $sth->user_nickname; 
+			} else {
+				$test->team_member1 = NULL;
+			}
+		}
+		foreach ($result as $test) {
+			$query = $this->db->prepare("SELECT user_nickname FROM users WHERE user_id = :user_id");
+			$query->execute(array(':user_id' => $test->team_member2));
+			$count = $query->rowCount();
+			if ($count == 1) {  
+				$sth = $query->fetch();
+				$test->team_member2 = $sth->user_nickname; 
+			} else {
+				$test->team_member2 = NULL;
+			}
+		}
+		return $result;
 	}
 	//退出当前队伍
 	public function QuitTeam($team_id)

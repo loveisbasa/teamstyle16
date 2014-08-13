@@ -21,4 +21,3 @@
 		<input type = "submit" name = "CREATE NOW">
 		</form>
 	</div>
-</div>

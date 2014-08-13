@@ -10,11 +10,17 @@ class Team extends Controller
 
 	//public function index() {}
 
-	public function join_team()
+	public function join_team($team_id)
 	{
 		echo "join";
-	}
 
+		if (isset($team_id)) {
+			$team_model = $this->loadModel('Team');
+			$team_model->JoinTeam($team_id);
+		}
+		header('location:' .URL. 'dashboard');
+	}
+	
 	public function create_team()
 	{
 		require 'application/views/_templates/header.php';
@@ -27,10 +33,14 @@ class Team extends Controller
 		echo "display";
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->GetAllTeams();
-		while ($row = mysql_fetch_array($all_team)) 
-		{
-			echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
-		}
+
+		require 'application/views/_templates/header.php';
+		require 'application/views/team/index.php';
+		require 'application/views/_templates/footer.php';
+		// while ($row = mysql_fetch_array($all_team)) 
+		// {
+		// 	echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
+		// }
 
 	}
 

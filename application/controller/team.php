@@ -1,8 +1,6 @@
 <?php
-/**
-*  
-*/
-class team extends Controller
+
+class Team extends Controller
 {
 	
 	function __construct()
@@ -10,16 +8,19 @@ class team extends Controller
 		parent::__construct();
 	}
 
-	public function index()
-	{
+	//public function index() {}
 
-	}
-
-	public function join_team()
+	public function join_team($team_id)
 	{
 		echo "join";
-	}
 
+		if (isset($team_id)) {
+			$team_model = $this->loadModel('Team');
+			$team_model->JoinTeam($team_id);
+		}
+		header('location:' .URL. 'dashboard');
+	}
+	
 	public function create_team()
 	{
 		require 'application/views/_templates/header.php';
@@ -32,10 +33,14 @@ class team extends Controller
 		echo "display";
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->GetAllTeams();
-		while ($row = mysql_fetch_array($all_team)) 
-		{
-			echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
-		}
+
+		require 'application/views/_templates/header.php';
+		require 'application/views/team/index.php';
+		require 'application/views/_templates/footer.php';
+		// while ($row = mysql_fetch_array($all_team)) 
+		// {
+		// 	echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
+		// }
 
 	}
 
@@ -44,10 +49,12 @@ class team extends Controller
 		echo "create";
 		$team_model = $this->loadModel('Team');
 		$create_team_success = $team_model->CreateTeam();
-		if ($create_team_success==true)
-			{echo "successful";}
-		else 
-			{echo "failed";}
+		if ($create_team_success == true) {
+			echo "successful";
+			header('location:' .URL. 'dashboard');
+		} else {
+			echo "failed";
+			header('location:' .URL. 'team/create_team');
+		}
 	}
 }
-?>

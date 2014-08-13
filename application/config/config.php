@@ -24,7 +24,7 @@ define("HASH_COST_FACTOR", "10");
 
 
 define('LIBS_PATH', 'application/libs/');
-define('CONTROLLER_PATH', 'application/controllers/');
+define('CONTROLLER_PATH', 'application/controller/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
 

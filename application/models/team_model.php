@@ -39,6 +39,8 @@ class TeamModel
 			$team_captain = $_SESSION['user_id'];
 			$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
 			$team_password_hash = password_hash($_POST['team_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+			$team_full = 1;
+
 			
 			//队伍名已经存在
 			$query = $this->db->prepare("SELECT team_id FROM teams WHERE team_name = :team_name");
@@ -93,7 +95,7 @@ class TeamModel
 					$_SESSION['feedback_negative'][] = FEEDBACK_MEMBER_ALREADY_HAS_TEAM;
 					return false;
 				}
-				$team_member1 = $result->user_id;
+				$team_member2 = $result->user_id;
 			} else {	
 				$team_member2 = '';
 				$team_full = 0;//member2为空，队伍不满

@@ -8,7 +8,7 @@
 		<form action = "<?php echo URL;?>team/create_action" method = "post">
 		<label>Teamname</label><br/>
 		<input type = "text" name = "team_name" required><br/>
-		<label>Teampassword</label><br/>
+		<label>Team password</label><br/>
 		<input tpye = "password" name = "team_password_new" required><br/>
 		<label>Repeat Password</label><br/>
 		<input type = "password" name = "team_password_repeat" required><br/>

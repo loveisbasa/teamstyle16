@@ -17,7 +17,10 @@ CREATE TABLE `info`.`users` (
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_nickname`),
-  UNIQUE KEY `user_email` (`user_email`)
+  UNIQUE KEY `user_email` (`user_email`),
+  Index (`user_id`,`user_password_hash`),
+	Index(`user_email`)
+  Index (`user_nickname`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';
 
 CREATE TABLE `info`.`teams` (
@@ -44,10 +47,19 @@ CREATE TABLE `info`.`messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `message_from` varchar(20) NOT NULL,
   `message_to` varchar(20) NOT NULL,
+  `message_from_id` int(in) NOT NULL,
+  `message_to_id` int(in) NOT NULL,
   `message_title` varchar(30) NOT NULL,
   `message_content` text NOT NULL,
   `meassage_send_date` datetime NOT NULL,
   `message_is_read` tinyint(1) NOT NULL,
   `message_type` varchar(5) NOT NULL,
-  PRIMARY KEY (`message_id`)
+  INDEX (`message_id`,`message_from_id`),
+  INDEX (`message_to_id`),
+	INDEX	(`message_send_date`),
+	PRIMARY KEY (`message_id`),
+  FOREIGN KEY (`message_from_id`) REFERENCE users (`user_id`),
+	ON DELETE CASCADE ON UPDATE NO ACTION.
+  FOREIGN KEY (`message_to_id`) REFERENCE users (`user_id`),
+	ON DELETE CASCADE ON UPDATE NO ACTION.
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

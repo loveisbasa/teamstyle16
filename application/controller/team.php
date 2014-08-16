@@ -12,13 +12,12 @@ class Team extends Controller
 
 	public function join_team($team_id)
 	{
-		echo "join";
-
 		if (isset($team_id)) {
 			$team_model = $this->loadModel('Team');
 			$team_model->JoinTeam($team_id);
 		}
 		header('location:' .URL. 'dashboard');
+		echo "join";
 	}
 	
 	public function create_team()

@@ -16,9 +16,10 @@
     <script src="<?php echo URL; ?>public/js/application.js"></script>
 </head>
 <body>
+
 <?php
 if (!isset($_SESSION['user_logged_in'])) {?>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,13 +35,13 @@ if (!isset($_SESSION['user_logged_in'])) {?>
             <li class="active"><a href="<?php echo URL; ?>">主页</a></li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
-            <li calss="active"><a href="<?php echo URL.'login/login'?>">登陆</a></li>
+            <li calss="active"><a href="<?php echo URL.'login'?>">登陆</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
-    </div> 
+  </div> 
 <?php } else { ?>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar  navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -54,7 +55,7 @@ if (!isset($_SESSION['user_logged_in'])) {?>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="<?php echo URL; ?>">主页</a></li>
-            <li ><a><?php echo "hello!". $_SESSION['user_nickname'].'!';?></a></li>
+            <p class="navbar-text"><?php echo $_SESSION['user_nickname'];?></p>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
             <li calss="active"><a href="<?php echo URL.'login/login'?>">论坛</a></li>

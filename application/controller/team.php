@@ -17,7 +17,7 @@ class Team extends Controller
 			$team_model = $this->loadModel('Team');
 			$team_model->JoinTeam($team_id);
 		}
-		header('location:' .URL. 'dashboard');
+		header('location:' .URL. 'team/team_display');
 		
 	}
 	

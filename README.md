@@ -23,7 +23,10 @@ TeamStyle16 Web Dev.
 
 #### 8-18 by ricky
 - 下午尝试写了一下前端，bootstrap相关文件已加入目录；现在还比较粗糙但是起码看起来像点网站的样子了,一会再优化一下
-- 亲身实践证明：看教程都是浪费时间的，直接看[实例](http://v3.bootcss.com/getting-started/#examples)记住各个class怎么用就好了，要不断的Ctrl+U/C/V
+
+>虽然没有系统看过css和bootstrap的教程，个人理解css就像是一个头文件，里面有各种类声明，我们在编写html代码时只要在标签后面适当引用这些类名，并知道不同类的显示效果即可。而bootstrap简单的理解即是一套类声明系统。
+>亲身实践证明：看教程都是浪费时间的，直接看[实例](http://v3.bootcss.com/getting-started/#examples)记住各个class怎么用就好了，要不断的Ctrl+U/C/V
+
 - 加入队伍功能目前可用，点击join后弹出一个对话框输入密码，还需要大家多多测试
 - 找到一个不错的[jquery教程](http://www.gbtags.com/technology/jquerytutorial/)，供大家参考
 - 传递函数参数的方式和教科书中有所不同，例如team/join-team/team-id，其中team为controller类名，join-team为函数名，team-id为该函数的第一个参数，依次类推如果team-id还有之后‘/’的话则为该函数第二个参数，第三个参数...

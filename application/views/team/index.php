@@ -5,7 +5,7 @@
         Session::set('feedback_negative', null);?>
     <div>
     <h3>List of teams</h3>
-        <table>
+        <table class='table table-bordered'>
             <thead style="background-color: #ddd; font-weight: bold;">
             <tr>
                 <td>Id</td>
@@ -30,20 +30,21 @@
             </tbody>
         </table>
     </div>
+
 <div id = "testModal" style="display:none;">
-<h1>Join Team Now!</h1>
-<form action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
-<label>Team Password:</label><br/>
-<input type="password" name="team_password" required /><br/><br/>
-<div class="center"><input type="submit" name="loginbtn" id="loginbtn" class="flatbtn-blu hidemodal" value="JOIN" tabindex="3"></div>
-</form>
+    <form class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
+        <h2 class = "form-signin-heading">Join Team Now!</h2>
+        <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/><br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
+    </form>
 </div>
+
 <script type="text/javascript">
 $(function(){
    // $('#loginform').submit(function(e){
    //   return false;
    // });
   
-  $('#team-password').leanModal();
+  $('#team-password').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
 });
 </script>

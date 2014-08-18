@@ -8,3 +8,8 @@ $(function() {
         $('#javascript-header-demo-box').fadeIn('slow');
     }
 });
+
+// $(document).ready(function(){
+// $("#team-password").leanModal({ top: 100, closeButton: ".modal_close" });
+// });
+// });

@@ -1,7 +1,59 @@
-### 7-26
+TeamStyle16 Web Dev.
+====================
+## Installation
+----
+最新的版本在dev分支中。优化了一下代码风格，添加了必要的注释。
+
+1. 首先要给apache2安装一下mod_rewrite，可以参考这篇[教程](http://www.dev-metal.com/enable-mod_rewrite-ubuntu-12-04-lts/)。
+
+    >需要注意一点：在最后一步```sudo nano /etc/apache2/sites-available/default```中，可能找不到文件。这应该是apache版本问题的原因，
+    我的是在`/etc/apache2/apache2.conf`中找到并修改的。大家也可以自己找一找。
+
+2. 在本地进行调试之前，请先按照application/_install里的MySQL初始化语句执行一遍
+3. 修改`application/config/config.php`里的`define('DB_USER', 'root'); define('DB_PASS', 'wangjianyu');`，将用户名密码改为自己的即可。
+
+## 有关文件目录的说明
+----
+- application/libs 里是一些基本类的声明和定义，大部分是模板，已经写好的。我们不需要做太多修改。But目前有一个bug就是在不同文件里声明的类，在其他文件中无法使用，每次都需要require才可以。
+按照模板的说明，应该是自动载入才对。
+- vendor这个文件夹没有什么用处，目前还没有发现它会影响功能。可以考虑删去。
+
+## Log
+----
+#### 7-26  by ricky
 正式开始动工。
 没有自己搭建mvc框架，在github上找到了一个还不错的模板[php-mvc](https://github.com/panique/php-mvc)。
 在它的基础上做了一些小改动，只保留了最主要的部分。
 clone之前建议先看一下原地址中的[README](https://github.com/panique/php-mvc/blob/master/README.md)，里面有使用说明(需要开启apache的mod_rewrite)，还有对mvc概念很清晰的介绍。
 
 目前基本还没有开始编写工作，简单了写了一点登陆和注册的内容。
+
+#### 7-30  by ricky
+继续编写model,可能是编辑器的原因代码缩进有些混乱。基本完成login/register的model。
+
+#### 8-5 by  ricky
+- 注册功能：需要输入的信息有 __ 姓名、昵称、密码、邮箱、真实姓名、电话 __ 和 __ 班级__ 。
+密码需要重复两次输入，用password_hash（）函数处理后存在数据库中。
+- 登陆功能：输入昵称或者邮箱完成登陆，支持记住密码（cookie保存两周），暂时没有写找回密码功能。重复输错密码3次会有提示30秒后再输。
+有一个bug，就是如果不关浏览器的话就算不点记住我，每次打开页面也会自动登陆...应该是SESSION没有及时清理的缘故。
+
+组队功能正在写，刚刚简单写了一下创建队伍的model。这周争取把大部分model搞定。
+
+#### 8-10 by ricky
+- 写完了组队的基本model，目前共4个函数，具体的功能参考注释；有一些函数是有参数的，需要注意一下。
+- 登陆后的用户界面为dashboard，向该页面中新增了两个按钮：创建队伍，显示所有队伍；
+- 修改了一下controller/home/index的内容，给它增加了一个参数
+
+#### 8-12 by ricky
+- 创建队伍功能目前可用，but创建同时修改users的信息还有bug，时间有限明天再说
+- 每个php文件头都要输入‘<?php’，BUT文件尾不要输入‘?>’
+- 调试的过程中发现自己写的代码中还是有很多错误的，比如array('user_id'=>$user_id)少打一个‘>’，大括号不完整等等...
+- 很多bug其实都是由于数据库没有做及时更新
+
+#### 8-13 by ricky
+- 显示队伍列表功能可用，如果谁有时间把显示用户列表写了吧
+- 加入队伍难点在于密码验证...有两种实现方法：1. jquery模式对话框输入密码完成验证 2. 进入一个崭新的页面；两个都有难度，一会儿再来写
+
+#### 8-17 by neil
+- 修改了sql的创建语句，使得其更为合理
+- 基本完成了message model,controller和views也写了一部分

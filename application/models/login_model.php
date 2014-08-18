@@ -24,9 +24,15 @@ class LoginModel
 		}
 
 		//根据填入的昵称或者邮箱来查询数据库
-		$sql = "SELECT user_id, user_nickname, user_password_hash, user_email, user_failed_logins, user_last_failed_login FROM users
-		             WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) 
-				";
+		$sql = "SELECT user_id, 
+			user_nickname, 
+			user_password_hash, 
+			user_email, 
+			user_failed_logins, 
+			user_last_failed_login, 
+			user_first_login 
+			FROM users
+		             WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
 		$query->execute(array(':user_nickname' => $_POST['user_nickname']));
 		$count = $query->rowCount();
@@ -49,6 +55,7 @@ class LoginModel
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
+			$_SESSION['user_first_login'] = $result->user_first_login;
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
@@ -88,6 +95,11 @@ class LoginModel
 				setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);
 			}
 			//登陆成功，返回true
+			if ($result->user_first_login == 1) {
+				$query = $this->db->prepare("UPDATE users SET user_first_login = 0 WHERE user_id = :user_id");
+				$query->execute(array(':user_id' => $result->user_id));
+				//$count =  $query->rowCount();
+			}
 			$_SESSION["feedback_positive"][] = "Login in successfully! Cong!";
 			return true;
 		} else {
@@ -114,28 +126,28 @@ class LoginModel
 	{
 		$cookie = isset($_COOKIE['rememberme']) ? $_COOKIE['rememberme'] : '';
 
-		if(!$cookie) {
-			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+		if (!$cookie) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID. '!cookie';
 			return false;
 		}
 
-		list($user_id, $theoken, $hash) = explode(':', $cookie);
-		if($hash !== hash('sha256', $user_id . ':' . $token)) {
-			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+		list($user_id, $token, $hash) = explode(':', $cookie);
+		if ($hash !== hash('sha256', $user_id . ':' . $token)) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID.'hash!==';
 			return false;
 		}
-		if(empty($token)) {
-			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+		if (empty($token)) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID.'!token';
 			return false;
 		}
 
-		$query = $this->db->prepare("SELECT user_id, user_name, user_email, user_password_hash,
+		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
 			user_failed_logins, user_last_failed_login
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
 			AND user_rememberme_token IS NOT NULL");
-		$query->execute(array('user_id' => $user_id, 'user_rememberme_token' => $token));
+		$query->execute(array(':user_id' => $user_id, ':user_rememberme_token' => $token));
 		$count = $query->rowCount();
 		if ($count == 1) {
 			$result = $query->fetch();
@@ -145,10 +157,10 @@ class LoginModel
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
-			$_SESSION['feedback_positive'][] = FEEDBACK_LOGIN_SUCCESSFUL;
+			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
-			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID.'failed';
 			return false;
 		}
 	}
@@ -238,5 +250,15 @@ class LoginModel
 			$_SESSION["feedback_positive"][] = "Register successfully! Voila!";
 			return true;
 		}
+	}
+
+	public function deleteCookie()
+	{
+		setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
+	}
+
+	public function isUserLoggedIn()
+	{
+		return $_SESSION['user_logged_in'];
 	}
 }

@@ -10,11 +10,16 @@ class Login extends Controller
 	public function index()
 	{
 		echo 'Message from Controller: You are in the controller login, using the method index()';
+		//echo $_COOKIE['rememberme'].'|||'.$_SESSION['user_logged_in'];
 		//$login_model = $this->loadModel('LoginModel');
 
-		require 'application/views/_templates/header.php';
-		require 'application/views/login/index.php';
-		require 'application/views/_templates/footer.php';
+		if (isset($_SESSION['user_logged_in'])) {
+			header('location:' .URL. 'dashboard');
+		} else {
+			require 'application/views/_templates/header.php';
+			require 'application/views/login/index.php';
+			require 'application/views/_templates/footer.php';
+		}
 	} 
 
 	public function register()
@@ -48,14 +53,19 @@ class Login extends Controller
 	public function login()
 	{
 		echo 'Message from Controller: You are in the controller login, using the method login()';
-		$login_model = $this->loadModel('Login');
-		$login_success = $login_model->Login();
 
-		if($login_success == true) {
-			header('location:' .URL. 'dashboard/index');
-		} else {
-			header('location:' .URL. 'login/index');
-		}
+		// if (isset($_COOKIE['remmberme'])) {
+		// 	$this->loginWithCookie();
+		// } else {
+			$login_model = $this->loadModel('Login');
+			$login_success = $login_model->Login();
+
+			if ($login_success == true) {
+				header('location:' .URL. 'dashboard/index');
+			} else {
+				header('location:' .URL. 'login/index');
+			}
+		//}
 	}
 
 	public function logout()
@@ -65,6 +75,22 @@ class Login extends Controller
 		$logout_success = $login_model->Logout();
 
 		header('location:' .URL. 'login/index');
+	}
+
+	public function loginWithCookie()
+	{
+		// run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
+		$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->LoginWithCookie();
+
+		if ($login_successful == true) {
+			header('location: ' . URL . 'dashboard/index');
+		} else {
+			// delete the invalid cookie to prevent infinite login loops
+			$login_model->deleteCookie();
+			// if NO, then move user to login/index (login form) (this is a browser-redirection, not a rendered view)
+			header('location: ' . URL . 'login/index');
+		}
 	}
 }
 

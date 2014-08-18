@@ -18,13 +18,13 @@ ini_set("display_errors", 1);
  * Configuration for: Project URL
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
-define('URL', 'http://127.0.0.1/teamstyle16/');
+define('URL', 'http://localhost/teamstyle16/');
 
 define("HASH_COST_FACTOR", "10");
 
 
 define('LIBS_PATH', 'application/libs/');
-define('CONTROLLER_PATH', 'application/controllers/');
+define('CONTROLLER_PATH', 'application/controller/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
 
@@ -43,19 +43,21 @@ define('VIEWS_PATH', 'application/views/');
 define('COOKIE_RUNTIME', 1209600);
 // the domain where the cookie is valid for, for local development ".127.0.0.1" and ".localhost" will work
 // IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
-define('COOKIE_DOMAIN', '.localhost');
+define('COOKIE_DOMAIN', '.127.0.0.1');
 
-
+define("TEAM_INVITATION", "");
+define("TEAM_INVITATION_CONTENT", "");
 
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
  */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
 define('DB_PASS', 'wangjianyu');
+// define('DB_PASS', 'niehao');
 
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");
@@ -66,6 +68,16 @@ define("FEEDBACK_USER_DOES_NOT_EXIST", "This user does not exist.");
 define("FEEDBACK_PHONE_FIELD_EMPTY", "Phone number is empty.");
 define("FEEDBACK_CLASS_FIELD_EMPTY", "Class is empty");
 define("FEEDBACL_REAL_NAME_FIELD_EMPTY", "Real name is empty.");
+
+define("FEEDBACK_MEMNER_ALREADY_HAS_TEAM", "Has already joined another team.");
+define("FEEDBACK_TEAM_CREATE_FAILED", "Something wrong. You failed.");
+define("FEEDBACK_TEAM_CREATE_SUCCESSFULLY", "Your team is created successfully! Voila!");
+define("FEEDBACK_ANN_SUCCESSFULLY", "系统消息发布成功");
+define("FEEDBACK_TEAMNAME_FIELD_EMPTY","请输入队伍名");
+define("FEEDBACK_INVALID_TEAM_MEMBER","不存在该用户" );
+define("FEEDBACK_JOIN_FAILED","队伍加入失败");
+define("FEEDBACK_TEAM_FULL","队伍已满");
+
 
 define("FEEDBACK_LOGIN_FAILED", "Login failed.");
 define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
@@ -117,10 +129,3 @@ define("FEEDBACK_NOTE_EDITING_FAILED", "Note editing failed.");
 define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
-define("FEEDBACK_FACEBOOK_LOGIN_NOT_REGISTERED", "Sorry, you don't have an account here. Please register first.");
-define("FEEDBACK_FACEBOOK_EMAIL_NEEDED", "Sorry, but you need to allow us to see your email address to register.");
-define("FEEDBACK_FACEBOOK_UID_ALREADY_EXISTS", "Sorry, but you have already registered here (your Facebook ID exists in our database).");
-define("FEEDBACK_FACEBOOK_EMAIL_ALREADY_EXISTS", "Sorry, but you have already registered here (your Facebook email exists in our database).");
-define("FEEDBACK_FACEBOOK_USERNAME_ALREADY_EXISTS", "Sorry, but you have already registered here (your Facebook username exists in our database).");
-define("FEEDBACK_FACEBOOK_REGISTER_SUCCESSFUL", "You have been successfully registered with Facebook.");
-define("FEEDBACK_FACEBOOK_OFFLINE", "We could not reach the Facebook servers. Maybe Facebook is offline (that really happens sometimes).");

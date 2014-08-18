@@ -162,26 +162,32 @@ class TeamModel
 		$result = $query->fetch();
 		//验证队伍密码
 		if (password_verify($_POST['team_password'], $result->team_password_hash)) {
-			//由于队伍中可能存在队员，分情况更新数据			
-			if ($result->team_member1 == '') {
+			//由于队伍中可能存在队员，分情况更新数据
+			if ($result->team_full == 1) {
+				$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_FULL;
+				return false;
+			}
+						
+			if ($result->team_member1 == 0) {
 				$result->team_member1 = $user_id;
 				$query = $this->db->prepare("UPDATE teams SET team_member1 = $user_id 
 					WHERE team_id = :team_id");
 				$query->execute(array(':team_id' => $result->team_id));
-			} else if ($result->team_member2 == '') {
+				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+				$query->execute(array('user_team' => $result->team_name, ':user_id' => $user_id));
+			} else if ($result->team_member2 == 0) {
 				$result->team_member2 = $user_id;
 				$query = $this->db->prepare("UPDATE teams SET team_member2 = $user_id 
 					WHERE team_id = :team_id");
 				$query->execute(array(':team_id' => $result->team_id));
-			} else if ($result->team_full == 1) {
-				$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_FULL;
-				return false;
+				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+				$query->execute(array('user_team' => $result->team_name, ':user_id' => $user_id));
 			} else {
 				$_SESSION['feedback_negative'][] = FEEDBACK_UNKONW_ERROR;
 				return false;
 			}
 			//更新team_full
-			if ($result->team_full = 0 && $result->team_member1 != '' && $result->team_member2 != '') {
+			if ($result->team_full == 0 && $result->team_member1 != 0 && $result->team_member2 != 0) {
 				$result->team_full = 1;
 				$query = $this->db->prepare("UPDATE teams SET team_full = $result->team_full
 					WHERE team_id = :team_id");

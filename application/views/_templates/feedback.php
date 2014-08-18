@@ -17,7 +17,7 @@ if (isset($feedback_positive)) {
 // echo out negative messages
 if (isset($feedback_negative)) {
     foreach ($feedback_negative as $feedback) {
-        echo '<div class="feedback error">'.$feedback.'</div>';
+        echo '<div class="alert alert-danger" role="alert">'.$feedback.'</div>';
     }
 }
 

@@ -57,3 +57,8 @@ clone之前建议先看一下原地址中的[README](https://github.com/panique/
 #### 8-17 by neil
 - 修改了sql的创建语句，使得其更为合理
 - 基本完成了message model,controller和views也写了一部分
+
+#### 8-18 by ricky
+- 加入队伍功能目前可用，点击join后弹出一个对话框输入密码，还需要大家多多测试
+- 找到一个不错的[jquery教程](http://www.gbtags.com/technology/jquerytutorial/)，供大家参考
+- 传递函数参数的方式和教科书中有所不同，例如team/join-team/team-id，其中team为controller类名，join-team为函数名，team-id为该函数的第一个参数，依次类推如果team-id还有之后‘/’的话则为该函数第二个参数，第三个参数...

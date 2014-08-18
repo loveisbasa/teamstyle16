@@ -20,16 +20,32 @@ TeamStyle16 Web Dev.
 
 ## Log
 ----
-#### 7-26  by ricky
-正式开始动工。
-没有自己搭建mvc框架，在github上找到了一个还不错的模板[php-mvc](https://github.com/panique/php-mvc)。
-在它的基础上做了一些小改动，只保留了最主要的部分。
-clone之前建议先看一下原地址中的[README](https://github.com/panique/php-mvc/blob/master/README.md)，里面有使用说明(需要开启apache的mod_rewrite)，还有对mvc概念很清晰的介绍。
 
-目前基本还没有开始编写工作，简单了写了一点登陆和注册的内容。
+#### 8-18 by ricky
+- 下午尝试写了一下前端，bootstrap相关文件已加入目录；现在还比较粗糙但是起码看起来像点网站的样子了,一会再优化一下
+- 亲身实践证明：看教程都是浪费时间的，直接看[实例](http://v3.bootcss.com/getting-started/#examples)记住各个class怎么用就好了，要不断的Ctrl+U/C/V
+- 加入队伍功能目前可用，点击join后弹出一个对话框输入密码，还需要大家多多测试
+- 找到一个不错的[jquery教程](http://www.gbtags.com/technology/jquerytutorial/)，供大家参考
+- 传递函数参数的方式和教科书中有所不同，例如team/join-team/team-id，其中team为controller类名，join-team为函数名，team-id为该函数的第一个参数，依次类推如果team-id还有之后‘/’的话则为该函数第二个参数，第三个参数...
 
-#### 7-30  by ricky
-继续编写model,可能是编辑器的原因代码缩进有些混乱。基本完成login/register的model。
+#### 8-17 by neil
+- 修改了sql的创建语句，使得其更为合理
+- 基本完成了message model,controller和views也写了一部分
+
+#### 8-13 by ricky
+- 显示队伍列表功能可用，如果谁有时间把显示用户列表写了吧
+- 加入队伍难点在于密码验证...有两种实现方法：1. jquery模式对话框输入密码完成验证 2. 进入一个崭新的页面；两个都有难度，一会儿再来写
+
+#### 8-12 by ricky
+- 创建队伍功能目前可用，but创建同时修改users的信息还有bug，时间有限明天再说
+- 每个php文件头都要输入‘<?php’，BUT文件尾不要输入‘?>’
+- 调试的过程中发现自己写的代码中还是有很多错误的，比如array('user_id'=>$user_id)少打一个‘>’，大括号不完整等等...
+- 很多bug其实都是由于数据库没有做及时更新
+
+#### 8-10 by ricky
+- 写完了组队的基本model，目前共4个函数，具体的功能参考注释；有一些函数是有参数的，需要注意一下。
+- 登陆后的用户界面为dashboard，向该页面中新增了两个按钮：创建队伍，显示所有队伍；
+- 修改了一下controller/home/index的内容，给它增加了一个参数
 
 #### 8-5 by  ricky
 - 注册功能：需要输入的信息有 __ 姓名、昵称、密码、邮箱、真实姓名、电话 __ 和 __ 班级__ 。
@@ -39,26 +55,27 @@ clone之前建议先看一下原地址中的[README](https://github.com/panique/
 
 组队功能正在写，刚刚简单写了一下创建队伍的model。这周争取把大部分model搞定。
 
-#### 8-10 by ricky
-- 写完了组队的基本model，目前共4个函数，具体的功能参考注释；有一些函数是有参数的，需要注意一下。
-- 登陆后的用户界面为dashboard，向该页面中新增了两个按钮：创建队伍，显示所有队伍；
-- 修改了一下controller/home/index的内容，给它增加了一个参数
+#### 7-30  by ricky
+继续编写model,可能是编辑器的原因代码缩进有些混乱。基本完成login/register的model。
 
-#### 8-12 by ricky
-- 创建队伍功能目前可用，but创建同时修改users的信息还有bug，时间有限明天再说
-- 每个php文件头都要输入‘<?php’，BUT文件尾不要输入‘?>’
-- 调试的过程中发现自己写的代码中还是有很多错误的，比如array('user_id'=>$user_id)少打一个‘>’，大括号不完整等等...
-- 很多bug其实都是由于数据库没有做及时更新
+#### 7-26  by ricky
+正式开始动工。
+没有自己搭建mvc框架，在github上找到了一个还不错的模板[php-mvc](https://github.com/panique/php-mvc)。
+在它的基础上做了一些小改动，只保留了最主要的部分。
+clone之前建议先看一下原地址中的[README](https://github.com/panique/php-mvc/blob/master/README.md)，里面有使用说明(需要开启apache的mod_rewrite)，还有对mvc概念很清晰的介绍。
 
-#### 8-13 by ricky
-- 显示队伍列表功能可用，如果谁有时间把显示用户列表写了吧
-- 加入队伍难点在于密码验证...有两种实现方法：1. jquery模式对话框输入密码完成验证 2. 进入一个崭新的页面；两个都有难度，一会儿再来写
+目前基本还没有开始编写工作，简单了写了一点登陆和注册的内容。
 
-#### 8-17 by neil
-- 修改了sql的创建语句，使得其更为合理
-- 基本完成了message model,controller和views也写了一部分
 
-#### 8-18 by ricky
-- 加入队伍功能目前可用，点击join后弹出一个对话框输入密码，还需要大家多多测试
-- 找到一个不错的[jquery教程](http://www.gbtags.com/technology/jquerytutorial/)，供大家参考
-- 传递函数参数的方式和教科书中有所不同，例如team/join-team/team-id，其中team为controller类名，join-team为函数名，team-id为该函数的第一个参数，依次类推如果team-id还有之后‘/’的话则为该函数第二个参数，第三个参数...
+
+
+
+
+
+
+
+
+
+
+
+

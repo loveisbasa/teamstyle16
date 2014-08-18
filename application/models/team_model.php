@@ -153,7 +153,7 @@ class TeamModel
 			FROM teams
 		             WHERE (team_id = :team_id) ";
 		$query = $this->db->prepare($sql);
-		$query->execute(array(':team_id' => $_POST['team_id']));
+		$query->execute(array(':team_id' => $team_id));
 		$count = $query->rowCount();
 		if ($count != 1) {
 			$_SESSION['feedback_negative'][] = FEEDBACK_JOIN_FAILED;

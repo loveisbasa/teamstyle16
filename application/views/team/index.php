@@ -24,7 +24,7 @@
                     <td><?php if (isset($team->team_captain)) echo $team->team_captain; 
                      if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
                      if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></td>
-                    <td><a href="<?php echo URL.'team/join_team?team_id='.$team->team_id;?>">join</a></td>
+                    <td><a href="<?php echo URL.'team/join_team/'.$team->team_id;?>">join</a></td>
                 </tr>
             <?php } ?>
             </tbody>

@@ -18,8 +18,9 @@ ini_set("display_errors", 1);
  * Configuration for: Project URL
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
-define('URL', 'http://localhost/teamstyle16/');
+//define('URL', 'http://localhost/teamstyle16/');
 
+define('URL', 'http://59.66.142.231/');
 define("HASH_COST_FACTOR", "10");
 
 
@@ -56,8 +57,8 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
-define('DB_PASS', 'wangjianyu');
-// define('DB_PASS', 'niehao');
+//define('DB_PASS', 'wangjianyu');
+ define('DB_PASS', 'niehao');
 
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");

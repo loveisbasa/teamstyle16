@@ -61,3 +61,37 @@ CREATE TABLE `info`.`messages` (
   FOREIGN KEY (`message_to_id`) REFERENCES users (`user_id`)
 	ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+/*以下几个表都是论坛用*/
+/*-----------------------------------------------------------------------------*/
+CREATE TABLE `info`.`forum`(
+`form_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+`form_name` varchar(60) NOT NULL,
+PRIMARY KEY (`form_id`),
+UNIQUE(`form_name`)
+);
+
+CREATE TABLE `info`.`thread`(
+	`thread_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`form_id`  tinyint(3) UNSIGNED NOT NULL,
+	`user_id`  int(11) UNSIGNED NOT NULL,
+	`subject` VARCHAR(150) NOT NULL,
+	#主题名不应长于150字
+	PRIMARY KEY (`thread_id`),
+	INDEX (`thread_id`),
+	Index (`user_id`)
+);
+
+CREATE TABLE `info`.`post`(
+	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	thread_id int(11) UNSIGNED NOT NULL,
+	user_id int(11) UNSIGNED NOT NULL,
+	message text NOT NULL,
+	post_on datetime NOT NULL,
+	PRIMARY KEY (post_id),
+	INDEX (thread_id),
+	INDEX （user_id)
+);
+
+

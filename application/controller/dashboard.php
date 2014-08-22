@@ -8,9 +8,6 @@ class dashboard extends Controller
 	}
 	public function index()
 	{
-		echo 'Message from Controller: Welcome ' .$_SESSION['user_nickname']. '! You are in the controller dashboard, using the method index()';
-		//session_start();
-
 		if (isset($_SESSION['user_logged_in'])) {
 			require 'application/views/_templates/header.php';
 			require 'application/views/dashboard/index.php';

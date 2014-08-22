@@ -1,53 +1,51 @@
 <div class="container">
 <br/>
-    <h2>You are in the View: application/views/login/register.php (everything in this box comes from that file)</h2>
-    
     <?php require  'application/views/_templates/feedback.php'; 
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);
         //Session::set('row_count', null);
         ?>
     <div>
-        <h2><em>Create your personal account</em></h2>
+<br/>
         <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register_action" method="post">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Nickname</label>
+                    <label class="col-sm-2 control-label">队式昵称</label>
                     <div class="col-sm-3">
                         <input type="text" name="user_nickname" class="form-control" placeholder="Nickname" required autofocus>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Password</label>
+                    <label class="col-sm-2 control-label"> 密  码 </label>
                     <div class="col-sm-3">
                         <input type="password" name="user_password_new" class="form-control" placeholder="Password"required />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Confirm your password</label>
+                    <label class="col-sm-2 control-label">确认密码</label>
                     <div class="col-sm-3">
                         <input type="password" name="user_password_repeat" class="form-control" placeholder="Password repeat" required >
                         </div>
                         </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Email address</label>
+                    <label class="col-sm-2 control-label">电子邮箱</label>
                     <div class="col-sm-3">
                         <input type="text" name="user_email" class="form-control" placeholder="Email" required >
                         </div>
                         </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Real name</label>
+                    <label class="col-sm-2 control-label"> 姓  名 </label>
                     <div class="col-sm-3">
                         <input type="text" name="user_real_name" class="form-control" placeholder="Real name" required>
                         </div>
                         </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Phone number</label>
+                    <label class="col-sm-2 control-label">手机号码</label>
                     <div class="col-sm-3">
                         <input type="text" name="user_phone" class="form-control" placeholder="phone number" required>
                         </div>
                         </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Class</label>
+                    <label class="col-sm-2 control-label"> 班 级</label>
                     <div class="col-sm-3">
                         <input type="text" name="user_class" class="form-control" placeholder="class" required>
                         </div>

@@ -16,8 +16,6 @@ class Home extends Controller
      */
 	public function index($user_nickname )
 	{
-		// debug message to show where you are, just for the demo
-		echo 'Message from Controller: You are in the controller home, using the method index()';
 		if ($user_nickname == '') {
 			if (isset($_SESSION['user_logged_in'])) {
 				header('location:' .URL. 'dashboard');

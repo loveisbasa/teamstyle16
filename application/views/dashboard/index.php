@@ -7,9 +7,6 @@
         Session::set('feedback_negative', null);
         ?>
     <h3><?php echo 'Welcome ' .$_SESSION['user_nickname']. '!'?></h3>
-        <ul>
-            <li><a href="<?php echo URL. 'login/logout'; ?>">Log out</a></li>
-        </ul>
 </div>
 <div class = "container">
     <ul>

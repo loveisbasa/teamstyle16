@@ -43,7 +43,7 @@ define('VIEWS_PATH', 'application/views/');
 define('COOKIE_RUNTIME', 1209600);
 // the domain where the cookie is valid for, for local development ".127.0.0.1" and ".localhost" will work
 // IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
-define('COOKIE_DOMAIN', '.127.0.0.1');
+define('COOKIE_DOMAIN', '.localhost');
 
 define("TEAM_INVITATION", "");
 define("TEAM_INVITATION_CONTENT", "");

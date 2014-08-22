@@ -261,4 +261,5 @@ class LoginModel
 	{
 		return $_SESSION['user_logged_in'];
 	}
+
 }

@@ -8,18 +8,20 @@ class dashboard extends Controller
 	}
 	public function index()
 	{
-		echo 'Message from Controller: Welcome ' .$_SESSION['user_nickname']. '! You are in the controller dashboard, using the method index()';
-		//session_start();
-
+		
 		if (isset($_SESSION['user_logged_in'])) {
-			require 'application/views/_templates/header.php';
-			require 'application/views/dashboard/index.php';
-			require 'application/views/_templates/footer.php';
+			$overview_model = $this->loadModel('Login');
+			$this->view->user = $overview_model->getUserProfile($_SESSION['user_id']);
+			$this->view->render('dashboard/index');
+			// require 'application/views/_templates/header.php';
+			// require 'application/views/dashboard/index.php';
+			// require 'application/views/_templates/footer.php';
 		} else {
 			session_destroy();
 			header('location:' .URL. 'login/index');
 		}	
 	}
+
 }
 
 function HandleLoggedIn() 

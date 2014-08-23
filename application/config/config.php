@@ -22,7 +22,7 @@ define('URL', 'http://localhost/teamstyle16/');
 
 define("HASH_COST_FACTOR", "10");
 
-
+define('AVATAR_PATH', 'public/avatars/');
 define('LIBS_PATH', 'application/libs/');
 define('CONTROLLER_PATH', 'application/controller/');
 define('MODELS_PATH', 'application/models/');
@@ -43,10 +43,15 @@ define('VIEWS_PATH', 'application/views/');
 define('COOKIE_RUNTIME', 1209600);
 // the domain where the cookie is valid for, for local development ".127.0.0.1" and ".localhost" will work
 // IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
-define('COOKIE_DOMAIN', '.127.0.0.1');
+define('COOKIE_DOMAIN', '.localhost');
 
 define("TEAM_INVITATION", "");
 define("TEAM_INVITATION_CONTENT", "");
+
+define('USE_GRAVATAR', false);
+define('AVATAR_SIZE', 88);
+define('AVATAR_JPEG_QUALITY', 85);
+define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 
 /**
  * Configuration for: Database
@@ -57,7 +62,6 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
 define('DB_PASS', 'wangjianyu');
-// define('DB_PASS', 'niehao');
 
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");

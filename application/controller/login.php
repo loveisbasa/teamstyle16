@@ -24,7 +24,7 @@ class Login extends Controller
 
 	public function register()
 	{
-		echo 'Message from Controller: You are in the controller login, using the method register()';
+		//echo 'Message from Controller: You are in the controller login, using the method register()';
 
 		require 'application/views/_templates/header.php';
 		require 'application/views/login/register.php';
@@ -33,7 +33,7 @@ class Login extends Controller
 	public function register_action()
 	{
 		//session_start();
-		echo 'Message from Controller: You are in the controller login, using the method register_action()';
+		//echo 'Message from Controller: You are in the controller login, using the method register_action()';
 
 		$login_model = $this->loadModel('Login');
 		$register_success = $login_model->RegisterNewUser();
@@ -52,7 +52,7 @@ class Login extends Controller
 
 	public function login()
 	{
-		echo 'Message from Controller: You are in the controller login, using the method login()';
+		//echo 'Message from Controller: You are in the controller login, using the method login()';
 
 		// if (isset($_COOKIE['remmberme'])) {
 		// 	$this->loginWithCookie();
@@ -70,7 +70,7 @@ class Login extends Controller
 
 	public function logout()
 	{
-		echo 'Message from Controller: You are in the controller login, using the method logout()';
+		//echo 'Message from Controller: You are in the controller login, using the method logout()';
 		$login_model = $this->loadModel('Login');
 		$logout_success = $login_model->Logout();
 
@@ -92,5 +92,28 @@ class Login extends Controller
 			header('location: ' . URL . 'login/index');
 		}
 	}
+
+	function uploadAvatar()
+	{
+	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+		Auth::handleLogin();
+		$login_model = $this->loadModel('Login');
+		$this->view->avatar_file_path = $login_model->getUserAvatarFilePath();
+		$this->view->render('login/uploadavatar');
+	}
+
+	function uploadAvatar_action()
+	{
+	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+	// Note: This line was missing in early version of the script, but it was never a real security issue as
+	// it was not possible to read or edit anything in the database unless the user is really logged in and
+	// has a valid session.
+		Auth::handleLogin();
+		$login_model = $this->loadModel('Login');
+		$login_model->createAvatar();
+		$this->view->render('login/uploadavatar');
+	}
+
+	
 }
 

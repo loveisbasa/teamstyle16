@@ -13,7 +13,7 @@ CREATE TABLE `info`.`users` (
   `user_remmember_token` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_first_login` tinyint(1) DEFAULT '1',
   `user_group`  varchar(6) NOT NULL,#三种admin dev guest
-	#`user_in_team` tinyint(1) DEFAULT '0',
+  #`user_in_team` tinyint(1) DEFAULT '0',
   `user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   PRIMARY KEY (`user_id`),

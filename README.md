@@ -26,6 +26,13 @@ TeamStyle16 Web Dev.
 #### 8-21 by neil
 -增加了简单的权限管理分为三个组”admin","dev","guest",用户属性存储在user表的user_type列中，已经修改了相应的login_model,登陆会将相关信息写入session中（同名位置），@loveisbasa修改register views时加入这个选项吧，不过admin不要加入注册页面中，搭站时直接写一个用户到数据库中。
 
+#### 8-23 by ricky
+- 增加了头像功能，目前可以使用。注册时使用默认头像，登陆后可以自行更改。
+- 由于涉及到dashboard的controller和view，所以也顺带把这两个文件简单改了一下。dashboard界面进行了简单的分块，可还是非常的难看= =
+- 用户昵称可以输入中文。
+- dashboard页面需要进一步改进，认为应该增加一个setting的页面
+- 对框架做了一点修改，目前libs中的类都可以直接使用，写起来会方便那么一丢丢。
+
 #### 8-18 by ricky
 - 下午尝试写了一下前端，bootstrap相关文件已加入目录；现在还比较粗糙但是起码看起来像点网站的样子了,一会再优化一下
 

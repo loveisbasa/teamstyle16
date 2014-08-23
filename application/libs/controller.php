@@ -24,6 +24,8 @@ class Controller
 			header('location:' .URL. 'login/loginwithcookie');
 		}
 		$this->openDatabaseConnection();
+
+		$this->view = new View();
 	}
 	/**
 	* Open the database connection with the credentials from application/config/config.php

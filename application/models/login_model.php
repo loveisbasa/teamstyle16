@@ -31,8 +31,9 @@ class LoginModel
 			user_failed_logins, 
 			user_last_failed_login, 
 			user_first_login 
+			user_type
 			FROM users
-		             WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
+				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
 		$query->execute(array(':user_nickname' => $_POST['user_nickname']));
 		$count = $query->rowCount();
@@ -56,6 +57,7 @@ class LoginModel
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
+			$_SESSION['user_type']=$result->user_type;
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
@@ -142,7 +144,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login
+			user_failed_logins, user_last_failed_login,user_type
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -157,6 +159,7 @@ class LoginModel
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
+			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
@@ -232,16 +235,19 @@ class LoginModel
 				$_SESSION["feedback_negative"][] = FEEDBACK_USER_EMAIL_ALREADY_TAKEN;
 				return false;
 			}
-
-			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class)
-			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class)";
+			//权限设置
+			if($_POST['user_type']=='dev') $user_type='dev';
+			else $user_type='guest';
+			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class,user_type)
+			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_type)";
 			$query = $this->db->prepare($sql);
 			$query->execute(array(':user_nickname' => $user_nickname,
 				':user_password_hash' => $user_password_hash,
 				':user_email' => $user_email,
 				':user_real_name' => $user_real_name,
 				':user_phone' => $user_phone,
-				':user_class' => $user_class) );
+				':user_class' => $user_class
+				':user_type'=>$user_type) );
 			$count = (int)$query->rowCount();
 			if ($count != 1 ) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;

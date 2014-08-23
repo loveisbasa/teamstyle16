@@ -69,7 +69,7 @@ class MessageModel
 		$query->execute(array(':message_to_id' => $message_to_id));
 		$count = $query->rowCount();
 		if($count) {
-			$result= $quert->fetchAll();
+			$result= $query->fetchAll();
 			return $result;
 		}
 		else return 'NOTHING';
@@ -89,10 +89,10 @@ public function ReadAllMessage()
 	}
 		public function ChangeStatusMessage($id)
 		{
-		$sql="UPDATE messages SET message_is_read=1";
+		$sql="UPDATE messages SET message_is_read=1 where message_id=:id";
 
 		$query=$this->db->prepare($sql);	
-		$query->execute(array(':message_to_id' => $message_to_id));
+		$query->execute(array(':id' => $id));
 		
 		}
 } 

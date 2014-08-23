@@ -12,7 +12,7 @@ class Team extends Controller
 
 	public function join_team($team_id)
 	{
-		echo "join";
+		//echo "join";
 		if (isset($team_id)) {
 			$team_model = $this->loadModel('Team');
 			$team_model->JoinTeam($team_id);
@@ -30,7 +30,7 @@ class Team extends Controller
 
 	public function team_display()
 	{
-		echo "display";
+		//echo "display";
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->GetAllTeams();
 
@@ -46,14 +46,14 @@ class Team extends Controller
 
 	public function create_action()
 	{
-		echo "create";
+		//echo "create";
 		$team_model = $this->loadModel('Team');
 		$create_team_success = $team_model->CreateTeam();
 		if ($create_team_success == true) {
-			echo "successful";
+			//echo "successful";
 			header('location:' .URL. 'dashboard');
 		} else {
-			echo "failed";
+			//echo "failed";
 			header('location:' .URL. 'team/create_team');
 		}
 	}

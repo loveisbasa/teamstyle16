@@ -22,7 +22,7 @@ define('URL', 'http://localhost/teamstyle16/');
 
 define("HASH_COST_FACTOR", "10");
 
-
+define('AVATAR_PATH', 'public/avatars/');
 define('LIBS_PATH', 'application/libs/');
 define('CONTROLLER_PATH', 'application/controller/');
 define('MODELS_PATH', 'application/models/');
@@ -48,6 +48,11 @@ define('COOKIE_DOMAIN', '.localhost');
 define("TEAM_INVITATION", "");
 define("TEAM_INVITATION_CONTENT", "");
 
+define('USE_GRAVATAR', false);
+define('AVATAR_SIZE', 88);
+define('AVATAR_JPEG_QUALITY', 85);
+define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
+
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
@@ -56,7 +61,7 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'wangjianyu');
 
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");

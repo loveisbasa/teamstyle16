@@ -50,12 +50,18 @@
                         <input type="text" name="user_class" class="form-control" placeholder="class" required>
                         </div>
                         </div>
+
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-default">Sign in</button>
                     </div>
                 </div>
         </form>
+
+       
+
+        
+
     </div>
 
    <!--   <div class="int">

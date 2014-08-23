@@ -43,14 +43,15 @@ class Message extends Controller
 		}
 	
 	}
-	public function is_read($message_id)
+	public function is_read()
 	{
 
 		echo 'Message from Controller: You are in the controller message, using the method is_read()';
 				require 'application/views/_templates/header.php';
 				require 'application/views/home/index.php';
 				require 'application/views/_templates/footer.php';
-	$message_model=$this->loadModel("message");
-		$message_model->message_is_read($message_id);
+		$message_id=$_GET['message_id'];		
+		$message_model=$this->loadModel("message");
+		$message_model->ChangeStatusMessage($message_id);
 	}
 }

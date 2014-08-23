@@ -12,7 +12,8 @@ CREATE TABLE `info`.`users` (
   `user_last_failed_login` int(10) DEFAULT NULL,
   `user_remmember_token` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_first_login` tinyint(1) DEFAULT '1',
-  #`user_in_team` tinyint(1) DEFAULT '0',
+  `user_group`  varchar(6) NOT NULL,#三种admin dev guest
+	#`user_in_team` tinyint(1) DEFAULT '0',
   #`user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   PRIMARY KEY (`user_id`),
@@ -50,7 +51,7 @@ CREATE TABLE `info`.`messages` (
   `message_title` varchar(30) NOT NULL,
   `message_content` text NOT NULL,
   `message_send_date` datetime NOT NULL,
-  `message_is_read` tinyint(1) NOT NULL,
+  `message_is_read` tinyint(1) NOT NULL,/*1表示已读，0表示未读......好吧，应该用bool类型的，先这样吧*/
   `message_type` varchar(5) NOT NULL,
   INDEX (`message_id`,`message_from_id`),
   INDEX (`message_to_id`),
@@ -61,3 +62,43 @@ CREATE TABLE `info`.`messages` (
   FOREIGN KEY (`message_to_id`) REFERENCES users (`user_id`)
 	ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+/*以下几个表都是论坛用*/
+/*-----------------------------------------------------------------------------*/
+/*板块*/
+CREATE TABLE `info`.`forums`(
+`forum_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+`title` varchar(80) NOT NULL,
+`intro` tinytext NOT NULL,
+`latest_reply` datetime NOT NULL,
+`count_thread` int NOT NULL， /*非必须，但是可以提高性能*/
+`count_post` int NOT NULL,/*同上*/
+PRIMARY KEY (`forum_id`),
+INDEX
+UNIQUE(`forum_name`)
+);
+/*每条主题*/
+CREATE TABLE `info`.`threads`(
+	`thread_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`forum_id`  tinyint(3) UNSIGNED NOT NULL,
+	`user_id`  int(11) UNSIGNED NOT NULL,
+	`subject` VARCHAR(150) NOT NULL,
+	#主题名不应长于150字
+	PRIMARY KEY (`thread_id`),
+	INDEX (`thread_id`),
+	Index (`user_id`)
+);
+/*评论*/
+CREATE TABLE `info`.`posts`(
+	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	thread_id int(11) UNSIGNED NOT NULL,
+	user_id int(11) UNSIGNED NOT NULL,
+	message text NOT NULL,
+	post_on datetime NOT NULL,
+	PRIMARY KEY (post_id),
+	INDEX (thread_id),
+	INDEX （user_id)
+);
+
+

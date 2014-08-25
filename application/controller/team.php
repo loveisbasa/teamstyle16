@@ -30,7 +30,6 @@ class Team extends Controller
 
 	public function team_display()
 	{
-		//echo "display";
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->GetAllTeams();
 

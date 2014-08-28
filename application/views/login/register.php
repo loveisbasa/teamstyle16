@@ -7,6 +7,8 @@
         ?>
     <div>
 <br/>
+<link rel='stylesheet' href="<?php echo URL; ?>public/css/stylesheet-register.css">
+
         <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register_action" method="post">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">队式昵称</label>
@@ -58,12 +60,53 @@
         </form>
     </div>
 
-   <!--   <div class="int">
-    <label for="username">用户名  :</label><input type="text" name="username"/><br/></div>
-    <div class="int"><label for="key">密码   :</label><input type="password" name="password"/></div>
-    <div class="int">
-        <label for="makesure">
-            确认密码:</label><input type="password" name="confirm"/>
-    </div> -->
-
+    <section class="content">
+      <div class="form-unit">
+        <a href="/" class="brand">
+          <h1>Teamstyle16 深蓝</h1>
+        </a>
+        <h3>Create Teamstyle Account</h3>
+        <form action="<?php echo URL; ?>login/register_action" method="post" class="auth-form form-horizontal">
+          <div class="face"></div>
+          
+          <input type="hidden" name="source" value="">
+          <div class="form-field">
+            <input type="email" name="email" placeholder="Email" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+          <div class="form-field">
+            <input type="text" name="name" placeholder='Name' autocomplete="off" value="" required class="form-control name" />
+            <span class="icon icon-user-bold"></span>
+          </div>
+          <div class="form-field">
+            <input type="password" placeholder="Password" autocomplete="off" name="password" required class="form-control password" />
+            <span class="icon icon-lock"></span>
+          </div>
+          <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
+            Sign up
+          </button>
+          <div class="action-wrapper">
+            <a href="/login" class="signup pull-right">Already have an account?</a>
+          </div>
+        </form>
+      </div>
+      <div class="production-list">
+        <ul>
+          <li>
+            <a href="http://teambition.com" target="_blank">
+              <div class="teambition-app"></div>
+              <h4>Teambition</h4>
+              <p>Effective project management</p>
+            </a>
+          </li>
+          <li>
+            <a href="http://today.ai" target="_blank">
+              <div class="today-app"></div>
+              <h4>Today</h4>
+              <p>Plan your whole day</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
    

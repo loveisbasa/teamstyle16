@@ -5,9 +5,9 @@
  */
 class Message extends Controller
 {
-		function __constrct()
+		function __construct()
 	{
-		parent::__constrct();
+		parent::__construct();
 	}
 	/**
      * PAGE: index

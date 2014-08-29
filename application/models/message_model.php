@@ -56,7 +56,18 @@ class MessageModel
 		}	
 		}
 	}
-		public function ReadNewMessage()
+		
+	public function CountMessage()
+	{
+		$message_to_id=$_SESSION['user_id'];
+		$sql="select COUNT(message_id) as unread_messages
+			from messages
+			WHERE message_to_id={$message_to_id} and message_is_read=0";
+		$query=$this->db->prepare($sql);
+		$query->execute();
+		return $query->fetch()->unread_messages;	
+	}
+	public function ReadNewMessage()
 	{
 		$message_to_id=$_SESSION['user_id'];
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
@@ -74,6 +85,7 @@ class MessageModel
 		}
 		else return 'NOTHING';
 		}
+
 public function ReadAllMessage()
 	{
 		$message_to_id=$_SESSION['user_id'];

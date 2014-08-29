@@ -244,10 +244,10 @@ class LoginModel
 				':user_email' => $user_email,
 				':user_real_name' => $user_real_name,
 				':user_phone' => $user_phone,
-				':user_class' => $user_class
-				':user_type'=>$user_type) );
+				':user_class' => $user_class,
+				':user_type'=>$user_type));
 			$count = (int)$query->rowCount();
-			if ($count != 1 ) {
+			if ($count != 1) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
 				return false;
 			}

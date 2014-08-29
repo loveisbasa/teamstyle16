@@ -42,13 +42,14 @@ if (!isset($_SESSION['user_logged_in'])) {?>
 <div class="navbar  navbar-default" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+<!--          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
+            <span class="icon-bar"></span>
+          </button>-->
           <a class="navbar-brand" href="<?php echo URL; ?>"><strong>TeamStyle 16</strong></a>
         </div>
         <div class="navbar-collapse collapse">
@@ -76,11 +77,22 @@ if (!isset($_SESSION['user_logged_in'])) {?>
           <ul class="nav navbar-nav">
             <li class="active"><a href="<?php echo URL; ?>"><?php echo $_SESSION['user_nickname'];?></a></li>
 	        </ul>
+
 	        <ul class="nav navbar-nav navbar-right">
-            <li calss="active"><a href="<?php echo URL.'login/login'?>">论坛</a></li>
+            <li><a href="<?php echo URL.'login/login'?>">论坛</a></li>
 	          <li><a href="<?php echo URL.'login/login'?>">公告</a></li>
             <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>
           </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <button id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+              <span class="caret"></span>
+            </button>
+          </ul>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <li><a href="<?php echo URL.'login/login'?>">论坛</a></li>
+            </ul>
           
         </div><!--/.nav-collapse -->
       </div>

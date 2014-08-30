@@ -24,17 +24,12 @@ class Login extends Controller
 
 	public function register()
 	{
-		echo 'Message from Controller: You are in the controller login, using the method register()';
-
 		require 'application/views/_templates/header.php';
 		require 'application/views/login/register.php';
 		require 'application/views/_templates/footer.php';
 	}
 	public function register_action()
 	{
-		//session_start();
-		echo 'Message from Controller: You are in the controller login, using the method register_action()';
-
 		$login_model = $this->loadModel('Login');
 		$register_success = $login_model->RegisterNewUser();
 		if ($register_success == true) {
@@ -52,7 +47,7 @@ class Login extends Controller
 
 	public function login()
 	{
-		echo 'Message from Controller: You are in the controller login, using the method login()';
+		//echo 'Message from Controller: You are in the controller login, using the method login()';
 
 		// if (isset($_COOKIE['remmberme'])) {
 		// 	$this->loginWithCookie();
@@ -70,7 +65,7 @@ class Login extends Controller
 
 	public function logout()
 	{
-		echo 'Message from Controller: You are in the controller login, using the method logout()';
+		//echo 'Message from Controller: You are in the controller login, using the method logout()';
 		$login_model = $this->loadModel('Login');
 		$logout_success = $login_model->Logout();
 

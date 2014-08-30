@@ -7,9 +7,9 @@
         ?>
     <div>
 <br/>
-<link rel='stylesheet' href="<?php echo URL; ?>public/css/stylesheet-register.css">
+<link rel='stylesheet' href="<?php echo URL; ?>public/css/stylesheet-createam.css">
 
-        <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register_action" method="post">
+<!--        <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register_action" method="post">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">队式昵称</label>
                     <div class="col-sm-3">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
         </form>
-    </div>
+    </div>-->
 
     <section class="content">
       <div class="form-unit">
@@ -71,17 +71,34 @@
           
           <input type="hidden" name="source" value="">
           <div class="form-field">
-            <input type="email" name="email" placeholder="Email" autocomplete="off" value="" required class="form-control email" autofocus />
+            <input type="email" name="user_email" placeholder="电子邮箱" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
           </div>
           <div class="form-field">
-            <input type="text" name="name" placeholder='Name' autocomplete="off" value="" required class="form-control name" />
+            <input type="text" name="user_nickname" placeholder='队式昵称' autocomplete="off" value="" required class="form-control name" />
             <span class="icon icon-user-bold"></span>
           </div>
           <div class="form-field">
-            <input type="password" placeholder="Password" autocomplete="off" name="password" required class="form-control password" />
+            <input type="password" placeholder="密  码" autocomplete="off" name="user_password_new" required class="form-control password" />
             <span class="icon icon-lock"></span>
           </div>
+          <div class="form-field">
+            <input type="password" placeholder="确认密码" autocomplete="off" name="user_password_repeat" required class="form-control password" />
+            <span class="icon icon-lock"></span>
+          </div>
+          <div class="form-field">
+            <input type="text" name="user_real_name" placeholder="姓  名" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+          <div class="form-field">
+            <input type="text" name="user_class" placeholder="班 级" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+          <div class="form-field">
+            <input type="text" name="user_phone" placeholder="手机号码" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+          
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
             Sign up
           </button>
@@ -89,24 +106,6 @@
             <a href="/login" class="signup pull-right">Already have an account?</a>
           </div>
         </form>
-      </div>
-      <div class="production-list">
-        <ul>
-          <li>
-            <a href="http://teambition.com" target="_blank">
-              <div class="teambition-app"></div>
-              <h4>Teambition</h4>
-              <p>Effective project management</p>
-            </a>
-          </li>
-          <li>
-            <a href="http://today.ai" target="_blank">
-              <div class="today-app"></div>
-              <h4>Today</h4>
-              <p>Plan your whole day</p>
-            </a>
-          </li>
-        </ul>
       </div>
     </section>
    

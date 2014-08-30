@@ -20,18 +20,19 @@ TeamStyle16 Web Dev.
 
 ## Log
 ----
+#### 8-30 by ricky
+- 修复了join_team的bug，功能还有待完善，需再加几条if语句
+- 修复了dropdown的bug，在导航栏上加了图标
+- 增加了修改用户名，邮箱的model
+- 增加了setting页面，用来修改用户信息
+- 简单改了一下dashboard页面
+- public文件夹里有一些图片，是我为测试投降功能而加的
+
 #### 8-23 by neil
 完成了论坛的model，正在写controller，计划之后看一看信息推送的实现方法。
 
 #### 8-21 by neil
 -增加了简单的权限管理分为三个组”admin","dev","guest",用户属性存储在user表的user_type列中，已经修改了相应的login_model,登陆会将相关信息写入session中（同名位置），@loveisbasa修改register views时加入这个选项吧，不过admin不要加入注册页面中，搭站时直接写一个用户到数据库中。
-
-#### 8-23 by ricky
-- 增加了头像功能，目前可以使用。注册时使用默认头像，登陆后可以自行更改。
-- 由于涉及到dashboard的controller和view，所以也顺带把这两个文件简单改了一下。dashboard界面进行了简单的分块，可还是非常的难看= =
-- 用户昵称可以输入中文。
-- dashboard页面需要进一步改进，认为应该增加一个setting的页面
-- 对框架做了一点修改，目前libs中的类都可以直接使用，写起来会方便那么一丢丢。
 
 #### 8-23 by ricky
 - 增加了头像功能，目前可以使用。注册时使用默认头像，登陆后可以自行更改。

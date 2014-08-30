@@ -23,28 +23,20 @@
                     <td><?php if (isset($team->team_captain)) echo $team->team_captain; 
                      if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
                      if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></td>
-                    <td><a href="#testModal" id = "team-password">join</a></td>
+                    <td><a href="#testModal" rel = "leanModal" id = "team-password">join</a></td>
+<div id = "testModal" style="display:none;">
+    <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
+        <h2 class = "form-signin-heading">Join Team Now!</h2>
+        <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/><br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
+    </form>
+</div>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
     </div>
 
-<div id = "testModal" style="display:none;">
-    <form class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
-        <h2 class = "form-signin-heading">Join Team Now!</h2>
-        <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/><br/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
-    </form>
-</div>
 
-<script type="text/javascript">
-$(function(){
-   // $('#loginform').submit(function(e){
-   //   return false;
-   // });
-  
-  $('#team-password').leanModal();
-  //$("a[rel*=leanModal]").leanModal();
-});
-</script>
+
+

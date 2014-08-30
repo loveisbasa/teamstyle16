@@ -91,6 +91,7 @@ if (!isset($_SESSION['user_logged_in'])) {?>
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
+              <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
             <li><a href="<?php echo URL.'login/login'?>">论坛</a></li>
 	          <li><a href="<?php echo URL.'login/login'?>">公告</a></li>
             <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  

@@ -107,7 +107,7 @@ class Login extends Controller
 		Auth::handleLogin();
 		$login_model = $this->loadModel('Login');
 		$login_model->createAvatar();
-		$this->view->render('login/uploadavatar');
+		header('location: ' . URL . 'setting/index');
 	}
 
 	

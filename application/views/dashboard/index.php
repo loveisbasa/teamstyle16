@@ -50,18 +50,7 @@
             </div>
           </div>
         </div>
-  <div class="col-sm-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Setting</h3>
-            </div>
-            <div class="panel-body">
-                <ul>
-                     <li><a href="<?php echo URL. 'login/uploadAvatar';?>">Upload Avatar</a></li>
-                </ul>
-            </div>
-          </div>
-        </div>  
+  
 
 
 </div>

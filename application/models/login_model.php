@@ -488,8 +488,5 @@ class LoginModel
 
 		return $gravatar_image_link;
 	}
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 4b3f5123b6e2e284ebcdfb82e03a8e520e902861

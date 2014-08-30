@@ -7,11 +7,11 @@
         <table class='table table-bordered'>
             <thead style="background-color: #ddd; font-weight: bold;">
             <tr>
-                <td>Id</td>
-                <td>name</td>
-                <td>slogan</td>
-                <td>members</td>
-                <td> </td>
+                <th>Id</th>
+                <th>name</th>
+                <th>slogan</th>
+                <th>members</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
@@ -44,6 +44,7 @@ $(function(){
    //   return false;
    // });
   
-  $('#team-password').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+  $('#team-password').leanModal();
+  //$("a[rel*=leanModal]").leanModal();
 });
 </script>

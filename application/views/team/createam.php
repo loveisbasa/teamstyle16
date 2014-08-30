@@ -49,10 +49,10 @@
           </div>
           		<!--TODO:运用JavaScript做出动态菜单的效果-->
           <div class="form-field">
-         <input type = "text" name = "team_member1" placeholder="Your teammate 1" required class="form-control name">
+         <input type = "text" name = "team_member1" placeholder="Your teammate 1"  class="form-control name">
           </div>
           <div class="form-field">
-		<input type = "text" name = "team_member2" placeholder="Your teammate 2" required class="form-control name">
+		<input type = "text" name = "team_member2" placeholder="Your teammate 2"  class="form-control name">
 	</div>
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
             立刻建队

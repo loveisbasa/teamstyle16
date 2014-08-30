@@ -7,7 +7,7 @@ h6 {text-align:center;}
 
 <footer class="bs-docs-footer" role="contentinfo">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12">
     
 
     <ul class="footer-list">

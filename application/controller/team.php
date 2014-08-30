@@ -23,9 +23,15 @@ class Team extends Controller
 	
 	public function create_team()
 	{
-		require 'application/views/_templates/header.php';
-		require 'application/views/team/createam.php';
-		require 'application/views/_templates/footer.php';
+		$team_model = $this->loadModel('Team');
+		if (!$team_model->IsUserInTeam($_SESSION['user_id'])) {
+			require 'application/views/_templates/header.php';
+			require 'application/views/team/createam.php';
+			require 'application/views/_templates/footer.php';
+		} else {
+			$_SESSION["feedback_negative"][] = FEEDBACK_MEMBER_ALREADY_HAS_TEAM;
+			header('location:' .URL. 'dashboard');
+		}
 	}
 
 	public function team_display()

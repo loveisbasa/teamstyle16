@@ -50,7 +50,7 @@ define("TEAM_INVITATION", "");
 define("TEAM_INVITATION_CONTENT", "");
 
 define('USE_GRAVATAR', false);
-define('AVATAR_SIZE', 88);
+define('AVATAR_SIZE', 132);
 define('AVATAR_JPEG_QUALITY', 85);
 define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 

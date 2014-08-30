@@ -472,6 +472,7 @@ class LoginModel
 				$user->user_avatar_link = $this->getGravatarLinkFromEmail($user->user_email);
 			} else {
 				$user->user_avatar_link = $this->getUserAvatarFilePath($user->user_has_avatar, $user->user_id);
+				$_SESSION['src'] = $user->user_avatar_link;
 			}
 		} else {
 			$_SESSION["feedback_negative"][] = FEEDBACK_USER_DOES_NOT_EXIST;

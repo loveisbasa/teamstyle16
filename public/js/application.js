@@ -7,6 +7,7 @@ $(function() {
         $('#javascript-header-demo-box').css('color', 'green');
         $('#javascript-header-demo-box').fadeIn('slow');
     }
+    
 });
 
 // $(document).ready(function(){

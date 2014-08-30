@@ -24,8 +24,6 @@ class Login extends Controller
 
 	public function register()
 	{
-		//echo 'Message from Controller: You are in the controller login, using the method register()';
-
 		require 'application/views/_templates/header.php';
 		require 'application/views/login/register.php';
 		require 'application/views/_templates/footer.php';
@@ -33,8 +31,6 @@ class Login extends Controller
 	public function register_action()
 	{
 		//session_start();
-		//echo 'Message from Controller: You are in the controller login, using the method register_action()';
-
 		$login_model = $this->loadModel('Login');
 		$register_success = $login_model->RegisterNewUser();
 		if ($register_success == true) {

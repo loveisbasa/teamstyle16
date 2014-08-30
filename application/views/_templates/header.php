@@ -53,7 +53,25 @@ if (!isset($_SESSION['user_logged_in'])) {?>
           <a class="navbar-brand" href="<?php echo URL; ?>"><strong>TeamStyle 16</strong></a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+<?--消息提醒--?>
+			<ul class="nav navbar-nav" id="result"></ul>
+			<script>
+			if(typeof(EventSource)!=="undefined"){
+				var source=new EventSource("<?php echo URL. 'message/countmessage'; ?>");
+				source.onmessage=function(event)
+				{
+			    document.getElementById("result").innerHTML=event.data + "<br />";
+				};
+			}
+			else
+			{
+		    document.getElementById("result").innerHTML="Not supported...";
+			}
+			</script>
+<?--消息提醒--?>
+
+
+		  <ul class="nav navbar-nav">
             <li class="active"><a href="<?php echo URL; ?>">主页</a></li>
           </ul>
           <ul class="nav navbar-nav">

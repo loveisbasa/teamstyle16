@@ -1,5 +1,6 @@
 <div class="container">
     <h2>You are in the View: application/views/team/index.php (everything in this box comes from that file)</h2>
+ <!--使用javascript代码作为客户端接受数据-->
     <?php require  'application/views/_templates/feedback.php'; 
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>

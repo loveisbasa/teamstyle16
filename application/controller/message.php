@@ -5,9 +5,9 @@
  */
 class Message extends Controller
 {
-		function __constrct()
+		function __construct()
 	{
-		parent::__constrct();
+		parent::__construct();
 	}
 	/**
      * PAGE: index
@@ -25,10 +25,21 @@ class Message extends Controller
 				require 'application/views/_templates/footer.php';
 
 				}
-				else;
 		}
 		else header('location' . URL. 'login');
-				}
+	}
+
+	public function countmessage()
+	{
+		
+	header('Content-Type: text/event-stream');
+	header('Cache-Control: no-cache');
+	$message_model=$this->loadModel('message');
+	$count=$message_model->CountMessage();
+	echo "New Message:{$count}\n";
+	flush();
+	
+	}
 	public function all_message()
 	{
 		// debug message to show where you are, just for the demo
@@ -43,6 +54,7 @@ class Message extends Controller
 		}
 	
 	}
+
 	public function is_read()
 	{
 

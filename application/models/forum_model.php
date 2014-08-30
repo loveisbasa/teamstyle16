@@ -1,5 +1,5 @@
 <?php
-
+//部分函数中使用了GET来获取信息，后期调试时应注意加上匹配
 class ForumModel
 {
 	public function __construct($db) {
@@ -78,7 +78,7 @@ class ForumModel
 						VALUES
 						({$title},{$intro},{$d},0,0)";
 					$query=$this->db->prepare($sql);
-					if($query->execute()) return $query->fetchALL();
+					if($query->execute()) return 'ture'; 
 					else $_SESSION["feedback_negative"][]=FEEDBACK_FORUM_INSERT_ERROR;								
 					}
 				}
@@ -87,32 +87,31 @@ class ForumModel
 				}
 		}
 
-		public function Create_thread(){
-		
-			if(empty($_GET['forum_ID'])) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
-			elseif (empty($_POST['thread_subject'])) {
+		public function Create_thread($forum_id){
+			if (empty($_POST['thread_subject'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_THREAD_SUBJECT_EMPTY;
 			}
 			elseif(empty($_SESSION['user_id']) $_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
 			else{
-				$forum_id=$_POST['forum_id'];
 				$user_id=$_SESSION['user_id'];
 				$subject=strip_tags($_POST['subject']);				
 				$sql="INSERT into threads (forum_id,user_id,subject)
 						VALUES
 						({$forum_id},{$user_id},{$subject})";
 				$query=$this->db->prepare($sql);
-				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				$query=$this->db->prepare("SELECT MAX(thread_id) as tid FROM threads");
-				$query-excute();
+				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				$thread_id=$query->fetch()->tid;
 				Create_Post($thread_id);	
+				$sql="UPDATE forums SET count_thread+=1 count_post+=1 where forum_id={$forum_id}";
+				$query=$this->db->prepare($sql);
+				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
+				else return 'ture';
 				}
 		}			
 
 		public function Create_Post($thread_id){
-			if (!empty($_POST['thread_id']) $thread_id=$_POST['thread_id'];
-			elseif (empty($_POST['message'])) {
+			if (empty($_POST['message'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_POST_MESSAGE_EMPTY;
 			}
 			elseif(empty($_SESSION['user_id']) $_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
@@ -125,8 +124,14 @@ class ForumModel
 					({$thread_id},{$user_id},{$message},{$d})";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
-				$query=$this->db->prepare();
-			}
+				$sql="SELECT forum_id FROM threads WHERE thread_id={$thread_id}";
+				$query=$this->db->prepare($sql);
+				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
+				$forum_id=$query->fetch()->forum_id;
+				$sql="UPDATE forums SET count_post+=1 where forum_id={$forum_id}";
+				$query=$this->db->prepare($sql);
+				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
+				else return 'ture';
+				}
 		}		
 	}
-

@@ -20,6 +20,12 @@ TeamStyle16 Web Dev.
 
 ## Log
 ----
+
+#### 8-31 by neil
+- 完成了推送，选用了最为简单的[Server-sent Events](http://www.ibm.com/developerworks/cn/web/1307_chengfu_serversentevent/) 方法，接收端放在了header.php里，用了javascript,需要再美化一下
+- 完成了forum和message的后端，但报错信息还没有添加完全
+- 前端的链接统一用了echo URL ."/"的形式，但这个感觉不是很有必要。
+
 #### 8-30 by ricky
 - 修复了join_team的bug，功能还有待完善，需再加几条if语句
 - 修复了dropdown的bug，在导航栏上加了图标

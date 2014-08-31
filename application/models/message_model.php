@@ -62,7 +62,7 @@ class MessageModel
 		$message_to_id=$_SESSION['user_id'];
 		$sql="select COUNT(message_id) as unread_messages
 			from messages
-			WHERE message_to_id={$message_to_id} and message_is_read=0";
+			WHERE message_to_id=1 and message_is_read=0";
 		$query=$this->db->prepare($sql);
 		$query->execute();
 		return $query->fetch()->unread_messages;	

@@ -12,8 +12,8 @@ CREATE TABLE `info`.`users` (
   `user_last_failed_login` int(10) DEFAULT NULL,
   `user_remmember_token` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_first_login` tinyint(1) DEFAULT '1',
-  `user_group`  varchar(6) NOT NULL,#三种admin dev guest
-  `user_in_team` tinyint(1) DEFAULT '0',
+  `user_type`  varchar(6) NOT NULL,#三种admin dev guest
+  #`user_in_team` tinyint(1) DEFAULT '0',
   `user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   PRIMARY KEY (`user_id`),
@@ -72,11 +72,11 @@ CREATE TABLE `info`.`forums`(
 `title` varchar(80) NOT NULL,
 `intro` tinytext NOT NULL,
 `latest_reply` datetime NOT NULL,
-`count_thread` int NOT NULL， /*非必须，但是可以提高性能*/
+`count_thread` int NOT NULL, /*非必须，但是可以提高性能*/
 `count_post` int NOT NULL,/*同上*/
 PRIMARY KEY (`forum_id`),
-INDEX
-UNIQUE(`forum_name`)
+INDEX(`forum_id`),
+UNIQUE(`forum_id`)
 );
 /*每条主题*/
 CREATE TABLE `info`.`threads`(
@@ -98,7 +98,7 @@ CREATE TABLE `info`.`posts`(
 	post_on datetime NOT NULL,
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
-	INDEX （user_id)
+	INDEX (user_id)
 );
 
 

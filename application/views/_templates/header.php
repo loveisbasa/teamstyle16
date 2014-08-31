@@ -53,23 +53,6 @@ if (!isset($_SESSION['user_logged_in'])) {?>
           <a class="navbar-brand" href="<?php echo URL; ?>"><strong>TeamStyle 16</strong></a>
         </div>
         <div class="navbar-collapse collapse">
-<?--消息提醒--?>
-			<ul class="nav navbar-nav" id="result"></ul>
-			<script>
-			if(typeof(EventSource)!=="undefined"){
-				var source=new EventSource("<?php echo URL. 'message/countmessage'; ?>");
-				source.onmessage=function(event)
-				{
-			    document.getElementById("result").innerHTML=event.data + "<br />";
-				};
-			}
-			else
-			{
-		    document.getElementById("result").innerHTML="Not supported...";
-			}
-			</script>
-<?--消息提醒--?>
-
 
 		  <ul class="nav navbar-nav">
             <li class="active"><a href="<?php echo URL; ?>">主页</a></li>
@@ -94,10 +77,27 @@ if (!isset($_SESSION['user_logged_in'])) {?>
               <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
             <li><a href="<?php echo URL.'login/login'?>">论坛</a></li>
 	          <li><a href="<?php echo URL.'login/login'?>">公告</a></li>
+						<li id="result">未读</li>
             <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
             </ul>
 
-            
+       <?--消息提醒--?>
+			<script>
+			if(typeof(EventSource)!=="undefined"){
+				var source=new EventSource("<?php echo URL. 'message/countmessage'; ?>");
+				source.onmessage=function(event)
+				{
+			    document.getElementById("result").innerHTML="<br />"+event.data + "<br />";
+				};
+			}
+			else
+			{
+		    document.getElementById("result").innerHTML="Not supported...";
+			}
+			</script>
+<?--消息提醒--?>
+
+  
 
           <!-- <ul class="nav navbar-nav navbar-right">
             <button id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

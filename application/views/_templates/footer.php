@@ -19,6 +19,8 @@ h6 {text-align:center;}
       </ul>
       <br/>
     <h6>队式十六网站组荣誉出品</h6> 
+		<h6 id="gettime"></h6>
+
     </ul>
   </div>
   </div>

@@ -36,7 +36,7 @@ class Message extends Controller
 	header('Cache-Control: no-cache');
 	$message_model=$this->loadModel('message');
 	$count=$message_model->CountMessage();
-	echo "New Message:{$count}\n";
+	echo "data: 未读消息:{$count}\n\n";
 	flush();
 	
 	}

@@ -18,15 +18,15 @@ class Message extends Controller
 		echo 'Message from Controller: You are in the controller message, using the method index()';
 		if (isset($_SESSION['user_logged_in'])) {
 			$message_model=$this->loadModel('message');
-				$get_success=$message_model->ReadNewMessage();
-				if($get_success!='NOTHING'){
+				$new_message=$message_model->ReadNewMessage();
+				if($new_message!='NOTHING'){
 				require 'application/views/_templates/header.php';
-				require 'application/views/message/index.php';
+				require 'application/views/home/index.php';
 				require 'application/views/_templates/footer.php';
 
 				}
 		}
-		else header('location' . URL. 'login');
+		else header('location' . URL. 'login/index');
 	}
 
 	public function countmessage()
@@ -55,15 +55,28 @@ class Message extends Controller
 	
 	}
 
-	public function is_read()
+	public function is_read($message_id)
 	{
 
 		echo 'Message from Controller: You are in the controller message, using the method is_read()';
-				require 'application/views/_templates/header.php';
-				require 'application/views/home/index.php';
-				require 'application/views/_templates/footer.php';
-		$message_id=$_GET['message_id'];		
 		$message_model=$this->loadModel("message");
 		$message_model->ChangeStatusMessage($message_id);
+		header('location'. URL ."message/index");
 	}
+
+  public function send_mail($send_to_name)
+	{
+		if (isset($_SESSION['user_logged_in'])) {
+		require 'application/views/_templates/header.php';
+		require 'application/views/message/send_maili.php';
+		require 'application/views/_templates/footer.php';
+		}
+		else header('location' . URL. 'login/index');
+	}
+
+	public function send_mail_action()
+	{
+		$message_model=$this->loadModel('message');
+	  $message_model->SendMessage();
+	}	
 }

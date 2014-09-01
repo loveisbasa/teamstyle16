@@ -1,4 +1,5 @@
 <?php
+//部分函数中使用了GET来获取信息，后期调试时应注意加上匹配
 class ForumModel
 {
 	public function __construct($db) {
@@ -23,7 +24,7 @@ class ForumModel
 				if(isset($forum_id) and filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'=>1)){
 					$sql="
 						SELECT 
-						t.thread_id as thread_id,t.subject as subject,user_nickname,COUNT(post_id)-1 AS response,MAX(p.post_on) AS last,MIN(p.post_on) AS first
+						t.thread_id,t.subject,user_nickname,COUNT(post_id)-1 AS response,MAX(p.post_on) AS last,MIN(p.post_on) AS first
 						From 
 						threads AS t INNER JOIN posts AS p USING(thread_id) INNER JOIN users AS u ON t.user_id=u.user_id
 						WHERE t.forum_id={$forum_id} 
@@ -38,7 +39,7 @@ class ForumModel
 	public function Showposts($thread_id)
 	{
 				if(isset($thread_id) and filter_var($thread_id,FILTER_VALIDATE_INT,array('min_range'=>1)){
-					$sql="SELET t.subject as subject,p.message as message,user_nickname,p.post_on AS posted
+					$sql="SELET t.subject,p.message,user_nickname,p.post_on AS posted
 						FROM
 						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
 						WHERE t.thread_id={$thread_id} ODERED BY p.post_on ASC";
@@ -51,7 +52,7 @@ class ForumModel
 		public function ShowUSERposts($user_id)
 	{
 				if(isset($user_id) and filter_var($user_id,FILTER_VALIDATE_INT,array('min_range'=>1)){
-					$sql="SELET t.subject as subject ,p.message as message ,user_nickname,p.post_on AS posted
+					$sql="SELET t.subject,p.message,user_nickname,p.post_on AS posted
 						FROM
 						threads AS t LEFT JOIN posts AS P USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
 						WHERE p.user_id={$user_id} ODERED BY p.post_on ASC";

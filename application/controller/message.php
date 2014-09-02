@@ -21,7 +21,7 @@ class Message extends Controller
 				$new_message=$message_model->ReadNewMessage();
 				if($new_message!='NOTHING'){
 				require 'application/views/_templates/header.php';
-				require 'application/views/home/index.php';
+				require 'application/views/message/index.php';
 				require 'application/views/_templates/footer.php';
 
 				}
@@ -63,7 +63,7 @@ class Message extends Controller
 		header('location'. URL ."message/index");
 	}
 
-  public function send_mail($send_to_name)
+  public function send_mail($send_to_name="")
 	{
 		if (isset($_SESSION['user_logged_in'])) {
 		require 'application/views/_templates/header.php';

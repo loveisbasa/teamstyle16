@@ -31,7 +31,7 @@ class MessageModel
 		$query = $this->db->prepare($sql);
 		$query->execute(array(':user_to_nickname' => $_POST['user_to_nickname']));
 		$count = $query->rowCount();
-		$result=$query->fetchAll();
+		$result=$query->fetch();
 		if ($count != 1) {
 			$_SESSION['feedback_negative'][] = FEEDBACK_NO_TARGET_FAILED;
 			return false;
@@ -46,7 +46,7 @@ class MessageModel
 			$user_id=$result->user_id;
 		  $d=date('Y-m-d H:i:s');
 			$query=$this->db->prepare($sql);
-			$query->execute(array(':message_from_id' => $_Session['user_id'],
+			$query->execute(array(':message_from_id' => $_SESSION['user_id'],
 				':message_to_id' => $user_id,
 				':message_title' => $message_title,
 				':message_content' => $message_content,

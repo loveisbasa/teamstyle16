@@ -31,7 +31,7 @@
             </div>
             <div class="panel-body">
                 <ul>
-                    <li><a href="<?php echo URL. 'message/send_message';?>">Send messages</a></li>
+                    <li><a href="<?php echo URL. 'message/send_mail';?>">Send messages</a></li>
                     <li><a href="<?php echo URL. 'message/all_message';?>">All messages</a></li>
                 </ul>
             </div>

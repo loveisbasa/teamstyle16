@@ -21,7 +21,7 @@
           </div>
           <div class="form-field">
 					<input type="text" placeholder="收信人昵称" <?php
-				if(isset($send_to_name) echo "value=$send_to_name";
+				if($send_to_name!="") echo "value=$send_to_name";
 				?>
 				 name="user_to_nickname" required class="form-control name" />
 						<span class="icon icon-envelope-bold"></span>
@@ -30,12 +30,12 @@
             <input type="text" name="message_content" placeholder="内容" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
           </div>
-						<? php if($_SESSION['user_type']==admin){
-						echo "<input type="radio" name="message_type" value="sec" /> 私信";
-						echo "<input type="radio" name="message_type" value="pub" /> 公开";
+						<?php if($_SESSION['user_type']=='admin'){
+						echo "<input type='radio' name='message_type' value='sec' /> 私信";
+						echo "<input type='radio' name='message_type' value='pub' /> 通知";
 						}
 					else{
-						echo "<name="message_type" valuer="sec"/>";
+						echo "<input type='radio' name='message_type' value='sec' /> 私信";
 							}
 						?>
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">

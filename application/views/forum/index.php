@@ -4,23 +4,23 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
     <div>
-    <h3>Messages</h3>
-        <table>
-            <thead style="background-color: #ddd; font-weight: bold;">
-            <tr>
-                <td>From</td>
-                <td>Title</td>
-                <td>Content</td>
-                <td>Date</td>
-            </tr>
-            </thead>
-
-		<tbody>
-            <?php foreach ($new_message as $message) { ?>
+    <h3>Forums</h3>
+            <?php foreach ($forums) { ?>
+						<div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li><a href="http://59.66.142.231/team/create_team">Create a team</a></li>
+                    <li><a href="http://59.66.142.231/team/team_display">Show all teams</a></li>
+                </ul>
+            </div>
+          </div>
                 <tr>
                     <td><?php if (isset($message->user_nickname))  echo $message->user_nickname; ?></td>
 										<td>
-												<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>">
+										<a href="<?php if(message_is_read!=1) echo URL . 'message/is_read/' . $message->message_id;?>">
 												<?php if (isset($message->message_title))  echo $message->message_title; ?></a>
 										</td>
                     <td><?php if (isset($message->message_content))  echo $message->message_content; ?></td>
@@ -30,3 +30,4 @@
             </tbody>
         </table>
     </div>
+

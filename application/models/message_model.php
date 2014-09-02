@@ -73,8 +73,7 @@ class MessageModel
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id and message_is_read=0
-			GROUP BY user_nickname";
+			where message_to_id=:message_to_id and message_is_read=0";
 
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));

@@ -76,8 +76,7 @@ if (!isset($_SESSION['user_logged_in'])) {?>
             </li>
               <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
             <li><a href="<?php echo URL.'login/login'?>">论坛</a></li>
-	          <li><a href="<?php echo URL.'login/login'?>">公告</a></li>
-						<li id="result">未读</li>
+						<li ><a href="<?php echo URL. 'message/index';?>" id="result">未读</a></li>
             <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
             </ul>
 
@@ -85,8 +84,10 @@ if (!isset($_SESSION['user_logged_in'])) {?>
 			if(typeof(EventSource)!=="undefined"){
 				var source=new EventSource("<?php echo URL. 'message/countmessage'; ?>");
 				source.onmessage=function(event)
-				{
-			    document.getElementById("result").innerHTML="<br />"+event.data + "<br />";
+				{ if(event.data==0)
+						document.getElementById("result").innerHTML="无未读消息";
+				  else
+						document.getElementById("result").innerHTML="<font color='#FF0000'>未读:"+event.data+"</font>";
 				};
 			}
 			else

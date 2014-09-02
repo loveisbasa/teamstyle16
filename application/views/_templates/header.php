@@ -81,7 +81,6 @@ if (!isset($_SESSION['user_logged_in'])) {?>
             <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
             </ul>
 
-       <?--消息提醒--?>
 			<script>
 			if(typeof(EventSource)!=="undefined"){
 				var source=new EventSource("<?php echo URL. 'message/countmessage'; ?>");
@@ -95,7 +94,7 @@ if (!isset($_SESSION['user_logged_in'])) {?>
 		    document.getElementById("result").innerHTML="Not supported...";
 			}
 			</script>
-<?--消息提醒--?>
+<!--消息提醒-->
 
   
 

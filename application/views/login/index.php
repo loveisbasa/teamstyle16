@@ -43,7 +43,7 @@
             Log in
           </button>
           <div class="action-wrapper">
-            <a href="/login" class="signup pull-right">Already have an account?</a>
+            <a href="/login/register" class="signup pull-right">Not have an account?</a>
           </div>
         </form>
       </div>

@@ -18,7 +18,8 @@ _______________________________________________________________________
 _______________________________________________________________________
 all_message() |返回当前用户所有的消息   |		NULL			  	|NULL
 ***********************************************************************
-message_id,user_nickname,message_title,message_content,message_send_date
+message_id,user_nickname,message_title,message_content,message_send_date,
+message_is_read
 _______________________________________________________________________
 
 

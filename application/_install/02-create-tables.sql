@@ -36,7 +36,7 @@ CREATE TABLE `info`.`teams` (
   PRIMARY KEY (`team_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE `info`.`announcementS` (
+CREATE TABLE `info`.`announcements` (
 `ann_id` int(11) NOT NULL AUTO_INCREMENT,
 `ann_title` varchar(20) NOT NULL,
 `ann_content` text NOT NULL,

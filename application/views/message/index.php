@@ -21,7 +21,7 @@
                 <tr>
                     <td><?php if (isset($message->user_nickname))  echo $message->user_nickname; ?></td>
 										<td>
-										<a href="<?php echo URL. "message/is_read?message_id=$message->message_id"?>">
+										<a href="<?php if(message_is_read!=1) echo URL . 'message/is_read/' . message->message_id";?>">
 												<?php if (isset($message->message_title))  echo $message->message_title; ?></a>
 										</td>
                     <td><?php if (isset($message->message_content))  echo $message->message_content; ?></td>

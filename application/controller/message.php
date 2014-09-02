@@ -43,7 +43,6 @@ class Message extends Controller
 	public function all_message()
 	{
 		// debug message to show where you are, just for the demo
-		echo 'Message from Controller: You are in the controller message, using the method all_message()';
 		if (isset($_SESSION['user_logged_in'])) {
 				$message_model=$this->loadModel('message');
 				$message_success=$message_model->ReadAllMessage();
@@ -68,7 +67,7 @@ class Message extends Controller
 	{
 		if (isset($_SESSION['user_logged_in'])) {
 		require 'application/views/_templates/header.php';
-		require 'application/views/message/send_maili.php';
+		require 'application/views/message/send_mail.php';
 		require 'application/views/_templates/footer.php';
 		}
 		else header('location' . URL. 'login/index');

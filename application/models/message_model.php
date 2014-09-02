@@ -89,13 +89,12 @@ class MessageModel
 public function ReadAllMessage()
 	{
 		$message_to_id=$_SESSION['user_id'];
-		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
+		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
 			where message_to_id=:message_to_id  	";
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
-		echo $sql;
 		return $query->fetchAll();
 		
 	}

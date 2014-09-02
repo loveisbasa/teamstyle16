@@ -1,4 +1,5 @@
 <Files *.php>
     Order Deny,Allow
     Deny from all
+    RewriteBase/teamstyle16
 </Files>

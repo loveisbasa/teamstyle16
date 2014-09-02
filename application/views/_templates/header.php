@@ -53,7 +53,7 @@ if (!isset($_SESSION['user_logged_in'])) {?>
           <a class="navbar-brand" href="<?php echo URL; ?>"><strong>TeamStyle 16</strong></a>
         </div>
         <div class="navbar-collapse collapse">
-<?--消息提醒--?>
+<!--消息提醒-->
 			<ul class="nav navbar-nav" id="result"></ul>
 			<script>
 			if(typeof(EventSource)!=="undefined"){
@@ -68,7 +68,7 @@ if (!isset($_SESSION['user_logged_in'])) {?>
 		    document.getElementById("result").innerHTML="Not supported...";
 			}
 			</script>
-<?--消息提醒--?>
+<!--消息提醒-->
 
 
 		  <ul class="nav navbar-nav">

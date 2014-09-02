@@ -3,7 +3,7 @@ html {
   }
 body {
   min-height: 100%;
-  background-image: url(/images/bg.png);
+  background-image: url();
   background-repeat: repeat-x;
   background-position-y: 150px;
   background-position-x: -500px;

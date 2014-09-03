@@ -14,8 +14,7 @@ class Forum extends Controller
      */
 	public function index()
 	{
-		echo 'Message from Controller: You are in the controller forum, using the method index()';
-		$forum_model=$this->loadModel('message');
+		$forum_model=$this->loadModel('forum');
 		$forums=$forum_model->Showforums();
 		require 'application/views/_templates/header.php';
 		require 'application/views/forum/index.php';
@@ -24,7 +23,6 @@ class Forum extends Controller
 
 	public function threads($forum_id)
 	{
-		echo "Message from Controller: You are in the controller forum, using the method threads()";
 		if(isset($forum_id) and !empty($forum_id)){
 			$forum_model=$this->loadModel('forum');
 			$threads=$forum_model->Showthreads($forum_id);
@@ -39,7 +37,6 @@ class Forum extends Controller
 
 	public function posts($thread_id)
 	{
-		echo "Message from Controller: You are in the controller forum, using the method post()";
 		if(isset($thread_id) and !empty($thread_id)){
 			$forum_model=$this->loadModel('forum');
 			$posts=$forum_model->Showposts($thread_id);
@@ -78,7 +75,7 @@ class Forum extends Controller
 		else $_SESSION["feedback_negative"]=FEEDBACK_PERMISSION_DENIED;
 }
 
-	public funciton create_forum_action()
+	public function create_forum_action()
 	{	
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_forum();
@@ -88,7 +85,8 @@ class Forum extends Controller
 	}
 	public function create_thread($forum_id)
 	{
-		if(empty($forum_id) or filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
+		if(empty($forum_id) or filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		require 'application/views/_templates/header.php';
 		require "application/views/forum/createthread.php";
 		require 'application/views/_templates/footer.php';
@@ -96,7 +94,8 @@ class Forum extends Controller
 
 	public function create_thread_action()
 	{
-		if(empty($_POST['forum_id'] and filter_var($_POST['forum_id'],FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
+		if(empty($_POST['forum_id']) and filter_var($_POST['forum_id'],FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		$forum_id=$_POST['forum_id'];
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_thread($forum_id);
@@ -105,9 +104,10 @@ class Forum extends Controller
 		else header('location:' .URL. 'forum/create_thread?forum_id=$forum_id');
 	}
 	
-	public function create_post(thread_id)
+	public function create_post($thread_id)
 	{
-		if(empty($thread_id and filter_var($thread_id,FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
+		if(empty($thread_id) and filter_var($thread_id,FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		require 'application/views/_templates/header.php';
 		require "application/views/forum/createpost.php";
 		require 'application/views/_templates/footer.php';
@@ -115,7 +115,8 @@ class Forum extends Controller
 
 	public function create_post_action()
 	{
-		if(empty($_POST['thread_id'] and filter_var($_POST['thread_id'],FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
+		if(empty($_POST['thread_id']) and filter_var($_POST['thread_id'],FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		$thread_id=$_POST['thread_id'];
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_post($thread_id);

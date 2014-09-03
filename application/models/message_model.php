@@ -62,7 +62,7 @@ class MessageModel
 		$message_to_id=$_SESSION['user_id'];
 		$sql="select COUNT(message_id) as unread_messages
 			from messages
-			WHERE message_to_id=1 and message_is_read=0";
+			WHERE (message_to_id={$message_to_id} or message_type='pub')and message_is_read=0";
 		$query=$this->db->prepare($sql);
 		$query->execute();
 		return $query->fetch()->unread_messages;	
@@ -73,7 +73,7 @@ class MessageModel
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id and message_is_read=0";
+			where (message_to_id=:message_to_id or message_type='pub')and message_is_read=0";
 
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
@@ -91,7 +91,7 @@ public function ReadAllMessage()
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id  	";
+			where message_to_id=:message_to_id or message_type='pub' 	";
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
 		return $query->fetchAll();

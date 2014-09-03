@@ -1,5 +1,5 @@
 <div class="container">   
-<?php foreach ($new_message as $message) { ?>
+<?php foreach ($threads as $threads) { ?>
 <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -9,7 +9,7 @@
                 <ul>
 									   
 										<li><?php echo "创建于" . $threads->first . "最新回复于" . $threads->last .  "共有" . $threads->response . "个帖子"; ?></li> 
-										<li><a href="<?php echo URL . '/forums/posts/' . $thread_id; ?>">点击查看</a></li>
+										<li><a href="<?php echo URL . 'forum/posts/' . $threads->thread_id; ?>">点击查看</a></li>
                 </ul>
             </div>
         </div>

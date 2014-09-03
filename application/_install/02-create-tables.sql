@@ -47,7 +47,7 @@ PRIMARY KEY(`ann_id`)
 CREATE TABLE `info`.`messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `message_from_id` int(11) NOT NULL,
-  `message_to_id` int(11) NOT NULL,
+  `message_to_id` int(11) ,
   `message_title` varchar(30) NOT NULL,
   `message_content` text NOT NULL,
   `message_send_date` datetime NOT NULL,

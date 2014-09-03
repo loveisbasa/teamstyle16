@@ -1,5 +1,5 @@
 <div class="container">   
-<?php foreach ($new_message as $message) { ?>
+<?php foreach ($posts as $posts) { ?>
 <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -9,7 +9,6 @@
                 <ul>
 									   
 										<li><?php echo $posts->message; ?></li>
-										<li><a href="<?php echo URL . '/forums/threads/'?>">点击查看</a></li>
                 </ul>
             </div>
         </div>

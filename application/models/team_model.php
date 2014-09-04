@@ -12,6 +12,19 @@ class TeamModel
 		}
 	}
 
+	public function IsUserInTeam($uid)
+	{
+		$query = $this->db->prepare("SELECT user_team FROM users WHERE user_id = :user_id");
+		$query->execute(array(':user_id' => $uid));
+		$result = $query->fetch();
+		if ($result->user_team != NULL) {
+			return 1;
+		} else {
+			return 0;
+		}
+
+	}
+
 	//创建新队伍
 	//当队伍名已存在，队员名不存在，队员已加入其他队伍返回false；成功insert新队伍信息返回true
 	public function CreateTeam()
@@ -141,8 +154,12 @@ class TeamModel
 	public function JoinTeam($team_id)
 	{
 		$user_id = $_SESSION['user_id'];
+		echo $this->IsUserInTeam();
 		//$team_id = $_POST['team_id'];
-		
+		if ($this->IsUserInTeam()) {
+			$_SESSION['feedback_negative'][] = FEEDBACK_JOIN_FAILED;
+			return false;
+		}
 		//从数据库中获取队伍数据
 		$sql = "SELECT team_id, 
 			team_name, 
@@ -263,5 +280,7 @@ class TeamModel
 		$_SESSION['feedback_negative'][] = FEEDBACK_QUIT_EEROR;
 		return false;
 	}
+
+	
 
 }

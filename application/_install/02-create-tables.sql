@@ -36,7 +36,7 @@ CREATE TABLE `info`.`teams` (
   PRIMARY KEY (`team_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE `info`.`announcementS` (
+CREATE TABLE `info`.`announcements` (
 `ann_id` int(11) NOT NULL AUTO_INCREMENT,
 `ann_title` varchar(20) NOT NULL,
 `ann_content` text NOT NULL,
@@ -47,7 +47,7 @@ PRIMARY KEY(`ann_id`)
 CREATE TABLE `info`.`messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `message_from_id` int(11) NOT NULL,
-  `message_to_id` int(11) NOT NULL,
+  `message_to_id` int(11) ,
   `message_title` varchar(30) NOT NULL,
   `message_content` text NOT NULL,
   `message_send_date` datetime NOT NULL,
@@ -72,11 +72,11 @@ CREATE TABLE `info`.`forums`(
 `title` varchar(80) NOT NULL,
 `intro` tinytext NOT NULL,
 `latest_reply` datetime NOT NULL,
-`count_thread` int NOT NULL， /*非必须，但是可以提高性能*/
+`count_thread` int NOT NULL, /*非必须，但是可以提高性能*/
 `count_post` int NOT NULL,/*同上*/
 PRIMARY KEY (`forum_id`),
-INDEX
-UNIQUE(`forum_name`)
+INDEX(`forum_id`),
+UNIQUE(`forum_id`)
 );
 /*每条主题*/
 CREATE TABLE `info`.`threads`(
@@ -98,7 +98,7 @@ CREATE TABLE `info`.`posts`(
 	post_on datetime NOT NULL,
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
-	INDEX （user_id)
+	INDEX (user_id)
 );
 
 

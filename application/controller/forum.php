@@ -14,18 +14,15 @@ class Forum extends Controller
      */
 	public function index()
 	{
-		echo 'Message from Controller: You are in the controller forum, using the method index()';
-		$forum_model=$this->loadModel('message');
+		$forum_model=$this->loadModel('forum');
 		$forums=$forum_model->Showforums();
 		require 'application/views/_templates/header.php';
 		require 'application/views/forum/index.php';
 		require 'application/views/_templates/footer.php';
 	}
 
-	public function threads()
+	public function threads($forum_id)
 	{
-		echo "Message from Controller: You are in the controller forum, using the method threads()";
-		$forum_id=$_GET['forum_id'];
 		if(isset($forum_id) and !empty($forum_id)){
 			$forum_model=$this->loadModel('forum');
 			$threads=$forum_model->Showthreads($forum_id);
@@ -38,13 +35,11 @@ class Forum extends Controller
 		}
 	}
 
-	public function posts()
+	public function posts($thread_id)
 	{
-		echo "Message from Controller: You are in the controller forum, using the method post()";
-		$forum_id=$_GET['thread_id'];
 		if(isset($thread_id) and !empty($thread_id)){
 			$forum_model=$this->loadModel('forum');
-			$threads=$forum_model->Showposts($thread_id);
+			$posts=$forum_model->Showposts($thread_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/post.php';
 			require 'application/views/_templates/footer.php';
@@ -72,12 +67,15 @@ class Forum extends Controller
 
 	public function create_forum()
 	{	
+		if($_SEESION['user_type']=='admin'){
 		require 'application/views/_templates/header.php';
 		require 'application/views/forum/createforum.php';
 		require 'application/views/_templates/footer.php';
-	}
+		}
+		else $_SESSION["feedback_negative"]=FEEDBACK_PERMISSION_DENIED;
+}
 
-	public funciton create_forum_action()
+	public function create_forum_action()
 	{	
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_forum();
@@ -85,19 +83,20 @@ class Forum extends Controller
 			'location:' .URL. 'forum/index');
 		else header('location:' .URL. 'forum/create_forum');
 	}
-	public function create_thread()
+	public function create_thread($forum_id)
 	{
-		if(empty($_GET['forum_id'] and filter_var($_GET['forum_id'],FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
-		$forum_id=$_GET['forum_id'];
+		if(empty($forum_id) or filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		require 'application/views/_templates/header.php';
-		require "application/views/forum/createthread.php?forum_id=$forum_id";
+		require "application/views/forum/createthread.php";
 		require 'application/views/_templates/footer.php';
 	}
 
 	public function create_thread_action()
 	{
-		if(empty($_GET['forum_id'] and filter_var($_GET['forum_id'],FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
-		$forum_id=$_GET['forum_id'];
+		if(empty($_POST['forum_id']) and filter_var($_POST['forum_id'],FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
+		$forum_id=$_POST['forum_id'];
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_thread($forum_id);
 		if($create_success=='ture') header(	
@@ -105,19 +104,20 @@ class Forum extends Controller
 		else header('location:' .URL. 'forum/create_thread?forum_id=$forum_id');
 	}
 	
-	public function create_post()
+	public function create_post($thread_id)
 	{
-		if(empty($_GET['thread_id'] and filter_var($_GET['thread_id'],FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
-		$thread_id=$_GET['thread_id'];
+		if(empty($thread_id) and filter_var($thread_id,FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		require 'application/views/_templates/header.php';
-		require "application/views/forum/createpost.php?thread_id=$thread_id";
+		require "application/views/forum/createpost.php";
 		require 'application/views/_templates/footer.php';
 	}
 
 	public function create_post_action()
 	{
-		if(empty($_GET['thread_id'] and filter_var($_GET['thread_id'],FILTER_VALIDATE_INT,array('min_range'<1)) $_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
-		$thread_id=$_GET['thread_id'];
+		if(empty($_POST['thread_id']) and filter_var($_POST['thread_id'],FILTER_VALIDATE_INT,array('min_range'<1)))
+		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
+		$thread_id=$_POST['thread_id'];
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_post($thread_id);
 		if($create_success=='ture') header(	

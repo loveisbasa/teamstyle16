@@ -18,9 +18,9 @@ ini_set("display_errors", 1);
  * Configuration for: Project URL
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
-define('URL', 'http://localhost/teamstyle16/');
 
-//define('URL', 'http://localhost/tea');
+define('URL', 'https://localhost/teamstyle16/');
+
 define("HASH_COST_FACTOR", "10");
 
 define('AVATAR_PATH', 'public/avatars/');
@@ -50,7 +50,7 @@ define("TEAM_INVITATION", "");
 define("TEAM_INVITATION_CONTENT", "");
 
 define('USE_GRAVATAR', false);
-define('AVATAR_SIZE', 88);
+define('AVATAR_SIZE', 132);
 define('AVATAR_JPEG_QUALITY', 85);
 define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 

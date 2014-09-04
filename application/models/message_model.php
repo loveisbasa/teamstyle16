@@ -31,7 +31,7 @@ class MessageModel
 		$query = $this->db->prepare($sql);
 		$query->execute(array(':user_to_nickname' => $_POST['user_to_nickname']));
 		$count = $query->rowCount();
-		$result=$query->fetchAll();
+		$result=$query->fetch();
 		if ($count != 1) {
 			$_SESSION['feedback_negative'][] = FEEDBACK_NO_TARGET_FAILED;
 			return false;
@@ -46,7 +46,7 @@ class MessageModel
 			$user_id=$result->user_id;
 		  $d=date('Y-m-d H:i:s');
 			$query=$this->db->prepare($sql);
-			$query->execute(array(':message_from_id' => $_Session['user_id'],
+			$query->execute(array(':message_from_id' => $_SESSION['user_id'],
 				':message_to_id' => $user_id,
 				':message_title' => $message_title,
 				':message_content' => $message_content,
@@ -62,7 +62,7 @@ class MessageModel
 		$message_to_id=$_SESSION['user_id'];
 		$sql="select COUNT(message_id) as unread_messages
 			from messages
-			WHERE message_to_id={$message_to_id} and message_is_read=0";
+			WHERE (message_to_id={$message_to_id} or message_type='pub')and message_is_read=0";
 		$query=$this->db->prepare($sql);
 		$query->execute();
 		return $query->fetch()->unread_messages;	
@@ -73,8 +73,7 @@ class MessageModel
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id and message_is_read=0
-			GROUP BY user_nickname";
+			where (message_to_id=:message_to_id or message_type='pub')and message_is_read=0";
 
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
@@ -89,13 +88,12 @@ class MessageModel
 public function ReadAllMessage()
 	{
 		$message_to_id=$_SESSION['user_id'];
-		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
+		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id  	";
+			where message_to_id=:message_to_id or message_type='pub' 	";
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
-		echo $sql;
 		return $query->fetchAll();
 		
 	}

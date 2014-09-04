@@ -28,7 +28,7 @@
 					<input type="text" placeholder="消息" value="" name="message" required class="form-control name" />
 						<span class="icon icon-envelope-bold"></span>
           </div>
-						<input type="radio" checked='checked' name="forum_id" value="<?php echo $forum_id; ?>"/>确认
+						<input type="hidden" checked='checked' name="forum_id" value="<?php echo $forum_id; ?>"/>
 <!--不太明白如何不用input来post一个值-->
 					<button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
            创建 

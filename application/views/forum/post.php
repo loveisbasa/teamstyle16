@@ -22,7 +22,7 @@
             <input type="text" name="message" placeholder='回复' autocomplete="off" value="" required class="form-control name" />
             <span class="icon icon-user-bold"></span>
           </div>
-						<input type="radio" checked='checked' name='thread_id' value="<?php echo $thread_id; ?>"/>确认
+						<input type="hidden" checked='checked' name='thread_id' value="<?php echo $thread_id; ?>"/>
 
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
            创建 

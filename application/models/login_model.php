@@ -144,7 +144,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type
+			user_failed_logins, user_last_failed_login,user_group
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -159,7 +159,7 @@ class LoginModel
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
-			$_SESSION['user_type']=$result->user_type;
+			$_SESSION['user_group']=$result->user_group;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {

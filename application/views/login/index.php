@@ -38,8 +38,8 @@
             <input style="height:48px;width:100%;margin-bottom:20px;font-size:16px" type="password" name="user_password" placeholder='Password' autocomplete="off" value="" required class="form-control name" />
             <span class="icon icon-user-bold"></span>
           </div>
-            <input type="checkbox" name="user_rememberme" value="Remember me">Remember me
-          <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
+            <input type="checkbox" name="user_rememberme"> Remember me
+          <button type="submit" class="btn btn-primary btn-large">
             Log in
           </button>
           <div class="action-wrapper">

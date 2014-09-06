@@ -26,18 +26,17 @@
 				 name="user_to_nickname" required class="form-control name" />
 						<span class="icon icon-envelope-bold"></span>
           </div>
-          <div class="form-field">
+          <div class="form-field"> 
             <input type="text" name="message_content" placeholder="内容" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
           </div>
+						<select name="message_type">
+						<option value='sec'>私信</option>
 						<?php if($_SESSION['user_type']=='admin'){
-						echo "<input type='radio' name='message_type' value='sec' /> 私信";
-						echo "<input type='radio' name='message_type' value='pub' /> 通知";
+						echo "<option value='pub'>公告</option>";
 						}
-					else{
-						echo "<input type='radio' name='message_type' value='sec' /> 私信";
-							}
 						?>
+						</select>
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
            发送 
           </button>

@@ -75,9 +75,10 @@ class ForumModel
 					$d=date('Y-m-d H:i:s');
 					$sql="INSERT into forums(title,intro,latest_reply,count_thread,count_post) 
 						VALUES
-						({$title},{$intro},{$d},0,0)";
+						(:title,:intro,'{$d}',0,0)";
+					echo $sql;
 					$query=$this->db->prepare($sql);
-					if($query->execute()) return 'ture'; 
+					if($query->execute(array(':title'=>$title,':intro'=>$intro))) return 'ture'; 
 					else $_SESSION["feedback_negative"][]=FEEDBACK_FORUM_INSERT_ERROR;								
 					}
 				}
@@ -87,6 +88,7 @@ class ForumModel
 		}
 
 		public function Create_thread($forum_id){
+			echo $_POST['thread_subject'];
 			if (empty($_POST['thread_subject'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_THREAD_SUBJECT_EMPTY;
 			}
@@ -94,15 +96,16 @@ class ForumModel
 			 	$_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
 			else{
 				$user_id=$_SESSION['user_id'];
-				$subject=strip_tags($_POST['subject']);				
+				$subject=strip_tags($_POST['thread_subject']);				
 				$sql="INSERT into threads (forum_id,user_id,subject)
 						VALUES
-						({$forum_id},{$user_id},{$subject})";
+						({$forum_id},{$user_id},:subject)";
 				$query=$this->db->prepare($sql);
+				$query->execute(array(':subject'=>$subject));
 				$query=$this->db->prepare("SELECT MAX(thread_id) as tid FROM threads");
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				$thread_id=$query->fetch()->tid;
-				Create_Post($thread_id);	
+				$this->Create_Post($thread_id);	
 				$sql="UPDATE forums SET count_thread=count_thread+1,count_post=count_post+1 where forum_id={$forum_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
@@ -121,9 +124,9 @@ class ForumModel
 				$d=date('Y-m-d H:i:s');
 				$sql="INSERT into posts (thread_id,user_id,message,post_on)
 					VALUES
-					({$thread_id},{$user_id},{$message},{$d})";
+					({$thread_id},{$user_id},:message,'{$d}')";
 				$query=$this->db->prepare($sql);
-				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
+				$query->execute(array(':message'=>$message)); 
 				$sql="SELECT forum_id FROM threads WHERE thread_id={$thread_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	

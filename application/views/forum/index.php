@@ -16,5 +16,9 @@
         </div>
     </div> 
 
-</div> 
-<?php } ?>
+<?php }?>
+<?php 
+		if($_SESSION['user_type']='admin')
+			include 'create_forum.php';
+?>
+</div>

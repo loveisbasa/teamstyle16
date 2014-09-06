@@ -30,7 +30,7 @@ class LoginModel
 			user_email, 
 			user_failed_logins, 
 			user_last_failed_login, 
-			user_first_login 
+			user_first_login,
 			user_type
 			FROM users
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
@@ -234,10 +234,10 @@ class LoginModel
 				return false;
 			}
 			//权限设置
-			if($_POST['user_type']=='dev') $user_group='dev';
-			else $user_group='guest';
-			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class,user_group)
-			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_group)";
+			if($_POST['user_type']=='dev') $user_type='dev';
+			else $user_type='guest';
+			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class,user_type)
+			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_type)";
 			$query = $this->db->prepare($sql);
 			$query->execute(array(':user_nickname' => $user_nickname,
 				':user_password_hash' => $user_password_hash,
@@ -245,7 +245,7 @@ class LoginModel
 				':user_real_name' => $user_real_name,
 				':user_phone' => $user_phone,
 				':user_class' => $user_class,
-				':user_group'=>$user_group));
+				':user_type'=>$user_type));
 			$count = (int)$query->rowCount();
 			if ($count != 1) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;

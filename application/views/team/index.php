@@ -3,14 +3,14 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
     <div>
-    <h3>List of teams</h3>
-        <table class='table table-bordered'>
+    <h1>战队列表</h1>
+        <table class='table table-hover table-bordered'>
             <thead style="background-color: #eee; font-weight: bold;">
             <tr>
-                <th>Id</th>
-                <th>name</th>
-                <th>slogan</th>
-                <th>members</th>
+                <th>战队编号</th>
+                <th>战队名称</th>
+                <th>战队口号</th>
+                <th>战队成员</th>
                 <th> </th>
             </tr>
             </thead>

@@ -113,6 +113,10 @@
             <input type="text" name="user_phone" placeholder="手机号码" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
           </div>
+          <div class="form-field">
+            <input type="text" name="user_type" placeholder="user type" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+          </div>
           
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
             Sign up

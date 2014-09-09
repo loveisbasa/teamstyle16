@@ -234,10 +234,10 @@ class LoginModel
 				return false;
 			}
 			//权限设置
-			if($_POST['user_type']=='dev') $user_group='dev';
+			if($_POST['user_type']=='dev') $user_type='dev';
 			else $user_type='guest';
 			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class,user_type)
-			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_group)";
+			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_type)";
 			$query = $this->db->prepare($sql);
 			$query->execute(array(':user_nickname' => $user_nickname,
 				':user_password_hash' => $user_password_hash,

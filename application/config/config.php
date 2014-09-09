@@ -19,7 +19,7 @@ ini_set("display_errors", 1);
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
 
-define('URL', 'https://localhost/teamstyle16/');
+define('URL', 'http://localhost/teamstyle16/');
 
 define("HASH_COST_FACTOR", "10");
 

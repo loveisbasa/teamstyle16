@@ -1,3 +1,13 @@
+<div class="container">
+<div class="jumbotron">
+    <div class="container">
+        <h1 style="position:right">Teamstyle16 深蓝</h1>
+        <p>寻找队（da）友（tui）</p>
+        <p>规则讨（tu）论（cao）</p>
+        <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+    </div>
+</div>
+</div>
 <div class="container">   
 <?php foreach ($forums as $forums) { ?>
 <div class="col-sm-6">
@@ -17,6 +27,8 @@
     </div> 
 
 <?php }?>
+</div>
+<div class="container">
 <?php 
 		if($_SESSION['user_type']='admin')
 			include 'create_forum.php';

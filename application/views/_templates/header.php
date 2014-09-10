@@ -121,7 +121,7 @@ body{
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
         <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
-        <li ><a href="<?php echo URL. 'message/index';?>" id="result">未读</a></li>
+        <li ><a href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>
     <?php }?>

@@ -12,7 +12,7 @@ class Message extends Controller
 	/**
      * PAGE: index
      */
-	public function index()
+	public function index($message_id=0)
 	{
 		if (isset($_SESSION['user_logged_in'])) {
 			$message_model=$this->loadModel('message');
@@ -39,7 +39,7 @@ class Message extends Controller
 	flush();
 	
 	}
-	public function all_message()
+	public function all_message($message_id=0)
 	{
 		// debug message to show where you are, just for the demo
 		if (isset($_SESSION['user_logged_in'])) {
@@ -53,11 +53,11 @@ class Message extends Controller
 	
 	}
 
-	public function is_read($message_id)
+	public function is_read($message_id=0)
 	{
 		$message_model=$this->loadModel("message");
 		$message_model->ChangeStatusMessage($message_id);
-		 header('location: ' . URL . 'message/index');
+		 header('location: ' . URL . 'message/all_message/' . $message_id );
 	}
 
   public function send_mail($send_to_name="")

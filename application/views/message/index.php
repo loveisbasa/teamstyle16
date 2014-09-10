@@ -3,15 +3,19 @@
     <?php require  'application/views/_templates/feedback.php'; 
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
-    <div>
-    <h3>Messages</h3>
-        <table>
+<div class="row">
+    <div class="col-xs-5">
+    <div class="panel panel-info">
+        <div class="panel-heading" style="fontsize:18px"><?php echo $_SESSION['user_nickname'];?></div>
+        <div class="panel-body">
+            <p>消息列表</p>
+        </div>
+        <table class="table table-hover">
             <thead style="background-color: #ddd; font-weight: bold;">
             <tr>
-                <td>From</td>
-                <td>Title</td>
-                <td>Content</td>
-                <td>Date</td>
+                <td style="width:30px">From</td>
+                <td style="width:100px">Title</td>
+                <td style="width:100px">Date</td> 
             </tr>
             </thead>
 
@@ -23,10 +27,17 @@
 												<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>">
 												<?php if (isset($message->message_title))  echo $message->message_title; ?></a>
 										</td>
-                    <td><?php if (isset($message->message_content))  echo $message->message_content; ?></td>
                     <td><?php if (isset($message->message_send_date))  echo $message->message_send_date; ?></td>
                 </tr>
             <?php } ?>
             </tbody>
         </table>
     </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-info">
+            <div class="panel-heading" style="fontsize:18px"></div>
+            <textarea></textarea>
+        </div>
+    </div>
+</div>

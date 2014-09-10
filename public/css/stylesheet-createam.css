@@ -374,10 +374,7 @@ a > img{
   color: gray;
 }
 
-.auth-form .form-control {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
+
 
 .auth-form .email {
   padding-left: 50px;

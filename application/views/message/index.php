@@ -10,26 +10,33 @@
     <ul class="sunken-menu-group">
       <li class="tooltipped tooltipped-w" aria-label="Message">
         <a href="" aria-label="Message" class="selected js-selected-navigation-item sunken-menu-item" data-hotkey="g c" data-pjax="true" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /JYWa/teamstyle16">
-          <span class="octicon octicon-code"></span> <span class="full-word">Message</span>
-</a>      </li>
+          <span class="octicon octicon-code"></span> 
+          <span class="full-word">Message</span>
+        </a>      
+      </li>
 
-<?php foreach ($new_message as $message) {
-if($message->message_is_read==1) break; ?>
+      <?php foreach ($new_message as $message) {
+      if($message->message_is_read==1) break; ?>
 	     <li class="tooltipped tooltipped-w" aria-label="Pulse">
 			<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-pjax="true">
-			<span class="full-word"><font color='#FF0000'><?php  if (isset($message->message_title))  echo $message->message_title;?></font></span>
-</a>        </li>
-					<?php } ?>
-</ul>
+			    <span class="full-word">
+                    <font color='#FF0000'>
+                    <?php  if (isset($message->message_title))  echo $message->message_title;?>
+                    </font>
+                </span>
+            </a>        
+        </li>
+	  <?php } ?>
+    </ul>
 
 	<div class="sunken-menu-separator"></div>
-	<ul class="sunken-menu-group">
-<?php foreach ($new_message as $message) {
-?>
-      <li class="tooltipped tooltipped-w" aria-label="Pulse">
+	    <ul class="sunken-menu-group">
+        <?php foreach ($new_message as $message) {?>
+        <li class="tooltipped tooltipped-w" aria-label="Pulse">
 			<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" >
 			<span class="full-word"><?php  if (isset($message->message_title))  echo $message->message_title;?></span>
-</a>      </li>
+            </a>      
+        </li>
 
 <?php }?>
   </div>
@@ -44,19 +51,19 @@ if($message->message_is_read==1) break; ?>
 						if($message->message_id==$message_id)
 								break;
 					}
-					$message=$new_message[$i];
+					if ($i!=-1) $message=$new_message[$i];
 ?>
-<div class="container">   
+<div class="row">   
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">
         <div class="panel panel-default">
             <div class="panel-heading">
-						<h3 class="panel-title"><?php echo $message->message_title; ?></h3>
+				<h3 class="panel-title"><?php if ($i!=-1) echo $message->message_title; else echo "empty message box" ?></h3>
             </div>
             <div class="panel-body">
                 <ul>
-									   
-										<li><?php echo $message->message_content; ?></li>
-										<li><?php echo "From ". $message->user_nickname ."@" . $message->message_send_date; ?></li> 
+					<h8><?php if ($i!=-1) echo $message->message_content; ?></h8>
+                    <hr>
+					<li><?php if ($i!=-1) echo "From ". $message->user_nickname ."@" . $message->message_send_date; ?></li> 
                 </ul>
             </div>
         </div>

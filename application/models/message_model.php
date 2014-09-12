@@ -70,7 +70,7 @@ class MessageModel
 	public function ReadNewMessage()
 	{
 		$message_to_id=$_SESSION['user_id'];
-		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date
+		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
 			where (message_to_id=:message_to_id or message_type='pub')and message_is_read=0";
@@ -91,7 +91,7 @@ public function ReadAllMessage()
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id or message_type='pub' 	";
+			where message_to_id=:message_to_id or message_type='pub' ORDER BY message_is_read,message_send_date DESC";
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
 		return $query->fetchAll();

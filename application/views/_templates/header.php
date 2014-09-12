@@ -31,7 +31,8 @@ body{
         <span class="icon-bar"></span>
       </button>
         <ul class="nav navbar-nav">
-          <li><a href="<?php echo URL; ?>"><?php echo $_SESSION['user_nickname'];?></a></li>
+          <li><a href="<?php echo URL. 'dashboard';?>"><?php echo $_SESSION['user_nickname'];?></a></li>
+          <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
         </ul>
     </div>
 
@@ -65,9 +66,9 @@ body{
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="输入战队名">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">搜索</button>
       </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -119,9 +120,8 @@ body{
       }
       </script> 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
         <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
-        <li ><a href="<?php echo URL. 'message/index';?>" id="result">未读</a></li>
+        <li ><a href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>
     <?php }?>

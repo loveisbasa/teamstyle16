@@ -20,7 +20,7 @@ body{
   padding-top:140px;
 }
 </style>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-top:50px">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-top:50px;background-color:#87CEFA">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -31,7 +31,7 @@ body{
         <span class="icon-bar"></span>
       </button>
         <ul class="nav navbar-nav">
-          <li><a href="<?php echo URL. 'dashboard';?>"><?php echo $_SESSION['user_nickname'];?></a></li>
+          <li><a href="<?php echo URL. 'dashboard';?>" style="color:#FFFFFF;font:bold"><?php echo $_SESSION['user_nickname'];?></a></li>
           <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
         </ul>
     </div>
@@ -39,8 +39,6 @@ body{
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的消息<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -70,6 +68,12 @@ body{
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="输入战队名">
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -82,7 +86,7 @@ body{
 <?php }?>
 <header>
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#101010">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -95,7 +99,7 @@ body{
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo URL; ?>">主页</a></li>
+        <li><a href="<?php echo URL; ?>">主页</a></li>
       </ul>
     <!--if not logged in,provide a button to log-->
     <?php

@@ -219,10 +219,13 @@ class TeamModel
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams()
 	{
+
 		$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 		  left JOIN users as u3 on teams.team_member2=u3.user_id");
+
+
 		$query->execute();
 		$result = $query->fetchAll();
 		return $result;

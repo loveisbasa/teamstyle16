@@ -219,38 +219,12 @@ class TeamModel
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams()
 	{
-		$query = $this->db->prepare("SELECT team_id, team_name, team_slogan, team_captain, team_member1, team_member2
-			FROM teams");
+		$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2
+			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
+			left JOIN users as u2 on teams.team_member1=u2.user_id
+		  left JOIN users as u3 on teams.team_member2=u3.user_id");
 		$query->execute();
 		$result = $query->fetchAll();
-		foreach ($result as $test) {
-			$query = $this->db->prepare("SELECT user_nickname FROM users WHERE user_id = :user_id");
-			$query->execute(array(':user_id' => $test->team_captain));
-			$sth = $query->fetch();
-			$test->team_captain = $sth->user_nickname; 
-		}
-		foreach ($result as $test) {
-			$query = $this->db->prepare("SELECT user_nickname FROM users WHERE user_id = :user_id");
-			$query->execute(array(':user_id' => $test->team_member1));
-			$count = $query->rowCount();
-			if ($count == 1) {  
-				$sth = $query->fetch();
-				$test->team_member1 = $sth->user_nickname; 
-			} else {
-				$test->team_member1 = NULL;
-			}
-		}
-		foreach ($result as $test) {
-			$query = $this->db->prepare("SELECT user_nickname FROM users WHERE user_id = :user_id");
-			$query->execute(array(':user_id' => $test->team_member2));
-			$count = $query->rowCount();
-			if ($count == 1) {  
-				$sth = $query->fetch();
-				$test->team_member2 = $sth->user_nickname; 
-			} else {
-				$test->team_member2 = NULL;
-			}
-		}
 		return $result;
 	}
 	//退出当前队伍
@@ -281,6 +255,20 @@ class TeamModel
 		return false;
 	}
 
-	
+	public function Search($keyword)
+	{
+		if(!empty($keyword)){
+			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2
+			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
+			left JOIN users as u2 on teams.team_member1=u2.user_id
+			left JOIN users as u3 on teams.team_member2=u3.user_id
+			where u1.user_nickname like '%{$keyword}%' or u2.user_nickname like '%{$keyword}%' or u3.user_nickname like '%{$keyword}%'  or  team_name like '%{$keyword}%' or team_slogan like '%{$keyword}%' or team_id='$keyword'";
+			$query= $this->db->prepare($sql);
+			$query->execute();
+				
+			return $query->fetchall();
+		}
+		else $_SESSION['feedback_negative'][]= FEEDBACK_EMPTY_SEARCH;
+ }
 
 }

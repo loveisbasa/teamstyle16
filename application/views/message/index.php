@@ -63,7 +63,7 @@
                 <ul>
 					<h8><?php if ($i!=-1) echo $message->message_content; ?></h8>
                     <hr>
-					<li><?php if ($i!=-1) echo "From ". $message->user_nickname ."@" . $message->message_send_date; ?></li> 
+					<li><?php if ($i!=-1) echo "From <a href="; echo URL . "message/send_mail/" .  $message->user_nickname . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?></li> 
                 </ul>
             </div>
         </div>

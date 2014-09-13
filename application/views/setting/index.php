@@ -5,14 +5,13 @@
           <div class="list-group">
             <a href="#profile" class="list-group-item">Public Profile</a>
             <a href="#account" class="list-group-item">Account Settings</a>
-            <a href="#email" class="list-group-item">Email</a>
           </div>
         </div>
 
         <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Upload Avatar</h3>
+                <h3 class="panel-title">/opt/lampp/htdocs/index.php</h3>
             </div>
             <div class="panel-body">
             <?php echo '<img src="'.$_SESSION['src'].'" />'; ?>

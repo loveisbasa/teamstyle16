@@ -58,6 +58,7 @@
             </div>
             <div class="panel-body">
                 <ul>
+                    <?php echo $this->user->user_team;?>
                     <li><a href="<?php echo URL. 'team/create_team'; ?>">Create a team</a></li>
                     <li><a href="<?php echo URL. 'team/team_display'; ?>">Show all teams</a></li>
                 </ul>

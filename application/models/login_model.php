@@ -31,7 +31,8 @@ class LoginModel
 			user_failed_logins, 
 			user_last_failed_login, 
 			user_first_login,
-			user_type
+			user_type,
+			user_team
 			FROM users
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
@@ -144,7 +145,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type
+			user_failed_logins, user_last_failed_login,user_type,user_team
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token

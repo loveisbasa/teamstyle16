@@ -58,14 +58,14 @@
 <?php foreach ($all_team as $team) { ?>
   <div class="col-sm-3">
     <div class="thumbnail">
-      <img data-src="holder.js/300x300" alt="...">
+      <img data-src="holder.js/300x300" alt="">
       <div class="caption">
-        <h3><?php if (isset($team->team_name)) echo $team->team_name; ?></h3>
+        <h1><?php if (isset($team->team_name)) echo $team->team_name; ?></h1>
         <p><?php if (isset($team->team_slogan)) echo "队式口号  ".$team->team_slogan; ?></p>
         <p><?php if (isset($team->team_captain)) echo "舰长    ".$team->team_captain; echo '<br/>';
                      if (isset($team->team_member1)) echo $team->team_member1; echo '<br/>'; 
                      if (isset($team->team_member2)) echo $team->team_member2; else echo '<br/>'?></p>
-        <?php if (!isset($team->team_full)) { ?>
+        <?php if (!$team->team_full) { ?>
         <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
         <?php } else {?>
         <a href="#" class="btn btn-default" role="button">人员已满</a>

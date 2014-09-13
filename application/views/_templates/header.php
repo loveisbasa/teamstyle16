@@ -62,9 +62,9 @@ body{
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+			<form action="<?php echo URL; ?>team/team_search" method="post" class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="输入战队名">
+          <input name="keyword" type="text" class="form-control" placeholder="输入战队名">
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>

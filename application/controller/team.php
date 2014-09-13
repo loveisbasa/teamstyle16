@@ -49,6 +49,22 @@ class Team extends Controller
 
 	}
 
+	public function team_search()
+	{
+		$keyword=$_POST['keyword'];
+		$team_model = $this->loadModel('Team');
+		$all_team = $team_model->Search($keyword);
+
+		require 'application/views/_templates/header.php';
+		require 'application/views/team/index.php';
+		require 'application/views/_templates/footer.php';
+		// while ($row = mysql_fetch_array($all_team)) 
+		// {
+		// 	echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
+		// }
+
+	}
+
 	public function create_action()
 	{
 		//echo "create";

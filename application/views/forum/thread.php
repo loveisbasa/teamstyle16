@@ -1,4 +1,5 @@
 <div class="container">   
+  <?php echo $_SESSION['forum_theme']?>
 <?php foreach ($threads as $threads) { ?>
 <div class="col-sm-6">
         <div class="panel panel-default">
@@ -7,7 +8,6 @@
             </div>
             <div class="panel-body">
                 <ul>
-									   
 										<li><?php echo "创建于  " . $threads->first . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最新回复于" . $threads->last .  "<br/>共有" . $threads->response . "个回复"; ?></li> 
 										<li><a href="<?php echo URL . 'forum/posts/' . $threads->thread_id; ?>">点击查看</a></li>
                 </ul>
@@ -16,10 +16,9 @@
     </div> 
 
 <?php } ?>
-</div class="col-sm-6">
-<div class= 
+<div class="col-sm-6">
    <h3>Create threads</h3>
-        <form action="<?php echo URL; ?>forum/create_thread_action" method="post" class="auth-form form-horizontal">
+        <form action="<?php echo URL . 'forum/create_thread_action/'. $forum_id; ?>" method="post" class="auth-form form-horizontal">
            <div class="form-field">
             <input type="text" name="thread_subject" placeholder='话题' autocomplete="off" value="" required class="form-control name" />
             <span class="icon icon-user-bold"></span>

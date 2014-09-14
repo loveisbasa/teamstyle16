@@ -21,8 +21,7 @@ class ForumModel
 	public function Showthreads($forum_id)
 		{
 				if(isset($forum_id) and filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="
-						SELECT 
+					$sql="SELECT 
 						t.thread_id as thread_id,t.subject as subject,user_nickname,COUNT(post_id)-1 AS response,MAX(p.post_on) AS last,MIN(p.post_on) AS first
 						From 
 						threads AS t INNER JOIN posts AS p USING(thread_id) INNER JOIN users AS u ON t.user_id=u.user_id
@@ -31,6 +30,14 @@ class ForumModel
 						ORDER BY last DESC";
 					$query=$this->db->prepare($sql);
 					$query->execute();
+					$sql="SELECT title,intro FROM forums WHERE forum_id={$forum_id}";
+					$theme=$this->db->prepare($sql);
+					$theme->execute();
+					$result = $theme->fetch();
+					if ($theme->rowCount()==1){
+						$_SESSION['forum_theme'] = $result->title;
+						$_SESSION['forum_intro'] = $result->intro;
+					}
 	  			    return $query->fetchAll();
 				}
 		}
@@ -44,6 +51,17 @@ class ForumModel
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
 				$query=$this->db->prepare($sql);
 				$query->execute();
+				$sql="SELECT user_id FROM threads WHERE thread_id={$thread_id}";
+				$user = $this->db->prepare($sql);
+				$user->execute();
+				$result = $user->fetch();
+				$_SESSION['writer_id'] = $result->user_id;
+				$sql="SELECT * FROM users WHERE user_id={$_SESSION['writer_id']}";
+				$writer = $this->db->prepare($sql);
+				$writer->execute();
+				$result = $writer->fetch();
+				$_SESSION['writer_nickname'] = $result->user_nickname;
+				$_SESSION['writer_email'] = $result->user_email;
 				return $query->fetchAll();
 				}
 	}
@@ -78,7 +96,7 @@ class ForumModel
 						(:title,:intro,'{$d}',0,0)";
 					echo $sql;
 					$query=$this->db->prepare($sql);
-					if($query->execute(array(':title'=>$title,':intro'=>$intro))) return 'ture'; 
+					if($query->execute(array(':title'=>$title,':intro'=>$intro))) return 'true'; 
 					else $_SESSION["feedback_negative"][]=FEEDBACK_FORUM_INSERT_ERROR;								
 					}
 				}
@@ -109,7 +127,7 @@ class ForumModel
 				$sql="UPDATE forums SET count_thread=count_thread+1,count_post=count_post+1 where forum_id={$forum_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
-				else return 'ture';
+				else return 'true';
 				}
 		}			
 
@@ -134,7 +152,7 @@ class ForumModel
 				$sql="UPDATE forums SET count_post=count_post+1 where forum_id={$forum_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
-				else return 'ture';
+				else return 'true';
 				}
 		}		
 	}

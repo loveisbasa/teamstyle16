@@ -31,12 +31,12 @@
                             <p style="fontsize:90px;text-indent:1cm"><?php echo $forums->intro; ?></p>
                             <li><?php echo "已有" . $forums->count_thread . " 个主题" . $forums->count_post . "个帖子" ?></li>
                             <li><?php echo "最后回复于" . $forums->latest_reply; ?></li> 
-                            <li><a href="<?php echo URL . 'forum/threads/' . $forums->forum_id; ?>">点击查看</a></li>
+                        </br>
                         </div>
                     </div>
                 </div>
-            </div> 
             <?php }?>
+            </div> 
         </div>
         <hr class="uk-grid-divider">
 <div class="container">
@@ -166,7 +166,11 @@
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-1-1">
                     <div class="uk-panel uk-panel-box uk-text-center">
-                        <p><strong>Phasellus viverra nulla ut metus.</strong> Quisque rutrum etiam ultricies nisi vel augue. <a class="uk-button uk-button-primary uk-margin-left" href="#">Button</a></p>
+                        <p>
+                            <strong>Teamstyle16 欢迎你的加入</strong> 
+                            浏览完了意犹未尽？
+                            <a class="uk-button uk-button-primary uk-margin-left" href="#">回到顶部</a>
+                        </p>
                     </div>
                 </div>
             </div>

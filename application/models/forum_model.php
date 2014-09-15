@@ -21,13 +21,7 @@ class ForumModel
 	public function Showthreads($forum_id)
 		{
 				if(isset($forum_id) and filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="SELECT 
-						t.thread_id as thread_id,t.subject as subject,user_nickname,COUNT(post_id)-1 AS response,MAX(p.post_on) AS last,MIN(p.post_on) AS first
-						From 
-						threads AS t INNER JOIN posts AS p USING(thread_id) INNER JOIN users AS u ON t.user_id=u.user_id
-						WHERE t.forum_id={$forum_id} 
-						GROUP BY (p.thread_id)
-						ORDER BY last DESC";
+					$sql="SELECT * FROM threads WHERE forum_id={$forum_id}";
 					$query=$this->db->prepare($sql);
 					$query->execute();
 					$sql="SELECT title,intro FROM forums WHERE forum_id={$forum_id}";
@@ -37,6 +31,7 @@ class ForumModel
 					if ($theme->rowCount()==1){
 						$_SESSION['forum_theme'] = $result->title;
 						$_SESSION['forum_intro'] = $result->intro;
+						$_SESSION['forum_id'] = $forum_id;
 					}
 	  			    return $query->fetchAll();
 				}
@@ -51,11 +46,14 @@ class ForumModel
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
 				$query=$this->db->prepare($sql);
 				$query->execute();
-				$sql="SELECT user_id FROM threads WHERE thread_id={$thread_id}";
+				$sql="SELECT user_id,subject,content,reply_count FROM threads WHERE thread_id={$thread_id}";
 				$user = $this->db->prepare($sql);
 				$user->execute();
 				$result = $user->fetch();
 				$_SESSION['writer_id'] = $result->user_id;
+				$_SESSION['thread_subject'] = $result->subject;
+				$_SESSION['thread_content'] = $result->content;
+				$_SESSION['reply_count'] = $result->reply_count;
 				$sql="SELECT * FROM users WHERE user_id={$_SESSION['writer_id']}";
 				$writer = $this->db->prepare($sql);
 				$writer->execute();
@@ -114,17 +112,15 @@ class ForumModel
 			 	$_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
 			else{
 				$user_id=$_SESSION['user_id'];
-				$subject=strip_tags($_POST['thread_subject']);				
-				$sql="INSERT into threads (forum_id,user_id,subject)
+				$subject=strip_tags($_POST['thread_subject']);
+				$content=strip_tags($_POST['message']);	
+				$d=date('Y-m-d H:i:s');			
+				$sql="INSERT into threads (forum_id,user_id,subject,content,establish_date,latest_reply)
 						VALUES
-						({$forum_id},{$user_id},:subject)";
+						({$forum_id},{$user_id},:subject,:content,'{$d}','{$d}')";
 				$query=$this->db->prepare($sql);
-				$query->execute(array(':subject'=>$subject));
-				$query=$this->db->prepare("SELECT MAX(thread_id) as tid FROM threads");
-				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
-				$thread_id=$query->fetch()->tid;
-				$this->Create_Post($thread_id);	
-				$sql="UPDATE forums SET count_thread=count_thread+1,count_post=count_post+1 where forum_id={$forum_id}";
+				$query->execute(array(':subject'=>$subject,':content'=>$content));
+				$sql="UPDATE forums SET count_thread=count_thread+1 where forum_id={$forum_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				else return 'true';
@@ -150,6 +146,8 @@ class ForumModel
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				$forum_id=$query->fetch()->forum_id;
 				$sql="UPDATE forums SET count_post=count_post+1 where forum_id={$forum_id}";
+				$query=$this->db->prepare($sql);$query->execute();
+				$sql="UPDATE threads SET latest_reply='{$d}',reply_count=reply_count+1 where thread_id={$thread_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				else return 'true';

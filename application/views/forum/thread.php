@@ -1,6 +1,6 @@
 <div class="container">   
-  <?php echo $_SESSION['forum_theme']?>
-<?php foreach ($threads as $threads) { ?>
+  <?php echo $_SESSION['forum_theme'].$_SESSION['forum_intro']; $n = 0;?>
+<?php foreach ($threads as $threads) { ?> 
 <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -8,7 +8,7 @@
             </div>
             <div class="panel-body">
                 <ul>
-										<li><?php echo "创建于  " . $threads->first . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最新回复于" . $threads->last .  "<br/>共有" . $threads->response . "个回复"; ?></li> 
+										<li><?php echo "创建于  " . $threads->establish_date . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最新回复于" . $threads->latest_reply .  "<br/>共有" . $threads->reply_count . "个回复"; ?></li> 
 										<li><a href="<?php echo URL . 'forum/posts/' . $threads->thread_id; ?>">点击查看</a></li>
                 </ul>
             </div>
@@ -33,4 +33,5 @@
            创建 
           </button>
         </form>
+</div>
 </div>

@@ -21,7 +21,8 @@ CREATE TABLE `info`.`users` (
   UNIQUE KEY `user_email` (`user_email`),
   Index (`user_id`,`user_password_hash`),
 	Index(`user_email`),
-  Index (`user_nickname`)
+  Index (`user_nickname`),
+  Index(`user_team`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';
 
 CREATE TABLE `info`.`teams` (
@@ -84,7 +85,11 @@ CREATE TABLE `info`.`threads`(
 	`forum_id`  tinyint(3) UNSIGNED NOT NULL,
 	`user_id`  int(11) UNSIGNED NOT NULL,
 	`subject` VARCHAR(150) NOT NULL,
+  `content` VARCHAR(1000) NOT NULL,
 	#主题名不应长于150字
+  `establish_date` datetime NOT NULL,
+  `latest_reply` datetime NOT NULL,
+  `reply_count` int NOT NUll,
 	PRIMARY KEY (`thread_id`),
 	INDEX (`thread_id`),
 	Index (`user_id`)

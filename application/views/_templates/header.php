@@ -11,8 +11,16 @@
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery.leanModal.min.js"></script>
      <!-- css -->
     <link href="<?php echo URL; ?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>public/css/docs.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>public/css/highlight.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>public/css/uikit.css" rel="stylesheet">
     <!-- our JavaScript -->
+
+    <script src="<?php echo URL; ?>public/js/uikit.min.js"></script>
+    <script src="<?php echo URL; ?>public/js/jquery.js"></script>
     <script src="<?php echo URL; ?>public/js/application.js"></script>
+    <script src="<?php echo URL; ?>public/js/uikit.js"></script>
+    <script src="<?php echo URL; ?>public/js/highlight.js"></script>
 
 <?php if (isset($_SESSION['user_logged_in'])) {?>
 <style>
@@ -147,7 +155,4 @@ body{
   </div>
   </div> 
 </header>
-
-
-
-
+ 

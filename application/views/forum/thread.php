@@ -32,7 +32,7 @@
         <?php } ?>
         <br><br>
       </div>
-      <div class="uk-width-medium-1-4">
+      <div class="uk-width-medium-1-4 uk-float">
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">热帖排行</h3>
             <ul class="uk-list uk-list-line">
@@ -48,39 +48,6 @@
              </ul>
         </div>
       </div>
-
-      <div class="uk-width-medium-1-4">
-        <div class="uk-panel uk-panel-header">
-            <h3 class="uk-panel-title">最新帖子</h3>
-            <ul class="uk-list uk-list-line">
-              <?php
-              $sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC";
-              $query = $this->db->prepare($sql);
-              $query->execute();$n=0;
-              ?>
-              <?php while (($row = $query->fetch()) and ($n<=7)) {$n++;?>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
-                <?}?><br><br>
-             </ul>
-        </div>
-      </div>
-
-      <div class="uk-width-medium-1-4">
-        <div class="uk-panel uk-panel-header">
-            <h3 class="uk-panel-title">论坛链接</h3>
-            <ul class="uk-list uk-list-line">
-              <?php
-              $sql="SELECT forum_id,title FROM forums";
-              $query = $this->db->prepare($sql);
-              $query->execute();
-              ?>
-              <?php while ($row = $query->fetch()) {?>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/threads/'.$row->forum_id?>"><?php echo $row->title;?></a></li>
-                <?}?>
-             </ul>
-        </div>
-      </div>
-
 <div class="uk-width-medium-3-4">
    <h3>发表新帖</h3>
         <form action="<?php echo URL . 'forum/create_thread_action/'. $forum_id; ?>" method="post" class="auth-form form-horizontal">
@@ -99,6 +66,40 @@
           </button>
         </form>
 </div>
+<br>
+      <div class="uk-width-medium-1-4 uk-float">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">最新帖子</h3>
+            <ul class="uk-list uk-list-line">
+              <?php
+              $sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC";
+              $query = $this->db->prepare($sql);
+              $query->execute();$n=0;
+              ?>
+              <?php while (($row = $query->fetch()) and ($n<=7)) {$n++;?>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
+                <?}?><br><br>
+             </ul>
+        </div>
+      </div>
+
+      <div class="uk-width-medium-1-4 uk-float-right">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">论坛链接</h3>
+            <ul class="uk-list uk-list-line">
+              <?php
+              $sql="SELECT forum_id,title FROM forums";
+              $query = $this->db->prepare($sql);
+              $query->execute();
+              ?>
+              <?php while ($row = $query->fetch()) {?>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/threads/'.$row->forum_id?>"><?php echo $row->title;?></a></li>
+                <?}?>
+             </ul>
+        </div>
+      </div>
+
+
 
     </div>
   </div>

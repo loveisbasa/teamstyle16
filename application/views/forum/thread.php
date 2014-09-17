@@ -19,36 +19,19 @@
           $query->execute();
           $result = $query->fetch();?> 
         <article class="uk-article">
-          <h2><a target="_blank" href="<?php echo URL. 'forum/posts/'. $threads->thread_id; ?>;"><?php echo $threads->subject; ?></a></h2>
+          <h2><a target="_blank" href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>"><?php echo $threads->subject; ?></a></h2>
           <p class="uk-article-meta">
             <?php echo $result->user_nickname; ?>发表于<?php echo $threads->establish_date."  ";?>回复(<?php echo $threads->reply_count; ?>)
           </p>
           <p id="wrap"><?php echo $threads->content?></p>
             <p class="uk-article-meta">最新回复:<?php echo $threads->latest_reply?></p>
-            <a href="<?php echo URL. 'forum/posts/'. $threads->thread_id; ?>;">继续阅读<i class="uk-icon-angle-double-right"></i>
+            <a href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>">继续阅读<i class="uk-icon-angle-double-right"></i>
             </a>
 
         </article>
         <?php } ?>
         <br><br>
-      </div>
-      <div class="uk-width-medium-1-4 uk-float">
-        <div class="uk-panel uk-panel-header">
-            <h3 class="uk-panel-title">热帖排行</h3>
-            <ul class="uk-list uk-list-line">
-              <?php
-              $sql="SELECT subject,thread_id FROM threads ORDER BY reply_count";
-              $query = $this->db->prepare($sql);
-              $query->execute();$n=0;
-              ?>
-              <?php while (($row = $query->fetch()) and ($n<=7)) {$n++;?>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
-                <?}?>
-                <br><br>
-             </ul>
-        </div>
-      </div>
-<div class="uk-width-medium-3-4">
+        <div class="uk-width-medium-3-4">
    <h3>发表新帖</h3>
         <form action="<?php echo URL . 'forum/create_thread_action/'. $forum_id; ?>" method="post" class="auth-form form-horizontal">
            <div class="form-field">
@@ -67,7 +50,23 @@
         </form>
 </div>
 <br>
-      <div class="uk-width-medium-1-4 uk-float">
+
+      </div>
+      <div class="uk-width-medium-1-4">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">热帖排行</h3>
+            <ul class="uk-list uk-list-line">
+              <?php
+              $sql="SELECT subject,thread_id FROM threads ORDER BY reply_count";
+              $query = $this->db->prepare($sql);
+              $query->execute();$n=0;
+              ?>
+              <?php while (($row = $query->fetch()) and ($n<=7)) {$n++;?>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
+                <?}?>
+                <br><br>
+             </ul>
+        </div>
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">最新帖子</h3>
             <ul class="uk-list uk-list-line">
@@ -81,9 +80,6 @@
                 <?}?><br><br>
              </ul>
         </div>
-      </div>
-
-      <div class="uk-width-medium-1-4 uk-float-right">
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">论坛链接</h3>
             <ul class="uk-list uk-list-line">
@@ -98,6 +94,9 @@
              </ul>
         </div>
       </div>
+
+
+
 
 
 

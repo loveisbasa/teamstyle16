@@ -46,7 +46,7 @@ class ForumModel
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
 				$query=$this->db->prepare($sql);
 				$query->execute();
-				$sql="SELECT user_id,subject,content,reply_count FROM threads WHERE thread_id={$thread_id}";
+				$sql="SELECT user_id,subject,content,reply_count,establish_date FROM threads WHERE thread_id={$thread_id}";
 				$user = $this->db->prepare($sql);
 				$user->execute();
 				$result = $user->fetch();
@@ -54,6 +54,7 @@ class ForumModel
 				$_SESSION['thread_subject'] = $result->subject;
 				$_SESSION['thread_content'] = $result->content;
 				$_SESSION['reply_count'] = $result->reply_count;
+				$_SESSION['establish_date'] = $result->establish_date;
 				$sql="SELECT * FROM users WHERE user_id={$_SESSION['writer_id']}";
 				$writer = $this->db->prepare($sql);
 				$writer->execute();

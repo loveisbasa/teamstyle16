@@ -1,18 +1,20 @@
-
-
-
+<style>
+#wrap{word-break:break-all; width:850px;}
+</style>
 
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
-
+<head>
+    <title><?php echo $_SESSION['thread_subject'];?></title>
+</head>
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
   <div class="uk-grid" data-uk-grid-margin>
     <div class="uk-width-medium-3-4">
       <article class="uk-article">
         <h1 class="uk-article-title"><?php echo $_SESSION['thread_subject'];?></h1>
-        <p class="uk-article-meta">Written byon 12 April 2013. Posted in 
+        <p class="uk-article-meta">作者：<?php echo $_SESSION['writer_nickname'];?> 发表于<?php echo $_SESSION['establish_date']; ?>. 
             <a href="<?php echo URL . 'forum/threads/' . $_SESSION['forum_id']; ?>"><?php echo $_SESSION['forum_theme'];?></a>
         </p>
-        <p><?php echo $_SESSION['thread_content'];?></p>
+        <p id="wrap"><?php echo $_SESSION['thread_content'];?></p>
         <p><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOTAwcHgiIGhlaWdodD0iMzAwcHgiIHZpZXdCb3g9IjAgMCA5MDAgMzAwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA5MDAgMzAwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxyZWN0IGZpbGw9IiNGNUY1RjUiIHdpZHRoPSI5MDAiIGhlaWdodD0iMzAwIi8+DQo8ZyBvcGFjaXR5PSIwLjciPg0KCTxwYXRoIGZpbGw9IiNEOEQ4RDgiIGQ9Ik0zNzguMTg0LDkzLjV2MTEzaDE0My42MzN2LTExM0gzNzguMTg0eiBNNTEwLjI0NCwxOTQuMjQ3SDM5MC40Mzd2LTg4LjQ5NGgxMTkuODA4TDUxMC4yNDQsMTk0LjI0Nw0KCQlMNTEwLjI0NCwxOTQuMjQ3eiIvPg0KCTxwb2x5Z29uIGZpbGw9IiNEOEQ4RDgiIHBvaW50cz0iMzk2Ljg4MSwxODQuNzE3IDQyMS41NzIsMTU4Ljc2NCA0MzAuODI0LDE2Mi43NjggNDYwLjAxNSwxMzEuNjg4IDQ3MS41MDUsMTQ1LjQzNCANCgkJNDc2LjY4OSwxNDIuMzAzIDUwNC43NDYsMTg0LjcxNyAJIi8+DQoJPGNpcmNsZSBmaWxsPSIjRDhEOEQ4IiBjeD0iNDI1LjQwNSIgY3k9IjEyOC4yNTciIHI9IjEwLjc4NyIvPg0KPC9nPg0KPC9zdmc+DQo=" width="900" height="300" alt=""></p>
 
       </article>
@@ -42,21 +44,24 @@
                         <p><?php echo $_SESSION['writer_email']?></p>
                     </div>
                     <div class="uk-panel">
-                        <h3 class="uk-panel-title">Archives</h3>
+                        <h3 class="uk-panel-title">作者其他热帖</h3>
+                        <?php
+                        $sql="SELECT * FROM threads WHERE user_id={$_SESSION['writer_id']} ORDER BY reply_count DESC";
+                        $query = $this->db->prepare($sql);
+                        $query->execute(); 
+                        $n = 0;
+                        ?>
                         <ul class="uk-list uk-list-line">
-                            <li><a href="#">January 2014</a></li>
-                            <li><a href="#">December 2013</a></li>
-                            <li><a href="#">November 2013</a></li>
-                            <li><a href="#">October 2013</a></li>
-                            <li><a href="#">September 2013</a></li>
+                            <?php while ($result=$query->fetch() AND ($n<6)) {$n++;?>
+                            <li><a target="_blank" href="<?php echo URL. 'forum/posts/'.$result->thread_id?>"><?php echo $result->subject;?></a></li>
+                            <?php }?>
                         </ul>
                     </div>
                     <div class="uk-panel">
-                        <h3 class="uk-panel-title">Social Links</h3>
+                        <h3 class="uk-panel-title">关注队式</h3>
                         <ul class="uk-list">
-                            <li><a href="#">GitHub</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">清华队式</a></li><!--人人网链接-->
+                            <li><a href="#">电子科协</a></li>
                         </ul>
                     </div>
                 </div>

@@ -70,7 +70,7 @@ body{
           </ul>
         </li>
       </ul>
-			<form action="<?php echo URL; ?>team/team_search" method="post" class="navbar-form navbar-left" role="search">
+      <form action="<?php echo URL; ?>team/team_search" method="post" class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input name="keyword" type="text" class="form-control" placeholder="输入战队名">
         </div>
@@ -112,7 +112,7 @@ body{
     <!--if not logged in,provide a button to log-->
     <?php
       if (!isset($_SESSION['user_logged_in'])) {?>
-	    <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="<?php echo URL.'login'?>">登陆</a></li>
       </ul>
     <?php } else {?>
@@ -155,4 +155,3 @@ body{
   </div>
   </div> 
 </header>
- 

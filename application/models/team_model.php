@@ -261,7 +261,7 @@ class TeamModel
 	public function Search($keyword)
 	{
 		if(!empty($keyword)){
-			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2
+			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 			left JOIN users as u3 on teams.team_member2=u3.user_id

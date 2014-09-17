@@ -29,8 +29,8 @@
                             <h2 class="uk-h3"><a href="<?php echo URL . 'forum/threads/' . $forums->forum_id; ?>">
                                 <?php echo $forums->title; ?></a></h2>
                             <p style="fontsize:90px;text-indent:1cm"><?php echo $forums->intro; ?></p>
-                            <li><?php echo "已有" . $forums->count_thread . " 个主题" . $forums->count_post . "个帖子" ?></li>
-                            <li><?php echo "最后回复于" . $forums->latest_reply; ?></li> 
+                            <p class="uk-article-meta"><?php echo "发帖 " . $forums->count_thread . "  回复" . $forums->count_post?>
+                            <?php echo "最新回复于" . $forums->latest_reply; ?></p> 
                         </br>
                         </div>
                     </div>

@@ -50,11 +50,15 @@
  $i = 1; 
 ?>
 <ul class="pagination">
-  <li><a href="#">&laquo;</a></li>
+  <?php if ($_SESSION['page_id']!=1) {?>
+  <li><a href="<?php echo URL. 'team/team_display/'.$_SESSION['page_id']-1?>">&laquo;</a></li>
+  <?php }?>
   <?php while ($i*8<$team_number+8){?>
   <li><a href="<?php echo URL. 'team/team_display/'.$i?>"><?php echo $i?></a></li>
   <?php $i++;}?>
+  <?php if ($_SESSION['page_id']*8<$team_number) {?>
   <li><a href="#">&raquo;</a></li>
+  <?php }?>
 </ul>
 
 

@@ -59,6 +59,7 @@ class LoginModel
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
 			$_SESSION['user_type']=$result->user_type;
+			$_SESSION['user_team']=$result->user_team;
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');

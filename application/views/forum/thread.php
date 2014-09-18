@@ -23,7 +23,7 @@
           <p class="uk-article-meta">
             <?php echo $result->user_nickname; ?>发表于<?php echo $threads->establish_date."  ";?>回复(<?php echo $threads->reply_count; ?>)
           </p>
-          <p id="wrap"><?php echo $threads->content?></p>
+          <p id="wrap"><?php echo substr($threads->content,0,100);?></p>
             <p class="uk-article-meta">最新回复:<?php echo $threads->latest_reply?></p>
             <a href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>">继续阅读<i class="uk-icon-angle-double-right"></i>
             </a>

@@ -64,7 +64,7 @@ body{
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo URL. 'team/create_team'; ?>">组建战队</a></li>
             <li class="divider"></li>
-            <li><a href="<?php echo URL. 'team/team_display'; ?>">所有战队</a></li>
+            <li><a href="<?php echo URL. 'team/team_display/1'; ?>">所有战队</a></li>
             <li class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>

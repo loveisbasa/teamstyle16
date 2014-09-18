@@ -34,10 +34,10 @@ class Team extends Controller
 		}
 	}
 
-	public function team_display()
+	public function team_display($page)
 	{
 		$team_model = $this->loadModel('Team');
-		$all_team = $team_model->GetAllTeams();
+		$all_team = $team_model->GetAllTeams($page);
 
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/index.php';

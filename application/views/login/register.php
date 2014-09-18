@@ -80,7 +80,7 @@
         <a href="/" class="brand">
           <h1>Teamstyle16 深蓝</h1>
         </a>
-        <h3>Create Teamstyle Account</h3>
+        <h3>创建队式账户</h3>
         <form action="<?php echo URL; ?>login/register_action" method="post" class="auth-form form-horizontal">
           <div class="face"></div>
           
@@ -119,10 +119,10 @@
           </div>
           
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
-            Sign up
+            注册
           </button>
           <div class="action-wrapper">
-            <a href="/login" class="signup pull-right">Already have an account?</a>
+            <a href="/login" class="signup pull-right">已有账户，速去登陆</a>
           </div>
         </form>
       </div>

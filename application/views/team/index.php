@@ -4,41 +4,6 @@
         Session::set('feedback_negative', null);?>
 
     <h1>战队列表</h1>
-<!--<div>
-
-        <table class='table table-hover table-bordered'>
-            <thead style="background-color: #eee; font-weight: bold;">
-            <tr>
-                <th>战队编号</th>
-                <th>战队名称</th>
-                <th>战队口号</th>
-                <th>战队成员</th>
-                <th> </th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($all_team as $team) { ?>
-                <tr>
-                    <td><?php if (isset($team->team_id))  echo $team->team_id; ?></td>
-                    <td><?php if (isset($team->team_name)) echo $team->team_name; ?></td>
-                    <td><?php if (isset($team->team_slogan)) echo $team->team_slogan; ?></td>
-                    <td><?php if (isset($team->team_captain)) echo $team->team_captain; 
-                     if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
-                     if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></td>
-                    <td><a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" >join</a></td>
-
-<div id = "testModal<?php echo $team->team_id;?>" style="display:none;">
-    <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
-        <h2 class = "form-signin-heading">Join Team Now!</h2>
-        <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
-    </form>
-</div>
-                </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-    </div>-->
 <style type="text/css">
   #testModal<?php echo $team->team_id;?> {
   width: 300px;
@@ -76,13 +41,19 @@
 <?php } ?>
 
 </div>
+<?php
+ $sql = "SELECT team_id FROM teams ORDER BY team_id DESC";
+ $query = $this->db->prepare($sql);
+ $query->execute();
+ $result = $query->fetch();
+ $team_number = $result->team_id;
+ $i = 1; 
+?>
 <ul class="pagination">
   <li><a href="#">&laquo;</a></li>
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
+  <?php while ($i*8<$team_number+8){?>
+  <li><a href="<?php echo URL. 'team/team_display/'.$i?>"><?php echo $i?></a></li>
+  <?php $i++;}?>
   <li><a href="#">&raquo;</a></li>
 </ul>
 

@@ -34,19 +34,14 @@ class Team extends Controller
 		}
 	}
 
-	public function team_display($page)
+	public function team_display($page=1)
 	{
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->GetAllTeams($page);
-
+		$_SESSION['page_id'] = $page;
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/index.php';
 		require 'application/views/_templates/footer.php';
-		// while ($row = mysql_fetch_array($all_team)) 
-		// {
-		// 	echo $row['team_name']." ".$row['team_slogan']." ".$row['team_member1']." ".$row['team_member2'];
-		// }
-
 	}
 
 	public function team_search()

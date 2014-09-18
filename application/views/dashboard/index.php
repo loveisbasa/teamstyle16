@@ -38,34 +38,33 @@
             </div>
         </div>
     </div>
-        <div class="col-xs-2">
+        <div class="col-xs-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Team</h3>
+                <h3 class="panel-title">我的战队</h3>
             </div>
+
             <div class="panel-body">
+                <?php if ($_SESSION['user_team']==null){?>
                 <ul>
-                    <li><a href="<?php echo URL. 'team/create_team'; ?>">Create a team</a></li>
-                    <li><a href="<?php echo URL. 'team/team_display'; ?>">Show all teams</a></li>
+                    <h3 style="position:center">您尚未加入战队哦</h3>
+                    <li><a href="<?php echo URL. 'team/create_team'; ?>">创建战队</a></li>
+                    <li><a href="<?php echo URL. 'team/team_display'; ?>">显示所有战队</a></li>
                 </ul>
+                <?php } else {?>
+                <div class="thumbnail">
+                    <?php
+                    $sql = "SELECT * FROM teams WHERE team_name={$_SESSION['user_team']}";
+                    $query = $this->db->prepare($sql);
+                    $query->execute();
+                    $result = $query->fetch(); 
+                    ?>
+                    <p><?php echo $result->team_name;?></p>
+                </div>
+                <?php }?>
             </div>
           </div>
         </div>
-    <div class="col-xs-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Team</h3>
-            </div>
-            <div class="panel-body">
-                <ul>
-                    <?php echo $this->user->user_team;?>
-                    <li><a href="<?php echo URL. 'team/create_team'; ?>">Create a team</a></li>
-                    <li><a href="<?php echo URL. 'team/team_display'; ?>">Show all teams</a></li>
-                </ul>
-            </div>
-          </div>
-        </div>
-  
 
 
 </div>

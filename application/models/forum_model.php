@@ -21,7 +21,7 @@ class ForumModel
 	public function Showthreads($forum_id)
 		{
 				if(isset($forum_id) and filter_var($forum_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="SELECT * FROM threads WHERE forum_id={$forum_id} ORDER BY latest_reply DESC";
+					$sql="SELECT * FROM threads inner join users on threads.user_id=users.user_id WHERE forum_id={$forum_id} ORDER BY latest_reply DESC";
 					$query=$this->db->prepare($sql);
 					$query->execute();
 					$sql="SELECT title,intro FROM forums WHERE forum_id={$forum_id}";

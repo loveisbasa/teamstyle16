@@ -138,6 +138,7 @@ class TeamModel
 				':team_member1' => $team_member1,
 				':team_member2' => $team_member2,
 				':team_full' => $team_full));
+			$SESSION['user_team']=team_name;
 			$count = $query->rowCount();
 			if ($count != 1) {
 				$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_CREATE_FAIED;
@@ -210,6 +211,7 @@ class TeamModel
 					WHERE team_id = :team_id");
 				$query->execute(array(':team_id' => $result->team_id));
 			}
+			$SESSION['user_team']=team_name;
 		} else {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
 			return false;

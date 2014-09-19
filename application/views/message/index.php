@@ -57,15 +57,16 @@
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">
         <div class="panel panel-default">
             <div class="panel-heading">
-				<h3 class="panel-title"><?php if ($i!=-1) echo $message->message_title; else echo "empty message box" ?></h3>
-            </div>
+				<h3 class="panel-title"><?php if ($i!==1) echo "empty message box</div>"; else{ echo $message->message_title; ?></h3>
+						</div>
             <div class="panel-body">
                 <ul>
 					<h8><?php if ($i!=-1) echo $message->message_content; ?></h8>
                     <hr>
 					<li><?php if ($i!=-1) echo "From <a href="; echo URL . "message/send_mail/" .  $message->user_nickname . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?></li> 
                 </ul>
-            </div>
+						</div>
+<?php } ?>
         </div>
     </div> 
 

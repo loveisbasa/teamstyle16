@@ -28,11 +28,9 @@ class ForumModel
 					$theme=$this->db->prepare($sql);
 					$theme->execute();
 					$result = $theme->fetch();
-					if ($theme->rowCount()==1){
 						$_SESSION['forum_theme'] = $result->title;
 						$_SESSION['forum_intro'] = $result->intro;
 						$_SESSION['forum_id'] = $forum_id;
-					}
 					$sql="SELECT subject,thread_id FROM threads ORDER BY reply_count DESC";
 					$_SESSION['thread_hot_link'] = $this->db->prepare($sql);
 					$_SESSION['thread_hot_link']->execute();
@@ -55,7 +53,7 @@ class ForumModel
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
 				$query=$this->db->prepare($sql);
 				$query->execute();
-				$sql="SELECT user_id,subject,content,reply_count,establish_date FROM threads WHERE thread_id={$thread_id}";
+				$sql="SELECT user_id,subject,content,reply_count,establish_date,forum_id FROM threads WHERE thread_id={$thread_id}";
 				$user = $this->db->prepare($sql);
 				$user->execute();
 				$result = $user->fetch();
@@ -64,6 +62,7 @@ class ForumModel
 				$_SESSION['thread_content'] = $result->content;
 				$_SESSION['reply_count'] = $result->reply_count;
 				$_SESSION['establish_date'] = $result->establish_date;
+				$_SESSION['forum_id'] = $result->forum_id;
 				$sql="SELECT * FROM users WHERE user_id={$_SESSION['writer_id']}";
 				$writer = $this->db->prepare($sql);
 				$writer->execute();
@@ -73,6 +72,12 @@ class ForumModel
 				$sql="SELECT * FROM threads WHERE user_id={$_SESSION['writer_id']} ORDER BY reply_count DESC";
                 $_SESSION['writer_link'] = $this->db->prepare($sql);
                 $_SESSION['writer_link']->execute();
+                $sql="SELECT title,intro FROM forums WHERE forum_id={$_SESSION['forum_id']}";
+				$theme=$this->db->prepare($sql);
+				$theme->execute();
+				$result = $theme->fetch();
+				$_SESSION['forum_theme'] = $result->title;
+				$_SESSION['forum_intro'] = $result->intro;
 				return $query->fetchAll();
 				}
 	}

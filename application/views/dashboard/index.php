@@ -53,13 +53,7 @@
                 </ul>
                 <?php } else {?>
                 <div class="thumbnail">
-                    <?php
-                    $sql = "SELECT * FROM teams WHERE team_name={$_SESSION['user_team']}";
-                    $query = $this->db->prepare($sql);
-                    $query->execute();
-                    $result = $query->fetch(); 
-                    ?>
-                    <p><?php echo $result->team_name;?></p>
+                         <p><?php echo $this->user->team_name;?></p>
                 </div>
                 <?php }?>
             </div>

@@ -162,6 +162,7 @@ class LoginModel
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_type']=$result->user_type;
+			$_SESSION['user_team']=$result->user_team;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
@@ -461,8 +462,9 @@ class LoginModel
 
 	public function getUserProfile($user_id)
 	{
-		$sql = "SELECT user_id, user_nickname, user_email, user_has_avatar
-		FROM users WHERE user_id = :user_id";
+		$sql = "SELECT *
+			FROM users left join teams on teams.team_name=users.user_team 
+			WHERE user_id = :user_id";
 		$sth = $this->db->prepare($sql);
 		$sth->execute(array(':user_id' => $user_id));
 

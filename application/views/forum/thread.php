@@ -56,12 +56,8 @@
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">热帖排行</h3>
             <ul class="uk-list uk-list-line">
-              <?php
-              $sql="SELECT subject,thread_id FROM threads ORDER BY reply_count";
-              $query = $this->db->prepare($sql);
-              $query->execute();$n=0;
-              ?>
-              <?php while (($row = $query->fetch()) and ($n<=7)) {$n++;?>
+              <?php $n=0;?>
+              <?php while (($row = $_SESSION['thread_hot_link']->fetch()) and ($n<=7)) {$n++;?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
                 <?}?>
                 <br><br>
@@ -70,12 +66,8 @@
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">最新帖子</h3>
             <ul class="uk-list uk-list-line">
-              <?php
-              $sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC";
-              $query = $this->db->prepare($sql);
-              $query->execute();$n=0;
-              ?>
-              <?php while (($row = $query->fetch()) and ($n<=7)) {$n++;?>
+              <?php $n=0;?>
+              <?php while (($row = $_SESSION['thread_link']->fetch()) and ($n<=7)) {$n++;?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
                 <?}?><br><br>
              </ul>
@@ -83,12 +75,8 @@
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">论坛链接</h3>
             <ul class="uk-list uk-list-line">
-              <?php
-              $sql="SELECT forum_id,title FROM forums";
-              $query = $this->db->prepare($sql);
-              $query->execute();
-              ?>
-              <?php while ($row = $query->fetch()) {?>
+
+              <?php while ($row = $_SESSION['forum_link']->fetch()) {?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/threads/'.$row->forum_id?>"><?php echo $row->title;?></a></li>
                 <?}?>
              </ul>

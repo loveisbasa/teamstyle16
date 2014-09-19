@@ -33,6 +33,15 @@ class ForumModel
 						$_SESSION['forum_intro'] = $result->intro;
 						$_SESSION['forum_id'] = $forum_id;
 					}
+					$sql="SELECT subject,thread_id FROM threads ORDER BY reply_count DESC";
+					$_SESSION['thread_hot_link'] = $this->db->prepare($sql);
+					$_SESSION['thread_hot_link']->execute();
+					$sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC";
+					$_SESSION['thread_link'] = $this->db->prepare($sql);
+					$_SESSION['thread_link']->execute();
+					$sql="SELECT forum_id,title FROM forums";
+					$_SESSION['forum_link'] = $this->db->prepare($sql);
+					$_SESSION['forum_link']->execute();
 	  			    return $query->fetchAll();
 				}
 		}
@@ -61,6 +70,9 @@ class ForumModel
 				$result = $writer->fetch();
 				$_SESSION['writer_nickname'] = $result->user_nickname;
 				$_SESSION['writer_email'] = $result->user_email;
+				$sql="SELECT * FROM threads WHERE user_id={$_SESSION['writer_id']} ORDER BY reply_count DESC";
+                $_SESSION['writer_link'] = $this->db->prepare($sql);
+                $_SESSION['writer_link']->execute();
 				return $query->fetchAll();
 				}
 	}

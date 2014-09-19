@@ -1,8 +1,7 @@
 CREATE TABLE `info`.`users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_nickname` varchar(20) NOT NULL,
-  `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `user_team` varchar(20) DEFAULT NULL,
+  `user_team` varchar(20)  COLLATE utf8_general_ci DEFAULT NULL,
   `user_email` varchar(128) NOT NULL,
   #`user_confirmed` tinyint(1) NOT NULL,
   `user_real_name` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
@@ -16,6 +15,7 @@ CREATE TABLE `info`.`users` (
   #`user_in_team` tinyint(1) DEFAULT '0',
   `user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
+  `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_nickname`),
   UNIQUE KEY `user_email` (`user_email`),

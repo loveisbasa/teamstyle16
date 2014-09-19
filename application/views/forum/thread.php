@@ -14,14 +14,11 @@
     <div class="uk-grid">
       <div class="uk-width-medium-3-4">
         <?php foreach ($threads as $threads) { 
-          $sql="SELECT user_nickname FROM users WHERE user_id={$threads->user_id}";
-          $query=$this->db->prepare($sql);
-          $query->execute();
-          $result = $query->fetch();?> 
+?> 
         <article class="uk-article">
           <h2><a target="_blank" href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>"><?php echo $threads->subject; ?></a></h2>
           <p class="uk-article-meta">
-            <?php echo $result->user_nickname; ?>发表于<?php echo $threads->establish_date."  ";?>回复(<?php echo $threads->reply_count; ?>)
+            <?php echo $threads->user_nickname; ?>发表于<?php echo $threads->establish_date."  ";?>回复(<?php echo $threads->reply_count; ?>)
           </p>
           <p id="wrap"><?php echo substr($threads->content,0,100);?></p>
             <p class="uk-article-meta">最新回复:<?php echo $threads->latest_reply?></p>
@@ -52,6 +49,7 @@
 <br>
 
       </div>
+
       <div class="uk-width-medium-1-4">
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">热帖排行</h3>
@@ -92,3 +90,4 @@
   </div>
 
 </div>
+

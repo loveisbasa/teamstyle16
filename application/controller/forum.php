@@ -44,9 +44,9 @@ class Forum extends Controller
 		if(isset($thread_id) and !empty($thread_id)){
 			$forum_model=$this->loadModel('forum');
 			$posts=$forum_model->Showposts($thread_id);
-			$writer_link=$forum_model->ShowUSERposts($posts->user_id);
-			$thread_link=$forum_model->Showforums();
-			$thread_link=$forum_model->Getthread_hot_link();
+		  $thread_link=$forum_model->Showthread($thread_id);
+			$forum_link=$forum_model->Showforums();
+		  $writer_link=$forum_model->ShowUSERposts($thread_link->user_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/post.php';
 			require 'application/views/_templates/footer.php';

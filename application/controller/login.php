@@ -95,14 +95,14 @@ class Login extends Controller
 		Auth::handleLogin();
 		$login_model = $this->loadModel('Login');
 		$login_model->createAvatar();
-		header('location: ' . URL . 'setting/index');
+	//	header('location: ' . URL . 'setting/index');
 	}
 
- function changpwd(){
-		Auth::handleLogin();
+ public function changpwd(){
+		echo "test";
 		$login_model = $this->loadModel('Login');
-		$login_model->changePwd()
-		header('location: ' .URL . 'setting/indec');
+		$login_model->changePwd();
+	//	header('location: ' .URL . 'setting/indec');
  }	 
 }
 

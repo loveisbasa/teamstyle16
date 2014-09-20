@@ -1,4 +1,7 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
+<style>
+#wrap{word-break:break-all; width:250px;}
+</style>
 
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
@@ -30,7 +33,7 @@
                         <div class="uk-width-5-6">
                             <h2 class="uk-h3"><a href="<?php echo URL . 'forum/threads/' . $forums->forum_id; ?>">
                                 <?php echo $forums->title; ?></a></h2>
-                            <p style="fontsize:90px;text-indent:1cm"><?php echo $forums->intro; ?></p>
+                            <p style="fontsize:90px;text-indent:1cm" id = "wrap"><?php echo $forums->intro; ?></p>
                             <p class="uk-article-meta"><?php echo "发帖 " . $forums->count_thread . "  回复" . $forums->count_post?>
                             <?php echo "最新回复于" . $forums->latest_reply; ?></p> 
                         </br>

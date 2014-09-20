@@ -27,6 +27,7 @@ class Forum extends Controller
 			$forum_model=$this->loadModel('forum');
 			$forum_link=$forum_model->Showforums();
 			$threads=$forum_model->Showthreads($forum_id);
+			$thread_link=$forum_model->Shownewthreads();
 			$thread_hot_link=$forum_model->Getthread_hot_link();
 			$forum=$forum_model->Showforum($forum_id);
 			require 'application/views/_templates/header.php';

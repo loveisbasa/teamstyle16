@@ -1,7 +1,7 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.gradient.min.css">
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/awesome.css">
 <style>
-#wrap{word-break:break-all; width:800px;}
+#wrap{word-break:break-all; width:780px;}
 </style>
 <div class="container">   
   <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>
@@ -54,5 +54,43 @@
 <br>
 
       </div>
+
+      <div class="uk-width-medium-1-4">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">热帖排行</h3>
+            <ul class="uk-list uk-list-line">
+              <?php foreach ($thread_hot_link as $row) {?>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
+                <?php } ?>
+                <br><br>
+             </ul>
+        </div>
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">最新帖子</h3>
+            <ul class="uk-list uk-list-line">
+              <?php foreach( $thread_link as $row){?>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
+                <?php } ?><br><br>
+             </ul>
+        </div>
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">论坛链接</h3>
+            <ul class="uk-list uk-list-line">
+
+              <?php foreach ($forum_link as $row) {?>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/threads/'.$row->forum_id?>"><?php echo $row->title;?></a></li>
+                <?php } ?>
+             </ul>
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+
 </div>
 

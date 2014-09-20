@@ -153,5 +153,11 @@ if($_SESSION['user_type']='admin'){
 				  $query->execute();
 					return $query->fetchAll();
 		}
+ public function Shownewthreads(){
+				$sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC limit 6";
+					$query= $this->db->prepare($sql);
+				  $query->execute();
+					return $query->fetchAll();
 
+ }
 }

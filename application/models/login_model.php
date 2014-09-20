@@ -31,7 +31,8 @@ class LoginModel
 			user_failed_logins, 
 			user_last_failed_login, 
 			user_first_login,
-			user_type
+			user_type,
+			user_team
 			FROM users
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
@@ -58,6 +59,11 @@ class LoginModel
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
 			$_SESSION['user_type']=$result->user_type;
+			if (isset($result->user_team)) {
+				$_SESSION['user_in_team'] = true;
+			} else {
+				$_SESSION['user_in_team'] = false;
+			}
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');

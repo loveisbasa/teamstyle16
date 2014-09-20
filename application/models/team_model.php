@@ -219,7 +219,7 @@ class TeamModel
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams()
 	{
-		$query = $this->db->prepare("SELECT team_id, team_name, team_slogan, team_captain, team_member1, team_member2
+		$query = $this->db->prepare("SELECT team_id, team_name, team_slogan, team_captain, team_member1, team_member2, team_full
 			FROM teams");
 		$query->execute();
 		$result = $query->fetchAll();

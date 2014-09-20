@@ -1,5 +1,6 @@
 <div class="container">
 <div class="jumbotron">
+<!-- <img src="<?php echo URL;?>public/css/test.jpg" alt="hero背景图大小为940*358" />  --> 
     <div class="container">
         <h1 style="position:right">Teamstyle16 深蓝</h1>
         <p>寻找队（da）友（tui）</p>

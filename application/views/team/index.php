@@ -3,8 +3,8 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
 
-    <h1>战队列表</h1>
-<!--    <div>
+   <!--  <h1>战队列表</h1>
+    <div>
 
         <table class='table table-hover table-bordered'>
             <thead style="background-color: #eee; font-weight: bold;">
@@ -25,7 +25,7 @@
                     <td><?php if (isset($team->team_captain)) echo $team->team_captain; 
                      if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
                      if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></td>
-                    <td><a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" >join</a></td>
+                    <td><a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" >join</a></td> -->
 
 <div id = "testModal<?php echo $team->team_id;?>" style="display:none;">
     <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
@@ -34,11 +34,11 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
     </form>
 </div>
-                </tr>
+              <!--   </tr>
             <?php } ?>
             </tbody>
         </table>
-    </div>-->
+    </div> -->
 
 
 <div class="row">
@@ -53,15 +53,33 @@
         <p><?php if (isset($team->team_captain)) echo "舰长    ".$team->team_captain; 
                      if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
                      if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></p>
-        <?php if (isset($team->team_full)) { ?>
-        <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
+        <?php if ($_SESSION['user_in_team'] == true) { ?>
+            <a href="#" class="btn btn-default" role="button">hiahia</a>
         <?php } else {?>
-        <a href="#" class="btn btn-default" role="button">人员已满</a>
-        <?php }?>
+            <?php if ($team->team_full == 0) { ?>
+                <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
+                <style type="text/css">
+                #testModal<?php echo $team->team_id;?> {
+                width: 300px;
+                padding: 15px 20px;
+                background: #eee;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                border-radius: 6px;
+                -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+                -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+                }
+              </style>
+            <?php } else { ?>
+                <a href="#" class="btn btn-default" role="button">人员已满</a>
+            <?php }?>
+          <?php } ?>
     </div>
   </div>
 </div>
 <?php } ?>
+
 
 </div>
 <ul class="pagination">
@@ -73,19 +91,3 @@
   <li><a href="#">5</a></li>
   <li><a href="#">&raquo;</a></li>
 </ul>
-
-<style type="text/css">
-  #testModal<?php echo $team->team_id;?> {
-  width: 300px;
-  padding: 15px 20px;
-  background: #eee;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-}
-</style>
-
-

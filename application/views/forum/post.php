@@ -74,8 +74,13 @@
             <textarea type="text" name="message" placeholder='回复' autocomplete="off" required cols=50></textarea>
             <span class="icon icon-user-bold"></span>
           </div>
+				<div class="form-field">
+            <textarea type="text" name="vcode" placeholder='请输入验证码' autocomplete="off" required cols=5></textarea>
+            <span class="icon icon-user-bold"></span>
+          </div>
+          
                         <input type="hidden" checked='checked' name='thread_id' value="<?php echo $thread_id; ?>"/>
-
+<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
            回复
           </button>

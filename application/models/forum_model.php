@@ -96,7 +96,7 @@ class ForumModel
 	}
 //管理员专用
 		public function Create_forum(){
-				if($_SESSION['user_type']='admin'){
+if($_SESSION['user_type']='admin'){
 					if (empty($_POST['forum_title'])) {
 						$_SESSION["feedback_negative"][] =FEEDBACK_FORUMTITLE_EMPTY;
 					}
@@ -122,6 +122,10 @@ class ForumModel
 		}
 
 		public function Create_thread($forum_id){
+			if($_POST['vcode']!=$_SESSION['vcode'])
+				$_SESSION['feedback_negative']=FEEDBACK_WRONG_VC;
+
+			else{
 			echo $_POST['thread_subject'];
 			if (empty($_POST['thread_subject'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_THREAD_SUBJECT_EMPTY;
@@ -143,10 +147,14 @@ class ForumModel
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				else return 'true';
 				}
+			}
 		}			
 
 		public function Create_Post($thread_id){
-			if (empty($_POST['message'])) {
+						if($_POST['vcode']!=$_SESSION['vcode'])
+				$_SESSION['feedback_negative']=FEEDBACK_WRONG_VC;
+
+			elseif (empty($_POST['message'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_POST_MESSAGE_EMPTY;
 			}
 			elseif(empty($_SESSION['user_id'])) $_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;

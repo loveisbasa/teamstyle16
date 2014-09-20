@@ -39,8 +39,13 @@
           <textarea type="text" placeholder="我是萌萌的内容O(∩_∩)O~~" value="" name="message" required class="form-control name" ></textarea>
             <span class="icon icon-envelope-bold"></span>
           </div>
-            <input type="hidden" checked='checked' name="forum_id" value="<?php echo $forum_id; ?>"/>
-<!--不太明白如何不用input来post一个值-->
+						<input type="hidden" checked='checked' name="forum_id" value="<?php echo $forum_id; ?>"/>
+						<div class="form-field">
+          <textarea type="text" placeholder="请输入验证码" value="" name="vcode" required class="form-control name" ></textarea>
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+
+					<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
            创建 
           </button>

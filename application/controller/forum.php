@@ -96,7 +96,6 @@ class Forum extends Controller
 		$create_success=$forum_model->Create_thread($forum_id);
 		if($create_success=='true') header(	
 			'location:' .URL. 'forum/threads/' . $forum_id);
-		else header('location:' .URL. 'forum/create_thread/' . $forum_id);
 	}
 	
 	public function create_post($thread_id)

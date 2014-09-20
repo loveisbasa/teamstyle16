@@ -174,11 +174,11 @@ class LoginModel
 	public function RegisterNewUser()
 	{
 		//前面这些if语句用来验证输入，只有完全符合要求才进入与数据库交互的模块
-		if($_POST['vcode']!=$_SESSION['vcode']){
-				$_SESSION["feedback_negative"}[]=FEEDBACK_WRONG_VC;
+		if($_POST['vcode']!=$_SESSION['captcha']){
+				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
 		}
 		elseif (empty($_POST['user_nickname'])) {
-			$_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
+			$_SESSION['feedback_negative'][] = FEEDBACK_USERNAME_FIELD_EMPTY;
 		} elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
 		} elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {

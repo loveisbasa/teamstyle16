@@ -45,9 +45,8 @@
                     </div>
                     <div class="uk-panel">
                         <h3 class="uk-panel-title">作者其他热帖</h3>
-                        <?php $n =0;?>
                         <ul class="uk-list uk-list-line">
-                            <?php while ($result=$_SESSION['writer_link']->fetch() AND ($n<6)) {$n++;?>
+                            <?php foreach ($writer_link as $result) {?>
                             <li><a target="_blank" href="<?php echo URL. 'forum/posts/'.$result->thread_id?>"><?php echo $result->subject;?></a></li>
                             <?php }?>
                         </ul>

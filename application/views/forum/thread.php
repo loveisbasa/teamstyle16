@@ -1,13 +1,13 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.gradient.min.css">
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/awesome.css">
 <style>
-#wrap{word-break:break-all; width:800px;}
+#wrap{word-break:break-all; width:780px;}
 </style>
 <div class="container">   
   <h1 class="uk-heading-large"><?php echo $_SESSION['forum_theme']?></h1>
   <div class="uk-article">
     <div class="uk-article-lead">
-      <p style="text-indent:3em"><?php echo $_SESSION['forum_intro']; ?></p>
+      <p style="text-indent:3em" id = "wrap"><?php echo $_SESSION['forum_intro']; ?></p>
     </div>
   </div>
   <div class="uk-container uk-container-center">
@@ -54,8 +54,7 @@
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">热帖排行</h3>
             <ul class="uk-list uk-list-line">
-              <?php $n=0;?>
-              <?php while (($row = $_SESSION['thread_hot_link']->fetch()) and ($n<=7)) {$n++;?>
+              <?php foreach ($thread_hot_link as $row) {?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
                 <?}?>
                 <br><br>
@@ -64,8 +63,7 @@
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">最新帖子</h3>
             <ul class="uk-list uk-list-line">
-              <?php $n=0;?>
-              <?php while (($row = $_SESSION['thread_link']->fetch()) and ($n<=7)) {$n++;?>
+              <?php foreach $thread_link as $row?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
                 <?}?><br><br>
              </ul>
@@ -74,7 +72,7 @@
             <h3 class="uk-panel-title">论坛链接</h3>
             <ul class="uk-list uk-list-line">
 
-              <?php while ($row = $_SESSION['forum_link']->fetch()) {?>
+              <?php foreach $forum_link as $row {?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/threads/'.$row->forum_id?>"><?php echo $row->title;?></a></li>
                 <?}?>
              </ul>

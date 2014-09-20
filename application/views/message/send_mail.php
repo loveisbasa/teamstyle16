@@ -13,7 +13,7 @@
         <a href="/" class="brand">
           <h1>Teamstyle16 深蓝</h1>
         </a>
-        <h3>Create Teamstyle Account</h3>
+        <h3>Send your mail</h3>
         <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="auth-form form-horizontal">
            <div class="form-field">
             <input type="text" name="message_title" placeholder='消息标题		' autocomplete="off" value="" required class="form-control name" />
@@ -26,10 +26,9 @@
 				 name="user_to_nickname" required class="form-control name" />
 						<span class="icon icon-envelope-bold"></span>
           </div>
-          <div class="form-field"> 
-            <input type="text" name="message_content" placeholder="内容" autocomplete="off" value="" required class="form-control email" autofocus />
+            <textarea type="text" name="message_content" placeholder="内容" value="" required cols="44" rows="5">
+            </textarea>
             <span class="icon icon-envelope-bold"></span>
-          </div>
 						<select name="message_type">
 						<option value='sec'>私信</option>
 						<?php if($_SESSION['user_type']=='admin'){

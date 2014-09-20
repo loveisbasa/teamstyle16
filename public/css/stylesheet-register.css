@@ -33,11 +33,11 @@ a > img{
 .brand {
   display: block;
   margin: 0px auto;
-  width: 250px;
-  height: 30px;
-  background-image: url('teambition.jpg');
-  background-size: 185px 36px;
-  background-position: center;
+  width: 432px;
+  height: 108px;
+  background-image: url('logo.jpg');
+  background-size: 540px 105px;
+  background-position: right;
   background-repeat: no-repeat;
 }
 

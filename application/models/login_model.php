@@ -59,11 +59,10 @@ class LoginModel
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
 			$_SESSION['user_type']=$result->user_type;
-			if (isset($result->user_team)) {
-				$_SESSION['user_in_team'] = true;
-			} else {
-				$_SESSION['user_in_team'] = false;
-			}
+
+
+			$_SESSION['user_team']=$result->user_team;
+
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
@@ -150,7 +149,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_group
+			user_failed_logins, user_last_failed_login,user_type,user_team
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -165,7 +164,8 @@ class LoginModel
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
-			$_SESSION['user_group']=$result->user_group;
+			$_SESSION['user_type']=$result->user_type;
+			$_SESSION['user_team']=$result->user_team;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
@@ -177,8 +177,11 @@ class LoginModel
 	public function RegisterNewUser()
 	{
 		//前面这些if语句用来验证输入，只有完全符合要求才进入与数据库交互的模块
-		if (empty($_POST['user_nickname'])) {
-			$_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
+		if($_POST['vcode']!=$_SESSION['captcha']){
+				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
+		}
+		elseif (empty($_POST['user_nickname'])) {
+			$_SESSION['feedback_negative'][] = FEEDBACK_USERNAME_FIELD_EMPTY;
 		} elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
 		} elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
@@ -465,8 +468,9 @@ class LoginModel
 
 	public function getUserProfile($user_id)
 	{
-		$sql = "SELECT user_id, user_nickname, user_email, user_has_avatar
-		FROM users WHERE user_id = :user_id";
+		$sql = "SELECT *
+			FROM users left join teams on teams.team_name=users.user_team 
+			WHERE user_id = :user_id";
 		$sth = $this->db->prepare($sql);
 		$sth->execute(array(':user_id' => $user_id));
 

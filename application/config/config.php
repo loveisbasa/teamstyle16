@@ -66,6 +66,7 @@ define('DB_PASS', 'wangjianyu');
 
 
 
+
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");
 define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "Your account is not activated yet. Please click on the confirm link in the mail.");
@@ -84,6 +85,7 @@ define("FEEDBACK_TEAMNAME_FIELD_EMPTY","请输入队伍名");
 define("FEEDBACK_INVALID_TEAM_MEMBER","不存在该用户" );
 define("FEEDBACK_JOIN_FAILED","队伍加入失败");
 define("FEEDBACK_TEAM_FULL","队伍已满");
+define("FEEDBACK_WRONG_VC","错误的验证码");
 
 
 define("FEEDBACK_LOGIN_FAILED", "Login failed.");

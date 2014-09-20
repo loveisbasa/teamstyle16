@@ -38,21 +38,10 @@ class Login extends Controller
 		} else {
 			header('location:' .URL. 'login/register');
 		}
-		//$this->view->render('login/register');
-
-		
-		//require 'application/views/_templates/header.php';
-		//require 'application/views/login/register.php';
-		//require 'application/views/_templates/footer.php';
 	}
 
 	public function login()
 	{
-		//echo 'Message from Controller: You are in the controller login, using the method login()';
-
-		// if (isset($_COOKIE['remmberme'])) {
-		// 	$this->loginWithCookie();
-		// } else {
 			$login_model = $this->loadModel('Login');
 			$login_success = $login_model->Login();
 
@@ -61,7 +50,6 @@ class Login extends Controller
 			} else {
 				header('location:' .URL. 'login/index');
 			}
-		//}
 	}
 
 	public function logout()

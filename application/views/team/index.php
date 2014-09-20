@@ -3,58 +3,37 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
 
-   <!--  <h1>战队列表</h1>
-    <div>
 
-        <table class='table table-hover table-bordered'>
-            <thead style="background-color: #eee; font-weight: bold;">
-            <tr>
-                <th>战队编号</th>
-                <th>战队名称</th>
-                <th>战队口号</th>
-                <th>战队成员</th>
-                <th> </th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($all_team as $team) { ?>
-                <tr>
-                    <td><?php if (isset($team->team_id))  echo $team->team_id; ?></td>
-                    <td><?php if (isset($team->team_name)) echo $team->team_name; ?></td>
-                    <td><?php if (isset($team->team_slogan)) echo $team->team_slogan; ?></td>
-                    <td><?php if (isset($team->team_captain)) echo $team->team_captain; 
-                     if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
-                     if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></td>
-                    <td><a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" >join</a></td> -->
-
-<div id = "testModal<?php echo $team->team_id;?>" style="display:none;">
-    <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
-        <h2 class = "form-signin-heading">Join Team Now!</h2>
-        <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
-    </form>
-</div>
-              <!--   </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-    </div> -->
-
-
+    <h1>战队列表</h1>
+<style type="text/css">
+  #testModal<?php echo $team->team_id;?> {
+  width: 300px;
+  padding: 15px 20px;
+  background: #eee;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  position: 
+}
+</style>
 <div class="row">
 
 <?php foreach ($all_team as $team) { ?>
   <div class="col-sm-3">
     <div class="thumbnail">
-      <img data-src="holder.js/300x300" alt="...">
+      <img data-src="holder.js/300x300" alt="">
       <div class="caption">
-        <h3><?php if (isset($team->team_name)) echo $team->team_name; ?></h3>
+        <h1><?php if (isset($team->team_name)) echo $team->team_name; ?></h1>
         <p><?php if (isset($team->team_slogan)) echo "队式口号  ".$team->team_slogan; ?></p>
-        <p><?php if (isset($team->team_captain)) echo "舰长    ".$team->team_captain; 
-                     if (isset($team->team_member1)) echo '<br/>'. $team->team_member1; 
-                     if (isset($team->team_member2)) echo '<br/>'. $team->team_member2; ?></p>
-        <?php if ($_SESSION['user_in_team'] == true) { ?>
-            <a href="#" class="btn btn-default" role="button">hiahia</a>
+
+        <p><?php if (isset($team->team_captain)) echo "舰长    ".$team->team_captain; echo '<br/>';
+                     if (isset($team->team_member1)) echo $team->team_member1; echo '<br/>'; 
+                     if (isset($team->team_member2)) echo $team->team_member2; else echo '<br/>'?></p>
+        <?php if (!$team->team_full) { ?>
+        <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
         <?php } else {?>
             <?php if ($team->team_full == 0) { ?>
                 <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
@@ -82,12 +61,28 @@
 
 
 </div>
+<?php
+ $sql = "SELECT team_id FROM teams ORDER BY team_id DESC";
+ $query = $this->db->prepare($sql);
+ $query->execute();
+ $result = $query->fetch();
+ $team_number = $result->team_id;
+ $i = 1; 
+?>
 <ul class="pagination">
-  <li><a href="#">&laquo;</a></li>
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
+  <?php if ($_SESSION['page_id']!=1) {?>
+  <li><a href="<?php echo URL. 'team/team_display/'.$_SESSION['page_id']-1?>">&laquo;</a></li>
+  <?php }?>
+  <?php while ($i*8<$team_number+8){?>
+  <li><a href="<?php echo URL. 'team/team_display/'.$i?>"><?php echo $i?></a></li>
+  <?php $i++;}?>
+  <?php if ($_SESSION['page_id']*8<$team_number) {?>
   <li><a href="#">&raquo;</a></li>
+
+  <?php }?>
 </ul>
+
+
+
+
+

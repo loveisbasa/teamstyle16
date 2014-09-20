@@ -80,7 +80,7 @@
         <a href="/" class="brand">
           <h1>Teamstyle16 深蓝</h1>
         </a>
-        <h3>Create Teamstyle Account</h3>
+        <h3>创建队式账户</h3>
         <form action="<?php echo URL; ?>login/register_action" method="post" class="auth-form form-horizontal">
           <div class="face"></div>
           
@@ -114,15 +114,16 @@
             <span class="icon icon-envelope-bold"></span>
           </div>
           <div class="form-field">
-            <input type="text" name="user_type" placeholder="user type" autocomplete="off" value="" required class="form-control email" autofocus />
+            <input type="text" name="vcode" placeholder="请输入验证码" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
-          </div>
-          
+					</div>
+						
+					<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
-            Sign up
+            注册
           </button>
           <div class="action-wrapper">
-            <a href="/login" class="signup pull-right">Already have an account?</a>
+            <a href="/login" class="signup pull-right">已有账户，速去登陆</a>
           </div>
         </form>
       </div>

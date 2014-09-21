@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-<div class="container">
-<div class="jumbotron">
-<!-- <img src="<?php echo URL;?>public/css/test.jpg" alt="hero背景图大小为940*358" />  --> 
-    <div class="container">
-        <h1 style="position:right">Teamstyle16 深蓝</h1>
-        <p>寻找队（da）友（tui）</p>
-        <p>规则讨（tu）论（cao）</p>
-        <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-=======
+
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
 
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
@@ -27,7 +18,7 @@
             </div>
 
         </div>
->>>>>>> d0ddad9455e8d25db0e8a29910b36c6f2f7f6be3
+
     </div>
 
         <div class="uk-grid" data-uk-grid-margin>

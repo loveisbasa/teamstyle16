@@ -52,33 +52,19 @@ body{
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo URL. 'message/send_mail';?>">发送消息</a></li>
             <li><a href="<?php echo URL. 'message/all_message';?>">所有消息</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">战队<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo URL. 'team/create_team'; ?>">组建战队</a></li>
-            <li class="divider"></li>
             <li><a href="<?php echo URL. 'team/team_display/1'; ?>">所有战队</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
       </ul>
       <form action="<?php echo URL; ?>team/team_search" method="post" class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input name="keyword" type="text" class="form-control" placeholder="输入战队名">
-        </div>
-        <button type="submit" class="btn btn-default">搜索</button>
-      </form>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="输入战队名">
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>

@@ -5,20 +5,6 @@
 
 
     <h1>战队列表</h1>
-<style type="text/css">
-  #testModal<?php echo $team->team_id;?> {
-  width: 300px;
-  padding: 15px 20px;
-  background: #eee;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  position: 
-}
-</style>
 <div class="row">
 
 <?php foreach ($all_team as $team) { ?>

@@ -10,6 +10,7 @@
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery.leanModal.min.js"></script>
      <!-- css -->
+    <link href="<?php echo URL; ?>public/css/bootstrap-checkbox.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/docs.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/highlight.css" rel="stylesheet">
@@ -21,6 +22,7 @@
     <script src="<?php echo URL; ?>public/js/application.js"></script>
     <script src="<?php echo URL; ?>public/js/uikit.js"></script>
     <script src="<?php echo URL; ?>public/js/highlight.js"></script>
+    <script src="<?php echo URL; ?>public/js/bootstrap-checkbox.js"></script>
 
 <?php if (isset($_SESSION['user_logged_in'])) {?>
 <style>

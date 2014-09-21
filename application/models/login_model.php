@@ -499,4 +499,8 @@ class LoginModel
 
 		return $gravatar_image_link;
 	}
+
+	public function changePwd(){
+		$query=$this->db->prepare("select )
+	}
 }

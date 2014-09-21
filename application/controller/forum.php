@@ -25,7 +25,11 @@ class Forum extends Controller
 	{
 		if(isset($forum_id) and !empty($forum_id)){
 			$forum_model=$this->loadModel('forum');
+			$forum_link=$forum_model->Showforums();
 			$threads=$forum_model->Showthreads($forum_id);
+			$thread_link=$forum_model->Shownewthreads();
+			$thread_hot_link=$forum_model->Getthread_hot_link();
+			$forum=$forum_model->Showforum($forum_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/thread.php';
 			require 'application/views/_templates/footer.php';
@@ -40,6 +44,9 @@ class Forum extends Controller
 		if(isset($thread_id) and !empty($thread_id)){
 			$forum_model=$this->loadModel('forum');
 			$posts=$forum_model->Showposts($thread_id);
+			$writer_link=$forum_model->ShowUSERposts($posts->user_id);
+			$thread_link=$forum_model->Showforums();
+			$thread_link=$forum_model->Getthread_hot_link();
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/post.php';
 			require 'application/views/_templates/footer.php';

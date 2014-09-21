@@ -98,6 +98,11 @@ class Login extends Controller
 		header('location: ' . URL . 'setting/index');
 	}
 
-	
+ function changpwd(){
+		Auth::handleLogin();
+		$login_model = $this->loadModel('Login');
+		$login_model->changePwd()
+		header('location: ' .URL . 'setting/indec');
+ }	 
 }
 

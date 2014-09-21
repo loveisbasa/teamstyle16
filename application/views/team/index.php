@@ -20,10 +20,7 @@
                      if (isset($team->team_member2)) echo $team->team_member2; else echo '<br/>'?></p>
         <?php if (!$team->team_full) { ?>
         <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
-        <?php } else {?>
-            <?php if ($team->team_full == 0) { ?>
-                <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
-                <style type="text/css">
+        <style type="text/css">
                 #testModal<?php echo $team->team_id;?> {
                 width: 300px;
                 padding: 15px 20px;
@@ -36,10 +33,16 @@
                 box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
                 }
               </style>
-            <?php } else { ?>
+              <div id = "testModal<?php echo $team->team_id;?>" style="display:none;">
+                <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
+                  <h2 class = "form-signin-heading">Join Team Now!</h2>
+                  <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/>
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
+                </form>
+              </div>
+        <?php } else { ?>
                 <a href="#" class="btn btn-default" role="button">人员已满</a>
-            <?php }?>
-          <?php } ?>
+        <?php }?>
     </div>
   </div>
 </div>

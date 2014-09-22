@@ -89,12 +89,12 @@ define("FEEDBACK_WRONG_VC","错误的验证码");
 
 
 define("FEEDBACK_LOGIN_FAILED", "Login failed.");
-define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
-define("FEEDBACK_PASSWORD_FIELD_EMPTY", "Password field was empty.");
-define("FEEDBACK_EMAIL_FIELD_EMPTY", "Email and passwords fields were empty.");
+define("FEEDBACK_USERNAME_FIELD_EMPTY", "用户名不能为空。");
+define("FEEDBACK_PASSWORD_FIELD_EMPTY", "密码不能为空");
+define("FEEDBACK_EMAIL_FIELD_EMPTY", "邮箱不能为空");
 define("FEEDBACK_EMAIL_AND_PASSWORD_FIELDS_EMPTY", "Email field was empty.");
 define("FEEDBACK_USERNAME_SAME_AS_OLD_ONE", "Sorry, that username is the same as your current one. Please choose another one.");
-define("FEEDBACK_USERNAME_ALREADY_TAKEN", "Sorry, that username is already taken. Please choose another one.");
+define("FEEDBACK_USERNAME_ALREADY_TAKEN", "昵称已经被注册过了，换用其他的吧~");
 define("FEEDBACK_USER_EMAIL_ALREADY_TAKEN", "Sorry, that email is already in use. Please choose another one.");
 define("FEEDBACK_USERNAME_CHANGE_SUCCESSFUL", "Your username has been changed successfully.");
 define("FEEDBACK_USERNAME_AND_PASSWORD_FIELD_EMPTY", "Username and password fields were empty.");

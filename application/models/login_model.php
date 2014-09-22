@@ -59,8 +59,6 @@ class LoginModel
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
 			$_SESSION['user_type']=$result->user_type;
-
-
 			$_SESSION['user_team']=$result->user_team;
 
 			//下面这些是可以选择扩展的一些功能
@@ -149,7 +147,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type,user_team
+			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -166,6 +164,7 @@ class LoginModel
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
+			$_SESSION['user_first_login']=$result->user_first_login;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
@@ -231,7 +230,7 @@ class LoginModel
 			$query->execute(array(':user_nickname' => $user_nickname));
 			$count = $query->rowCount();
 			if ($count ==1) {
-				$_SESSION["feedback_negtive"][] = FEEDBACK_USERNAME_ALREADY_TAKEN;
+				$_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_ALREADY_TAKEN;
 				return false;
 			}
 			//邮箱已经被注册过的情况

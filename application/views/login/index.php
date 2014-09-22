@@ -15,11 +15,14 @@
           
           <input type="hidden" name="source" value="">
           <div class="form-field">
-            <input style="height:48px;width:100%;margin-bottom:20px;font-size:16px" type="text" name="user_nickname" placeholder="队式昵称或邮箱" autocomplete="off" value="" required class="form-control email" autofocus />
-            <span class="icon icon-envelope-bold"></span>
+              <input style="height:48px;width:100%;margin-bottom:20px;font-size:16px" 
+              type="text" name="user_nickname" placeholder="队式昵称或邮箱" autocomplete="off" 
+              value="<?php if (isset($_POST['user_nickname'] )) {echo $_POST['user_nickname']; }?>" required class="form-control email" autofocus/> 
+              <span class="icon icon-envelope-bold"></span>
           </div>
           <div class="form-field">
-            <input style="height:48px;width:100%;margin-bottom:20px;font-size:16px" type="password" name="user_password" placeholder='密码' autocomplete="off" value="" required class="form-control name" />
+            <input style="height:48px;width:100%;margin-bottom:20px;font-size:16px" type="password" name="user_password" placeholder='密码' autocomplete="off" 
+            value="<?php if (isset($_POST['user_password'] )) {echo $_POST['user_password']; }?>" required class="form-control name" />
             <span class="icon icon-user-bold"></span>
           </div>
             <input type="checkbox" class = "checkbox" name="user_rememberme" value="Remember me">保持登陆

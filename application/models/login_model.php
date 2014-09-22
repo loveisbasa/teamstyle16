@@ -199,6 +199,8 @@ class LoginModel
 			$_SESSION["feedback_negative"][] = FEEDBACK_REAL_NAME_FILED_EMPTY;
 		} elseif (empty($_POST['user_phone'])) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PHONE_FIELD_EMPTY;
+		} elseif (!is_numeric($_POST['user_phone']) OR strlen($_POST['user_phone']) != 11) {//TODO:phone pattern
+			$_SESSION["feedback_negative"][] = FEEDBACK_PHONE_DOES_NOT_FIT_PATTERN;
 		} elseif (empty($_POST['user_class'])) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_CLASS_FIELD_EMPTY;
 		} elseif (!empty($_POST['user_nickname'])

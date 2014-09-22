@@ -32,7 +32,7 @@
             </div>
             <div class="panel-body">
                 <ul>
-                    <li><a href="<?php echo URL. 'message/send_mail';?>">Send messages</a></li>
+                    <li data-uk-offcanvas="{target:'#offcanvas-5'}"><a href="<?php echo URL. 'message/send_mail';?>">Send messages</a></li>
                     <li><a href="<?php echo URL. 'message/is_read';?>">All messages</a></li>
                 </ul>
             </div>
@@ -62,6 +62,103 @@
 
 
 </div>
+<div id="offcanvas-1" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar" style="padding-top:100px">
+        <div class="thumbnail">
+            <?php echo '<img src="'.$this->user->user_avatar_link.'" class="img-rounded"/>'; ?>
+            <div class="caption">
+                <h3 class="text-center"><?php echo $this->user->user_nickname; ?></h3>
+                <p class="text-center"><?php echo $this->user->user_email; ?></p>
+                <p class="text-center">Welcome!<?php
+                if ($_SESSION['user_first_login'] == 1) {
+                    echo 'This is your first login!';
+                }?></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="offcanvas-2" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:100px">
+        <div class="panel-body">
+            <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
+                <?php if ($_SESSION['user_team']==null) {?>}
+                <h3 style="color:#E8E8E8;text-align:center">您尚未加入战队哦</h3>
+                <br>
+                <li class="uk-parent">
+                    <a href="#">加入队伍</a>
+                    <ul class="uk-nav-sub">
+                        <li><a href="<?php echo URL. 'team/create_team'; ?>">创建队伍</li>
+                        <li><a href="<?php echo URL. 'team/team_display'; ?>">抱大腿~</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="<?php echo URL. 'team/team_display'; ?>">查看所有队伍</a></li>
+                <li class="uk-nav-divider"></li>
+                <li class="uk-nav-header">查找队伍</li>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="输入战队名">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <?php } else {?>
+                <h3 style="color:#E8E8E8;text-align:center">我的队伍</h3>
+                <br>
+                <h4 style="color:#E8E8E8;text-align:center"><?php echo $_SESSION['user_team']?></h4>
+                <?php }?>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="offcanvas-5" class="uk-offcanvas" style="color:white">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
+        <div class="thumbnail">
+            <section class="content">
+                <div class="form-unit">
+                    <a href="/" class="brand">
+                        <h1>Teamstyle16 深蓝</h1>
+                    </a>
+                    <h3 style="text-align:center">发送消息</h3>
+                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="auth-form form-horizontal">
+                        <div class="form-field">
+                            <input type="text" name="message_title" placeholder='消息标题       ' autocomplete="off" value="" required class="form-control name" />
+                            <span class="icon icon-user-bold"></span>
+                        </div>
+                        <div class="form-field">
+                            <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
+                            <span class="icon icon-envelope-bold"></span>
+                        </div>
+                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="27" rows="14">
+                        </textarea>
+                        <span class="icon icon-envelope-bold"></span>
+                        <select name="message_type">
+                            <option value='sec'>私信</option>
+                            <?php if($_SESSION['user_type']=='admin'){
+                                echo "<option value='pub'>公告</option>";
+                            }?>
+                        </select>
+                        <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
+                            发送 
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-1'}">user</button>
+                            <a href="#offcanvas-1" data-uk-offcanvas>user</a>
+
+                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-2'}">team</button>
+                            
+</div>
+
+
+
 
 <form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
 <label for="file">Filename:</label>

@@ -500,4 +500,28 @@ class LoginModel
 
 		return $gravatar_image_link;
 	}
+
+	public function changePwd(){
+		if($_POST['vcode']!=$_SESSION['captcha'])  $_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
+		else{
+		$query=$this->db->prepare("select  user_password_hash  from users where user_id={$_SESSION['user_id']}" );
+		$query->execute();
+		if(password_verify($_POST['user_password'], $query->fetch()->user_password_hash))
+		$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
+		
+		if (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
+		} elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_REPEAT_WRONG;
+		} elseif (strlen($_POST['user_password_new']) < 6) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_TOO_SHORT;
+		}else
+		{
+		$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
+			$user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' =>			  $hash_cost_factor));
+		$query=$this->db->prepare("update users user_password_hash={$user_password_hash} where user_id={$_SESSION['user_id']}");
+		$query->execute();
+		}
+		}
+	}
 }

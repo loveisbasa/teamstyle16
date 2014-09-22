@@ -34,11 +34,18 @@ class ForumModel
 					  			    return $query->fetchAll();
 				}
 		}
+	public function Showthread($thread_id)
+		{
+					$sql="SELECT * FROM threads inner join users on threads.user_id=users.user_id WHERE thread_id={$thread_id} ORDER BY latest_reply DESC";
+					$query=$this->db->prepare($sql);
+					$query->execute();
+					return $query->fetch();
+		}
 
 	public function Showposts($thread_id)
 	{
 				if(isset($thread_id) and filter_var($thread_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="SELECT t.subject as subject,p.message as message,user_nickname,p.post_on AS posted
+					$sql="SELECT p.user_id as user_id,t.subject as subject,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
 						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
@@ -51,10 +58,11 @@ class ForumModel
 		public function ShowUSERposts($user_id)
 	{
 				if(isset($user_id) and filter_var($user_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="SELET select t.subject as subject ,p.message as message ,user_nickname,p.post_on AS posted
+						$sql="SELECT p.user_id as user_id,t.subject as subject,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
-						threads AS t LEFT JOIN posts AS P USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
-						WHERE p.user_id={$user_id} ODERED BY p.post_on ASC) limit 6";
+						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
+						WHERE t.user_id={$user_id} ORDER BY p.post_on ASC limit 6";
+		
 					$query=$this->db->prepare($sql);
 					$query->execute();
 					return $query->fetchAll();

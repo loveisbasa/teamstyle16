@@ -44,7 +44,7 @@ class Login extends Controller
 	{
 			$login_model = $this->loadModel('Login');
 			$login_success = $login_model->Login();
-
+			$user_profile = $login_model->getUserProfile($_SESSION['user_id']);
 			if ($login_success == true) {
 				header('location:' .URL. 'dashboard/index');
 			} else {
@@ -66,7 +66,7 @@ class Login extends Controller
 		// run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
 		$login_model = $this->loadModel('Login');
 		$login_successful = $login_model->LoginWithCookie();
-
+		$user_profile = $login_model->getUserProfile($_SESSION['user_id']);
 		if ($login_successful == true) {
 			header('location: ' . URL . 'dashboard/index');
 		} else {

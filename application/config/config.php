@@ -84,6 +84,7 @@ define("FEEDBACK_TEAMNAME_FIELD_EMPTY","请输入队伍名");
 define("FEEDBACK_INVALID_TEAM_MEMBER","不存在该用户" );
 define("FEEDBACK_JOIN_FAILED","队伍加入失败");
 define("FEEDBACK_TEAM_FULL","队伍已满");
+define("FEEDBACK_WRONG_VC","错误的验证码");
 
 
 define("FEEDBACK_LOGIN_FAILED", "Login failed.");

@@ -114,10 +114,11 @@
             <span class="icon icon-envelope-bold"></span>
           </div>
           <div class="form-field">
-            <input type="text" name="user_type" placeholder="user type" autocomplete="off" value="" required class="form-control email" autofocus />
+            <input type="text" name="vcode" placeholder="请输入验证码" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
-          </div>
-          
+					</div>
+						
+					<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
             注册
           </button>

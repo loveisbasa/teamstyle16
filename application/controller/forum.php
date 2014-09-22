@@ -25,7 +25,11 @@ class Forum extends Controller
 	{
 		if(isset($forum_id) and !empty($forum_id)){
 			$forum_model=$this->loadModel('forum');
+			$forum_link=$forum_model->Showforums();
 			$threads=$forum_model->Showthreads($forum_id);
+			$thread_link=$forum_model->Shownewthreads();
+			$thread_hot_link=$forum_model->Getthread_hot_link();
+			$forum=$forum_model->Showforum($forum_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/thread.php';
 			require 'application/views/_templates/footer.php';
@@ -40,6 +44,9 @@ class Forum extends Controller
 		if(isset($thread_id) and !empty($thread_id)){
 			$forum_model=$this->loadModel('forum');
 			$posts=$forum_model->Showposts($thread_id);
+		  $thread_link=$forum_model->Showthread($thread_id);
+			$forum_link=$forum_model->Showforums();
+		  $writer_link=$forum_model->ShowUSERposts($thread_link->user_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/post.php';
 			require 'application/views/_templates/footer.php';
@@ -96,7 +103,6 @@ class Forum extends Controller
 		$create_success=$forum_model->Create_thread($forum_id);
 		if($create_success=='true') header(	
 			'location:' .URL. 'forum/threads/' . $forum_id);
-		else header('location:' .URL. 'forum/create_thread/' . $forum_id);
 	}
 	
 	public function create_post($thread_id)

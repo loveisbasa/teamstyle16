@@ -4,10 +4,10 @@
 #wrap{word-break:break-all; width:780px;}
 </style>
 <div class="container">   
-  <h1 class="uk-heading-large"><?php echo $_SESSION['forum_theme']?></h1>
+  <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>
   <div class="uk-article">
     <div class="uk-article-lead">
-      <p style="text-indent:3em" id = "wrap"><?php echo $_SESSION['forum_intro']; ?></p>
+      <p style="text-indent:3em"><?php echo $forum->intro; ?></p>
     </div>
   </div>
   <div class="uk-container uk-container-center">
@@ -39,8 +39,13 @@
           <textarea type="text" placeholder="我是萌萌的内容O(∩_∩)O~~" value="" name="message" required class="form-control name" ></textarea>
             <span class="icon icon-envelope-bold"></span>
           </div>
-            <input type="hidden" checked='checked' name="forum_id" value="<?php echo $forum_id; ?>"/>
-<!--不太明白如何不用input来post一个值-->
+						<input type="hidden" checked='checked' name="forum_id" value="<?php echo $forum_id; ?>"/>
+						<div class="form-field">
+          <textarea type="text" placeholder="请输入验证码" value="" name="vcode" required class="form-control name" ></textarea>
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+
+					<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
           <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
            创建 
           </button>
@@ -56,25 +61,25 @@
             <ul class="uk-list uk-list-line">
               <?php foreach ($thread_hot_link as $row) {?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
-                <?}?>
+                <?php } ?>
                 <br><br>
              </ul>
         </div>
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">最新帖子</h3>
             <ul class="uk-list uk-list-line">
-              <?php foreach $thread_link as $row?>
+              <?php foreach( $thread_link as $row){?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
-                <?}?><br><br>
+                <?php } ?><br><br>
              </ul>
         </div>
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">论坛链接</h3>
             <ul class="uk-list uk-list-line">
 
-              <?php foreach $forum_link as $row {?>
+              <?php foreach ($forum_link as $row) {?>
                 <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/threads/'.$row->forum_id?>"><?php echo $row->title;?></a></li>
-                <?}?>
+                <?php } ?>
              </ul>
         </div>
       </div>

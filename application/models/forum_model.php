@@ -17,6 +17,13 @@ class ForumModel
 				$query->execute();
 				return $query->fetchAll();
 		}
+  public function Showforum($forum_id){
+				$sql="SELECT * from forums where forum_id={$forum_id}";
+				$query=$this->db->prepare($sql);
+				$query->execute();
+				return $query->fetch();
+
+	}
 
 	public function Showthreads($forum_id)
 		{
@@ -24,71 +31,38 @@ class ForumModel
 					$sql="SELECT * FROM threads inner join users on threads.user_id=users.user_id WHERE forum_id={$forum_id} ORDER BY latest_reply DESC";
 					$query=$this->db->prepare($sql);
 					$query->execute();
-					$sql="SELECT title,intro FROM forums WHERE forum_id={$forum_id}";
-					$theme=$this->db->prepare($sql);
-					$theme->execute();
-					$result = $theme->fetch();
-						$_SESSION['forum_theme'] = $result->title;
-						$_SESSION['forum_intro'] = $result->intro;
-						$_SESSION['forum_id'] = $forum_id;
-					$sql="SELECT subject,thread_id FROM threads ORDER BY reply_count DESC";
-					$_SESSION['thread_hot_link'] = $this->db->prepare($sql);
-					$_SESSION['thread_hot_link']->execute();
-					$sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC";
-					$_SESSION['thread_link'] = $this->db->prepare($sql);
-					$_SESSION['thread_link']->execute();
-					$sql="SELECT forum_id,title FROM forums";
-					$_SESSION['forum_link'] = $this->db->prepare($sql);
-					$_SESSION['forum_link']->execute();
-	  			    return $query->fetchAll();
+					  			    return $query->fetchAll();
 				}
+		}
+	public function Showthread($thread_id)
+		{
+					$sql="SELECT * FROM threads inner join users on threads.user_id=users.user_id WHERE thread_id={$thread_id} ORDER BY latest_reply DESC";
+					$query=$this->db->prepare($sql);
+					$query->execute();
+					return $query->fetch();
 		}
 
 	public function Showposts($thread_id)
 	{
 				if(isset($thread_id) and filter_var($thread_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="SELECT t.subject as subject,p.message as message,user_nickname,p.post_on AS posted
+					$sql="SELECT p.user_id as user_id,t.subject as subject,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
 						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
 				$query=$this->db->prepare($sql);
 				$query->execute();
-				$sql="SELECT user_id,subject,content,reply_count,establish_date,forum_id FROM threads WHERE thread_id={$thread_id}";
-				$user = $this->db->prepare($sql);
-				$user->execute();
-				$result = $user->fetch();
-				$_SESSION['writer_id'] = $result->user_id;
-				$_SESSION['thread_subject'] = $result->subject;
-				$_SESSION['thread_content'] = $result->content;
-				$_SESSION['reply_count'] = $result->reply_count;
-				$_SESSION['establish_date'] = $result->establish_date;
-				$_SESSION['forum_id'] = $result->forum_id;
-				$sql="SELECT * FROM users WHERE user_id={$_SESSION['writer_id']}";
-				$writer = $this->db->prepare($sql);
-				$writer->execute();
-				$result = $writer->fetch();
-				$_SESSION['writer_nickname'] = $result->user_nickname;
-				$_SESSION['writer_email'] = $result->user_email;
-				$sql="SELECT * FROM threads WHERE user_id={$_SESSION['writer_id']} ORDER BY reply_count DESC";
-                $_SESSION['writer_link'] = $this->db->prepare($sql);
-                $_SESSION['writer_link']->execute();
-                $sql="SELECT title,intro FROM forums WHERE forum_id={$_SESSION['forum_id']}";
-				$theme=$this->db->prepare($sql);
-				$theme->execute();
-				$result = $theme->fetch();
-				$_SESSION['forum_theme'] = $result->title;
-				$_SESSION['forum_intro'] = $result->intro;
-				return $query->fetchAll();
+						return $query->fetchAll();
 				}
 	}
 	
 		public function ShowUSERposts($user_id)
 	{
 				if(isset($user_id) and filter_var($user_id,FILTER_VALIDATE_INT,array('min_range'=>1))){
-					$sql="SELET t.subject as subject ,p.message as message ,user_nickname,p.post_on AS posted
+						$sql="SELECT p.user_id as user_id,t.subject as subject,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
-						threads AS t LEFT JOIN posts AS P USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
-						WHERE p.user_id={$user_id} ODERED BY p.post_on ASC";
+						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
+						WHERE t.user_id={$user_id} ORDER BY p.post_on ASC limit 6";
+		
 					$query=$this->db->prepare($sql);
 					$query->execute();
 					return $query->fetchAll();
@@ -96,7 +70,7 @@ class ForumModel
 	}
 //管理员专用
 		public function Create_forum(){
-				if($_SESSION['user_type']='admin'){
+if($_SESSION['user_type']='admin'){
 					if (empty($_POST['forum_title'])) {
 						$_SESSION["feedback_negative"][] =FEEDBACK_FORUMTITLE_EMPTY;
 					}
@@ -122,6 +96,11 @@ class ForumModel
 		}
 
 		public function Create_thread($forum_id){
+			if($_POST['vcode']!=
+				$_SESSION['captcha']){
+				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
+				}
+			else{
 			echo $_POST['thread_subject'];
 			if (empty($_POST['thread_subject'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_THREAD_SUBJECT_EMPTY;
@@ -143,10 +122,14 @@ class ForumModel
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				else return 'true';
 				}
+			}
 		}			
 
 		public function Create_Post($thread_id){
-			if (empty($_POST['message'])) {
+						if($_POST['vcode']!=$_SESSION['captcha'])
+				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
+
+			elseif (empty($_POST['message'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_POST_MESSAGE_EMPTY;
 			}
 			elseif(empty($_SESSION['user_id'])) $_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
@@ -171,4 +154,18 @@ class ForumModel
 				else return 'true';
 				}
 		}		
-	}
+		
+		public function Getthread_hot_link(){
+					$sql="SELECT subject,thread_id FROM threads ORDER BY reply_count DESC limit 6";
+					$query= $this->db->prepare($sql);
+				  $query->execute();
+					return $query->fetchAll();
+		}
+ public function Shownewthreads(){
+				$sql="SELECT subject,thread_id FROM threads ORDER BY establish_date DESC limit 6";
+					$query= $this->db->prepare($sql);
+				  $query->execute();
+					return $query->fetchAll();
+
+ }
+}

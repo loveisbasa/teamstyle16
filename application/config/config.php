@@ -28,7 +28,7 @@ define('LIBS_PATH', 'application/libs/');
 define('CONTROLLER_PATH', 'application/controller/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
-
+define('UP_FILE_PATH', '/var/www/html/teamstyle16/uploads/');
 /**
  * Configuration for: Cookies
  * Please note: The COOKIE_DOMAIN needs the domain where your app is,

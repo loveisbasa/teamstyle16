@@ -80,11 +80,7 @@
           <div class="face"></div>
           
           <input type="hidden" name="source" value="">
-          <div class="form-field">
-            <input type="email" name="user_email" placeholder="电子邮箱" autocomplete="off" 
-            value="<?php if (isset($_POST['user_email'] )) {echo $_POST['user_email']; }?>" required class="form-control email" autofocus />
-            <span class="icon icon-envelope-bold"></span>
-          </div>
+
           <div class="form-field">
             <input type="text" name="user_nickname" placeholder='队式昵称' autocomplete="off" 
             value="<?php if (isset($_POST['user_nickname'] )) {echo $_POST['user_nickname']; }?>" required class="form-control name" />
@@ -100,6 +96,11 @@
             value = "<?php if (isset($_POST['user_password_repeat'] )) {echo $_POST['user_password_repeat']; }?>" required class="form-control password" />
             <span class="icon icon-lock"></span>
           </div>
+           <div class="form-field">
+            <input type="email" name="user_email" placeholder="电子邮箱" autocomplete="off" 
+            value="<?php if (isset($_POST['user_email'] )) {echo $_POST['user_email']; }?>" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+            </div>
           <div class="form-field">
             <input type="text" name="user_real_name" placeholder="姓  名" autocomplete="off" 
             value="<?php if (isset($_POST['user_real_name'] )) {echo $_POST['user_real_name']; }?>" required class="form-control email" autofocus />

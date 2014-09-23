@@ -43,8 +43,16 @@ class Login extends Controller
 			$login_model = $this->loadModel('Login');
 			$login_success = $login_model->Login();
 			$user_profile = $login_model->getUserProfile($_SESSION['user_id']);
+			$_SESSION['user_profile'] = $user_profile;
+			if ($_SESSION['user_team']!=null) {
+				$_SESSION['team_captain'] = $login_model->getUserProfile($user_profile->team_captain);
+				if ($user_profile->team_member1!=0) {$_SESSION['team_member1'] = $login_model->getUserProfile($user_profile->team_member1);}
+				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $login_model->getUserProfile($user_profile->team_member2);}
+			}
 			if ($login_success == true) {
-				header('location:' .URL. 'dashboard/index');
+						require 'application/views/_templates/header.php';
+		require 'application/views/dashboard/index.php';
+		require 'application/views/_templates/footer.php';
 			} else {
 				$this->view->render('login/index');
 			}
@@ -65,6 +73,12 @@ class Login extends Controller
 		$login_model = $this->loadModel('Login');
 		$login_successful = $login_model->LoginWithCookie();
 		$user_profile = $login_model->getUserProfile($_SESSION['user_id']);
+			$_SESSION['user_profile'] = $user_profile;
+			if ($_SESSION['user_team']!=null) {
+				$_SESSION['team_captain'] = $login_model->getUserProfile($user_profile->team_captain);
+				if ($user_profile->team_member1!=0) {$_SESSION['team_member1'] = $login_model->getUserProfile($user_profile->team_member1);}
+				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $login_model->getUserProfile($user_profile->team_member2);}
+			}
 		if ($login_successful == true) {
 			header('location: ' . URL . 'dashboard/index');
 		} else {

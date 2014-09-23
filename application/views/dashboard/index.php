@@ -13,10 +13,12 @@
 
 <div class="col-xs-3 col-xs-offset-1">
     <div class="thumbnail">
-     <?php echo '<img src="'.$user_profile->user_avatar_link.'" class="img-rounded"/>'; ?>
+     <?php echo '<img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/>'; ?>
       <div class="caption">
-        <h3 class="text-center"><?php echo $user_profile->user_nickname; ?></h3>
-        <p class="text-center"><?php echo $user_profile->user_email; ?></h3>
+        <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
+        <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
+        <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
+        <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
         <p class="text-center">Welcome!<?php
         if ($_SESSION['user_first_login'] == 1) {
             echo 'This is your first login!';
@@ -53,22 +55,34 @@
                 </ul>
                 <?php } else {?>
                 <div class="thumbnail">
-                         <p><?php echo $user_profile->team_name;?></p>
+                         <p><?php echo $_SESSION['user_profile']->team_name;?></p>
                 </div>
                 <?php }?>
             </div>
           </div>
         </div>
+        <div class="row">
+    <div class="col-xs-4">
+                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-1'}">user</button>
+                            <a href="#offcanvas-1" data-uk-offcanvas>user</a>
+
+                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-2'}">team</button>
+                        </div>
+                            
+</div>
 
 
 </div>
 <div id="offcanvas-1" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar" style="padding-top:100px">
+    <div class="uk-offcanvas-bar" style="padding-top:120px;background-color:white">
         <div class="thumbnail">
-            <?php echo '<img src="'.$this->user->user_avatar_link.'" class="img-rounded"/>'; ?>
+            <br>
+            <?php echo '<img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/>'; ?>
             <div class="caption">
-                <h3 class="text-center"><?php echo $user_profile->user_nickname; ?></h3>
-                <p class="text-center"><?php echo $user_profile->user_email; ?></p>
+                <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
+                <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
+                        <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
+        <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
                 <p class="text-center">Welcome!<?php
                 if ($_SESSION['user_first_login'] == 1) {
                     echo 'This is your first login!';
@@ -79,8 +93,7 @@
 </div>
 
 <div id="offcanvas-2" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:100px">
-        <div class="panel-body">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:120px">
             <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
                 <?php if ($_SESSION['user_team']==null) {?>}
                 <h3 style="color:#E8E8E8;text-align:center">您尚未加入战队哦</h3>
@@ -88,7 +101,7 @@
                 <li class="uk-parent">
                     <a href="#">加入队伍</a>
                     <ul class="uk-nav-sub">
-                        <li><a href="<?php echo URL. 'team/create_team'; ?>">创建队伍</li>
+                        <li><a href="<?php echo URL. 'team/create_team'; ?>">创建队伍</a></li>
                         <li><a href="<?php echo URL. 'team/team_display'; ?>">抱大腿~</a></li>
                     </ul>
                 </li>
@@ -103,12 +116,41 @@
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <?php } else {?>
-                <h3 style="color:#E8E8E8;text-align:center">我的队伍</h3>
-                <br>
-                <h4 style="color:#E8E8E8;text-align:center"><?php echo $user_profile->user_email;?></h4>
+                <h3 style="color:#E8E8E8;text-align:center;font-size:20px">我的队伍</h3>
+                <p style="color:#E8E8E8;text-align:center"><?php echo $_SESSION['user_profile']->team_name;?></p>
+                <p style="color:#E8E8E8;text-align:center">
+                    <?php if ($_SESSION['user_profile']->team_captain==$_SESSION['user_id']) echo "队长";
+                    else echo "队员"?>
+                </p>
+                <li class="uk-parent">
+                    <a href="#">队伍成员</a>
+                    <ul class="uk-nav-sub">
+                        <li style="color:#B0B0B0"><?php echo $_SESSION['team_captain']->user_nickname;?></li>
+                        <li style="color:#B0B0B0">
+                            <?php if (isset($_SESSION['team_member1'])) echo $_SESSION['team_member1']->user_nickname;?>
+                        </li>
+                        <li style="color:#B0B0B0"><?php if (isset($_SESSION['team_member2'])) echo $_SESSION['team_member2']->user_nickname;?></li>
+                        <li style="color:#B0B0B0"><?php if (!isset($_SESSION['team_member2'])and !isset($_SESSION['team_member1'])) echo "队伍空空如也，赶快招兵买马";?></li>
+                    </ul>
+                </li>
+                <li class="uk-parent">
+                    <a href="#">队式口号</a>
+                    <ul class="uk-nav-sub">
+                        <li style="color:#B0B0B0"><?php echo $_SESSION['user_profile']->team_slogan;?></li>
+                    </ul>
+                </li>
+                <button type="submit"><a href="<?php echo URL. 'team/'?>"</button>
+                <li class="uk-nav-divider"></li>
+                <li><a href="<?php echo URL. 'team/team_display'; ?>">显示所有战队</a></li>
+                <li class="uk-nav-divider"></li>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="输入战队名">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
                 <?php }?>
             </ul>
-        </div>
     </div>
 </div>
 
@@ -150,10 +192,12 @@
 </div>
 
 <div class="row">
+    <div class="col-xs-4">
                             <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-1'}">user</button>
                             <a href="#offcanvas-1" data-uk-offcanvas>user</a>
 
                             <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-2'}">team</button>
+                        </div>
                             
 </div>
 

@@ -106,3 +106,4 @@ class Login extends Controller
 		header('location: ' .URL . 'setting/index');
 }
 
+}

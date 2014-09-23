@@ -13,10 +13,10 @@
 
 <div class="col-xs-3 col-xs-offset-1">
     <div class="thumbnail">
-     <?php echo '<img src="'.$this->user->user_avatar_link.'" class="img-rounded"/>'; ?>
+     <?php echo '<img src="'.$user_profile->user_avatar_link.'" class="img-rounded"/>'; ?>
       <div class="caption">
-        <h3 class="text-center"><?php echo $this->user->user_nickname; ?></h3>
-        <p class="text-center"><?php echo $this->user->user_email; ?></h3>
+        <h3 class="text-center"><?php echo $user_profile->user_nickname; ?></h3>
+        <p class="text-center"><?php echo $user_profile->user_email; ?></h3>
         <p class="text-center">Welcome!<?php
         if ($_SESSION['user_first_login'] == 1) {
             echo 'This is your first login!';
@@ -53,7 +53,7 @@
                 </ul>
                 <?php } else {?>
                 <div class="thumbnail">
-                         <p><?php echo $this->user->team_name;?></p>
+                         <p><?php echo $user_profile->team_name;?></p>
                 </div>
                 <?php }?>
             </div>
@@ -67,8 +67,8 @@
         <div class="thumbnail">
             <?php echo '<img src="'.$this->user->user_avatar_link.'" class="img-rounded"/>'; ?>
             <div class="caption">
-                <h3 class="text-center"><?php echo $this->user->user_nickname; ?></h3>
-                <p class="text-center"><?php echo $this->user->user_email; ?></p>
+                <h3 class="text-center"><?php echo $user_profile->user_nickname; ?></h3>
+                <p class="text-center"><?php echo $user_profile->user_email; ?></p>
                 <p class="text-center">Welcome!<?php
                 if ($_SESSION['user_first_login'] == 1) {
                     echo 'This is your first login!';
@@ -105,7 +105,7 @@
                 <?php } else {?>
                 <h3 style="color:#E8E8E8;text-align:center">我的队伍</h3>
                 <br>
-                <h4 style="color:#E8E8E8;text-align:center"><?php echo $_SESSION['user_team']?></h4>
+                <h4 style="color:#E8E8E8;text-align:center"><?php echo $user_profile->user_email;?></h4>
                 <?php }?>
             </ul>
         </div>

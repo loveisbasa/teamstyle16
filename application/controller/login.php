@@ -46,7 +46,9 @@ class Login extends Controller
 			$login_success = $login_model->Login();
 			$user_profile = $login_model->getUserProfile($_SESSION['user_id']);
 			if ($login_success == true) {
-				header('location:' .URL. 'dashboard/index');
+						require 'application/views/_templates/header.php';
+		require 'application/views/dashboard/index.php';
+		require 'application/views/_templates/footer.php';
 			} else {
 				header('location:' .URL. 'login/index');
 			}

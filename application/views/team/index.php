@@ -19,7 +19,7 @@
                      if (isset($team->team_member2)) echo "char * <em>soldier</em> = \"<strong>".$team->team_member2."</strong>\";<br/>"; else echo '<br/>';?>
         <?php if(!isset($team->team_member1)) echo "<br/>"; echo "return 0;<br/>}";?></p>
         <?php if (!$team->team_full ) { ?>
-            <?php if (!isset($_SESSION['in_team'])) {?>
+            <?php if (!isset($_SESSION['user_team']) AND !isset($_SESSION['in_team'])){?>
         <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
         <?php }?>
         <style type="text/css">

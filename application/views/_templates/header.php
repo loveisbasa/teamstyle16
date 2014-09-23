@@ -9,6 +9,7 @@
     <!-- jQuery -->
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery.leanModal.min.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/uikit.min.js"></script>
      <!-- css -->
     <link href="<?php echo URL; ?>public/css/bootstrap-checkbox.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +18,7 @@
     <link href="<?php echo URL; ?>public/css/uikit.css" rel="stylesheet">
     <!-- our JavaScript -->
 
-    <script src="<?php echo URL; ?>public/js/uikit.min.js"></script>
+    
     <script src="<?php echo URL; ?>public/js/jquery.js"></script>
     <script src="<?php echo URL; ?>public/js/application.js"></script>
     <script src="<?php echo URL; ?>public/js/uikit.js"></script>

@@ -23,7 +23,7 @@ class SettingModel
 			return false;
 		}
 		// clean the input
-		$user_name = substr(strip_tags($_POST['user_nickname']), 0, 64);
+		$user_nickname = strip_tags($_POST['user_nickname']);
 		// check if new username already exists
 		$query = $this->db->prepare("SELECT user_id FROM users WHERE user_nickname = :user_nickname");
 		$query->execute(array(':user_nickname' => $user_nickname));
@@ -37,7 +37,7 @@ class SettingModel
 		$query->execute(array(':user_nickname' => $user_nickname, ':user_id' => $_SESSION['user_id']));
 		$count =  $query->rowCount();
 		if ($count == 1) {
-			Session::set('user_nickname', $user_nickname);
+			$_SESSION['user_nickname'] = $user_nickname;
 			$_SESSION["feedback_positive"][] = FEEDBACK_USERNAME_CHANGE_SUCCESSFUL;
 			return true;
 		} else {
@@ -78,4 +78,3 @@ class SettingModel
 
 
         }
-}

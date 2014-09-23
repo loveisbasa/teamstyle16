@@ -1,29 +1,26 @@
-CREATE TABLE `info`.`users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_nickname` varchar(20) NOT NULL,
-  `user_team` varchar(20)  COLLATE utf8_general_ci DEFAULT NULL,
-  `user_email` varchar(128) NOT NULL,
-  #`user_confirmed` tinyint(1) NOT NULL,
+  `user_nickname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `user_team` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `user_email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `user_real_name` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `user_phone` varchar(14) NOT NULL,
+  `user_phone` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
   `user_class` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `user_failed_logins` tinyint(1) NOT NULL DEFAULT '0',
   `user_last_failed_login` int(10) DEFAULT NULL,
   `user_rememberme_token` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_first_login` tinyint(1) DEFAULT '1',
-  `user_type`  varchar(6) NOT NULL,#三种admin dev guest
-  #`user_in_team` tinyint(1) DEFAULT '0',
+  `user_type` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
-  #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_nickname`),
   UNIQUE KEY `user_email` (`user_email`),
-  Index (`user_id`,`user_password_hash`),
-	Index(`user_email`),
-  Index (`user_nickname`),
-  Index(`user_team`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';
+  KEY `user_id` (`user_id`,`user_password_hash`),
+  KEY `user_email_2` (`user_email`),
+  KEY `user_nickname` (`user_nickname`),
+  KEY `user_team` (`user_team`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data' AUTO_INCREMENT=11 ;
 
 CREATE TABLE `info`.`teams` (
 `team_id` int(11) NOT NULL AUTO_INCREMENT,

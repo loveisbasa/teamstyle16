@@ -12,7 +12,8 @@ class setting extends controller
 	public function EditUserName()
 	{
 		$model = $this->loadModel('Setting');
-		$model->EditUserName();
-		header('location:' .URL. '/setting');
+		$model->editUserName();
+		if ($model)
+			header('location:'.URL.'setting');
 	}
 }

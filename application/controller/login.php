@@ -107,7 +107,7 @@ class Login extends Controller
 		Auth::handleLogin();
 		$login_model = $this->loadModel('Login');
 		$login_model->createAvatar();
-	//	header('location: ' . URL . 'setting/index');
+		header('location: ' . URL . 'setting/index');
 	}
 
  public function changpwd(){

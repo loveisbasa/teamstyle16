@@ -7,11 +7,27 @@ $(function() {
         $('#javascript-header-demo-box').css('color', 'green');
         $('#javascript-header-demo-box').fadeIn('slow');
     }
+     $("#password").hide();
+    $("#account").hide();
+    $("[href$=#profile]").click(function(){
+    $("#password").hide();
+    $("#account").hide();
+    $("#profile").toggle(200);
     
-    
+  });
+    $("[href$=#account]").click(function(){
+    	$("#profile").hide();
+    	$("#password").hide();
+    $("#account").toggle(200);
+  });
+    $("[href$=#password]").click(function(){
+    	$("#profile").hide();
+    	$("#account").hide();
+    $("#password").toggle(200);
+  });
 });
 
-// $(document).ready(function(){
+// $(document).ready(function$(){
 // $("#team-password").leanModal({ top: 100, closeButton: ".modal_close" });
 // });
 // });

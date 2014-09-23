@@ -1,3 +1,4 @@
+
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
 <style>
 #wrap{word-break:break-all; width:250px;}
@@ -20,6 +21,7 @@
             </div>
 
         </div>
+
     </div>
 
         <div class="uk-grid" data-uk-grid-margin>

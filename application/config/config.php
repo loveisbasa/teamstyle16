@@ -19,7 +19,7 @@ ini_set("display_errors", 1);
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
 
-define('URL', 'http://59.66.142.231/');
+define('URL', 'http://localhost/teamstyle16/');
 
 define("HASH_COST_FACTOR", "10");
 
@@ -28,7 +28,7 @@ define('LIBS_PATH', 'application/libs/');
 define('CONTROLLER_PATH', 'application/controller/');
 define('MODELS_PATH', 'application/models/');
 define('VIEWS_PATH', 'application/views/');
-
+define('UP_FILE_PATH', '/var/www/html/teamstyle16/uploads/');
 /**
  * Configuration for: Cookies
  * Please note: The COOKIE_DOMAIN needs the domain where your app is,
@@ -62,8 +62,9 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
+define('DB_PASS', '');
 
-define('DB_PASS', 'niehao');
+
 
 
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
@@ -88,16 +89,17 @@ define("FEEDBACK_WRONG_VC","错误的验证码");
 
 
 define("FEEDBACK_LOGIN_FAILED", "Login failed.");
-define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
-define("FEEDBACK_PASSWORD_FIELD_EMPTY", "Password field was empty.");
-define("FEEDBACK_EMAIL_FIELD_EMPTY", "Email and passwords fields were empty.");
+define("FEEDBACK_USERNAME_FIELD_EMPTY", "用户名不能为空。");
+define("FEEDBACK_PASSWORD_FIELD_EMPTY", "密码不能为空");
+define("FEEDBACK_EMAIL_FIELD_EMPTY", "邮箱不能为空");
 define("FEEDBACK_EMAIL_AND_PASSWORD_FIELDS_EMPTY", "Email field was empty.");
 define("FEEDBACK_USERNAME_SAME_AS_OLD_ONE", "Sorry, that username is the same as your current one. Please choose another one.");
-define("FEEDBACK_USERNAME_ALREADY_TAKEN", "Sorry, that username is already taken. Please choose another one.");
+define("FEEDBACK_USERNAME_ALREADY_TAKEN", "昵称已经被注册过了，换用其他的吧~");
 define("FEEDBACK_USER_EMAIL_ALREADY_TAKEN", "Sorry, that email is already in use. Please choose another one.");
 define("FEEDBACK_USERNAME_CHANGE_SUCCESSFUL", "Your username has been changed successfully.");
 define("FEEDBACK_USERNAME_AND_PASSWORD_FIELD_EMPTY", "Username and password fields were empty.");
 define("FEEDBACK_USERNAME_DOES_NOT_FIT_PATTERN", "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters.");
+define("FEEDBACK_PHONE_DOES_NOT_FIT_PATTERN","小盆友不许耍赖哦，乖乖把手机号填好");
 define("FEEDBACK_EMAIL_DOES_NOT_FIT_PATTERN", "Sorry, your chosen email does not fit into the email naming pattern.");
 define("FEEDBACK_EMAIL_SAME_AS_OLD_ONE", "Sorry, that email address is the same as your current one. Please choose another one.");
 define("FEEDBACK_EMAIL_CHANGE_SUCCESSFUL", "Your email address has been changed successfully.");

@@ -24,9 +24,7 @@ class Login extends Controller
 
 	public function register()
 	{
-		require 'application/views/_templates/header.php';
-		require 'application/views/login/register.php';
-		require 'application/views/_templates/footer.php';
+		$this->view->render('login/register');
 	}
 	public function register_action()
 	{
@@ -36,7 +34,7 @@ class Login extends Controller
 		if ($register_success == true) {
 			header('location:' .URL. 'login/index');
 		} else {
-			header('location:' .URL. 'login/register');
+			$this->view->render('login/register');
 		}
 	}
 
@@ -50,7 +48,7 @@ class Login extends Controller
 		require 'application/views/dashboard/index.php';
 		require 'application/views/_templates/footer.php';
 			} else {
-				header('location:' .URL. 'login/index');
+				$this->view->render('login/index');
 			}
 	}
 
@@ -104,7 +102,8 @@ class Login extends Controller
 		echo "test";
 		$login_model = $this->loadModel('Login');
 		$login_model->changePwd();
-	//	header('location: ' .URL . 'setting/indec');
- }	 
+
+		header('location: ' .URL . 'setting/index');
 }
 
+}

@@ -60,6 +60,7 @@ class LoginModel
 			$_SESSION['user_first_login'] = $result->user_first_login;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
+
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
@@ -146,7 +147,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type,user_team
+			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_remember_token = :user_rememberme_token
@@ -163,6 +164,7 @@ class LoginModel
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
+			$_SESSION['user_first_login']=$result->user_first_login;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
@@ -197,6 +199,8 @@ class LoginModel
 			$_SESSION["feedback_negative"][] = FEEDBACK_REAL_NAME_FILED_EMPTY;
 		} elseif (empty($_POST['user_phone'])) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PHONE_FIELD_EMPTY;
+		} elseif (!is_numeric($_POST['user_phone']) OR strlen($_POST['user_phone']) != 11) {//TODO:phone pattern
+			$_SESSION["feedback_negative"][] = FEEDBACK_PHONE_DOES_NOT_FIT_PATTERN;
 		} elseif (empty($_POST['user_class'])) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_CLASS_FIELD_EMPTY;
 		} elseif (!empty($_POST['user_nickname'])
@@ -228,7 +232,7 @@ class LoginModel
 			$query->execute(array(':user_nickname' => $user_nickname));
 			$count = $query->rowCount();
 			if ($count ==1) {
-				$_SESSION["feedback_negtive"][] = FEEDBACK_USERNAME_ALREADY_TAKEN;
+				$_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_ALREADY_TAKEN;
 				return false;
 			}
 			//邮箱已经被注册过的情况

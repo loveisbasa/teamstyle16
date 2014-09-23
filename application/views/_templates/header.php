@@ -10,6 +10,7 @@
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="<?php echo URL;?>public/js/jquery.leanModal.min.js"></script>
      <!-- css -->
+    <link href="<?php echo URL; ?>public/css/bootstrap-checkbox.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/docs.css" rel="stylesheet">
     <link href="<?php echo URL; ?>public/css/highlight.css" rel="stylesheet">
@@ -21,6 +22,7 @@
     <script src="<?php echo URL; ?>public/js/application.js"></script>
     <script src="<?php echo URL; ?>public/js/uikit.js"></script>
     <script src="<?php echo URL; ?>public/js/highlight.js"></script>
+    <script src="<?php echo URL; ?>public/js/bootstrap-checkbox.js"></script>
 
 <?php if (isset($_SESSION['user_logged_in'])) {?>
 <style>
@@ -52,33 +54,19 @@ body{
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo URL. 'message/send_mail';?>">发送消息</a></li>
             <li><a href="<?php echo URL. 'message/all_message';?>">所有消息</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">战队<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo URL. 'team/create_team'; ?>">组建战队</a></li>
-            <li class="divider"></li>
             <li><a href="<?php echo URL. 'team/team_display/1'; ?>">所有战队</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
       </ul>
       <form action="<?php echo URL; ?>team/team_search" method="post" class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input name="keyword" type="text" class="form-control" placeholder="输入战队名">
-        </div>
-        <button type="submit" class="btn btn-default">搜索</button>
-      </form>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="输入战队名">
         </div>
         <button type="submit" class="btn btn-default">搜索</button>
       </form>

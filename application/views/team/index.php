@@ -3,21 +3,8 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
 
+
     <h1>战队列表</h1>
-<style type="text/css">
-  #testModal<?php echo $team->team_id;?> {
-  width: 300px;
-  padding: 15px 20px;
-  background: #eee;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-  position: 
-}
-</style>
 <div class="row">
 
 <?php foreach ($all_team as $team) { ?>
@@ -27,18 +14,40 @@
       <div class="caption">
         <h1><?php if (isset($team->team_name)) echo $team->team_name; ?></h1>
         <p><?php if (isset($team->team_slogan)) echo "队式口号  ".$team->team_slogan; ?></p>
+
         <p><?php if (isset($team->team_captain)) echo "舰长    ".$team->team_captain; echo '<br/>';
                      if (isset($team->team_member1)) echo $team->team_member1; echo '<br/>'; 
                      if (isset($team->team_member2)) echo $team->team_member2; else echo '<br/>'?></p>
         <?php if (!$team->team_full) { ?>
         <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
-        <?php } else {?>
-        <a href="#" class="btn btn-default" role="button">人员已满</a>
+        <style type="text/css">
+                #testModal<?php echo $team->team_id;?> {
+                width: 300px;
+                padding: 15px 20px;
+                background: #eee;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                border-radius: 6px;
+                -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+                -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+                }
+              </style>
+              <div id = "testModal<?php echo $team->team_id;?>" style="display:none;">
+                <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/join_team/'.$team->team_id;?>" method="post">
+                  <h2 class = "form-signin-heading">Join Team Now!</h2>
+                  <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/>
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>
+                </form>
+              </div>
+        <?php } else { ?>
+                <a href="#" class="btn btn-default" role="button">人员已满</a>
         <?php }?>
     </div>
   </div>
 </div>
 <?php } ?>
+
 
 </div>
 <?php
@@ -58,8 +67,10 @@
   <?php $i++;}?>
   <?php if ($_SESSION['page_id']*8<$team_number) {?>
   <li><a href="#">&raquo;</a></li>
+
   <?php }?>
 </ul>
+
 
 
 

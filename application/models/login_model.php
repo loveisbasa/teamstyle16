@@ -89,9 +89,9 @@ class LoginModel
 			if (isset($_POST['user_rememberme'])) {
 				$random_token_string = hash('sha256', mt_rand());
 				//将生成的token写入数据库
-				$sql = "UPDATE users SET user_remember_token = :user_remember_token WHERE user_id = :user_id";
+				$sql = "UPDATE users SET user_rememberme_token = :user_rememberme_token WHERE user_id = :user_id";
 				$sth = $this->db->prepare($sql);
-				$sth->execute(array(':user_remember_token' => $random_token_string, ':user_id' => $result->user_id));
+				$sth->execute(array(':user_rememberme_token' => $random_token_string, ':user_id' => $result->user_id));
 
 				//生成cookie string包含user id, random string and combined hash of both
 				$cookie_string_first_part = $result->user_id . ':' . $random_token_string;

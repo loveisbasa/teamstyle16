@@ -7,7 +7,7 @@ TeamStyle16 Web Dev.
 #### 9-24 by ricky
 - 队伍功能/界面均有完善，欢迎测试
 - setting基本完成，加入了动态效果；当前可以修改用户名
-- install文件夹放入了测试数据，请大家更新；测试用户的密码均为ceshimima,测试队伍的密均为ceshiduiwu
+- install文件夹放入了测试数据，请大家更新；测试用户的密码均为ceshiyonghu,测试队伍的密均为ceshiduiwu
 - 登陆和注册都增加了粘性表单的内容
 - 头像功能还有点小BUG，求介绍SEESION['user_profile']是在哪设置的？
 

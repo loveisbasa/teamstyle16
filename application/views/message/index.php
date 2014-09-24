@@ -57,7 +57,7 @@
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">
         <div class="panel panel-default">
             <div class="panel-heading">
-				<h3 class="panel-title"><?php if ($i!==1) echo "empty message box</div>"; else{ echo $message->message_title; ?></h3>
+				<h3 class="panel-title"><?php if ($i==1) echo "empty message box</div>"; else{ echo $message->message_title; ?></h3>
 						</div>
             <div class="panel-body">
                 <ul>

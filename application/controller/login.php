@@ -89,6 +89,13 @@ class Login extends Controller
 		}
 	}
 
+	public function refindapply($email)
+	{
+	  $login_model=loadModel('Login');
+		$login_model->refindapply($email);
+		header('location: ' .URL );	
+	}
+
 	function uploadAvatar()
 	{
 	// Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
@@ -107,14 +114,13 @@ class Login extends Controller
 		Auth::handleLogin();
 		$login_model = $this->loadModel('Login');
 		$login_model->createAvatar();
-	//	header('location: ' . URL . 'setting/index');
+	header('location: ' . URL . 'setting/index');
 	}
 
  public function changpwd(){
 		echo "test";
 		$login_model = $this->loadModel('Login');
 		$login_model->changePwd();
-
 		header('location: ' .URL . 'setting/index');
 }
 

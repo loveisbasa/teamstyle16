@@ -17,7 +17,7 @@
             </div>
             <div class="panel-body">
                 <?php echo '<img src="'.$_SESSION['src'].'" />'; ?>
-                <form action="<?php echo URL; ?>login/changpwd" method="post" >
+                <form action="<?php echo URL; ?>login/uploadAvatar_action" method="post" >
                     <label for="avatar_file">Select an avatar image from your hard-disk (will be scaled to 44x44 px):</label>
                     <input type="file" name="avatar_file" required />
                     <!-- max size 5 MB (as many people directly upload high res pictures from their digital cameras) -->
@@ -31,7 +31,7 @@
                 <h3 class="panel-title">修改密码</h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo URL; ?>login/register_action" method="post" class="auth-form form-horizontal">
+                <form action="<?php echo URL; ?>login/changepWd" method="post" class="auth-form form-horizontal">
                     <div class="face"></div>
                         <div class="form-field">
                             <label>OLd Password</label>
@@ -48,6 +48,13 @@
                         <input type="password" autocomplete="off" name="user_password_repeat" required class="form-control password" />
                         <span class="icon icon-lock"></span>
                     </div>
+								<div class="form-field">
+            <input type="text" name="vcode" placeholder="请输入验证码" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+					</div>
+						
+					<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
+
                     <br/>
                     <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-default">Update password</button>
                 </form>

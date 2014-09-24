@@ -16,6 +16,7 @@ CREATE TABLE `info`.`users` (
   `user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
   #`user_used_space` int(11) NOT NULL DEFAULT '5395',
   `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+	`user_refind_date` datetime, 
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_nickname`),
   UNIQUE KEY `user_email` (`user_email`),

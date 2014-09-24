@@ -62,7 +62,8 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
-define('DB_PASS', 'niehao');
+//define('DB_PASS', 'niehao');
+define('DB_PASS', 'wangjianyu');
 
 
 

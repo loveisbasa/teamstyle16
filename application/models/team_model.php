@@ -145,6 +145,7 @@ class TeamModel
 				return false;
 			}
 			$_SESSION['feedback_positive'][] = FEEDBACK_TEAM_CREATE_SUCCESSFULLY;
+			$_SESSION['in_team'] = 1;
 			return true;
 		}
 	}
@@ -216,6 +217,7 @@ class TeamModel
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
 			return false;
 		}
+		$_SESSION['in_team'] = 1;
 	}
 
 	//返回一个array，TODO:分页显示

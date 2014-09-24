@@ -1,5 +1,7 @@
 
- <?php $this->renderFeedbackMessages(); ?>
+ <?php require  'application/views/_templates/feedback.php'; 
+        Session::set('feedback_positive', null);
+        Session::set('feedback_negative', null);?>
  <div class="row">
 
     <div class="col-sm-2 col-xs-offset-1">
@@ -17,7 +19,7 @@
             </div>
             <div class="panel-body">
                 <?php echo '<img src="'.$_SESSION['src'].'" />'; ?>
-                <form action="<?php echo URL; ?>login/uploadAvatar_action" method="post" >
+                <form action="<?php echo URL; ?>login/uploadAvatar_action" method="post" enctype="multipart/form-data">
                     <label for="avatar_file">Select an avatar image from your hard-disk (will be scaled to 44x44 px):</label>
                     <input type="file" name="avatar_file" required />
                     <!-- max size 5 MB (as many people directly upload high res pictures from their digital cameras) -->
@@ -26,7 +28,9 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default" id="password">
+    </div>
+<div class = "col-sm-6">
+<div class="panel panel-default" id="password">
             <div class="panel-heading">
                 <h3 class="panel-title">修改密码</h3>
             </div>
@@ -60,5 +64,27 @@
                 </form>
             </div>
         </div>
-    </div>
+        </div>
+
+        <div class = "col-sm-6">
+<div class="panel panel-default" id="account">
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit Your Nickname</h3>
+            </div>
+            <div class="panel-body">
+                <form action="<?php echo URL; ?>setting/EditUserName" method="post" class="auth-form form-horizontal">
+                    <div class="face"></div>
+                        <div class="form-field">
+                            <label>New Nickname</label>
+                            <input type="test" autocomplete="off" name="user_nickname" required class="form-control password" />
+                            <span class="icon icon-lock"></span>
+                        </div>
+                    <br/>
+                    <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-default">Update</button>
+                </form>
+            </div>
+        </div>
+        </div>
+
+
 </div>

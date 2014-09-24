@@ -93,11 +93,17 @@ class Login extends Controller
 		}
 	}
 
-	public function refindapply($email)
+	public function refind(){
+
+			$this->view->render('login/refindapply');
+	}
+
+	public function refindapply()
 	{
-	  $login_model=loadModel('Login');
+		$login_model = $this->loadModel('Login');
+		$email=$_POST['email'];
 		$login_model->refindapply($email);
-		header('location: ' .URL );	
+		header('location: ' .URL . "login");	
 	}
 
 	function uploadAvatar()

@@ -503,6 +503,20 @@ class LoginModel
 
 	public function refindapply($email)
 	{
+			if (empty($email)) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_FIELD_EMPTY;
+		} 
+			$query=$this->db->prepare("select user_nickname,user_email from users where user_email=:email or user_nickname=:email");
+			$query->execute(array(':email'=>$email));
+			$result=$query->fetch();
+				if( $count = $query->rowCount()){
+					$d=date('Y-m-d H:i:s');
+					$key=md5($result->user_nickname . $d);
+					echo $key;
+			$query=$this->db->prepare("update users set user_refind_date='{$d}' where user_nickname='{$result->user_nickname}'");
+		  $query->execute();
+			require ('gmail.php');
+				}
 	}
 
 	public function changePwd(){

@@ -23,6 +23,8 @@ $mail->isSMTP();
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
+
+
 $mail->SMTPDebug = 2;
 
 //Ask for HTML-friendly debug output
@@ -53,24 +55,27 @@ $mail->setFrom('teamstyle16@gmail.com', 'teamstyle16 web');
 $mail->addReplyTo('teamstyle16@gmail.com', 'teamstyle16 web');
 
 //Set who the message is to be sent to
-$mail->addAddress("$email", "$_SESSION['user_nickname']");
+$mail->addAddress("$result->user_email","$result->user_nickname");
 
 //Set the subject line
 $mail->Subject = 'PHPMailer GMail SMTP test2';
-
+$URL=URL . "login/refindaction/" . $key . "?user_nickname=" . $result->user_nickname;
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML(file_get_contents('index.php'), dirname(__FILE__));
+$mail->msgHTML("<html><body>To change your password, please click here <a href='{$URL}'$>{$URL}</a></body></html>");
 
 //Replace the plain text body with one created manually
 $mail->AltBody = 'This is a plain-text message body';
 
 //Attach an image file
-$mail->addAttachment(LIBS_PATH . 'PHPMailer/examples/images/phpmailer_mini.png');
+$mail->addAttachment('');
 
 //send the message, check for errors
 if (!$mail->send()) {
+	    echo "Mailer Error: " . $mail->ErrorInfo;
+
     $_SESSION['feedback_negative'][]='Mailer Error:' . $mail->ErrorInfo;
+		  
 } else {
 		$_SESSION['feedback_positive'][]="Message sent!";
 }

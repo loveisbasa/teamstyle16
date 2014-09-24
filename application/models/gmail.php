@@ -58,7 +58,7 @@ $mail->addReplyTo('teamstyle16@gmail.com', 'teamstyle16 web');
 $mail->addAddress("$result->user_email","$result->user_nickname");
 
 //Set the subject line
-$mail->Subject = 'PHPMailer GMail SMTP test2';
+$mail->Subject = '队式16找回密码';
 $URL=URL . "login/refindaction/" . $key . "?user_nickname=" . $result->user_nickname;
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body

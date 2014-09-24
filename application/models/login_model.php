@@ -501,6 +501,10 @@ class LoginModel
 		return $gravatar_image_link;
 	}
 
+	public function refindapply($email)
+	{
+	}
+
 	public function changePwd(){
 		if($_POST['vcode']!=$_SESSION['captcha'])  $_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
 		else{

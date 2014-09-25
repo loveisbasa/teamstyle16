@@ -4,6 +4,12 @@ TeamStyle16 Web Dev.
 
 ## Log
 ----
+#### 9-25 by neil
+ -SEESION['user_profile']参考login controller
+ -找回密码功能使用的对码是md5(用户名 + 发出时间)，使用该值需要再sql中加入相关信息
+ -邮件功可以修改后用在更多的地方，大家可以探讨一下
+ -欢迎大家测试密码找回功能
+ 
 #### 9-24 by ricky
 - 队伍功能/界面均有完善，欢迎测试
 - setting基本完成，加入了动态效果；当前可以修改用户名

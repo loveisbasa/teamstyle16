@@ -35,7 +35,7 @@
                 <h3 class="panel-title">修改密码</h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo URL; ?>login/changepWd" method="post" class="auth-form form-horizontal">
+                <form action="<?php echo URL; ?>login/changepwd" method="post" class="auth-form form-horizontal">
                     <div class="face"></div>
                     <div class="form-field">
                         <label>New Password</label>

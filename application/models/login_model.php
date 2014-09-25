@@ -604,7 +604,7 @@ class LoginModel
 		{
 		$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
 			$user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' =>			  $hash_cost_factor));
-		$query=$this->db->prepare("update users user_password_hash={$user_password_hash} where user_id={$_SESSION['user_id']}");
+		$query=$this->db->prepare("update users SET user_password_hash='{$user_password_hash}' where user_id={$_SESSION['user_id']}");
 		$query->execute();
 		}
 		}

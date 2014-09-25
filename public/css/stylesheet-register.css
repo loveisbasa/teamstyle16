@@ -53,18 +53,6 @@ a > img{
   margin-top: 0px;
 }
 
-.brand-xdf {
-  background-image: url('/images/xdf_logo.png');
-}
-
-.brand-github {
-  background-image: url('/images/github_logo.png');
-}
-
-.brand-evernote {
-  background-image: url('/images/evernote_logo.png');
-}
-
 .brand h1 {
   text-indent: -9999px;
   margin-top: 0px;

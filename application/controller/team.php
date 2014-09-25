@@ -46,9 +46,8 @@ class Team extends Controller
 
 	public function team_search()
 	{
-		$keyword=$_POST['keyword'];
 		$team_model = $this->loadModel('Team');
-		$all_team = $team_model->Search($keyword);
+		$all_team = $team_model->Search($_POST['keyword']);
 
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/index.php';

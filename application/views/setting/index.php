@@ -35,13 +35,8 @@
                 <h3 class="panel-title">修改密码</h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo URL; ?>login/register_action" method="post" class="auth-form form-horizontal">
+                <form action="<?php echo URL; ?>login/changepWd" method="post" class="auth-form form-horizontal">
                     <div class="face"></div>
-                        <div class="form-field">
-                            <label>OLd Password</label>
-                            <input type="password" autocomplete="off" name="user_password_old" required class="form-control password" />
-                            <span class="icon icon-lock"></span>
-                        </div>
                     <div class="form-field">
                         <label>New Password</label>
                         <input type="password" autocomplete="off" name="user_password_new" required class="form-control password" />
@@ -52,6 +47,14 @@
                         <input type="password" autocomplete="off" name="user_password_repeat" required class="form-control password" />
                         <span class="icon icon-lock"></span>
                     </div>
+								<div class="form-field">
+						<label>验证码</label>
+            <input type="text" name="vcode" placeholder="请输入验证码" autocomplete="off" value="" required class="form-control email" autofocus />
+            <span class="icon icon-envelope-bold"></span>
+					</div>
+						
+					<img title="点击刷新"src=<?php echo URL ."vcode.php";?> align="absbottom"  onclick="this.src='<?php echo URL .'vcode.php';?>'"/> 
+
                     <br/>
                     <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-default">Update password</button>
                 </form>

@@ -5,7 +5,7 @@ class Vcode
 	public function __construct() 
 	{
 	}
-public	function captcha($width=80,$high=25,$num=4,$line_num=10,$snow_num=50){
+public	function captcha($width=128,$high=40,$num=4,$line_num=10,$snow_num=50){
 		 header('Content-Type:image/png');
 		  session_start();//生成随机数字＋字母
 		  for($a = 0;$a < $num;$a++){
@@ -15,7 +15,7 @@ public	function captcha($width=80,$high=25,$num=4,$line_num=10,$snow_num=50){
 			 $img = imagecreatetruecolor($width,$high);//填充背景色为白色
 			  $backcolor = imagecolorallocate($img, '255', '255', '255');
 			  imagefill($img, '0', '0', $backcolor);//添加黑色边框
-				 $bordercolor = imagecolorallocate($img, 0, 0, 0);
+				 $bordercolor = imagecolorallocate($img, 255, 255, 255);
 				 imagerectangle($img, 0, 0, $width-1, $high-1, $bordercolor);//随机画线条
 				  for($i=0;$i<$line_num;$i++){
 						      imageline($img, mt_rand(0, $width*0.1), mt_rand(0, $high), mt_rand($width*0.9, $width), mt_rand(0, $high),

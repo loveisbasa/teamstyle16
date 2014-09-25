@@ -102,7 +102,7 @@ body{
     <?php
       if (!isset($_SESSION['user_logged_in'])) {?>
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="<?php echo URL.'login'?>">登陆</a></li>
+        <li class="active"><a href="<?php echo URL . 'login'?>">登陆</a></li>
       </ul>
     <?php } else {?>
     <script>

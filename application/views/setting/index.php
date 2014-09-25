@@ -37,11 +37,6 @@
             <div class="panel-body">
                 <form action="<?php echo URL; ?>login/changepWd" method="post" class="auth-form form-horizontal">
                     <div class="face"></div>
-                        <div class="form-field">
-                            <label>OLd Password</label>
-                            <input type="password" autocomplete="off" name="user_password_old" required class="form-control password" />
-                            <span class="icon icon-lock"></span>
-                        </div>
                     <div class="form-field">
                         <label>New Password</label>
                         <input type="password" autocomplete="off" name="user_password_new" required class="form-control password" />
@@ -53,6 +48,7 @@
                         <span class="icon icon-lock"></span>
                     </div>
 								<div class="form-field">
+						<label>验证码</label>
             <input type="text" name="vcode" placeholder="请输入验证码" autocomplete="off" value="" required class="form-control email" autofocus />
             <span class="icon icon-envelope-bold"></span>
 					</div>

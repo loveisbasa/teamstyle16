@@ -23,8 +23,7 @@ $mail->isSMTP();
 // 0 = off (for production use)
 // 1 = client messages
 // 2 = client and server messages
-
-
+ $mail->CharSet = "utf-8";
 $mail->SMTPDebug = 2;
 
 //Ask for HTML-friendly debug output

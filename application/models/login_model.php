@@ -519,17 +519,84 @@ class LoginModel
 				}
 	}
 
+	public function refindaction($key,$user_nickname){
+		//检查是否为空
+		if (!isset($user_nickname) OR empty($user_nickname)) {
+			$_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
+			return false;
+		}
+
+		//根据填入的昵称或者邮箱来查询数据库
+		$sql = "SELECT user_id, 
+			user_nickname, 
+			user_password_hash, 
+			user_email, 
+			user_last_failed_login, 
+			user_first_login,
+			user_type,
+			user_team
+			FROM users
+				WHERE (user_nickname = :user_nickname ) ";
+		$query = $this->db->prepare($sql);
+		$query->execute(array(':user_nickname' => $user_nickname));
+		$count = $query->rowCount();
+		if ($count != 1) {
+			$_SESSION['feedback_negative'][] = FEEDBACK_LOGIN_FAILED;
+			return false;
+		}
+		$result = $query->fetch();
+
+		//检查对码
+		if (md5(($result->user_nickname . $result->user_refind_date)==$key)) {
+
+			$_SESSION['user_logged_in'] = true;
+			$_SESSION['user_id'] = $result->user_id;
+			$_SESSION['user_nickname'] = $result->user_nickname;
+			$_SESSION['user_email'] = $result->user_email;
+			$_SESSION['user_first_login'] = $result->user_first_login;
+			$_SESSION['user_type']=$result->user_type;
+			$_SESSION['user_team']=$result->user_team;
+
+			//下面这些是可以选择扩展的一些功能
+			//Session::set('user_account_type', $result->user_account_type);
+			//Session::set('user_provider_type', 'DEFAULT');
+			// put native avatar path into session
+			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			// put Gravatar URL into session
+			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
+			//下面同样是可选择扩展的功能，记录最后一次登陆的时间
+			//$user_last_login_timestamp = time();
+			// write timestamp of this login into database (we only write "real" logins via login form into the
+			// database, not the session-login on every page request
+			//$sql = "UPDATE users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
+			//$sth = $this->db->prepare($sql);
+			//$sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
+			
+			
+			//登陆成功，返回true
+			$_SESSION["feedback_positive"][] = "请重置密码!";
+			return true;
+		} else {
+			// 密码错误，录入失败信息
+			$sql = "UPDATE users
+			SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
+			WHERE user_nickname = :user_nickname OR user_email = :user_nickname";
+			$sth = $this->db->prepare($sql);
+			$sth->execute(array(':user_nickname' => $_POST['user_nickname'], ':user_last_failed_login' => time() ));
+			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
+			return false;
+		}
+		// 默认返回false
+		return false;
+	}
+
 	public function changePwd(){
 		if($_POST['vcode']!=$_SESSION['captcha'])  $_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
 		else{
 		$query=$this->db->prepare("select  user_password_hash  from users where user_id={$_SESSION['user_id']}" );
 		$query->execute();
-		if(password_verify($_POST['user_password'], $query->fetch()->user_password_hash))
-		$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
 		
-		if (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
-			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
-		} elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
+		 if ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_REPEAT_WRONG;
 		} elseif (strlen($_POST['user_password_new']) < 6) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_TOO_SHORT;

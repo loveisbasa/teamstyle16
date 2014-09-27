@@ -44,20 +44,21 @@
 </ul>
 
 <?php 
-					$i=-1;
+				$j=count($new_message);
+				  $i=0;
 					foreach($new_message as $message)
 					{
 						$i++;
-						if($message->message_id==$message_id)
+						if($i=$message->message_id==$message_id)
 								break;
 					}
-					if ($i!=-1) $message=$new_message[$i];
+					if($j)$message=$new_message[$i];
 ?>
 <div class="row">   
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">
         <div class="panel panel-default">
             <div class="panel-heading">
-				<h3 class="panel-title"><?php if ($i==1) echo "empty message box</div>"; else{ echo $message->message_title; ?></h3>
+				<h3 class="panel-title"><?php if ($j==0) echo "empty message box</h3></div>"; else{ echo $message->message_title; ?></h3>
 						</div>
             <div class="panel-body">
                 <ul>

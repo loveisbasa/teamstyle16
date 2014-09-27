@@ -45,14 +45,14 @@
 
 <?php 
 				$j=count($new_message);
-				  $i=0;
+				  $i=-1;
 					foreach($new_message as $message)
 					{
 						$i++;
-						if($i=$message->message_id==$message_id)
+						if($message->message_id==$message_id)
 								break;
 					}
-					if($j)$message=$new_message[$i];
+					if($j)		$message=$new_message[$i];
 ?>
 <div class="row">   
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">

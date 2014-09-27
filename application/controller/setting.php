@@ -16,4 +16,11 @@ class setting extends controller
 		if ($model)
 			header('location:'.URL.'setting');
 	}
+	public function EditUserEmail()
+	{
+		$model = $this->loadModel('Setting');
+		$model->editUserEmail();
+		if ($model)
+			header('location:'.URL.'setting');
+	}
 }

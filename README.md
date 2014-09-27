@@ -4,6 +4,12 @@ TeamStyle16 Web Dev.
 
 ## Log
 ----
+#### 9-28 by ricky
+- 今天效率有些低下，没有改进太多地方，主要把setting写了一写，正在写文档下载功能，需要在数据库中再填一个表
+- SESSION['user_profile']的头像还是有bug
+- 找回密码功能libs里是不是忘上传一个文件呀...
+
+
 #### 9-25 by neil
  -SEESION['user_profile']参考login controller
  -找回密码功能使用的对码是md5(用户名 + 发出时间)，使用该值需要再sql中加入相关信息

@@ -40,6 +40,23 @@
             </div>
         </div>
     </div>
+    <?php if ($_SESSION['user_type'] == 'dev' OR $_SESSION['user_type'] == 'admin') {?>
+<div class="col-xs-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Messege</h3>
+            </div>
+            <div class="panel-body">
+                <form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
+                    <label for="file">Filename:</label>
+                    <input type="file" name="userfile" id="file" /> 
+                    <br />
+                    <input type="submit" name="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </div>
+<?php } ?>
         <div class="col-xs-3">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -109,10 +126,8 @@
                 <li><a href="<?php echo URL. 'team/team_display'; ?>">查看所有队伍</a></li>
                 <li class="uk-nav-divider"></li>
                 <li class="uk-nav-header">查找队伍</li>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="输入战队名">
-                    </div>
+                <form class="navbar-form navbar-left" role="search" action="<?php echo URL;?>team/team_search" method="post">
+                    <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <?php } else {?>
@@ -139,14 +154,11 @@
                         <li style="color:#B0B0B0"><?php echo $_SESSION['user_profile']->team_slogan;?></li>
                     </ul>
                 </li>
-                <button type="submit"><a href="<?php echo URL. 'team/'?>"</button>
                 <li class="uk-nav-divider"></li>
                 <li><a href="<?php echo URL. 'team/team_display'; ?>">显示所有战队</a></li>
                 <li class="uk-nav-divider"></li>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="输入战队名">
-                    </div>
+                <form class="navbar-form navbar-left" role="search" action="<?php echo URL;?>team/team_search" method="post">
+                        <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <?php }?>
@@ -201,14 +213,5 @@
                             
 </div>
 
-
-
-
-<form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
-<label for="file">Filename:</label>
-<input type="file" name="userfile" id="file" /> 
-<br />
-<input type="submit" name="submit" value="Submit" />
-</form>
 
 

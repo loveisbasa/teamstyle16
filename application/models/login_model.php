@@ -150,8 +150,8 @@ class LoginModel
 			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login
 			FROM users 
 			WHERE user_id = :user_id
-			AND user_remember_token = :user_rememberme_token
-			AND user_remember_token IS NOT NULL");
+			AND user_rememberme_token = :user_rememberme_token
+			AND user_rememberme_token IS NOT NULL");
 		$query->execute(array(':user_id' => $user_id, ':user_rememberme_token' => $token));
 		$count = $query->rowCount();
 		if ($count == 1) {

@@ -68,7 +68,7 @@ CREATE TABLE `info`.`forums`(
 PRIMARY KEY (`forum_id`),
 INDEX(`forum_id`),
 UNIQUE(`forum_id`)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*每条主题*/
 CREATE TABLE `info`.`threads`(
 	`thread_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -83,7 +83,7 @@ CREATE TABLE `info`.`threads`(
 	PRIMARY KEY (`thread_id`),
 	INDEX (`thread_id`),
 	Index (`user_id`)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*评论*/
 CREATE TABLE `info`.`posts`(
 	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -94,6 +94,6 @@ CREATE TABLE `info`.`posts`(
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
 	INDEX (user_id)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
 

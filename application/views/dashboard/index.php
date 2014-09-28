@@ -13,7 +13,7 @@
 
 <div class="col-xs-3 col-xs-offset-1">
     <div class="thumbnail">
-     <?php echo '<img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/>'; ?>
+		 <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/></a>'; ?>
       <div class="caption">
         <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
         <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
@@ -94,7 +94,7 @@
     <div class="uk-offcanvas-bar" style="padding-top:120px;background-color:white">
         <div class="thumbnail">
             <br>
-            <?php echo '<img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/>'; ?>
+            <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/></a>'; ?>
             <div class="caption">
                 <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
                 <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>

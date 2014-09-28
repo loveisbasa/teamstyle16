@@ -1,3 +1,5 @@
+use `info`
+alter table users AUTO_INCREMENT=1;
 INSERT INTO `users` ( `user_nickname`, `user_team`, `user_email`, `user_real_name`, `user_phone`, `user_class`, `user_failed_logins`, `user_last_failed_login`, `user_rememberme_token`, `user_first_login`, `user_type`, `user_has_avatar`, `user_password_hash`) VALUES
 ( '测试用户1', '测试队伍1', 'demo001@demo.com', '科协网站组', '123456', '科协网站组', 0, NULL, '92fe2365368ff5335d9fd5a73f61541d58bdc799fd70fc59cc1bb7324fc30c17', 0, 'admin', 0, '$2y$10$cMx.NPLQFVw5T/ZN5g0WheOVZbnQmgPcDgMvuOj1tttbDy1NMoJz6'),
 ( '测试用户2', '测试队伍1', 'demo002@demo.com', '科协网站组', '123456', '科协网站组', 0, NULL, NULL, 0, 'guest', 0, '$2y$10$c9ZI13nQAhpCH2QjvCo2wODGif7V3hpcsEtZUB8jrzcZcpFFaGefO'),
@@ -16,5 +18,17 @@ INSERT INTO `teams` ( `team_name`, `team_password_hash`, `team_slogan`, `team_ca
 ( '测试队伍3', '$2y$10$lEGRNJK3KsglJMyO.z2W8eQpxjZU7IiLcor/4duE8jAlxtwdpx22W', '这是第3个口号！', 7, 9, 8, 1);
 
 #message
-INSERT INTO `info`.`message`(`message_id`,`message_from_id`,`message_to_id`,`message_title`,`message_content`,`message_send_date`,`message_is_read`,`message_type`) VALUES
-(
+INSERT INTO `info`.`messages`(`message_from_id`,`message_to_id`,`message_title`,`message_content`,`message_send_date`,`message_is_read`,`message_type`) VALUES
+
+(1,1,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,2,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,3,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,4,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,5,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,6,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,7,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,8,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub'),
+(1,9,"Welcome","欢迎来到对式16，前进四!!","2014-9-29 8:00:00",0,'Pub');
+
+
+

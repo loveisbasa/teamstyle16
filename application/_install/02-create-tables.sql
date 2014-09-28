@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `info`.`users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_nickname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `user_team` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE `info`.`posts`(
 	INDEX (user_id)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE IF NOT EXISTS `file` (
+CREATE TABLE IF NOT EXISTS `info`.`file` (
 `id` int(11) NOT NULL AUTO_INCREMENT,
 `title` varchar(128) NOT NULL,
 `author` int(11) NOT NULL,

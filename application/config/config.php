@@ -19,7 +19,7 @@ ini_set("display_errors", 1);
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
 
-define('URL', 'http://localhost/teamstyle16/');
+define('URL', 'http://teamstyle16.com/');
 
 define("HASH_COST_FACTOR", "10");
 
@@ -62,8 +62,8 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
-//define('DB_PASS', 'niehao');
-define('DB_PASS', 'wangjianyu');
+define('DB_PASS', 'niehao');
+//define('DB_PASS', 'wangjianyu');
 
 
 
@@ -78,7 +78,7 @@ define("FEEDBACK_PHONE_FIELD_EMPTY", "Phone number is empty.");
 define("FEEDBACK_CLASS_FIELD_EMPTY", "Class is empty");
 define("FEEDBACL_REAL_NAME_FIELD_EMPTY", "Real name is empty.");
 
-define("FEEDBACK_MEMNER_ALREADY_HAS_TEAM", "Has already joined another team.");
+define("FEEDBACK_MEMBER_ALREADY_HAS_TEAM", "你已经是队员了！！");
 define("FEEDBACK_TEAM_CREATE_FAILED", "Something wrong. You failed.");
 define("FEEDBACK_TEAM_CREATE_SUCCESSFULLY", "Your team is created successfully! Voila!");
 define("FEEDBACK_ANN_SUCCESSFULLY", "系统消息发布成功");

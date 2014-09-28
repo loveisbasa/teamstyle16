@@ -6,6 +6,7 @@ TeamStyle16 Web Dev.
 ----
 #### 9-28 by ricky
 - 文件上传下载功能基本完成，中文名有bug,测试功能之前需要先建./teamstyle16/uploads目录
+- 测试前需要重新加载数据库，测试时输入localhost/teamstyle16/file即可查看所有文件
 - 今天效率有些低下，没有改进太多地方，主要把setting写了一写，正在写文档下载功能，需要在数据库中再填一个表
 - SESSION['user_profile']的头像还是有bug
 - 找回密码功能libs里是不是忘上传一个文件呀...

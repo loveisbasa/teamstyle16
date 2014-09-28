@@ -283,6 +283,5 @@ class TeamModel
 		$result = $query->fetchAll();
 		return $result;
 		}
- }
-
+ 	}
 }

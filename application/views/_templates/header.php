@@ -77,7 +77,7 @@ body{
 <?php } else {?>
 <style>
 body{
-  padding-top: 70px;
+  padding-top: 50px;
 }
 </style>
 <?php }?>
@@ -99,8 +99,7 @@ body{
         <li><a href="<?php echo URL; ?>">主页</a></li>
       </ul>
     <!--if not logged in,provide a button to log-->
-    <?php
-      if (!isset($_SESSION['user_logged_in'])) {?>
+    <?php if (!isset($_SESSION['user_logged_in'])) {?>
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="<?php echo URL . 'login'?>">登陆</a></li>
       </ul>
@@ -126,18 +125,15 @@ body{
         <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>
     <?php }?>
-          <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">文档下载<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
+            <ul class="dropdown-menu" role="menu">
+            <?php if (isset($all_file)) {
+                          foreach ($all_file as $file) {?>
+                    <li><a href="<?php echo URL. 'file/download/'.$file->file_title;?>"><?php echo $file->file_title;?></a></li>
+            <?php }}?>
+            </ul>
         </li>
       </ul>
     </div><!--/.nav-collapse -->

@@ -158,7 +158,7 @@
                 <li><a href="<?php echo URL. 'team/team_display'; ?>">显示所有战队</a></li>
                 <li class="uk-nav-divider"></li>
                 <form class="navbar-form navbar-left" role="search" action="<?php echo URL;?>team/team_search" method="post">
-                        <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
+                    <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <?php }?>
@@ -166,20 +166,17 @@
     </div>
 </div>
 
-<div id="offcanvas-5" class="uk-offcanvas" style="color:white">
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
-        <div class="thumbnail">
+<div id="offcanvas-5" class="uk-offcanvas"\>
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white">
             <section class="content">
                 <div class="form-unit">
                     <a href="/" class="brand">
                         <h1>Teamstyle16 深蓝</h1>
                     </a>
                     <h3 style="text-align:center">发送消息</h3>
-                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="auth-form form-horizontal">
-                        <div class="form-field">
-                            <input type="text" name="message_title" placeholder='消息标题       ' autocomplete="off" value="" required class="form-control name" />
+                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="navbar-form navbar-right">
+                            <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
                             <span class="icon icon-user-bold"></span>
-                        </div>
                         <div class="form-field">
                             <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
                             <span class="icon icon-envelope-bold"></span>
@@ -199,7 +196,6 @@
                     </form>
                 </div>
             </section>
-        </div>
     </div>
 </div>
 

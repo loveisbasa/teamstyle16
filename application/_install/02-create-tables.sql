@@ -96,15 +96,15 @@ CREATE TABLE `info`.`posts`(
 	INDEX (user_id)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE IF NOT EXISTS `file` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`title` varchar(128) NOT NULL,
-`author` int(11) NOT NULL,
-`type` varchar(5) NOT NULL,
-`date` datetime NOT NULL,
-`ip` varchar(20) NOT NULL,
-`size` int(11) NOT NULL,
-PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `files` (
+`file_id` int(11) NOT NULL AUTO_INCREMENT,
+`file_title` varchar(128) NOT NULL,
+`file_author` int(11) NOT NULL,
+`file_type` varchar(5) NOT NULL,
+`file_date` datetime NOT NULL,
+`file_ip` varchar(20) NOT NULL,
+`file_size` int(11) NOT NULL,
+PRIMARY KEY (`file_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 

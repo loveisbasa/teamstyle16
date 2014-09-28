@@ -22,13 +22,31 @@ class FileModel
 	}
 	public function MoveFile()
 	{
-		if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
-			if ( !move_uploaded_file($_FILES['userfile']['tmp_name'], UP_FILE_PATH. $_FILES['userfile']['name'])) {
-				$_SEESION["feedback_negative"][] = "error";
+		if (is_uploaded_file($_FILES['devfile']['tmp_name'])) {
+			if ( !move_uploaded_file($_FILES['devfile']['tmp_name'], UP_FILE_PATH. $_FILES['devfile']['name'])) {
+				$_SESSION["feedback_negative"][] = "error";
 				return FALSE;
 			}
+			$fname = strip_tags($_FILES['devfile']['name']);
+			$ftype = strip_tags($_FILES['devfile']['type']);
+			$fauthor = $_SESSION['user_id'];
+			$fsize = $_FILES['devfile']['size'];
+			$fdate  = date("Y-m-d H:i:sa");
+
+			$sql = "INSERT INTO files(file_title, file_type, file_size, file_author, file_date) VALUES (:file_title, :file_type, :file_size, :file_author, :file_date)";
+			$query  = $this->db->prepare($sql);
+			$query->execute(array(':file_title'=>$fname, 
+				':file_type'=>$ftype, 
+				':file_author'=>$fauthor, 
+				':file_size'=>$fsize,
+				':file_date'=>$fdate));
+			$count = $query->rowCount();
+			if ($count != 1) {
+				$_SESSION["feedback_negative"][] = "error!";
+				return false;
+			}
+			$_SESSION["feedback_positive"][] = "successfully!";
 			return TRUE;
 		}
-
 	}
 }

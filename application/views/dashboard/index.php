@@ -44,12 +44,12 @@
 <div class="col-xs-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Messege</h3>
+                <h3 class="panel-title">File</h3>
             </div>
             <div class="panel-body">
                 <form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
                     <label for="file">Filename:</label>
-                    <input type="file" name="userfile" id="file" /> 
+                    <input type="file" name="devfile" id="file" /> 
                     <br />
                     <input type="submit" name="submit" value="Submit" />
                 </form>

@@ -94,7 +94,14 @@ class Login extends Controller
 		}
 	}
 
-	public function refind(){
+		public function changepwd(){
+			echo "test";
+			$login_model = $this->loadModel('Login');
+			$login_model->changePwd();
+			header('location: ' .URL . 'setting/index');
+		}
+
+public function refind(){
 
 			$this->view->render('login/refindapply');
 	}
@@ -145,10 +152,4 @@ class Login extends Controller
 		header('location: ' . URL . 'setting/index');
 	}
 
- public function changpwd(){
-		echo "test";
-		$login_model = $this->loadModel('Login');
-		$login_model->changePwd();
-		header('location: ' .URL . 'setting/index');
-}
 }

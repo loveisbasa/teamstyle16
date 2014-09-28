@@ -35,14 +35,6 @@ CREATE TABLE `info`.`teams` (
   PRIMARY KEY (`team_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE `info`.`announcements` (
-`ann_id` int(11) NOT NULL AUTO_INCREMENT,
-`ann_title` varchar(20) NOT NULL,
-`ann_content` text NOT NULL,
-`ann_send_date` datetime NOT NULL,
-PRIMARY KEY(`ann_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `info`.`messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `message_from_id` int(11) NOT NULL,
@@ -76,7 +68,7 @@ CREATE TABLE `info`.`forums`(
 PRIMARY KEY (`forum_id`),
 INDEX(`forum_id`),
 UNIQUE(`forum_id`)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*每条主题*/
 CREATE TABLE `info`.`threads`(
 	`thread_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -91,7 +83,7 @@ CREATE TABLE `info`.`threads`(
 	PRIMARY KEY (`thread_id`),
 	INDEX (`thread_id`),
 	Index (`user_id`)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*评论*/
 CREATE TABLE `info`.`posts`(
 	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -102,6 +94,17 @@ CREATE TABLE `info`.`posts`(
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
 	INDEX (user_id)
-);
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
+
+CREATE TABLE IF NOT EXISTS `file` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`title` varchar(128) NOT NULL,
+`author` int(11) NOT NULL,
+`type` varchar(5) NOT NULL,
+`date` datetime NOT NULL,
+`ip` varchar(20) NOT NULL,
+`size` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 

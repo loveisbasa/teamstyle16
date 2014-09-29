@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="public/img/logo.png" type="image/x-icon">
     <title>TeamStyle 16 Beta</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +26,7 @@
     <script src="<?php echo URL; ?>public/js/uikit.js"></script>
     <script src="<?php echo URL; ?>public/js/highlight.js"></script>
     <script src="<?php echo URL; ?>public/js/bootstrap-checkbox.js"></script>
-
+</head>
 <?php if (isset($_SESSION['user_logged_in'])) {?>
 <style>
 body{

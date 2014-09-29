@@ -25,7 +25,17 @@ class Home extends Controller
 				require 'application/views/_templates/footer.php';
 			}
 		} else {
-			echo 'You are visiting ' .$user_nickname. '\'s home page.';
+			$user_model = $this->loadModel('Login');
+			$user_profile = $user_model->getUserProfile($user_nickname);
+			if ($user_profile->user_team!=null)
+			{
+				$team_captain = $user_model->getUserProfile($user_profile->team_captain);
+				if ($user_profile->team_member1!=0) $team_member1 = $user_model->getUserProfile($user_profile->team_member1);
+				if ($user_profile->team_member2!=0) $team_member2 = $user_model->getUserProfile($user_profile->team_member2);
+			}
+			require 'application/views/_templates/header.php';
+			require 'application/views/home/profile.php';
+			require 'application/views/_templates/footer.php';
 		}
 	}
 }

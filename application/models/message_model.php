@@ -40,6 +40,7 @@ class MessageModel
 			if(!isset($_POST['message_title']) OR empty($_POST['message_title'])){
 			$_SESSION["feedback_negative"][]=FEEDBACK_TITLE_WARNING_EMPTY;
 			} 
+			if($_POST['message_type']=='ser'){
 			$sql="INSERT into messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)
 				VALUES
 				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";	
@@ -53,6 +54,28 @@ class MessageModel
 				':message_send_date' => date('Y-m-d H:i:s'),
 				':message_type'=> $message_type
 			));
+			}
+			else{
+					$sql ="SELECT user_id from users ";
+					$query = $this->db->prepare($sql);
+					$query->execute();
+					$result=$query->fetchAll();
+					foreach($result as $result){
+							$sql="INSERT into messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)
+							VALUES
+							(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";	
+							$user_id=$result->user_id;
+						  $d=date('Y-m-d H:i:s');
+							$query=$this->db->prepare($sql);
+							$query->execute(array(':message_from_id' => $_SESSION['user_id'],
+							':message_to_id' => $user_id,
+							':message_title' => $message_title,
+							':message_content' => $message_content,
+							':message_send_date' => date('Y-m-d H:i:s'),
+							':message_type'=> $message_type
+							));
+					}
+			}
 		}	
 		}
 	}
@@ -62,7 +85,7 @@ class MessageModel
 		$message_to_id=$_SESSION['user_id'];
 		$sql="select COUNT(message_id) as unread_messages
 			from messages
-			WHERE (message_to_id={$message_to_id} or message_type='pub')and message_is_read=0";
+			WHERE (message_to_id={$message_to_id} )and message_is_read=0";
 		$query=$this->db->prepare($sql);
 		$query->execute();
 		return $query->fetch()->unread_messages;	
@@ -73,7 +96,7 @@ class MessageModel
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where (message_to_id=:message_to_id or message_type='pub')and message_is_read=0";
+			where (message_to_id=:message_to_id )and message_is_read=0";
 
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
@@ -91,7 +114,7 @@ public function ReadAllMessage()
 		$sql="SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
-			where message_to_id=:message_to_id or message_type='pub' ORDER BY message_is_read,message_send_date DESC";
+			where message_to_id=:message_to_id  ORDER BY message_is_read,message_send_date DESC";
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':message_to_id' => $message_to_id));
 		return $query->fetchAll();
@@ -100,9 +123,7 @@ public function ReadAllMessage()
 		public function ChangeStatusMessage($id)
 		{
 		$sql="UPDATE messages SET message_is_read=1 where message_id=:id";
-
 		$query=$this->db->prepare($sql);	
 		$query->execute(array(':id' => $id));
-		
 		}
 } 

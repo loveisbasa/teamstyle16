@@ -51,9 +51,10 @@ class Login extends Controller
 				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $login_model->getUserProfile($user_profile->team_member2);}
 		
 					}
-				require 'application/views/_templates/header.php';
-				require 'application/views/dashboard/index.php';
-				require 'application/views/_templates/footer.php';
+				header('location: ' . URL . 'dashboard/index');
+				// require 'application/views/_templates/header.php';
+				// require 'application/views/dashboard/index.php';
+				// require 'application/views/_templates/footer.php';
 
 
 			} else {

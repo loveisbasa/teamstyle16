@@ -105,7 +105,7 @@ class LoginModel
 				$query->execute(array(':user_id' => $result->user_id));
 				//$count =  $query->rowCount();
 			}
-			$_SESSION["feedback_positive"][] = "Login in successfully! Cong!";
+			$_SESSION["feedback_positive"][] = "Login in successfully! 前进四!";
 			return true;
 		} else {
 			// 密码错误，录入失败信息
@@ -244,8 +244,7 @@ class LoginModel
 				return false;
 			}
 			//权限设置
-			if($_POST['user_type']=='dev') $user_type='dev';
-			else $user_type='guest';
+			$user_type='guest';
 			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class,user_type)
 			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_type)";
 			$query = $this->db->prepare($sql);
@@ -256,6 +255,12 @@ class LoginModel
 				':user_phone' => $user_phone,
 				':user_class' => $user_class,
 				':user_type'=>$user_type));
+			echo $user_email;
+			$query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
+			$query->execute();
+			$result=$query->fetch();
+			$query= $this->db->prepare(" insert into messages select message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages where message_type='Pub' Group by message_title");
+			$query->execute();	 
 			$count = (int)$query->rowCount();
 			if ($count != 1) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;

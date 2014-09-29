@@ -259,7 +259,11 @@ class LoginModel
 			$query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
 			$query->execute();
 			$result=$query->fetch();
-			$query= $this->db->prepare(" insert into messages select message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages where message_type='Pub' Group by message_title");
+			$query= $this->db->prepare(" 
+				INSERT  INTO messages
+				SELECT message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages 
+				where message_type='Pub' 
+				Group by message_title");
 			$query->execute();	 
 			$count = (int)$query->rowCount();
 			if ($count != 1) {

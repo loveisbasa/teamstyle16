@@ -92,7 +92,7 @@
 
 </div>
 <div id="offcanvas-1" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar" style="padding-top:120px;background-color:white">
+    <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">
         <div class="thumbnail">
             <br>
             <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/></a>'; ?>
@@ -111,7 +111,7 @@
 </div>
 
 <div id="offcanvas-2" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:120px">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:70px">
             <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
                 <?php if ($_SESSION['user_team']==null) {?>}
                 <h3 style="color:#E8E8E8;text-align:center">您尚未加入战队哦</h3>
@@ -167,13 +167,10 @@
     </div>
 </div>
 
-<div id="offcanvas-5" class="uk-offcanvas"\>
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white">
+<div id="offcanvas-5" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">
             <section class="content">
                 <div class="form-unit">
-                    <a href="/" class="brand">
-                        <h1>Teamstyle16 深蓝</h1>
-                    </a>
                     <h3 style="text-align:center">发送消息</h3>
                     <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="navbar-form navbar-right">
                             <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
@@ -182,7 +179,7 @@
                             <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
                             <span class="icon icon-envelope-bold"></span>
                         </div>
-                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="27" rows="14">
+                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="24" rows="14">
                         </textarea>
                         <span class="icon icon-envelope-bold"></span>
                         <select name="message_type">

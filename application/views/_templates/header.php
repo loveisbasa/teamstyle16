@@ -24,64 +24,19 @@
     <script src="<?php echo URL; ?>public/js/uikit.js"></script>
     <script src="<?php echo URL; ?>public/js/highlight.js"></script>
     <script src="<?php echo URL; ?>public/js/bootstrap-checkbox.js"></script>
-
-<?php if (isset($_SESSION['user_logged_in'])) {?>
-<style>
-body{
-  padding-top:140px;
-}
-</style>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="padding-top:50px;background-color:#87CEFA">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <ul class="nav navbar-nav">
-          <li><a href="<?php echo URL. 'dashboard';?>" style="color:#FFFFFF;font:bold"><?php echo $_SESSION['user_nickname'];?></a></li>
-          <li><a href="<?php echo URL.'setting'?>"><span class="glyphicon glyphicon-cog"></span> </a></li>
-        </ul>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的消息<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="<?php echo URL. 'message/send_mail';?>">发送消息</a></li>
-            <li><a href="<?php echo URL. 'message/all_message';?>">所有消息</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">战队<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="<?php echo URL. 'team/create_team'; ?>">组建战队</a></li>
-            <li><a href="<?php echo URL. 'team/team_display/1'; ?>">所有战队</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form action="<?php echo URL; ?>team/team_search" method="post" class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input name="keyword" type="text" class="form-control" placeholder="输入战队名">
-        </div>
-        <button type="submit" class="btn btn-default">搜索</button>
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<?php } else {?>
+<?php if (!isset($_SESSION['user_logged_in'])) {?>
 <style>
 body{
   padding-top: 50px;
 }
 </style>
+<?php } else {?>
+<style>
+body{
+  padding-top: 70px;
+}
+</style>
 <?php }?>
-<header>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#101010">
   <div class="container">
@@ -97,6 +52,9 @@ body{
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a href="<?php echo URL; ?>">主页</a></li>
+        <?php if (isset($_SESSION['user_logged_in'])) {?>
+        <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold"><?php echo $_SESSION['user_nickname'];?></a></li>
+        <?php }?>
       </ul>
     <!--if not logged in,provide a button to log-->
     <?php if (!isset($_SESSION['user_logged_in'])) {?>
@@ -120,7 +78,7 @@ body{
       }
       </script> 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
+  <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
         <li ><a href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>

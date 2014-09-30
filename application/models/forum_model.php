@@ -133,29 +133,27 @@ class ForumModel {
             $query->execute(array(
                 ':message' => $message
             ));
-            $sql = "SELECT forum_id,thread_title,user_id FROM threads WHERE thread_id={$thread_id}";
+            $sql = "SELECT forum_id,subject,user_id FROM threads WHERE thread_id={$thread_id}";
             $query = $this->db->prepare($sql);
             if (!$query->execute()) $_SESSION["feedback_negative"][] = FEEDBACK_THREAD_INSESRT_ERROR;
-						$forum_id = $query->fetch()->forum_id;
-						$user_id = $query->fetch()->user_id;
+						$result=$query->fetch();
 						$sql = "INSERT into messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)
 							VALUES
-				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";
+				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,'src')";
             $d = date('Y-m-d H:i:s');
             $query = $this->db->prepare($sql);
             $query->execute(array(
                         ':message_from_id' => $_SESSION['user_id'],
-                        ':message_to_id' => $user_id,
-                        ':message_title' => '回复:' . $thread_title,
+                        ':message_to_id' => $result->user_id,
+                        ':message_title' => '回复:' . $result->subject,
                         ':message_content' => $_SESSION['user_nickname'] . "回复到" . $message,
-                        ':message_send_date' => date('Y-m-d H:i:s') ,
-                        ':message_type' => $message_type
+                        ':message_send_date' => $d,
                     ));
-            $sql = "UPDATE forums SET count_post=count_post+1 where forum_id={$forum_id}";
+            $sql = "UPDATE forums SET count_post=count_post+1 where forum_id={$result->forum_id}";
             $query = $this->db->prepare($sql);
             $query->execute();
             $sql = "UPDATE threads SET latest_reply='{$d}',reply_count=reply_count+1 where thread_id={$thread_id}";
-            $query = $this->db->prepare($sql)
+            $query = $this->db->prepare($sql);
             if (!$query->execute()) $_SESSION["feedback_negative"][] = FEEDBACK_THREAD_INSESRT_ERROR;
             else return 'true';
         }

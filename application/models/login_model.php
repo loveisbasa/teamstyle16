@@ -51,7 +51,7 @@ class LoginModel
 		}
 
 		//检查密码
-		if (md5($_POST['user_password']== $result->user_password_hash)) {
+		if (md5($_POST['user_password'])== $result->user_password_hash) {
 
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
@@ -258,18 +258,19 @@ class LoginModel
 			echo $user_email;
 			$query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
 			$query->execute();
-			$result=$query->fetch();
-			$query= $this->db->prepare(" 
-				INSERT  INTO messages
-				SELECT message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages 
-				where message_type='Pub' 
-				Group by message_title");
-			$query->execute();	 
-			$count = (int)$query->rowCount();
+            $count = (int)$query->rowCount();
 			if ($count != 1) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
 				return false;
 			}
+			$result=$query->fetch();
+			$query= $this->db->prepare(" 
+				INSERT  INTO messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)	
+				SELECT message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages 
+				where message_type='Pub' 
+				Group by message_title");
+			$query->execute();	 
+			
 			$_SESSION["feedback_positive"][] = "Register successfully! Voila!";
 			return true;
 		}

@@ -119,11 +119,11 @@ class Forum extends Controller
 		if(empty($_POST['thread_id']) and filter_var($_POST['thread_id'],FILTER_VALIDATE_INT,array('min_range'<1)))
 		 	$_SESSION["feedback_negative"][]=FEEDBACK_FID_EMPTY;
 		$thread_id=$_POST['thread_id'];
-		echo $thread_id;
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_post($thread_id);
-		if($create_success=='true') header(	
+		//if($create_success=='true') 
+		header(	
 			'location:' .URL. "forum/posts/" . $thread_id);
-		else header('location:' .URL. 'forum/create_post/' . $thread_id);
+	//	else header('location:' .URL. 'forum/create_post/' . $thread_id);
 	}
 }

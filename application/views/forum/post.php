@@ -47,7 +47,7 @@
                         <h3 class="uk-panel-title">作者其他热帖</h3>
                         <ul class="uk-list uk-list-line">
                             <?php foreach ($writer_link as $result) {?>
-                            <li><a target="_blank" href="<?php echo URL. 'forum/posts/'.$result->thread_id?>"><?php echo $result->subject;?></a></li>
+                            <li><a target="_blank" href="<?php echo URL . 'forum/posts/' . $result->thread_id;?>"><?php echo $result->subject;?></a></li>
                             <?php }?>
                         </ul>
                     </div>

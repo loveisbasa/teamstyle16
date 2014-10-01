@@ -60,7 +60,7 @@
             <h3 class="uk-panel-title">热帖排行</h3>
             <ul class="uk-list uk-list-line">
               <?php foreach ($thread_hot_link as $row) {?>
-                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'.$row->thread_id?>"><?php echo $row->subject;?></a></li>
+                <li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank" href="<?php echo URL. 'forum/posts/'. $row->thread_id;?>"><?php echo $row->subject;?></a></li>
                 <?php } ?>
                 <br><br>
              </ul>

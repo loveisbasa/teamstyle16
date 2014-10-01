@@ -96,11 +96,11 @@ if($_SESSION['user_type']='admin'){
 		}
 
 		public function Create_thread($forum_id){
-			if($_POST['vcode']!=
+			/*if($_POST['vcode']!=
 				$_SESSION['captcha']){
 				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
 				}
-			else{
+			else{*/
 			echo $_POST['thread_subject'];
 			if (empty($_POST['thread_subject'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_THREAD_SUBJECT_EMPTY;
@@ -123,7 +123,7 @@ if($_SESSION['user_type']='admin'){
 				else return 'true';
 				}
 			}
-		}			
+	//	}			
 
 		public function Create_Post($thread_id){
 						if($_POST['vcode']!=$_SESSION['captcha'])

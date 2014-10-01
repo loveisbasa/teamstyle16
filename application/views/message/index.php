@@ -54,21 +54,49 @@
 					}
 					if($j)		$message=$new_message[$i];
 ?>
-<div class="row">   
+<div class="row">
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+    <div class="panel panel-default">
+      <div class="panel-heading">
 				<h3 class="panel-title"><?php if ($j==0) echo "empty message box</h3></div>"; else{ echo $message->message_title; ?></h3>
-						</div>
-            <div class="panel-body">
-                <ul>
-					<h8><?php if ($i!=-1) echo $message->message_content; ?></h8>
-                    <hr>
-					<li><?php if ($i!=-1) echo "From <a href="; echo URL . "message/send_mail/" .  $message->user_nickname . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?></li> 
-                </ul>
-						</div>
-<?php } ?>
-        </div>
-    </div> 
-
+			</div>
+      <div class="panel-body">
+        <ul>
+					<h8><?php if ($i!=-1) echo $message->message_content; ?></h8>"
+          <hr>
+          <li><?php if ($i!=-1) echo "From <a href="; echo URL . "home/index/" .  $message->user_nickname . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?></li>
+          <li data-uk-offcanvas="{target:'#offcanvas-5'}"><button>回复</button></li>
+        </ul>
+			</div>
+      <?php } ?>
+    </div>
+  </div> 
+</div>
+<div id="offcanvas-5" class="uk-offcanvas">
+  <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">
+    <section class="content">
+      <div class="form-unit">
+        <h3 style="text-align:center">回复消息</h3>
+        <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="navbar-form navbar-right">
+          <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
+          <span class="icon icon-user-bold"></span>
+          <div class="form-field">
+            <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
+            <span class="icon icon-envelope-bold"></span>
+          </div>
+          <textarea type="text" name="message_content" placeholder="内容" value="" required cols="24" rows="14">
+          </textarea>
+          <span class="icon icon-envelope-bold"></span>
+          <select name="message_type">
+            <option value='sec'>私信</option>
+            <?php if($_SESSION['user_type']=='admin'){
+              echo "<option value='pub'>公告</option>";
+            }?>
+          </select>
+          <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">发送 
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
 </div>

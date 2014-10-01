@@ -51,7 +51,7 @@ class LoginModel
 		}
 
 		//检查密码
-		if (password_verify($_POST['user_password'], $result->user_password_hash)) {
+		if (md5($_POST['user_password']== $result->user_password_hash)) {
 
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
@@ -225,7 +225,7 @@ class LoginModel
 			$user_class = strip_tags($_POST['user_class']);
 			//处理密码
 			$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-			$user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+			$user_password_hash = md5($_POST['user_password_new']);
 			
 			//昵称已经被使用过的情况
 			$query = $this->db->prepare("SELECT user_id FROM users WHERE user_nickname = :user_nickname");
@@ -613,7 +613,7 @@ class LoginModel
 		}else
 		{
 		$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-			$user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' =>			  $hash_cost_factor));
+			$user_password_hash = md5($_POST['user_password_new']);
 		$query=$this->db->prepare("update users SET user_password_hash='{$user_password_hash}' where user_id={$_SESSION['user_id']}");
 		$query->execute();
 		}

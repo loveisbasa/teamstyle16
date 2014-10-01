@@ -61,7 +61,7 @@
   <div class="col-sm-6" style="width:800px;margin:60px 0 0 80px">
         <div class="panel panel-default">
             <div class="panel-heading">
-				<h3 class="panel-title"><?php if ($j==0) echo "empty message box</h3></div>"; else{ echo $message->message_title; ?></h3>
+				<h3 class="panel-title"><?php if ($j==0 or $message->message_to_id!=$_SESSION['user_id']) echo "empty message box</h3></div>"; else{ echo $message->message_title; ?></h3>
 						</div>
             <div class="panel-body">
                 <ul>

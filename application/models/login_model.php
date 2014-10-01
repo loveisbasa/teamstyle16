@@ -524,6 +524,7 @@ class LoginModel
 					echo $key;
 			$query=$this->db->prepare("update users set user_refind_date='{$d}' where user_nickname='{$result->user_nickname}'");
 		  $query->execute();
+		  $ms="<html><body>To change your password, please click here <a href='{$URL}'$>{$URL}</a></body></html>";//邮件会发送的信息
 			require ('gmail.php');
 				}
 	}

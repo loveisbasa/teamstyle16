@@ -48,6 +48,7 @@ class Message extends Controller
 				require 'application/views/_templates/header.php';
 				require 'application/views/message/index.php';
 				require 'application/views/_templates/footer.php';
+				if(!empty($new_message))
 				$message_model->ChangeStatusMessage($new_message[0]->message_id);
 		}
 	

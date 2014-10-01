@@ -31,14 +31,17 @@
 
 	<div class="sunken-menu-separator"></div>
 	    <ul class="sunken-menu-group">
-        <?php foreach ($new_message as $message) {?>
+        <?php foreach ($new_message as $message) {
+						if($message->message_is_read==1){
+				?>
         <li class="tooltipped tooltipped-w" aria-label="Pulse">
 			<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>" aria-label="Pulse" class="js-selected-navigation-item sunken-menu-item" data-pjax="true" >
 			<span class="full-word"><?php  if (isset($message->message_title))  echo $message->message_title;?></span>
             </a>      
         </li>
 
-<?php }?>
+<?php }
+				}?>
   </div>
 </div>
 </ul>

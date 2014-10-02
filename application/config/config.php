@@ -20,7 +20,7 @@ ini_set("display_errors", 1);
  */
 
 define('URL', 'http://166.111.223.20/');
-
+//define('URL','http://teamstyle16.com/');
 define("HASH_COST_FACTOR", "10");
 
 define('AVATAR_PATH', 'public/avatars/');
@@ -62,9 +62,10 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'duishi16');
+//define('DB_USER','root');
 //define('DB_PASS', 'wangjianyu');
 define('DB_PASS', '******');
-//define('DB_PASS', '');
+//define('DB_PASS', 'niehao');
 
 
 

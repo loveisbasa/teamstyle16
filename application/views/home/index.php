@@ -32,7 +32,7 @@
                         <div class="uk-panel">
                             <img class="tm-image-pull" src="docs/images/icon_themes.svg" width="200" height="140" alt="Themes">
                             <h2 class="uk-margin-top-remove">定制</h2>
-                            <p>还记得螺母楼那晚的欢呼，走上人生巅峰</p>
+                            <p>还记得罗母楼那晚的欢呼，走上人生巅峰</p>
                         </div>
                     </div>
                 </div>

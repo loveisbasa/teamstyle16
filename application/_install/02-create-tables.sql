@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `info`.`users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_nickname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `user_team` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `user_team` (`user_team`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data' AUTO_INCREMENT=11 ;
 
-CREATE TABLE `info`.`teams` (
+CREATE TABLE IF NOT EXISTS`info`.`teams` (
 `team_id` int(11) NOT NULL AUTO_INCREMENT,
 `team_name` varchar(20) NOT NULL,
 `team_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `info`.`teams` (
   PRIMARY KEY (`team_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE `info`.`messages` (
+CREATE TABLE IF NOT EXISTS`info`.`messages` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `message_from_id` int(11) NOT NULL,
   `message_to_id` int(11) ,
@@ -58,7 +58,7 @@ CREATE TABLE `info`.`messages` (
 /*以下几个表都是论坛用*/
 /*-----------------------------------------------------------------------------*/
 /*板块*/
-CREATE TABLE `info`.`forums`(
+CREATE TABLE IF NOT EXISTS`info`.`forums`(
 `forum_id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT,
 `title` varchar(80) NOT NULL,
 `intro` tinytext NOT NULL,
@@ -70,7 +70,7 @@ INDEX(`forum_id`),
 UNIQUE(`forum_id`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*每条主题*/
-CREATE TABLE `info`.`threads`(
+CREATE TABLE IF NOT EXISTS`info`.`threads`(
 	`thread_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`forum_id`  tinyint(3) UNSIGNED NOT NULL,
 	`user_id`  int(11) UNSIGNED NOT NULL,
@@ -80,31 +80,32 @@ CREATE TABLE `info`.`threads`(
   `establish_date` datetime NOT NULL,
   `latest_reply` datetime NOT NULL,
   `reply_count` int NOT NUll,
+  `author_avatar` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (`thread_id`),
 	INDEX (`thread_id`),
 	Index (`user_id`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*评论*/
-CREATE TABLE `info`.`posts`(
-	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-	thread_id int(11) UNSIGNED NOT NULL,
-	user_id int(11) UNSIGNED NOT NULL,
-	message text NOT NULL,
-	post_on datetime NOT NULL,
+CREATE TABLE IF NOT EXISTS`info`.`posts`(
+	`post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`thread_id` int(11) UNSIGNED NOT NULL,
+	`user_id` int(11) UNSIGNED NOT NULL,
+	`message` text NOT NULL,
+	`post_on datetime` NOT NULL,
+      `user_avatar` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
 	INDEX (user_id)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 
-CREATE TABLE IF NOT EXISTS `files` (
-`file_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `info`.`files` (
+`file_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `file_title` varchar(128) NOT NULL,
 `file_author` int(11) NOT NULL,
 `file_type` varchar(5) NOT NULL,
 `file_date` datetime NOT NULL,
 `file_ip` varchar(20) NOT NULL,
-`file_size` int(11) NOT NULL,
-PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+`file_size` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
 

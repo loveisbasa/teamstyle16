@@ -1,4 +1,5 @@
-<div class="container">
+
+<div class="uk-container">
  <!--    <h1 >Dashboard</h1> -->
     <!-- echo out the system feedback (error and success messages) -->
         <?php 
@@ -6,41 +7,51 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);
         ?>
+<h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
+<div class="tm-grid-truncate uk-text-center">
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-4">
+        <a href="#offcanvas-1" data-uk-offcanvas>
+            <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#00CCFF">
+                <h3><icon class="uk-icon-user uk-icon-large"></i>我的资料</h3>
+            </div>
+        </a>
+    </div>
 </div>
-
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-4 uk-push-1-6">
+        <a href="#offcanvas-2" data-uk-offcanvas>
+        <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#CC99FF">
+            <h3><icon class="uk-icon-home uk-icon-large"></i>我的队伍</h3>
+        </div>
+    </a>
+    </div>
+</div>
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-4 uk-push-1-3">
+        <a href="#offcanvas-3" data-uk-offcanvas>
+        <div class="uk-panel uk-panel-box-danger uk-text-center uk-panel-space" style="background-color:#33FF99">
+            <h3><icon class="uk-icon-bookmark uk-icon-large"></i>我的帖子</h3>
+        </div>
+    </a>
+    </div>
+</div>
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-4 uk-push-1-2">
+        <a href="#offcanvas-5" data-uk-offcanvas>
+        <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#FF99FF">
+            <h3><icon class="uk-icon-comment uk-icon-large">发送消息</icon></h3>
+        </div>
+    </a>
+    </div>
+</div>
+</div>
+</div>
 
 <div class="row">
 
-<div class="col-xs-3 col-xs-offset-1">
-    <div class="thumbnail">
-     <?php echo '<img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/>'; ?>
-      <div class="caption">
-        <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
-        <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
-        <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
-        <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
-        <p class="text-center">Welcome!<?php
-        if ($_SESSION['user_first_login'] == 1) {
-            echo 'This is your first login!';
-        }
-    ?></p>
-      </div>
-    </div>
-  </div>
-    <div class="col-xs-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Messege</h3>
-            </div>
-            <div class="panel-body">
-                <ul>
-                    <li data-uk-offcanvas="{target:'#offcanvas-5'}"><a href="<?php echo URL. 'message/send_mail';?>">Send messages</a></li>
-                    <li><a href="<?php echo URL. 'message/is_read';?>">All messages</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <?php if ($_SESSION['user_type'] == 'dev' OR $_SESSION['user_type'] == 'admin') {?>
+
+<?php if ($_SESSION['user_type'] == 'dev' OR $_SESSION['user_type'] == 'admin') {?>
 <div class="col-xs-4">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -58,60 +69,32 @@
         </div>
     </div>
 <?php } ?>
-        <div class="col-xs-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">我的战队</h3>
-            </div>
 
-            <div class="panel-body">
-                <?php if ($_SESSION['user_team']==null){?>
-                <ul>
-                    <h3 style="position:center">您尚未加入战队哦</h3>
-                    <li><a href="<?php echo URL. 'team/create_team'; ?>">创建战队</a></li>
-                    <li><a href="<?php echo URL. 'team/team_display'; ?>">显示所有战队</a></li>
-                </ul>
-                <?php } else {?>
-                <div class="thumbnail">
-                         <p><?php echo $_SESSION['user_profile']->team_name;?></p>
-                </div>
-                <?php }?>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-    <div class="col-xs-4">
-                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-1'}">user</button>
-                            <a href="#offcanvas-1" data-uk-offcanvas>user</a>
-
-                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-2'}">team</button>
-                        </div>
-                            
-</div>
 
 
 </div>
 <div id="offcanvas-1" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar" style="padding-top:120px;background-color:white">
+    <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">
         <div class="thumbnail">
             <br>
-            <?php echo '<img src="'.$_SESSION['user_profile']->user_avatar_link.'" class="img-rounded"/>'; ?>
+            <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_avatar_file'].'" class="img-rounded"/></a>'; ?>
             <div class="caption">
                 <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
                 <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
-                        <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
+                <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
         <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
                 <p class="text-center">Welcome!<?php
                 if ($_SESSION['user_first_login'] == 1) {
                     echo 'This is your first login!';
                 }?></p>
+                <p><a href="<?php echo URL. 'login/uploadavatar_action'?>">edit profile</a></p>
             </div>
         </div>
     </div>
 </div>
 
 <div id="offcanvas-2" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:120px">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:70px">
             <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
                 <?php if ($_SESSION['user_team']==null) {?>}
                 <h3 style="color:#E8E8E8;text-align:center">您尚未加入战队哦</h3>
@@ -166,14 +149,20 @@
             </ul>
     </div>
 </div>
+<div id="offcanvas-3" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:70px">
+        <h2 style="color:#B0B0B0;text-align:center">我的帖子</h2>
+        <?php foreach ($_SESSION['mythreads'] as $results) {?>
+            <li style="color:#B0B0B0"><a href = "<?php echo URL. 'forum/posts/'. $results->thread_id?>">
+                <?php echo $results->subject;?></a></li>
+        <?php }?>
+    </div>
+</div>
 
-<div id="offcanvas-5" class="uk-offcanvas"\>
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white">
+<div id="offcanvas-5" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">
             <section class="content">
                 <div class="form-unit">
-                    <a href="/" class="brand">
-                        <h1>Teamstyle16 深蓝</h1>
-                    </a>
                     <h3 style="text-align:center">发送消息</h3>
                     <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="navbar-form navbar-right">
                             <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
@@ -182,7 +171,7 @@
                             <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
                             <span class="icon icon-envelope-bold"></span>
                         </div>
-                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="27" rows="14">
+                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="24" rows="14">
                         </textarea>
                         <span class="icon icon-envelope-bold"></span>
                         <select name="message_type">
@@ -199,16 +188,5 @@
             </section>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-xs-4">
-                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-1'}">user</button>
-                            <a href="#offcanvas-1" data-uk-offcanvas>user</a>
-
-                            <button class="uk-button" data-uk-offcanvas="{target:'#offcanvas-2'}">team</button>
-                        </div>
-                            
-</div>
-
 
 

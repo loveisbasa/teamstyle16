@@ -19,7 +19,8 @@ ini_set("display_errors", 1);
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
 
-define('URL', 'http://teamstyle16.com/');
+//define('URL', 'http://teamstyle16.com/');
+define('URL', 'http://localhost/teamstyle16/');
 
 define("HASH_COST_FACTOR", "10");
 
@@ -62,9 +63,9 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
 define('DB_USER', 'root');
-//define('DB_PASS', 'wangjianyu');
+define('DB_PASS', 'wangjianyu');
 //define('DB_PASS', 'niehao');
-define('DB_PASS', '');
+//define('DB_PASS', '');
 
 
 

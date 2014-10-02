@@ -32,7 +32,8 @@ class LoginModel
 			user_last_failed_login, 
 			user_first_login,
 			user_type,
-			user_team
+			user_team,
+			user_real_name
 			FROM users
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
@@ -58,6 +59,7 @@ class LoginModel
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
+			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
 
@@ -65,7 +67,7 @@ class LoginModel
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
 			// put native avatar path into session
-			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
 			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 			
@@ -105,7 +107,7 @@ class LoginModel
 				$query->execute(array(':user_id' => $result->user_id));
 				//$count =  $query->rowCount();
 			}
-			$_SESSION["feedback_positive"][] = "Login in successfully! Cong!";
+			$_SESSION["feedback_positive"][] = "Login in successfully! 前进四!";
 			return true;
 		} else {
 			// 密码错误，录入失败信息
@@ -147,7 +149,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login
+			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login, user_real_name
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -160,6 +162,7 @@ class LoginModel
 			session_start();
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
+			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_type']=$result->user_type;
@@ -244,8 +247,7 @@ class LoginModel
 				return false;
 			}
 			//权限设置
-			if($_POST['user_type']=='dev') $user_type='dev';
-			else $user_type='guest';
+			$user_type='guest';
 			$sql = "INSERT INTO users (user_nickname, user_password_hash, user_email, user_real_name, user_phone, user_class,user_type)
 			VALUES (:user_nickname, :user_password_hash, :user_email, :user_real_name, :user_phone, :user_class,:user_type)";
 			$query = $this->db->prepare($sql);
@@ -256,6 +258,16 @@ class LoginModel
 				':user_phone' => $user_phone,
 				':user_class' => $user_class,
 				':user_type'=>$user_type));
+			// echo $user_email;
+			// $query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
+			// $query->execute();
+			// $result=$query->fetch();
+			// $query= $this->db->prepare(" 
+			// 	INSERT  INTO messages
+			// 	SELECT message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages 
+			// 	where message_type='Pub' 
+			// 	Group by message_title");
+			// $query->execute();	 
 			$count = (int)$query->rowCount();
 			if ($count != 1) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
@@ -479,10 +491,10 @@ class LoginModel
 		$count =  $sth->rowCount();
 
 		if ($count == 1) {
-			if (USE_GRAVATAR) {
-				$user->user_avatar_link = $this->getGravatarLinkFromEmail($user->user_email);
+			if (!$user->user_has_avatar) {
+				$user->user_avatar_link = URL. AVATAR_PATH.'default.jpg';
 			} else {
-				$user->user_avatar_link = $this->getUserAvatarFilePath($user->user_has_avatar, $user->user_id);
+				$user->user_avatar_link = URL . AVATAR_PATH.$user_id.'.jpg';
 				$_SESSION['src'] = $user->user_avatar_link;
 			}
 		} else {
@@ -561,7 +573,7 @@ class LoginModel
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
 			// put native avatar path into session
-			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
 			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 			//下面同样是可选择扩展的功能，记录最后一次登陆的时间

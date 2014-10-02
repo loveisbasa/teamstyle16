@@ -102,9 +102,9 @@ class ForumModel {
                 $subject = strip_tags($_POST['thread_subject']);
                 $content = strip_tags($_POST['message']);
                 $d = date('Y-m-d H:i:s');
-                $sql = "INSERT into threads (forum_id,user_id,subject,content,establish_date,latest_reply)
+                $sql = "INSERT into threads (forum_id,user_id,subject,content,establish_date,latest_reply,reply_count)
 						VALUES
-						({$forum_id},{$user_id},:subject,:content,'{$d}','{$d}')";
+						({$forum_id},{$user_id},:subject,:content,'{$d}','{$d}',0)";
                 $query = $this->db->prepare($sql);
                 $query->execute(array(
                     ':subject' => $subject,

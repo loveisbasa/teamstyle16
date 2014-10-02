@@ -121,7 +121,7 @@ class MessageModel {
     }
     public function ReadAllMessage() {
         $message_to_id = $_SESSION['user_id'];
-        $sql = "SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
+        $sql = "SELECT message_id, message_from_id, user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
 			where message_to_id=:message_to_id  ORDER BY message_is_read,message_send_date DESC";

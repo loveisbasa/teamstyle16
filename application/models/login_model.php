@@ -67,7 +67,7 @@ class LoginModel
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
 			// put native avatar path into session
-			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
 			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 			
@@ -491,10 +491,10 @@ class LoginModel
 		$count =  $sth->rowCount();
 
 		if ($count == 1) {
-			if (USE_GRAVATAR) {
-				$user->user_avatar_link = $this->getGravatarLinkFromEmail($user->user_email);
+			if (!$user->user_has_avatar) {
+				$user->user_avatar_link = URL. AVATAR_PATH.'default.jpg';
 			} else {
-				$user->user_avatar_link = $this->getUserAvatarFilePath($user->user_has_avatar, $user->user_id);
+				$user->user_avatar_link = URL . AVATAR_PATH.$user_id.'.jpg';
 				$_SESSION['src'] = $user->user_avatar_link;
 			}
 		} else {
@@ -573,7 +573,7 @@ class LoginModel
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
 			// put native avatar path into session
-			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
 			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 			//下面同样是可选择扩展的功能，记录最后一次登陆的时间

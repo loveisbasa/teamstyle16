@@ -32,7 +32,8 @@ class LoginModel
 			user_last_failed_login, 
 			user_first_login,
 			user_type,
-			user_team
+			user_team,
+			user_real_name
 			FROM users
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
@@ -58,6 +59,7 @@ class LoginModel
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
+			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
 
@@ -147,7 +149,7 @@ class LoginModel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login
+			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login, user_real_name
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -160,6 +162,7 @@ class LoginModel
 			session_start();
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
+			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_type']=$result->user_type;
@@ -255,16 +258,16 @@ class LoginModel
 				':user_phone' => $user_phone,
 				':user_class' => $user_class,
 				':user_type'=>$user_type));
-			echo $user_email;
-			$query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
-			$query->execute();
-			$result=$query->fetch();
-			$query= $this->db->prepare(" 
-				INSERT  INTO messages
-				SELECT message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages 
-				where message_type='Pub' 
-				Group by message_title");
-			$query->execute();	 
+			// echo $user_email;
+			// $query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
+			// $query->execute();
+			// $result=$query->fetch();
+			// $query= $this->db->prepare(" 
+			// 	INSERT  INTO messages
+			// 	SELECT message_id='auto_increment',message_from_id,{$result->user_id},message_title,message_content,message_send_date,0,message_type from messages 
+			// 	where message_type='Pub' 
+			// 	Group by message_title");
+			// $query->execute();	 
 			$count = (int)$query->rowCount();
 			if ($count != 1) {
 				$_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;

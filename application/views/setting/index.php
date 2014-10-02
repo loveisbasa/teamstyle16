@@ -106,7 +106,7 @@
                     <div class="face"></div>
                         <div class="form-field">
                             <label>Real Name</label>
-                            <input type="text" autocomplete="off" name="user_real_name" required class="form-control password" value = "<?php echo $_SESSION['user_realname'];?>"/>
+                            <input type="text" autocomplete="off" name="user_real_name" required class="form-control password" value = "<?php echo $_SESSION['user_real_name'];?>"/>
                             <span class="icon icon-lock"></span>
                         </div>
                     <br/>

@@ -486,7 +486,6 @@ class LoginModel
 			WHERE user_id = :user_id";
 		$sth = $this->db->prepare($sql);
 		$sth->execute(array(':user_id' => $user_id));
-
 		$user = $sth->fetch();
 		$count =  $sth->rowCount();
 

@@ -20,6 +20,15 @@ class Team extends Controller
 		header('location:' .URL. 'team/team_display');
 		
 	}
+	public function invite_team($user_id){
+		if (isset($team_id)) {
+			$team_model = $this->loadModel('Team');
+			$team_model->InviteTeam($team_id);
+		}
+		header('location:' .URL. "home/index/$user_id");
+		
+	}
+	
 	
 	public function create_team()
 	{

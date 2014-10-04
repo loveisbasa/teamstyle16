@@ -18,7 +18,7 @@
                 <h3 class="panel-title">修改头像</h3>
             </div>
             <div class="panel-body">
-                <?php echo '<img src="'.$_SESSION['src'].'" />'; ?>
+						<img src="<?php echo $_SESSION['user_avatar_file'];?>" width=100px />
                 <form action="<?php echo URL; ?>login/uploadAvatar_action" method="post" enctype="multipart/form-data">
                     <label for="avatar_file">Select an avatar image from your hard-disk (will be scaled to 44x44 px):</label>
                     <input type="file" name="avatar_file" required />
@@ -106,7 +106,7 @@
                     <div class="face"></div>
                         <div class="form-field">
                             <label>Real Name</label>
-                            <input type="text" autocomplete="off" name="user_real_name" required class="form-control password" value = "<?php echo $_SESSION['user_realname'];?>"/>
+                            <input type="text" autocomplete="off" name="user_real_name" required class="form-control password" value = "<?php echo $_SESSION['user_real_name'];?>"/>
                             <span class="icon icon-lock"></span>
                         </div>
                     <br/>

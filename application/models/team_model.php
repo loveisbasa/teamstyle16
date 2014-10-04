@@ -51,7 +51,7 @@ class TeamModel
 			$team_slogan = strip_tags($_POST['team_slogan']);
 			$team_captain = $_SESSION['user_id'];
 			$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-			$team_password_hash = password_hash($_POST['team_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+			$team_password_hash = md5($_POST['team_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
 			$team_full = 1;
 
 			

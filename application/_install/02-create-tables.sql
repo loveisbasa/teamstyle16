@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `info`.`users` (
   `user_nickname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `user_team` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `user_email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `user_real_name` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `user_real_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `user_phone` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
   `user_class` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `user_failed_logins` tinyint(1) NOT NULL DEFAULT '0',
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS`info`.`teams` (
 `team_id` int(11) NOT NULL AUTO_INCREMENT,
 `team_name` varchar(20) NOT NULL,
 `team_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-`team_slogan` text NOT NULL DEFAULT "",
+`team_slogan` text NOT NULL ,
 `team_captain` int(11) NOT NULL,
 `team_member1` int(11) NOT NULL DEFAULT '0',
 `team_member2` int(11) NOT NULL DEFAULT '0',
@@ -80,17 +80,19 @@ CREATE TABLE IF NOT EXISTS`info`.`threads`(
   `establish_date` datetime NOT NULL,
   `latest_reply` datetime NOT NULL,
   `reply_count` int NOT NUll,
+  `author_avatar` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (`thread_id`),
 	INDEX (`thread_id`),
 	Index (`user_id`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*评论*/
 CREATE TABLE IF NOT EXISTS`info`.`posts`(
-	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-	thread_id int(11) UNSIGNED NOT NULL,
-	user_id int(11) UNSIGNED NOT NULL,
-	message text NOT NULL,
-	post_on datetime NOT NULL,
+	`post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`thread_id` int(11) UNSIGNED NOT NULL,
+	`user_id` int(11) UNSIGNED NOT NULL,
+	`message` text NOT NULL,
+	`post_on` datetime NOT NULL,
+  `user_avatar` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
 	INDEX (user_id)

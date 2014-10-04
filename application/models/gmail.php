@@ -61,7 +61,7 @@ $mail->Subject = '队式16找回密码';
 $URL=URL . "login/refindaction/" . $key . "?user_nickname=" . $result->user_nickname;
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-$mail->msgHTML("<html><body>To change your password, please click here <a href='{$URL}'$>{$URL}</a></body></html>");
+$mail->msgHTML($ms);
 
 //Replace the plain text body with one created manually
 $mail->AltBody = 'This is a plain-text message body';

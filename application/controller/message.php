@@ -23,7 +23,7 @@ class Message extends Controller
 				require 'application/views/_templates/footer.php';
 
 				}
-		else header('location: ' . URL . 'dashboard/index');
+				else header('location: ' . URL . 'dashboard/index');
 		}
 		else header('location: ' . URL . 'dashboard/index');
 	}

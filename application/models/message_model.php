@@ -54,7 +54,7 @@ class MessageModel {
                 if (!isset($_POST['message_title']) OR empty($_POST['message_title'])) {
                     $_SESSION["feedback_negative"][] = FEEDBACK_TITLE_WARNING_EMPTY;
                 }
-                if ($_POST['message_type'] == 'ser') {
+                if ($_POST['message_type'] == 'sec') {
                     $sql = "INSERT into messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)
 				VALUES
 				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";
@@ -105,7 +105,7 @@ class MessageModel {
     }
     public function ReadNewMessage() {
         $message_to_id = $_SESSION['user_id'];
-        $sql = "SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
+        $sql = "SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read,message_to_id
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
 			where (message_to_id=:message_to_id )and message_is_read=0";
@@ -121,7 +121,7 @@ class MessageModel {
     }
     public function ReadAllMessage() {
         $message_to_id = $_SESSION['user_id'];
-        $sql = "SELECT message_id,user_nickname,message_title,message_content,message_send_date,message_is_read
+        $sql = "SELECT message_id, message_from_id, user_nickname,message_title,message_content,message_send_date,message_is_read
 			from messages AS m INNER JOIN users AS u
 			ON m.message_from_id=u.user_id
 			where message_to_id=:message_to_id  ORDER BY message_is_read,message_send_date DESC";

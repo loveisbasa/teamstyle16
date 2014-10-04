@@ -67,7 +67,7 @@
         <ul>
 					<h8><?php if ($i!=-1) echo $message->message_content; ?></h8>"
           <hr>
-          <li><?php if ($i!=-1) echo "From <a href="; echo URL . "home/index/" .  $message->user_nickname . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?></li>
+          <li><?php if ($i!=-1) echo "From <a href="; echo URL . "home/index/" .  $message->message_from_id . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?></li>
           <li data-uk-offcanvas="{target:'#offcanvas-5'}"><button>回复</button></li>
         </ul>
 			</div>

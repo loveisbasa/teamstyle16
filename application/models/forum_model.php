@@ -41,7 +41,7 @@ class ForumModel {
         if (isset($thread_id) and filter_var($thread_id, FILTER_VALIDATE_INT, array(
             'min_range' => 1
         ))) {
-            $sql = "SELECT p.user_id as user_id,t.subject as subject,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
+            $sql = "SELECT p.user_id as user_id, p.user_avatar as user_avatar, t.subject as subject,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
 						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
 						WHERE t.thread_id={$thread_id} ORDER BY p.post_on ASC";
@@ -77,62 +77,67 @@ class ForumModel {
                 $sql = "INSERT into forums(title,intro,latest_reply,count_thread,count_post) 
 						VALUES
 						(:title,:intro,'{$d}',0,0)";
-                echo $sql;
-                $query = $this->db->prepare($sql);
-                if ($query->execute(array(
-                    ':title' => $title,
-                    ':intro' => $intro
-                ))) return 'true';
-                else $_SESSION["feedback_negative"][] = FEEDBACK_FORUM_INSERT_ERROR;
-            }
-        } else {
-            $_SESSION["feedback_negative"][] = FEEDBACK_PERMISSION_DENIED;
-        }
-    }
-    public function Create_thread($forum_id) {
-        if ($_POST['vcode'] != $_SESSION['captcha']) {
-            $_SESSION['feedback_negative'][] = FEEDBACK_WRONG_VC;
-        } else {
-            echo $_POST['thread_subject'];
-            if (empty($_POST['thread_subject'])) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_THREAD_SUBJECT_EMPTY;
-            } elseif (empty($_SESSION['user_id'])) $_SESSION['feedback_negative'][] = FEEDBACK_NO_LOGIN;
-            else {
-                $user_id = $_SESSION['user_id'];
-                $subject = strip_tags($_POST['thread_subject']);
-                $content = strip_tags($_POST['message']);
-                $d = date('Y-m-d H:i:s');
-                $sql = "INSERT into threads (forum_id,user_id,subject,content,establish_date,latest_reply,reply_count)
+
+					echo $sql;
+					$query=$this->db->prepare($sql);
+					if($query->execute(array(':title'=>$title,':intro'=>$intro))) return 'true'; 
+					else $_SESSION["feedback_negative"][]=FEEDBACK_FORUM_INSERT_ERROR;								
+					}
+				}
+				else{
+				$_SESSION["feedback_negative"][]= FEEDBACK_PERMISSION_DENIED;
+				}
+		}
+
+		public function Create_thread($forum_id){
+			/*if($_POST['vcode']!=
+				$_SESSION['captcha']){
+				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
+				}
+			else{*/
+			echo $_POST['thread_subject'];
+			if (empty($_POST['thread_subject'])) {
+			$_SESSION["feedback_negative"][] =FEEDBACK_THREAD_SUBJECT_EMPTY;
+			}
+			elseif(empty($_SESSION['user_id']))
+			 	$_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
+			else{
+				$user_id=$_SESSION['user_id'];
+				$subject=strip_tags($_POST['thread_subject']);
+				$content=strip_tags($_POST['message']);	
+                                                   $avatar = $_SESSION['user_avatar_file'];
+				$d=date('Y-m-d H:i:s');			
+				$sql="INSERT into threads (forum_id,user_id,subject,content,establish_date,latest_reply, author_avatar)
 						VALUES
-						({$forum_id},{$user_id},:subject,:content,'{$d}','{$d}',0)";
-                $query = $this->db->prepare($sql);
-                $query->execute(array(
-                    ':subject' => $subject,
-                    ':content' => $content
-                ));
-                $sql = "UPDATE forums SET count_thread=count_thread+1 where forum_id={$forum_id}";
-                $query = $this->db->prepare($sql);
-                if (!$query->execute()) $_SESSION["feedback_negative"][] = FEEDBACK_THREAD_INSESRT_ERROR;
-                else return 'true';
-            }
-        }
-    }
-    public function Create_Post($thread_id) {
-        if ($_POST['vcode'] != $_SESSION['captcha']) $_SESSION['feedback_negative'][] = FEEDBACK_WRONG_VC;
-        elseif (empty($_POST['message'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_POST_MESSAGE_EMPTY;
-        } elseif (empty($_SESSION['user_id'])) $_SESSION['feedback_negative'][] = FEEDBACK_NO_LOGIN;
-        else {
-            $user_id = $_SESSION['user_id'];
-            $message = strip_tags($_POST['message']);
-            $d = date('Y-m-d H:i:s');
-            $sql = "INSERT into posts (thread_id,user_id,message,post_on)
+						({$forum_id},{$user_id},:subject,:content,'{$d}','{$d}', :author_avatar)";
+				$query=$this->db->prepare($sql);
+				$query->execute(array(':subject'=>$subject,':content'=>$content, ':author_avatar'=>$avatar));
+				$sql="UPDATE forums SET count_thread=count_thread+1 where forum_id={$forum_id}";
+				$query=$this->db->prepare($sql);
+				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
+				else return 'true';
+				}
+			}
+	//	}			
+
+		public function Create_Post($thread_id){
+						if($_POST['vcode']!=$_SESSION['captcha'])
+				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
+
+			elseif (empty($_POST['message'])) {
+			$_SESSION["feedback_negative"][] =FEEDBACK_POST_MESSAGE_EMPTY;
+			}
+			elseif(empty($_SESSION['user_id'])) $_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;
+			else{
+				$user_id=$_SESSION['user_id'];
+				$message=strip_tags($_POST['message']);
+                                                   $user_avatar = $_SESSION['user_avatar_file'];
+				$d=date('Y-m-d H:i:s');
+				$sql="INSERT into posts (thread_id,user_id,message,post_on,user_avatar)
 					VALUES
-					({$thread_id},{$user_id},:message,'{$d}')";
+					({$thread_id},{$user_id},:message,'{$d}', :user_avatar )";
             $query = $this->db->prepare($sql);
-            $query->execute(array(
-                ':message' => $message
-            ));
+            $query->execute(array(':message' => $message, ':user_avatar'=>$user_avatar));
             $sql = "SELECT forum_id,subject,user_id FROM threads WHERE thread_id={$thread_id}";
             $query = $this->db->prepare($sql);
             if (!$query->execute()) $_SESSION["feedback_negative"][] = FEEDBACK_THREAD_INSESRT_ERROR;

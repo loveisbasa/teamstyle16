@@ -68,7 +68,7 @@ class Login extends Controller
 		$login_model = $this->loadModel('Login');
 		$logout_success = $login_model->Logout();
 
-		header('location:' .URL. 'login/index');
+		header('location:' .URL. 'login');
 	}
 
 	public function loginWithCookie()
@@ -118,7 +118,7 @@ public function refind(){
 	public function refindaction($key){
 		$login_model=$this->loadModel('login');
 		$user_nickname=$_GET['user_nickname'];
-	  $login_success=	$login_model->refindaction($key,$user_nickname);
+	  	$login_success=$login_model->refindaction($key,$user_nickname);
 		if ($login_success == true) {
 				$user_profile = $login_model->getUserProfile($_SESSION['user_id']);
 					$_SESSION['user_profile'] = $user_profile;

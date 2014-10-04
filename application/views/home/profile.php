@@ -22,7 +22,7 @@
 				<p><?php echo $user_profile->team_slogan;?></p>
 				<p><?php echo "队长：".$team_captain->user_nickname;?><br>
 					<?php echo "成员：";if (isset($team_member1)) echo $team_member1->user_nickname;?><br>
-					<?php echo "成员：";if (isset($team_member1)) echo $team_member2->user_nickname;?><br>
+					<?php if (isset($team_member2)) echo "成员：".$team_member2->user_nickname;?><br>
 				</p>
 				<br>
 				<?php } else {?>

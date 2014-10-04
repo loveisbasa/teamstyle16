@@ -1,6 +1,6 @@
 <?php
 
-class LoginModel extends avatarmodel
+class LoginModel 
 {
 	public function __construct($db) 
 	{
@@ -32,7 +32,8 @@ class LoginModel extends avatarmodel
 			user_last_failed_login, 
 			user_first_login,
 			user_type,
-			user_team
+			user_team,
+			user_real_name
 			FROM users
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
@@ -58,6 +59,7 @@ class LoginModel extends avatarmodel
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_first_login'] = $result->user_first_login;
+			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
 
@@ -65,7 +67,7 @@ class LoginModel extends avatarmodel
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
 			// put native avatar path into session
-			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
 			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 			
@@ -147,7 +149,7 @@ class LoginModel extends avatarmodel
 		}
 
 		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login
+			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login, user_real_name
 			FROM users 
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -160,6 +162,7 @@ class LoginModel extends avatarmodel
 			session_start();
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
+			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
 			$_SESSION['user_type']=$result->user_type;
@@ -255,7 +258,7 @@ class LoginModel extends avatarmodel
 				':user_phone' => $user_phone,
 				':user_class' => $user_class,
 				':user_type'=>$user_type));
-			echo $user_email;
+			//echo $user_email;
 			$query=$this->db->prepare("select user_id from users where user_nickname='{$user_nickname}'");
 			$query->execute();
             $count = (int)$query->rowCount();
@@ -270,7 +273,6 @@ class LoginModel extends avatarmodel
 				where message_type='Pub' 
 				Group by message_title");
 			$query->execute();	 
-			
 			$_SESSION["feedback_positive"][] = "Register successfully! Voila!";
 			return true;
 		}
@@ -302,7 +304,216 @@ class LoginModel extends avatarmodel
      * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
      * @param array $attributes Optional, additional key/value attributes to include in the IMG tag
      */
- 		public function refindapply($email)
+	public function setGravatarImageUrl($email, $s = 44, $d = 'mm', $r = 'pg', $attributes = array())
+	{
+	// create image URL, write it into session
+		$image_url = 'http://www.gravatar.com/avatar/' . md5(strtolower(trim($email))) .  "?s=$s&d=$d&r=$r";
+		$_SESSION['user_gravatar_image_url'] = $image_url;
+		// build <img /> tag around the URL
+		$image_url_with_tag = '<img src="' . $image_url . '"';
+		foreach ($attributes as $key => $val) {
+			$image_url_with_tag .= ' ' . $key . '="' . $val . '"';
+		}
+		$image_url_with_tag .= ' />';
+
+		// the image url like above but with an additional <img src .. /> around, write to session
+		$_SESSION['user_gravatar_image_tag'] = $image_url_with_tag;
+	}
+
+	 /**
+	 * Gets the user's avatar file path
+	 * @return string avatar picture path
+	 */
+ 	public function getUserAvatarFilePath()
+ 	{
+ 		$query = $this->db->prepare("SELECT user_has_avatar FROM users WHERE user_id = :user_id");
+ 		$query->execute(array(':user_id' => $_SESSION['user_id']));
+
+ 		if ($query->fetch()->user_has_avatar) {
+ 			return URL . AVATAR_PATH . $_SESSION['user_id'] . '.jpg';
+ 		} else {
+ 			return URL . AVATAR_PATH . AVATAR_DEFAULT_IMAGE;
+ 		}
+ 	}
+
+ 	/**
+ 	* Create an avatar picture (and checks all necessary things too)
+ 	* @return bool success status
+ 	*/
+ 	public function createAvatar()
+ 	{
+ 		if (!is_dir(AVATAR_PATH) OR !is_writable(AVATAR_PATH)) {
+ 			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_FOLDER_DOES_NOT_EXIST_OR_NOT_WRITABLE;
+ 			return false;
+ 		}
+ 		if (!isset($_FILES['avatar_file']) OR empty ($_FILES['avatar_file']['tmp_name'])) {
+ 			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_IMAGE_UPLOAD_FAILED;
+ 			return false;
+ 		}
+
+ 		// get the image width, height and mime type
+ 		$image_proportions = getimagesize($_FILES['avatar_file']['tmp_name']);
+
+ 		// if input file too big (>5MB)
+ 		if ($_FILES['avatar_file']['size'] > 5000000 ) {
+ 			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_UPLOAD_TOO_BIG;
+ 			return false;
+ 		}
+ 		// if input file too small
+ 		if ($image_proportions[0] < AVATAR_SIZE OR $image_proportions[1] < AVATAR_SIZE) {
+ 			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_UPLOAD_TOO_SMALL;
+ 			return false;
+ 		}
+
+ 		if ($image_proportions['mime'] == 'image/jpeg' || $image_proportions['mime'] == 'image/png') {
+ 		// create a jpg file in the avatar folder
+ 			$target_file_path = AVATAR_PATH . $_SESSION['user_id'] . ".jpg";
+ 			$this->resizeAvatarImage($_FILES['avatar_file']['tmp_name'], $target_file_path, AVATAR_SIZE, AVATAR_SIZE, AVATAR_JPEG_QUALITY, true);
+ 			$query = $this->db->prepare("UPDATE users SET user_has_avatar = TRUE WHERE user_id = :user_id");
+ 			$query->execute(array(':user_id' => $_SESSION['user_id']));
+ 			$_SESSION['user_avatar_file'] = $this->getUserAvatarFilePath();
+ 			$_SESSION["feedback_positive"][] = FEEDBACK_AVATAR_UPLOAD_SUCCESSFUL;
+ 			return true;
+ 		} else {
+ 			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_UPLOAD_WRONG_TYPE;
+ 			return false;
+ 		}
+ 	}
+
+ 	public function resizeAvatarImage(
+ 		$source_image, $destination_filename, $width = 88, $height = 88, $quality = 85, $crop = true)
+ 	{
+ 		$image_data = getimagesize($source_image);
+ 		if (!$image_data) {
+ 			return false;
+ 		}
+
+ 		// set to-be-used function according to filetype
+ 		switch ($image_data['mime']) {
+ 			case 'image/gif':
+ 			$get_func = 'imagecreatefromgif';
+ 			$suffix = ".gif";
+ 			break;
+ 			case 'image/jpeg';
+ 			$get_func = 'imagecreatefromjpeg';
+ 			$suffix = ".jpg";
+ 			break;
+ 			case 'image/png':
+ 			$get_func = 'imagecreatefrompng';
+ 			$suffix = ".png";
+ 			break;
+ 		}
+ 		$img_original = call_user_func($get_func, $source_image );
+ 		$old_width = $image_data[0];
+ 		$old_height = $image_data[1];
+ 		$new_width = $width;
+ 		$new_height = $height;
+ 		$src_x = 0;
+ 		$src_y = 0;
+ 		$current_ratio = round($old_width / $old_height, 2);
+ 		$desired_ratio_after = round($width / $height, 2);
+ 		$desired_ratio_before = round($height / $width, 2);
+
+ 		if ($old_width < $width OR $old_height < $height) {
+ 		// the desired image size is bigger than the original image. Best not to do anything at all really.
+ 			return false;
+ 		}
+
+ 		// if crop is on: it will take an image and best fit it so it will always come out the exact specified size.
+ 		if ($crop) {
+ 		// create empty image of the specified size
+ 			$new_image = imagecreatetruecolor($width, $height);
+
+ 			// landscape image
+ 			if ($current_ratio > $desired_ratio_after) {
+ 				$new_width = $old_width * $height / $old_height;
+ 			}
+
+ 			// nearly square ratio image
+ 			if ($current_ratio > $desired_ratio_before AND $current_ratio < $desired_ratio_after) {
+ 				if ($old_width > $old_height) {
+ 					$new_height = max($width, $height);
+ 					$new_width = $old_width * $new_height / $old_height;
+ 				} else {
+ 					$new_height = $old_height * $width / $old_width;
+ 				}
+ 			}
+ 			// portrait sized image
+ 			if ($current_ratio < $desired_ratio_before) {
+ 				$new_height = $old_height * $width / $old_width;
+ 			}
+
+ 			// find ratio of original image to find where to croz
+ 			$width_ratio = $old_width / $new_width;
+ 			$height_ratio = $old_height / $new_height;
+
+ 			// calculate where to crop based on the center of the image
+ 			$src_x = floor((($new_width - $width) / 2) * $width_ratio);
+ 			$src_y = round((($new_height - $height) / 2) * $height_ratio);
+ 		}
+
+ 		// don't crop the image, just resize it proportionally
+ 		else {
+ 			if ($old_width > $old_height) {
+ 				$ratio = max($old_width, $old_height) / max($width, $height);
+ 			} else {
+ 				$ratio = max($old_width, $old_height) / min($width, $height);
+ 			}
+ 			$new_width = $old_width / $ratio;
+ 			$new_height = $old_height / $ratio;
+ 			$new_image = imagecreatetruecolor($new_width, $new_height);
+ 		}
+ 		// create avatar thumbnail
+ 		imagecopyresampled($new_image, $img_original, 0, 0, $src_x, $src_y, $new_width, $new_height, $old_width, $old_height);
+
+ 		// save it as a .jpg file with our $destination_filename parameter
+ 		imagejpeg($new_image, $destination_filename, $quality);
+ 		// delete "working copy" and original file, keep the thumbnail
+		imagedestroy($new_image);
+		imagedestroy($img_original);
+
+		if (file_exists($destination_filename)) {
+			return true;
+		}
+		// default return
+		return false;
+	}
+
+	public function getUserProfile($user_id)
+	{
+		$sql = "SELECT *
+			FROM users left join teams on teams.team_name=users.user_team 
+			WHERE user_id = :user_id";
+		$sth = $this->db->prepare($sql);
+		$sth->execute(array(':user_id' => $user_id));
+
+		$user = $sth->fetch();
+		$count =  $sth->rowCount();
+
+		if ($count == 1) {
+			if (!$user->user_has_avatar) {
+				$user->user_avatar_link = URL. AVATAR_PATH.'default.jpg';
+			} else {
+				$user->user_avatar_link = URL . AVATAR_PATH.$user_id.'.jpg';
+				$_SESSION['src'] = $user->user_avatar_link;
+			}
+		} else {
+			$_SESSION["feedback_negative"][] = FEEDBACK_USER_DOES_NOT_EXIST;
+		}
+
+		return $user;
+	}
+
+	public function getGravatarLinkFromEmail($email, $s = AVATAR_SIZE, $d = 'mm', $r = 'pg', $options = array())
+	{
+		$gravatar_image_link = 'http://www.gravatar.com/avatar/';
+		$gravatar_image_link .= md5( strtolower( trim( $email ) ) );
+		$gravatar_image_link .= "?s=$s&d=$d&r=$r";
+
+		return $gravatar_image_link;
+	}
+
+	public function refindapply($email)
 	{
 			if (empty($email)) {
 			$_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_FIELD_EMPTY;
@@ -316,6 +527,8 @@ class LoginModel extends avatarmodel
 					echo $key;
 			$query=$this->db->prepare("update users set user_refind_date='{$d}' where user_nickname='{$result->user_nickname}'");
 		  $query->execute();
+		$URL=URL . "login/refindaction/" . $key . "?user_nickname=" . $result->user_nickname;
+
 		  $ms="<html><body>To change your password, please click here <a href='{$URL}'$>{$URL}</a></body></html>";//邮件会发送的信息
 			require ('gmail.php');
 				}
@@ -363,7 +576,7 @@ class LoginModel extends avatarmodel
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
 			// put native avatar path into session
-			//Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('user_avatar_file', $this->getUserAvatarFilePath());
 			// put Gravatar URL into session
 			//$this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 			//下面同样是可选择扩展的功能，记录最后一次登陆的时间

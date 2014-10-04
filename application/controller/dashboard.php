@@ -12,12 +12,11 @@ class dashboard extends Controller
 		if (isset($_SESSION['user_logged_in'])) {
 			$overview_model = $this->loadModel('Login');
 			$alluser_model=$this->loadModel('Users');
-			$Alluser=$alluser_model->all_users();
+			$All_user=$alluser_model->all_users();
 			$this->view->user = $overview_model->getUserProfile($_SESSION['user_id']);
-			$this->view->render('dashboard/index');
-			// require 'application/views/_templates/header.php';
-			// require 'application/views/dashboard/index.php';
-			// require 'application/views/_templates/footer.php';
+			require 'application/views/_templates/header.php';
+			require 'application/views/dashboard/index.php';
+			require 'application/views/_templates/footer.php';
 		} else {
 			session_destroy();
 			header('location:' .URL. 'login');

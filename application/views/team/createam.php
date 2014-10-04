@@ -33,7 +33,7 @@ label{white-space: pre-wrap;}
                   </div>
                   <div class="uk-form-row">
                     <label class="uk-form-label"> 队  友  2 </label>
-                    <input type = "text" name = "team_member1" value="" placeholder="昵称（可不填）"/>
+                    <input type = "text" name = "team_member2" value="" placeholder="昵称（可不填）"/>
                   </div>
                   <div class="uk-form-row">
                     <div>

@@ -80,17 +80,19 @@ CREATE TABLE IF NOT EXISTS`info`.`threads`(
   `establish_date` datetime NOT NULL,
   `latest_reply` datetime NOT NULL,
   `reply_count` int NOT NUll,
+  `author_avatar` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (`thread_id`),
 	INDEX (`thread_id`),
 	Index (`user_id`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8; 
 /*评论*/
 CREATE TABLE IF NOT EXISTS`info`.`posts`(
-	post_id int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-	thread_id int(11) UNSIGNED NOT NULL,
-	user_id int(11) UNSIGNED NOT NULL,
-	message text NOT NULL,
-	post_on datetime NOT NULL,
+	`post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`thread_id` int(11) UNSIGNED NOT NULL,
+	`user_id` int(11) UNSIGNED NOT NULL,
+	`message` text NOT NULL,
+	`post_on` datetime NOT NULL,
+  `user_avatar` VARCHAR(100) NOT NULL,
 	PRIMARY KEY (post_id),
 	INDEX (thread_id),
 	INDEX (user_id)

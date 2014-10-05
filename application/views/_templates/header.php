@@ -54,7 +54,7 @@ body{
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo URL; ?>">主页</a></li>
+        <li style = "font:bold"><a href="<?php echo URL; ?>">主页</a></li>
         <?php if (isset($_SESSION['user_logged_in'])) {?>
         <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold;color:white"><?php echo $_SESSION['user_nickname'];?></a></li>
         <?php }?>

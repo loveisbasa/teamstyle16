@@ -23,6 +23,15 @@ class dashboard extends Controller
 		}	
 	}
 
+	public function alluser()
+	{
+		$alluser_model=$this->loadModel('Users');
+		$All_user=$alluser_model->all_users();
+		require 'application/views/_templates/header.php';
+		require 'application/views/team/users.php';
+		require 'application/views/_templates/footer.php';
+	}
+
 }
 
 function HandleLoggedIn() 

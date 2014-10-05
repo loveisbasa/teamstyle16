@@ -87,7 +87,8 @@
                 if ($_SESSION['user_first_login'] == 1) {
                     echo 'This is your first login!';
                 }?></p>
-                <p><a href="<?php echo URL. 'login/uploadavatar_action'?>">edit profile</a></p>
+                <a href="<?php echo URL. 'login/uploadavatar_action'?>"><button class="uk-button uk-button-dafault">修改个人信息</button></a>
+                <a href="<?php echo URL. 'dashboard/alluser'?>"><button class="uk-button uk-button-primary">所有用户</button></a>
             </div>
         </div>
     </div>
@@ -188,6 +189,7 @@
             </section>
     </div>
 </div>
+<!--
 <?php
 foreach($All_user as $user){?>
 <a href=<?php echo URL . "home/index/" . $user->user_id;?>>
@@ -195,5 +197,5 @@ foreach($All_user as $user){?>
 </a>
 <?php			}
 ?>
-
+-->
 

@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+p{font-family: 微软雅黑}
+h1,h2,h3,h4,h5,h6{font-family: 微软雅黑}
+a{font-family: 微软雅黑}
+li{font-family: 微软雅黑}
+</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

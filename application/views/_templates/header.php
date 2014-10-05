@@ -56,13 +56,13 @@ body{
       <ul class="nav navbar-nav">
         <li><a href="<?php echo URL; ?>">主页</a></li>
         <?php if (isset($_SESSION['user_logged_in'])) {?>
-        <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold"><?php echo $_SESSION['user_nickname'];?></a></li>
+        <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold;color:white"><?php echo $_SESSION['user_nickname'];?></a></li>
         <?php }?>
       </ul>
     <!--if not logged in,provide a button to log-->
     <?php if (!isset($_SESSION['user_logged_in'])) {?>
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="<?php echo URL . 'login'?>">登陆</a></li>
+        <li style = "color:white"><a href="<?php echo URL . 'login'?>">登陆</a></li>
       </ul>
     <?php } else {?>
     <script>
@@ -101,4 +101,3 @@ body{
   </div>
   </div> 
 </header>
-

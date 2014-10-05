@@ -2,6 +2,7 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
 <style>
 #wrap{word-break:break-all; width:250px;}
+p{white-space: pre-line;}
 </style>
 
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">

@@ -2,25 +2,26 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
 <style>
 #wrap{word-break:break-all; width:250px;}
+#deepblue{color:white;font-family: times}
 p{white-space: pre-line;}
 </style>
 
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
-    <div class="uk-grid" data-uk-grid-margin>
-        <div class="uk-width-medium-1-1">
-            <div class="uk-vertical-align uk-text-center" style="background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkViZW5lXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMTEzMHB4IiBoZWlnaHQ9IjQ1MHB4IiB2aWV3Qm94PSIwIDAgMTEzMCA0NTAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDExMzAgNDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxyZWN0IGZpbGw9IiNGNUY1RjUiIHdpZHRoPSIxMTMwIiBoZWlnaHQ9IjQ1MCIvPg0KPC9zdmc+DQo=') 50% 0 no-repeat; height: 450px;">
-                <div class="uk-vertical-align-middle uk-width-1-2">
-                    <h1 class="uk-heading-large">Teamstyle16 深蓝</h1>
-                    <p class="uk-text-large">寻找队（da）友（tui）</p><p>规则讨（tu）论（cao）</p>
-                    <p>
-
-                        <a class="uk-button uk-button-primary uk-button-large" href="#">Button</a>
-                        <a class="uk-button uk-button-large" href="#">Button</a>
-                    </p>
+    <div class="uk-grid">
+        <div class="uk-width-medium-1-1" style = "background:url(<?php echo URL; ?>public/img/theme.jpg);background-repeat:no-repeat;background-position:50% 0%">
+            <div class="uk-vertical-align">
+                <div class="uk-vertical-align-middle uk-width-1-1 uk-text-center">
+                    <br>
+                    <h1 class="uk-heading-large" style="color:white;font-family:times">DEEP BLUE</h1>
+                    <br>
                 </div>
             </div>
-
+        </div>
+        <div class="uk-width-1-1">
+            <br>
+            <h2 style="text-align:center">队式人自己的论坛</h2>
+            <h4 style="text-align:center">让队式成为大学里最温暖的回忆</h4>
         </div>
 
     </div>
@@ -46,7 +47,7 @@ p{white-space: pre-line;}
             <?php }?>
             </div> 
         </div>
-        <hr class="uk-grid-divider">
+
 <div class="container">
 <?php 
         if($_SESSION['user_type']=='admin')
@@ -58,82 +59,6 @@ p{white-space: pre-line;}
 
 
        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
-
-<!--            <div class="uk-grid" data-uk-grid-margin>
-                <div class="uk-width-medium-1-3">
-                    <div class="uk-grid">
-                        <div class="uk-width-1-6">
-                            <i class="uk-icon-cog uk-icon-large uk-text-primary"></i>
-                        </div>
-                        <div class="uk-width-5-6">
-                            <h2 class="uk-h3">Sample Heading</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-3">
-                    <div class="uk-grid">
-                        <div class="uk-width-1-6">
-                            <i class="uk-icon-thumbs-o-up uk-icon-large uk-text-primary"></i>
-                        </div>
-                        <div class="uk-width-5-6">
-                            <h2 class="uk-h3">Sample Heading</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-3">
-                    <div class="uk-grid">
-                        <div class="uk-width-1-6">
-                            <i class="uk-icon-cloud-download uk-icon-large uk-text-primary"></i>
-                        </div>
-                        <div class="uk-width-5-6">
-                            <h2 class="uk-h3">Sample Heading</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="uk-grid" data-uk-grid-margin>
-                <div class="uk-width-medium-1-3">
-                    <div class="uk-grid">
-                        <div class="uk-width-1-6">
-                            <i class="uk-icon-dashboard uk-icon-large uk-text-primary"></i>
-                        </div>
-                        <div class="uk-width-5-6">
-                            <h2 class="uk-h3">Sample Heading</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-3">
-                    <div class="uk-grid">
-                        <div class="uk-width-1-6">
-                            <i class="uk-icon-comments uk-icon-large uk-text-primary"></i>
-                        </div>
-                        <div class="uk-width-5-6">
-                            <h2 class="uk-h3">Sample Heading</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-width-medium-1-3">
-                    <div class="uk-grid">
-                        <div class="uk-width-1-6">
-                            <i class="uk-icon-briefcase uk-icon-large uk-text-primary"></i>
-                        </div>
-                        <div class="uk-width-5-6">
-                            <h2 class="uk-h3">Sample Heading</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
 
             <hr class="uk-grid-divider">
 
@@ -175,9 +100,7 @@ p{white-space: pre-line;}
                 <div class="uk-width-medium-1-1">
                     <div class="uk-panel uk-panel-box uk-text-center">
                         <p>
-                            <strong>Teamstyle16 欢迎你的加入</strong> 
-                            浏览完了意犹未尽？
-                            <a class="uk-button uk-button-primary uk-margin-left" href="#">回到顶部</a>
+                            <strong>Teamstyle16 欢迎你的加入</strong> 浏览完了意犹未尽？<a class="uk-button uk-button-primary uk-margin-left" href="#">回到顶部</a>
                         </p>
                     </div>
                 </div>
@@ -190,7 +113,7 @@ p{white-space: pre-line;}
                     <a class="uk-overlay" href="#">
                         <img src="<?php echo URL;?>public/img/1.png" width="350" height="150" ></img>
                        <div class="uk-overlay-area">
-                            <div class="uk-overlay-area-content">网站组</div>
+                            <div class="uk-overlay-area-content">沟通连接 架起桥梁</div>
                         </div>
                     </a>
                 </div>
@@ -199,7 +122,7 @@ p{white-space: pre-line;}
                      <a class="uk-overlay" href="#">
                         <img width="350" height="150" src="<?php echo URL;?>public/img/2.png" alt="">
                         <div class="uk-overlay-area">
-                            <div class="uk-overlay-area-content">逻辑组</div>
+                            <div class="uk-overlay-area-content">制定游戏规则 掌控生死存亡</div>
                         </div>
                     </a>
                 </div>
@@ -208,7 +131,7 @@ p{white-space: pre-line;}
                    <a class="uk-overlay" href="#">
                         <img width="350" height="150" src="<?php echo URL;?>public/img/3.png" alt="">
                         <div class="uk-overlay-area">
-                            <div class="uk-overlay-area-content">平台组</div>
+                            <div class="uk-overlay-area-content">酷炫特效 3D制造</div>
                         </div>
                     </a>
                 </div>
@@ -217,7 +140,8 @@ p{white-space: pre-line;}
                     <a class="uk-overlay" href="#">
                         <img width="350" height="150" src="<?php echo URL;?>public/img/4.png">
                         <div class="uk-overlay-area">
-                            <div class="uk-overlay-area-content">美工组</div>
+                            <div class="uk-overlay-area-content">手握服务器最高权限
+                                掌握全部数据库内容</div>
                         </div>
                     </a>
                 </div>
@@ -226,7 +150,7 @@ p{white-space: pre-line;}
                      <a class="uk-overlay" href="#">
                         <img width="350" height="150" src="<?php echo URL;?>public/img/5.png">
                                                  <div class="uk-overlay-area">
-                            <div class="uk-overlay-area-content">3D组</div>
+                            <div class="uk-overlay-area-content">蓝海之美 由此开始</div>
                         </div>
                     </a>
                 </div>
@@ -235,7 +159,7 @@ p{white-space: pre-line;}
                      <a class="uk-overlay" href="#">
                         <img width="350" height="150" src="<?php echo URL;?>public/img/6.png">
                         <div class="uk-overlay-area">
-                            <div class="uk-overlay-area-content">界面组</div>
+                            <div class="uk-overlay-area-content">这个组太忙了没有时间写简介了</div>
                         </div>
                     </a>
                 </div>

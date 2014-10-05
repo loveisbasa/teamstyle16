@@ -48,14 +48,14 @@ p{white-space: pre-line;}
             </div> 
         </div>
 
-<div class="container">
+
 <?php 
         if($_SESSION['user_type']=='admin')
             include 'create_forum.php';
 ?>
 </div>
 
-</div>
+
 
 
        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
@@ -73,7 +73,7 @@ p{white-space: pre-line;}
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                     <h2>竞赛流程</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <a class="uk-button uk-button-primary" href="#">Button</a>
+                    <a class="uk-button uk-button-primary" href="#">进入帖子</a>
                 </div>
 
             </div>
@@ -86,7 +86,7 @@ p{white-space: pre-line;}
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                     <h2>规则吐槽</h2>
                     <p>在这里，你可以尽情吐槽，我们相信，您的吐槽会使队式更加完美</p>
-                    <a class="uk-button uk-button-primary" href="#">Button</a>
+                    <a class="uk-button uk-button-primary" href="#">进入帖子</a>
                 </div>
 
                 <div class="uk-width-medium-1-2">
@@ -167,30 +167,6 @@ p{white-space: pre-line;}
 
         </div>
 
-        <div id="offcanvas" class="uk-offcanvas">
-            <div class="uk-offcanvas-bar">
-                <ul class="uk-nav uk-nav-offcanvas">
-                    <li class="uk-active">
-                        <a href="layouts_frontpage.html">Frontpage</a>
-                    </li>
-                    <li>
-                        <a href="layouts_portfolio.html">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="layouts_blog.html">Blog</a>
-                    </li>
-                    <li>
-                        <a href="layouts_documentation.html">Documentation</a>
-                    </li>
-                    <li>
-                        <a href="layouts_contact.html">Contact</a>
-                    </li>
-                    <li>
-                        <a href="layouts_login.html">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
 <div style="display:none"><script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

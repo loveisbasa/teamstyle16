@@ -346,10 +346,10 @@ class LoginModel
  			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_FOLDER_DOES_NOT_EXIST_OR_NOT_WRITABLE;
  			return false;
  		}
- 		if (!isset($_FILES['avatar_file']) OR empty ($_FILES['avatar_file']['tmp_name'])) {
- 			$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_IMAGE_UPLOAD_FAILED;
- 			return false;
- 		}
+ 		// if (!isset($_FILES['avatar_file']) OR empty ($_FILES['avatar_file']['tmp_name'])) {
+ 		// 	$_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_IMAGE_UPLOAD_FAILED;
+ 		// 	return false;
+ 		// }
 
  		// get the image width, height and mime type
  		$image_proportions = getimagesize($_FILES['avatar_file']['tmp_name']);

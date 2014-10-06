@@ -4,7 +4,7 @@
         Session::set('feedback_negative', null);?>
  <div class="row">
 
-    <div class="col-sm-2 col-xs-offset-1">
+    <div class="col-sm-2 col-md-offset-1">
         <div class="list-group">
             <a href="#profile" class="list-group-item">Public Profile</a>
             <a href="#nickname" class="list-group-item">Account</a>

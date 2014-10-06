@@ -54,7 +54,7 @@ class FileModel
 		header("Content-type:text/html;charset=utf-8");
 		//$file_name="icons.png";
 		//用以解决中文不能显示出来的问题
-		//$file_name=iconv("utf-8","gb2312",$file_name);
+		$file_name=iconv("utf-8","gb2312",$file_name);
 		$file_sub_path = "/var/www/html/teamstyle16/uploads/";
 		$file_path = $file_sub_path . $file_name;
 		//首先要判断给定的文件存在与否

@@ -1,5 +1,6 @@
 <style>
 #wrap{word-break:break-all; width:850px;}
+p{white-space: pre-line;}
 </style>
 
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">

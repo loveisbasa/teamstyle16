@@ -99,22 +99,28 @@ body{
       }
       </script> 
       <ul class="nav navbar-nav navbar-right">
-  <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
+        <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
         <li ><a href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
-        <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
-      </ul>
-    <?php }?>
-      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">文档下载<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-            <?php if (isset($all_file)) {
-                          foreach ($all_file as $file) {?>
-                    <li><a href="<?php echo URL. 'file/download/'.$file->file_title;?>"><?php echo $file->file_title;?></a></li>
+            <?php
+            $query = $this->db->prepare("SELECT file_title, file_type, file_size, file_author, file_date 
+                                                          FROM files");
+            $query->execute();
+            $all_file = $query->fetchAll(); 
+            if (isset($all_file)) {
+                foreach ($all_file as $file) {?>
+                <li><a href="<?php echo URL. 'file/download/'.$file->file_title;?>"><?php echo $file->file_title;?></a></li>
             <?php }}?>
+            <li class="divider"></li>
+            <li><a href = "<?php echo URL.'file';?>">文档列表</a></li>
             </ul>
         </li>
+        <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>
+    <?php }?>
+      
     </div><!--/.nav-collapse -->
   </div>
   </div> 

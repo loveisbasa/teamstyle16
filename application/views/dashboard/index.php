@@ -185,8 +185,9 @@
                             <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
                             <span class="icon icon-envelope-bold"></span>
                         </div>
-                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="24" rows="14">
+                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="29" rows="14">
                         </textarea>
+                        <br>
                         <span class="icon icon-envelope-bold"></span>
                         <select name="message_type">
                             <option value='sec'>私信</option>

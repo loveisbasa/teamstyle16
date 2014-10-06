@@ -29,7 +29,6 @@ class Team extends Controller
 	}
   public function joinbyinvite($key,$team_id){
 		$team_model = $this->loadModel('Team');
-		$team_model->
 	}	
 	
 	public function create_team()

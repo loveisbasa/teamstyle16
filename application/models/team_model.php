@@ -238,7 +238,7 @@ class TeamModel
 				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";
                     $user_id = $result->user_id;
 										$d = date('Y-m-d H:i:s');
-										$url=URL . "team/joinbyinvite/" . md5($_SESSION['user_profile']->team_password_hash) . "," . $_SESSION['user_profile']->team_id} );
+										$url=URL . "team/joinbyinvite/" . md5($_SESSION['user_profile']->team_password_hash) . "," . $_SESSION['user_profile']->team_id ;
                     $query = $this->db->prepare($sql);
                     $query->execute(array(
                         ':message_from_id' => $_SESSION['use_profile']->user_id,

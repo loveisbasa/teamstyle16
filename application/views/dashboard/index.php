@@ -76,21 +76,33 @@
 <div id="offcanvas-1" class="uk-offcanvas">
     <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">
         <div class="thumbnail">
-            <br>
-            <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_avatar_file'].'" class="img-rounded"/></a>'; ?>
+
+                <br/>
+                <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_avatar_file'].'" class="img-rounded"/></a>'; ?>
+
             <div class="caption">
-                <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
+                <h2 class="text-center"><strong><?php echo $_SESSION['user_profile']->user_nickname; ?></strong><br/>
+                 <small class="text-center" style="color:#777"><?php echo $_SESSION['user_profile']->user_real_name; ?></small></h2>
+                <hr/>
                 <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
-                <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
-        <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
+               
+                <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
+                <hr/>
                 <p class="text-center">Welcome!<?php
                 if ($_SESSION['user_first_login'] == 1) {
                     echo 'This is your first login!';
                 }?></p>
-                <a href="<?php echo URL. 'login/uploadavatar_action'?>"><button class="uk-button uk-button-dafault">修改个人信息</button></a>
-                <a href="<?php echo URL. 'dashboard/alluser'?>"><button class="uk-button uk-button-primary">所有用户</button></a>
+                <?php echo"\t\t";?>
+                <div class = "btn-group btn-group-justified">
+                <div class = "btn-group">
+                <a href="<?php echo URL. 'login/uploadavatar_action'?>"><button type = "button" class="btn btn-default">修改个人信息</button></a>
+                </div>
+                <div class = "btn-group">
+                <a href="<?php echo URL. 'dashboard/alluser'?>"><button type = "button" class="btn btn-default">所有用户</button></a>
+                </div>
+                </div>
             </div>
-        </div>
+       </div>
     </div>
 </div>
 

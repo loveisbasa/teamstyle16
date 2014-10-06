@@ -9,20 +9,23 @@ p{white-space: pre-line;}
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
     <div class="uk-grid">
-        <div class="uk-width-medium-1-1" style = "background:url(<?php echo URL; ?>public/img/theme.jpg);background-repeat:no-repeat;background-position:50% 0%">
+        <div class="uk-width-medium-1-1" style = "background:url(<?php echo URL; ?>public/img/theme.jpg);background-repeat:no-repeat;">
             <div class="uk-vertical-align">
                 <div class="uk-vertical-align-middle uk-width-1-1 uk-text-center">
                     <br>
-                    <h1 class="uk-heading-large" style="color:white;font-family:times">DEEP BLUE</h1>
+                    <h1 class="uk-heading-large" style="color:white;font-family:Georgia, "Times New Roman";"><strong>DEEP BLUE</strong></h1>
                     <br>
                 </div>
             </div>
-        </div>
-        <div class="uk-width-1-1">
+             <div class="uk-width-1-1">
             <br>
-            <h2 style="text-align:center">队式人自己的论坛</h2>
-            <h4 style="text-align:center">让队式成为大学里最温暖的回忆</h4>
+            <h2 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>队式人自己的论坛</strong></h2>
+            <h4 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>让队式成为大学里最温暖的回忆</strong></h4>
+            <br/>
+            <br/>
         </div>
+        </div>
+       
 
     </div>
 
@@ -65,7 +68,7 @@ p{white-space: pre-line;}
             <div class="uk-grid" data-uk-grid-margin>
 
                 <div class="uk-width-medium-1-2">
-                    <img width="660" height="400" src="<?php echo URL;?>public/img/theme-1.jpg" alt="">
+                    <img class = "img-rounded" width="660" height="400" src="<?php echo URL;?>public/img/theme-1.jpg" alt="">
                 </div>
 <!--这两个链接分别连接到通知公告区的规则介绍和活动时间两个帖子-->
                 <div class="uk-width-medium-1-2">
@@ -90,7 +93,7 @@ p{white-space: pre-line;}
                 </div>
 
                 <div class="uk-width-medium-1-2">
-                    <img width="660" height="400" src="<?php echo URL;?>public/img/theme-2.jpg" alt="">
+                    <img class = "img-rounded" width="660" height="400" src="<?php echo URL;?>public/img/theme-2.jpg" alt="">
                 </div>
             </div>
 
@@ -111,7 +114,7 @@ p{white-space: pre-line;}
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">
                     <a class="uk-overlay" href="#">
-                        <img src="<?php echo URL;?>public/img/1.png" width="350" height="150" ></img>
+                        <img class = "img-rounded" src="<?php echo URL;?>public/img/1.png" width="350" height="150" ></img>
                        <div class="uk-overlay-area">
                             <div class="uk-overlay-area-content">沟通连接 架起桥梁</div>
                         </div>
@@ -120,7 +123,7 @@ p{white-space: pre-line;}
 
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">
                      <a class="uk-overlay" href="#">
-                        <img width="350" height="150" src="<?php echo URL;?>public/img/2.png" alt="">
+                        <img  class = "img-rounded" width="350" height="150" src="<?php echo URL;?>public/img/2.png" alt="">
                         <div class="uk-overlay-area">
                             <div class="uk-overlay-area-content">制定游戏规则 掌控生死存亡</div>
                         </div>
@@ -129,7 +132,7 @@ p{white-space: pre-line;}
 
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">
                    <a class="uk-overlay" href="#">
-                        <img width="350" height="150" src="<?php echo URL;?>public/img/3.png" alt="">
+                        <img class = "img-rounded" width="350" height="150" src="<?php echo URL;?>public/img/3.png" alt="">
                         <div class="uk-overlay-area">
                             <div class="uk-overlay-area-content">酷炫特效 3D制造</div>
                         </div>
@@ -138,7 +141,7 @@ p{white-space: pre-line;}
 
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">
                     <a class="uk-overlay" href="#">
-                        <img width="350" height="150" src="<?php echo URL;?>public/img/4.png">
+                        <img class = "img-rounded" width="350" height="150" src="<?php echo URL;?>public/img/4.png">
                         <div class="uk-overlay-area">
                             <div class="uk-overlay-area-content">手握服务器最高权限
                                 掌握全部数据库内容</div>
@@ -148,7 +151,7 @@ p{white-space: pre-line;}
 
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">
                      <a class="uk-overlay" href="#">
-                        <img width="350" height="150" src="<?php echo URL;?>public/img/5.png">
+                        <img class = "img-rounded" width="350" height="150" src="<?php echo URL;?>public/img/5.png">
                                                  <div class="uk-overlay-area">
                             <div class="uk-overlay-area-content">蓝海之美 由此开始</div>
                         </div>
@@ -157,7 +160,7 @@ p{white-space: pre-line;}
 
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">
                      <a class="uk-overlay" href="#">
-                        <img width="350" height="150" src="<?php echo URL;?>public/img/6.png">
+                        <img class = "img-rounded" width="350" height="150" src="<?php echo URL;?>public/img/6.png">
                         <div class="uk-overlay-area">
                             <div class="uk-overlay-area-content">这个组太忙了没有时间写简介了</div>
                         </div>

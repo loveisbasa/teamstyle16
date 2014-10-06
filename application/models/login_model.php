@@ -562,7 +562,8 @@ class LoginModel
 
 		//检查对码
 		if (md5(($result->user_nickname . $result->user_refind_date)==$key)) {
-
+		  $query=$this->db->prepare("update users set user_refind_date='0-0-0 0:0:0' where user_id={$result->user_id}");
+			$query->execute;
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;

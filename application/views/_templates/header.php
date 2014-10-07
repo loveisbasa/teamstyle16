@@ -68,11 +68,11 @@ body{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <a class="navbar-brand" href="<?php echo URL; ?>"><strong>TeamStyle 16</strong></a>
+        <a class="navbar-brand"  style="font:bold;color:white" href="<?php echo URL; ?>"><strong>TeamStyle 16</strong></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li style = "font:bold"><a href="<?php echo URL; ?>">主页</a></li>
+        <li ><a style="font:bold;color:white" href="<?php echo URL; ?>">主页</a></li>
         <?php if (isset($_SESSION['user_logged_in'])) {?>
         <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold;color:white"><?php echo $_SESSION['user_nickname'];?></a></li>
         <?php }?>
@@ -80,7 +80,7 @@ body{
     <!--if not logged in,provide a button to log-->
     <?php if (!isset($_SESSION['user_logged_in'])) {?>
       <ul class="nav navbar-nav navbar-right">
-        <li style = "color:white"><a href="<?php echo URL . 'login'?>">登陆</a></li>
+        <li style = "color:white"><a style="font:bold;color:white" href="<?php echo URL . 'login'?>">登陆</a></li>
       </ul>
     <?php } else {?>
     <script>
@@ -99,12 +99,12 @@ body{
       }
       </script> 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
-        <li ><a href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
+        <li><a  style="font:bold;color:white" href="<?php echo URL.'forum/index'?>">论坛</a></li>
+        <li ><a style="font:bold;color:white" href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         
-            <li><a href = "<?php echo URL.'file';?>">文档列表</a></li>
+            <li><a style="font:bold;color:white" href = "<?php echo URL.'file';?>">文档列表</a></li>
 
-        <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
+        <li><a style="font:bold;color:white" href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>
     <?php }?>
       

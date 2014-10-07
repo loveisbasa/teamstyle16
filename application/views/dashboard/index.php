@@ -9,46 +9,43 @@
         ?>
 <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
 <div class="tm-grid-truncate uk-text-center">
-<div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-large-1-4 uk-width-medium-1-1">
-        <a href="#offcanvas-1" data-uk-offcanvas>
-            <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#00CCFF">
-                <h3><icon class="uk-icon-user uk-icon-large"></i>我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
-            </div>
-        </a>
-    </div>
-</div>
-<div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-large-1-4 uk-width-medium-1-1 uk-push-1-6">
-        <a href="#offcanvas-2" data-uk-offcanvas>
-        <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#CC99FF">
-            <h3><icon class="uk-icon-home uk-icon-large"></i>我的队伍<br/><small>励志被别人“抱大腿”</samll></h3>
+    <div class="uk-grid" data-uk-grid-match>
+        <div class="uk-width-large-1-4 uk-width-medium-1-1">
+            <a href="#offcanvas-1" data-uk-offcanvas>
+                <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#00CCFF">
+                    <h3><icon class="uk-icon-user uk-icon-large"></i> 我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
+                </div>
+            </a>
         </div>
-    </a>
-    </div>
-</div>
-<br/>
-<div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-large-1-4 uk-width-medium-1-1 uk-push-1-3">
-        <a href="#offcanvas-3" data-uk-offcanvas>
-        <div class="uk-panel uk-panel-box-danger uk-text-center uk-panel-space" style="background-color:#33FF99">
-            <h3><icon class="uk-icon-bookmark uk-icon-large"></i>我的帖子<br/><small>想不起来我都说过什么梦话呢</small></h3>
+
+        <div class="uk-width-large-1-4 uk-width-medium-1-1">
+            <a href="#offcanvas-2" data-uk-offcanvas>
+                <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#CC99FF">
+                    <h3><icon class="uk-icon-home uk-icon-large"></i> 我的队伍<br/><small>励志被别人“抱大腿”</small><br/><br/></h3>
+                </div>
+            </a>
         </div>
-    </a>
-    </div>
-</div>
-<div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-large-1-4 uk-width-medium-1-1 uk-push-1-2">
-        <a href="#offcanvas-5" data-uk-offcanvas>
-        <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#FF99FF">
-            <h3><icon class="uk-icon-comment uk-icon-large">发送消息<br/><small>我要给女神发私信！</small></icon></h3>
+
+        <div class="uk-width-large-1-4 uk-width-medium-1-1">
+            <a href="#offcanvas-3" data-uk-offcanvas>
+                <div class="uk-panel uk-panel-box-danger uk-text-center uk-panel-space" style="background-color:#33FF99">
+                    <h3><icon class="uk-icon-bookmark uk-icon-large"></i> 我的帖子<br/><small>想不起来我都说过什么梦话呢</small><br/><br/></h3>
+                </div>
+            </a>
         </div>
-    </a>
+
+        <div class="uk-width-large-1-4 uk-width-medium-1-1">
+            <a href="#offcanvas-5" data-uk-offcanvas>
+                <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#FF99FF">
+                    <h3><icon class="uk-icon-comment uk-icon-large"></i >发送消息<br/><small>我要给女神发私信！</small><br/><br/></h3>
+                </div>
+            </a>
+        </div>
     </div>
-</div>
-</div>
 </div>
 
+
+</div>
 <div class="row">
 
 
@@ -174,19 +171,22 @@
 </div>
 
 <div id="offcanvas-5" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">
-            <section class="content">
-                <div class="form-unit">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">            
+                
                     <h3 style="text-align:center">发送消息</h3>
-                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="navbar-form navbar-right">
+                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="uk-form">
+                        <fieldset>
                             <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
-                            <span class="icon icon-user-bold"></span>
-                        <div class="form-field">
+                            
+                        
                             <input type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
-                            <span class="icon icon-envelope-bold"></span>
-                        </div>
-                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="29" rows="14">
+                            
+                        
+                        
+                        <textarea  name="message_content" placeholder="内容" required rows="15"class="form-control name">
                         </textarea>
+                        
+                    
                         <br>
                         <span class="icon icon-envelope-bold"></span>
                         <select name="message_type">
@@ -197,10 +197,10 @@
                         </select>
                         <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
                             发送 
-                        </button>
+                        </button></fieldset>
                     </form>
-                </div>
-            </section>
+                
+            
     </div>
 </div>
 <!--

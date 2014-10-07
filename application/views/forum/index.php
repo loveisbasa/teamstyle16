@@ -8,8 +8,8 @@ p{white-space: pre-line;}
 
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
-    <div class="uk-grid">
-        <div class="uk-width-medium-1-1" style = "background:url(<?php echo URL; ?>public/img/theme.jpg);background-repeat:no-repeat;">
+
+        <div class="jumbotron" style = "background:url(<?php echo URL; ?>public/img/forumindex.jpg)">
             <div class="uk-vertical-align">
                 <div class="uk-vertical-align-middle uk-width-1-1 uk-text-center">
                     <br>
@@ -18,16 +18,14 @@ p{white-space: pre-line;}
                 </div>
             </div>
              <div class="uk-width-1-1">
-            <br>
+                <br>
             <h2 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>队式人自己的论坛</strong></h2>
             <h4 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>让队式成为大学里最温暖的回忆</strong></h4>
             <br/>
             <br/>
         </div>
-        </div>
-       
-
     </div>
+</br>
 
         <div class="uk-grid" data-uk-grid-margin>
             <?php foreach ($forums as $forums) { ?>

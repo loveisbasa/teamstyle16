@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+p{font-family: sans-serif,Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+h1,h2,h3,h4,h5,h6{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+a{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+li{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,15 +72,15 @@ body{
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="<?php echo URL; ?>">主页</a></li>
+        <li style = "font:bold"><a href="<?php echo URL; ?>">主页</a></li>
         <?php if (isset($_SESSION['user_logged_in'])) {?>
-        <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold"><?php echo $_SESSION['user_nickname'];?></a></li>
+        <li><a href="<?php echo URL. 'dashboard';?>" style="font:bold;color:white"><?php echo $_SESSION['user_nickname'];?></a></li>
         <?php }?>
       </ul>
     <!--if not logged in,provide a button to log-->
     <?php if (!isset($_SESSION['user_logged_in'])) {?>
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="<?php echo URL . 'login'?>">登陆</a></li>
+        <li style = "color:white"><a href="<?php echo URL . 'login'?>">登陆</a></li>
       </ul>
     <?php } else {?>
     <script>
@@ -81,24 +99,16 @@ body{
       }
       </script> 
       <ul class="nav navbar-nav navbar-right">
-  <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
+        <li><a href="<?php echo URL.'forum/index'?>">论坛</a></li>
         <li ><a href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
+        
+            <li><a href = "<?php echo URL.'file';?>">文档列表</a></li>
+
         <li><a href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>
     <?php }?>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">文档下载<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-            <?php if (isset($all_file)) {
-                          foreach ($all_file as $file) {?>
-                    <li><a href="<?php echo URL. 'file/download/'.$file->file_title;?>"><?php echo $file->file_title;?></a></li>
-            <?php }}?>
-            </ul>
-        </li>
-      </ul>
+      
     </div><!--/.nav-collapse -->
   </div>
   </div> 
 </header>
-

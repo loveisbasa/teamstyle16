@@ -2,6 +2,7 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/awesome.css">
 <style>
 #wrap{word-break:break-all; width:780px;}
+p{white-space: pre-line;}
 </style>
 <div class="container">   
   <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>

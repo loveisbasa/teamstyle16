@@ -12,7 +12,7 @@ class UsersModel
 	}
 	public function all_users()
 	{
-		$sql="select		user_id,user_nickname,user_id,user_has_avatar,user_email from users where user_type!='admin'";
+		$sql="select	* from users where user_type!='admin'";
 		$query=$this->db->prepare($sql);
 		$query->execute();
 		$result=$query->fetchAll();

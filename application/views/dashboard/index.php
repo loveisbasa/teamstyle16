@@ -10,37 +10,38 @@
 <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
 <div class="tm-grid-truncate uk-text-center">
 <div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-1-4">
+    <div class="uk-width-large-1-4 uk-width-medium-1-1">
         <a href="#offcanvas-1" data-uk-offcanvas>
             <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#00CCFF">
-                <h3><icon class="uk-icon-user uk-icon-large"></i>我的资料</h3>
+                <h3><icon class="uk-icon-user uk-icon-large"></i>我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
             </div>
         </a>
     </div>
 </div>
 <div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-1-4 uk-push-1-6">
+    <div class="uk-width-large-1-4 uk-width-medium-1-1 uk-push-1-6">
         <a href="#offcanvas-2" data-uk-offcanvas>
         <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#CC99FF">
-            <h3><icon class="uk-icon-home uk-icon-large"></i>我的队伍</h3>
+            <h3><icon class="uk-icon-home uk-icon-large"></i>我的队伍<br/><small>励志被别人“抱大腿”</samll></h3>
         </div>
     </a>
     </div>
 </div>
+<br/>
 <div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-1-4 uk-push-1-3">
+    <div class="uk-width-large-1-4 uk-width-medium-1-1 uk-push-1-3">
         <a href="#offcanvas-3" data-uk-offcanvas>
         <div class="uk-panel uk-panel-box-danger uk-text-center uk-panel-space" style="background-color:#33FF99">
-            <h3><icon class="uk-icon-bookmark uk-icon-large"></i>我的帖子</h3>
+            <h3><icon class="uk-icon-bookmark uk-icon-large"></i>我的帖子<br/><small>想不起来我都说过什么梦话呢</small></h3>
         </div>
     </a>
     </div>
 </div>
 <div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-1-4 uk-push-1-2">
+    <div class="uk-width-large-1-4 uk-width-medium-1-1 uk-push-1-2">
         <a href="#offcanvas-5" data-uk-offcanvas>
         <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#FF99FF">
-            <h3><icon class="uk-icon-comment uk-icon-large">发送消息</icon></h3>
+            <h3><icon class="uk-icon-comment uk-icon-large">发送消息<br/><small>我要给女神发私信！</small></icon></h3>
         </div>
     </a>
     </div>
@@ -76,20 +77,33 @@
 <div id="offcanvas-1" class="uk-offcanvas">
     <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">
         <div class="thumbnail">
-            <br>
-            <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_avatar_file'].'" class="img-rounded"/></a>'; ?>
+
+                <br/>
+                <?php echo '<a href="' . URL . 'setting/"><img src="'.$_SESSION['user_avatar_file'].'" class="img-rounded"/></a>'; ?>
+
             <div class="caption">
-                <h3 class="text-center"><?php echo $_SESSION['user_profile']->user_nickname; ?></h3>
+                <h2 class="text-center"><strong><?php echo $_SESSION['user_profile']->user_nickname; ?></strong><br/>
+                 <small class="text-center" style="color:#777"><?php echo $_SESSION['user_profile']->user_real_name; ?></small></h2>
+                <hr/>
                 <p class="text-center"><?php echo $_SESSION['user_profile']->user_email; ?></p>
-                <p class="text-center"><?php echo $_SESSION['user_profile']->user_real_name; ?></p>
-        <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
+               
+                <p class="text-center"><?php echo $_SESSION['user_profile']->user_phone; ?></p>
+                <hr/>
                 <p class="text-center">Welcome!<?php
                 if ($_SESSION['user_first_login'] == 1) {
                     echo 'This is your first login!';
                 }?></p>
-                <p><a href="<?php echo URL. 'login/uploadavatar_action'?>">edit profile</a></p>
+                <?php echo"\t\t";?>
+                <div class = "btn-group btn-group-justified">
+                <div class = "btn-group">
+                <a href="<?php echo URL. 'login/uploadavatar_action'?>"><button type = "button" class="btn btn-default">修改个人信息</button></a>
+                </div>
+                <div class = "btn-group">
+                <a href="<?php echo URL. 'dashboard/alluser'?>"><button type = "button" class="btn btn-default">所有用户</button></a>
+                </div>
+                </div>
             </div>
-        </div>
+       </div>
     </div>
 </div>
 
@@ -188,6 +202,7 @@
             </section>
     </div>
 </div>
+<!--
 <?php
 foreach($All_user as $user){?>
 <a href=<?php echo URL . "home/index/" . $user->user_id;?>>
@@ -195,5 +210,5 @@ foreach($All_user as $user){?>
 </a>
 <?php			}
 ?>
-
+-->
 

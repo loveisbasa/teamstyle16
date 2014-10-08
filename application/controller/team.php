@@ -26,9 +26,11 @@ class Team extends Controller
 			$team_model->InviteTeam($team_id);
 		}
 		header('location:' .URL. "home/index/$user_id");
-		
 	}
-	
+  public function joinbyinvite($key,$team_id){
+		$team_model = $this->loadModel('Team');
+		$team_model->
+	}	
 	
 	public function create_team()
 	{

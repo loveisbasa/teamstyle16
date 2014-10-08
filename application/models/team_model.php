@@ -51,7 +51,7 @@ class TeamModel
 			$team_slogan = strip_tags($_POST['team_slogan']);
 			$team_captain = $_SESSION['user_id'];
 			$hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-			$team_password_hash = md5($_POST['team_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+			$team_password_hash = md5($_POST['team_password_new']);
 			$team_full = 1;
 
 			
@@ -180,7 +180,7 @@ class TeamModel
 		}
 		$result = $query->fetch();
 		//验证队伍密码
-		if (password_verify($_POST['team_password'], $result->team_password_hash)) {
+		if (md5($_POST['team_password'])== $result->team_password_hash) {
 			//由于队伍中可能存在队员，分情况更新数据
 			if ($result->team_full == 1) {
 				$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_FULL;
@@ -219,7 +219,6 @@ class TeamModel
 		}
 		$_SESSION['in_team'] = 1;
 	}
-
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams($page)
 	{
@@ -231,6 +230,94 @@ class TeamModel
 		$query->execute();
 		$result = $query->fetchAll();
 		return $result;
+	}
+	public function Invite_team($user_id){
+		if (md5($_POST['team_password'])== $result->team_password_hash&&$result->team_full==0 ){
+                  $sql = "INSERT into messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)
+				VALUES
+				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";
+                    $user_id = $result->user_id;
+										$d = date('Y-m-d H:i:s');
+										$url=URL . "team/joinbyinvite/" . md5($_SESSION['user_profile']->team_password_hash) . "," . $_SESSION['user_profile']->team_id} );
+                    $query = $this->db->prepare($sql);
+                    $query->execute(array(
+                        ':message_from_id' => $_SESSION['use_profile']->user_id,
+                        ':message_to_id' => $user_id,
+                        ':message_title' => "邀请你的加入",
+												':message_content' =>$_SESSION['user_profile']->team_name . "的队长" . $_SESSION['user_profile']->user_nickname . "邀请你加入,请点击<a href='{$url}'>加入 </a>" ,
+                        ':message_send_date' => $d ,
+                        ':message_type' => $message_type
+                    ));
+				if($query) $_SESSION['feedback_positive'][]="邀请已发送，请耐心等候对方确认";
+
+		}
+	}
+	public function Join_team_byinvite($team_id,$key)
+	{
+		$user_id = $_SESSION['user_id'];
+		echo $this->IsUserInTeam();
+		//$team_id = $_POST['team_id'];
+		if ($this->IsUserInTeam()) {
+			$_SESSION['feedback_negative'][] = FEEDBACK_JOIN_FAILED;
+			return false;
+		}
+		//从数据库中获取队伍数据
+		$sql = "SELECT team_id, 
+			team_name, 
+			team_password_hash,  
+			team_member1,
+			team_member2,
+			team_full
+			FROM teams
+		             WHERE (team_id = :team_id) ";
+		$query = $this->db->prepare($sql);
+		$query->execute(array(':team_id' => $team_id));
+		$count = $query->rowCount();
+		if ($count != 1) {
+			$_SESSION['feedback_negative'][] = FEEDBACK_JOIN_FAILED;
+			return false;
+		}
+		$result = $query->fetch();
+		//验证队伍密码
+		if ($key == $result->team_password_hash) {
+			//由于队伍中可能存在队员，分情况更新数据
+			if ($result->team_full == 1) {
+				$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_FULL;
+				return false;
+			}
+						
+			if ($result->team_member1 == 0) {
+				$result->team_member1 = $user_id;
+				$query = $this->db->prepare("UPDATE teams SET team_member1 = $user_id 
+					WHERE team_id = :team_id");
+				$query->execute(array(':team_id' => $result->team_id));
+				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+				$query->execute(array('user_team' => $result->team_name, ':user_id' => $user_id));
+			} else if ($result->team_member2 == 0) {
+				$result->team_member2 = $user_id;
+				$query = $this->db->prepare("UPDATE teams SET team_member2 = $user_id 
+					WHERE team_id = :team_id");
+				$query->execute(array(':team_id' => $result->team_id));
+				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+				$query->execute(array('user_team' => $result->team_name, ':user_id' => $user_id));
+			} else {
+				$_SESSION['feedback_negative'][] = FEEDBACK_UNKONW_ERROR;
+				return false;
+			}
+			//更新team_full
+			if ($result->team_full == 0 && $result->team_member1 != 0 && $result->team_member2 != 0) {
+				$result->team_full = 1;
+				$query = $this->db->prepare("UPDATE teams SET team_full = $result->team_full
+					WHERE team_id = :team_id");
+				$query->execute(array(':team_id' => $result->team_id));
+			}
+			$SESSION['user_team']=team_name;
+		} else {
+			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
+			return false;
+		}
+		$_SESSION['in_team'] = 1;
+
 	}
 	//退出当前队伍
 	public function QuitTeam($team_id)

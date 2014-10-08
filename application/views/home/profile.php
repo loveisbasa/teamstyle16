@@ -85,7 +85,7 @@
                 }
               </style>
               <div id = "testModal<?php echo $_SESSION['user_profile']->team_id;?>" style="display:none;">
-                <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/invite_team/'.$user_profile->user_id;?>" method="post">
+                <form id ="loginform" class="form-signin" role="form" action="<?php echo URL.'team/Invite_team/'.$user_profile->user_id;?>" method="post">
                   <h2 class = "form-signin-heading">Invite him(her) to<?php echo $_SESSION['user_profile']->team_name;?> Now!</h2>
                   <input type="password" class="form-control" placeholder="Team Password" name="team_password" required /><br/>
                   <button class="btn btn-lg btn-primary btn-block" type="submit">Join</button>

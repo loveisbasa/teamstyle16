@@ -232,24 +232,25 @@ class TeamModel
 		return $result;
 	}
 	public function Invite_team($user_id){
+		$result=$_SESSION['user_profile'];
 		if (md5($_POST['team_password'])== $result->team_password_hash&&$result->team_full==0 ){
                   $sql = "INSERT into messages(message_from_id,message_to_id,message_title,message_content,message_send_date,message_is_read,message_type)
 				VALUES
 				(:message_from_id,:message_to_id,:message_title,:message_content,:message_send_date, 0 ,:message_type)";
-                    $user_id = $result->user_id;
 										$d = date('Y-m-d H:i:s');
-										$url=URL . "team/joinbyinvite/" . md5($_SESSION['user_profile']->team_password_hash) . "," . $_SESSION['user_profile']->team_id} );
+										$url=URL . "team/joinbyinvite/" . md5($_SESSION['user_profile']->team_password_hash) . "?team_id=" . $_SESSION['user_profile']->team_id ;
                     $query = $this->db->prepare($sql);
                     $query->execute(array(
-                        ':message_from_id' => $_SESSION['use_profile']->user_id,
+                        ':message_from_id' => $_SESSION['user_profile']->user_id,
                         ':message_to_id' => $user_id,
                         ':message_title' => "邀请你的加入",
-												':message_content' =>$_SESSION['user_profile']->team_name . "的队长" . $_SESSION['user_profile']->user_nickname . "邀请你加入,请点击<a href='{$url}'>加入 </a>" ,
+												':message_content' =>$_SESSION['user_profile']->team_name . "的队长" . $_SESSION['user_profile']->user_nickname . "邀请你加入,请点击<br /><a href='{$url}'>
+												<button type='button' class='btn btn-default'>加入</button>
+												</a> " ,
                         ':message_send_date' => $d ,
-                        ':message_type' => $message_type
+                        ':message_type' =>"sec" 
                     ));
 				if($query) $_SESSION['feedback_positive'][]="邀请已发送，请耐心等候对方确认";
-
 		}
 	}
 	public function Join_team_byinvite($team_id,$key)

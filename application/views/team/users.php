@@ -10,7 +10,7 @@
                     <div class="uk-overlay-area-content"><?php echo $user->user_real_name;?></div>
                 </div>
             </a>
-				<a href=<?php echo URL . "home/index" . $user->user_id;?>><h4 style="color:blue"><?php echo $user->user_nickname;?></h4></a>
+				<a href=<?php echo URL . "home/index/" . $user->user_id;?>><h4 style="color:blue"><?php echo $user->user_nickname;?></h4></a>
 			<p><?php echo $user->user_class;?></p>
 		</div>
 		</div>

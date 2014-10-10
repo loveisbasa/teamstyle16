@@ -65,7 +65,7 @@ class ForumModel {
 						return $result;
         }
     }
-    public function ShowUSERposts($user_id) {
+    public function ShowUSERPosts($user_id) {
         if (isset($user_id) and filter_var($user_id, FILTER_VALIDATE_INT, array(
             'min_range' => 1
         ))) {
@@ -75,7 +75,16 @@ class ForumModel {
 						WHERE t.user_id={$user_id} ORDER BY p.post_on ASC limit 6";
             $query = $this->db->prepare($sql);
             $query->execute();
-            return $query->fetchAll();
+            $result=$query->fetchAll();
+						$sql = "SELECT t.user_id as user_id,t.subject as subject,t.content as message,thread_id,user_nickname,t.establish_date as establish_date
+						FROM
+						threads AS t INNER JOIN users AS u on t.user_id=u.user_id
+						WHERE t.user_id={$user_id} ORDER BY establish_date ASC limit 6";
+            $query = $this->db->prepare($sql);
+						$query->execute();
+						$tmp=$query->fetchAll();
+						foreach($tmp as $tmp) $result[]=$tmp;
+						return $result;
         }
     }
     //管理员专用

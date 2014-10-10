@@ -14,6 +14,8 @@ class dashboard extends Controller
 			$alluser_model=$this->loadModel('Users');
 			$All_user=$alluser_model->all_users();
 			$this->view->user = $overview_model->getUserProfile($_SESSION['user_id']);
+		  $forum_model=$this->loadModel('forum');
+			$mythreads=$forum_model->ShowUSERPosts($_SESSION['user_profile']->user_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/dashboard/index.php';
 			require 'application/views/_templates/footer.php';

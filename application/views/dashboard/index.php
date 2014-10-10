@@ -163,9 +163,9 @@
 <div id="offcanvas-3" class="uk-offcanvas">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:70px">
         <h2 style="color:#B0B0B0;text-align:center">我的帖子</h2>
-        <?php foreach ($_SESSION['mythreads'] as $results) {?>
+        <?php foreach ($mythreads as $results) {?>
             <li style="color:#B0B0B0"><a href = "<?php echo URL. 'forum/posts/'. $results->thread_id?>">
-                <?php echo $results->subject;?></a></li>
+                <?php echo $results->subject . ":    " . $results->message;?></a></li>
         <?php }?>
     </div>
 </div>

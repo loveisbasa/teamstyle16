@@ -26,7 +26,7 @@ p{white-space: pre-line;}
             <li>
                 <article class="uk-comment">
                     <header class="uk-comment-header">
-                        <img class="uk-comment-avatar" width="50" height="50" src="<?php echo $posts->user_avatar; ?>" alt="">
+                        <img class="uk-comment-avatar" width="50" height="50" src="<?php echo $posts->user_avatar_link; ?>" alt="">
                         <h4 class="uk-comment-title"><?php echo $posts->user_nickname; ?></h4>
                         <p class="uk-comment-meta"><?php echo $posts->posted ;?></p>
                     </header>
@@ -39,7 +39,7 @@ p{white-space: pre-line;}
 
                 <div class="uk-width-medium-1-4">
                     <div class="uk-panel uk-panel-box uk-text-center">
-                        <img class="uk-border-circle" width="120" height="120" src="<?php echo $thread_link->author_avatar; ?>" alt="">
+                        <img class="uk-border-circle" width="120" height="120" src="<?php echo $thread_link->user_avatar_link; ?>" alt="">
                         <h3><a href="<?php echo URL. 'message/send_mail/'. $thread_link->user_nickname;?>"><?php echo $thread_link->user_nickname;?></a></h3>
                         <p><?php echo $thread_link->user_email;?></p>
                     </div>

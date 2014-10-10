@@ -21,14 +21,17 @@ class Team extends Controller
 		
 	}
 	public function invite_team($user_id){
-		if (isset($team_id)) {
+		if (isset($user_id)) {
 			$team_model = $this->loadModel('Team');
-			$team_model->InviteTeam($team_id);
+			$team_model->Invite_team($user_id);
+			echo "test";
 		}
 		header('location:' .URL. "home/index/$user_id");
 	}
-  public function joinbyinvite($key,$team_id){
+  public function joinbyinvite($key){
+		$team_id=$_POST['team_id'];
 		$team_model = $this->loadModel('Team');
+		$team_model->Join_team_byinvite($team_id,$key);
 	}	
 	
 	public function create_team()

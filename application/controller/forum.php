@@ -101,7 +101,8 @@ class Forum extends Controller
 
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_thread($forum_id);
-		if($create_success=='true') header(	
+		if($create_success=='true');
+		 	header(	
 			'location:' .URL. 'forum/threads/' . $forum_id);
 	}
 	

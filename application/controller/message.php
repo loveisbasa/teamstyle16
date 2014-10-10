@@ -15,7 +15,7 @@ class Message extends Controller
 	public function index($message_id=0)
 	{
 		if (isset($_SESSION['user_logged_in'])) {
-			$message_model=$this->loadModel('message');
+				$message_model=$this->loadModel('message');
 				$new_message=$message_model->ReadNewMessage();
 				if($new_message!='NOTHING'){
 				require 'application/views/_templates/header.php';

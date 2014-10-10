@@ -101,7 +101,8 @@ class Forum extends Controller
 
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_thread($forum_id);
-		if($create_success=='true') header(	
+		if($create_success=='true');
+		 	header(	
 			'location:' .URL. 'forum/threads/' . $forum_id);
 	}
 	
@@ -122,8 +123,8 @@ class Forum extends Controller
 		$forum_model=$this->loadModel('forum');
 		$create_success=$forum_model->Create_post($thread_id);
 		//if($create_success=='true') 
-		header(	
-			'location:' .URL. "forum/posts/" . $thread_id);
+//		header(	
+//			'location:' .URL. "forum/posts/" . $thread_id);
 	//	else header('location:' .URL. 'forum/create_post/' . $thread_id);
 	}
 }

@@ -131,9 +131,9 @@ class ForumModel {
 				$content=strip_tags($_POST['message']);	
                                                    $avatar = $_SESSION['user_avatar_file'];
 				$d=date('Y-m-d H:i:s');			
-				$sql="INSERT into threads (forum_id,user_id,subject,content,establish_date,latest_reply )
+				$sql="INSERT into threads (reply_count,forum_id,user_id,subject,content,establish_date,latest_reply )
 						VALUES
-						({$forum_id},{$user_id},:subject,:content,'{$d}','{$d}' )";
+						(0,{$forum_id},{$user_id},:subject,:content,'{$d}','{$d}' )";
 				$query=$this->db->prepare($sql);
 				$query->execute(array(':subject'=>$subject,':content'=>$content, ));
 				$sql="UPDATE forums SET count_thread=count_thread+1 where forum_id={$forum_id}";

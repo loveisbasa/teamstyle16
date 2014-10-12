@@ -43,20 +43,19 @@
 </div>
 <div id="offcanvas-5" class="uk-offcanvas"\>
     <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">
-            <section class="content">
-                <div class="form-unit">
+
                     <h3 style="text-align:center">发送消息</h3>
-                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="navbar-form navbar-right">
+                    <form action="<?php echo URL; ?>message/send_mail_action" method="post" class="uk-form">
+                        <fieldset>
                             <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
-                            <span class="icon icon-user-bold"></span>
-                        <div class="form-field">
+
                             <input type="text" placeholder="收信人昵称" name="user_to_nickname" 
                             <?php echo "value=$user_profile->user_nickname";?> required class="form-control name" />
-                            <span class="icon icon-envelope-bold"></span>
-                        </div>
-                        <textarea type="text" name="message_content" placeholder="内容" value="" required cols="24" rows="14">
+
+                        <textarea type="text" name="message_content" placeholder="内容" value="" required rows="15" class="form-control name">
                         </textarea>
-                        <span class="icon icon-envelope-bold"></span>
+                        <br>
+
                         <select name="message_type">
                             <option value='sec'>私信</option>
                             <?php if($_SESSION['user_type']=='admin'){
@@ -66,9 +65,9 @@
                         <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
                             发送 
                         </button>
+                        </fieldset>
                     </form>
-                </div>
-            </section>
+
     </div>
 </div>
               <style type="text/css">

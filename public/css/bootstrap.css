@@ -4553,6 +4553,7 @@ a.list-group-item.active > .badge,
   color: inherit;
   background-color: #eee;
   background: url('jiemian.jpg');
+  background-repeat: no-repeat;
 }
 .jumbotron h1,
 .jumbotron .h1 {

@@ -1,5 +1,5 @@
 <link href="<?php echo URL; ?>public/css/bootstrap.css" rel="stylesheet">
-<div class="jumbotron" style = "position:relative;top:-20px">
+<div class="jumbotron" style = "position:relative;top:-20px;background:url(<?php echo URL; ?>public/img/jiemian.jpg)">
     <br/>
     <h1 style="text-indent:10px">Deep Blue 深蓝<small>TeamStyle16 </small></h1>
     <br><br><br><br><br><br><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

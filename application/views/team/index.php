@@ -101,21 +101,21 @@
             <h3 class="other-content-title">论坛入口</h3>
             <ul class="side-collection-list"  data-pjax>
               <li class="side-collection-list-item">
-                <a href="#" class="side-collection-link">
+                <a href="<?php echo URL;?>forum/threads/1" class="side-collection-link">
                   <span class="side-collection-image" style="background-image: url(<?php echo URL;?>public/img/allteam-2.jpg)">
                     <span class="side-collection-item-title">队友招募区</span>
                   </span>
                 </a>  
               </li>
               <li class="side-collection-list-item">
-                <a href="#" class="side-collection-link">
+                <a href="<?php echo URL;?>forum/threads/2" class="side-collection-link">
                   <span class="side-collection-image" style="background-image: url(<?php echo URL;?>public/img/allteam-4.jpg)">
                     <span class="side-collection-item-title">吐槽灌水区</span>
                   </span>
                 </a>  
               </li>
               <li class="side-collection-list-item">
-                <a href="#" class="side-collection-link">
+                <a href="<?php echo URL;?>forum/threads/3" class="side-collection-link">
                   <span class="side-collection-image" style="background-image: url(<?php echo URL;?>public/img/allteam-3.jpg)">
                     <span class="side-collection-item-title">平台报错区</span>
                   </span>

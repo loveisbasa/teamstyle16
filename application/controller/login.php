@@ -130,6 +130,8 @@ public function refind(){
 					}
 		header('location:' . URL . "setting/index#password");
 		}
+       
+		header('location:' . URL . "login");
 	}
 
 	function uploadAvatar()

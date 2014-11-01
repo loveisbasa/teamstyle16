@@ -1,10 +1,11 @@
 <link href="<?php echo URL; ?>public/css/bootstrap.css" rel="stylesheet">
-<div class="jumbotron" style = "position:relative;top:-20px">
-    <br/>
-    <h1 style="text-indent:10px">Deep Blue 深蓝<small>TeamStyle16 </small></h1>
+<div class="jumbotron" style = "position:relative;top:-20px;background:url(<?php echo URL; ?>public/img/jiemian.jpg);background-repeat:no-repeat;background-position:center">
+    <div class="container">
+    <h1 style="position:relative;top:-30px;text-indent:10px">深蓝<small>TeamStyle16 </small></h1>
     <br><br><br><br><br><br><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>苍烟缭绕，云泽浩莽，有大洋名洪荒。</strong></p>
     <?php echo "&nbsp;&nbsp;&nbsp;&nbsp;";?><a href="<?php echo URL. 'login/register'?>" class="btn btn-primary btn-lg" role="button">现在就加入!  &raquo;</a>
+</div>
 </div>
         <div class="tm-section">
             <div class="uk-container uk-container-center uk-text-center">
@@ -40,8 +41,8 @@
             </div>
         </div>
 <div class="tm-section tm-section-color-1">
-<div class = "uk-grid">
-<div class = "uk-width-1-2">
+    <div class = "uk-grid">
+        <div class = "uk-width-1-2">
     <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register" method="post">
         <div class="form-group">
             <label class="col-xs-3 control-label">昵称</label>

@@ -81,14 +81,14 @@ class TeamModel
 					return false;
 				}
 				$result = $query->fetch();
-				if ($result->user_team != 0) {
+				if ($result->user_team != NULL) {
 					//$_SESSION['invalid_member_name'] = $result->user_nickname;
 					$_SESSION['feedback_negative'][] = FEEDBACK_MEMBER_ALREADY_HAS_TEAM;
 					return false;
 				}
 				$team_member1 = $result->user_id;
 			} else {
-				$team_member1 = '';
+				$team_member1 = 0;
 				$team_full = 0;//member1为空，队伍不满
 			}
 
@@ -103,14 +103,14 @@ class TeamModel
 					return false;
 				}
 				$result = $query->fetch();
-				if ($result->user_team != 0) {
+				if ($result->user_team != NULL) {
 					//$_SESSION['invalid_member_name'] = $result->user_nickname;
 					$_SESSION['feedback_negative'][] = FEEDBACK_MEMBER_ALREADY_HAS_TEAM;
 					return false;
 				}
 				$team_member2 = $result->user_id;
 			} else {	
-				$team_member2 = '';
+				$team_member2 = 0;
 				$team_full = 0;//member2为空，队伍不满
 			}	
 			//更新team_full
@@ -138,7 +138,7 @@ class TeamModel
 				':team_member1' => $team_member1,
 				':team_member2' => $team_member2,
 				':team_full' => $team_full));
-			$SESSION['user_team']=team_name;
+			$SESSION['user_team']=$team_name;
 			$count = $query->rowCount();
 			if ($count != 1) {
 				$_SESSION['feedback_negative'][] = FEEDBACK_TEAM_CREATE_FAIED;

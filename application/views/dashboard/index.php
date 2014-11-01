@@ -6,6 +6,7 @@
         require  'application/views/_templates/feedback.php'; 
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);
+        $_SESSION['team_page_id'] = 1;
         ?>
 <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
 <div class="tm-grid-truncate uk-text-center">

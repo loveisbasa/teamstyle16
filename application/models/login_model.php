@@ -548,7 +548,8 @@ class LoginModel
 			user_last_failed_login, 
 			user_first_login,
 			user_type,
-			user_team
+            user_team,
+            user_refind_date
 			FROM users
 				WHERE (user_nickname = :user_nickname ) ";
 		$query = $this->db->prepare($sql);
@@ -561,9 +562,9 @@ class LoginModel
 		$result = $query->fetch();
 
 		//检查对码
-		if (md5(($result->user_nickname . $result->user_refind_date)==$key)) {
-		  $query=$this->db->prepare("update users set user_refind_date='0-0-0 0:0:0' where user_id={$result->user_id}");
-			$query->execute;
+		if (md5($result->user_nickname . $result->user_refind_date)==$key) {
+		  $query=$this->db->prepare("update users set user_refind_date=NULL where user_id={$result->user_id}");
+			$query->execute();
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_nickname'] = $result->user_nickname;
@@ -597,7 +598,7 @@ class LoginModel
 			SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
 			WHERE user_nickname = :user_nickname OR user_email = :user_nickname";
 			$sth = $this->db->prepare($sql);
-			$sth->execute(array(':user_nickname' => $_POST['user_nickname'], ':user_last_failed_login' => time() ));
+			$sth->execute(array(':user_nickname' => $_SESSION['user_nickname'], ':user_last_failed_login' => time() ));
 			$_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
 			return false;
 		}

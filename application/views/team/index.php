@@ -95,12 +95,12 @@
 <nav>
   <ul class="pagination">
     <?php if ($_SESSION['team_page_id']!=1){?>
-    <li><a href="<?php echo URL.'team/team_display/'.$_SESSION['team_page_id']-1;?>">&laquo;</a></li>
+    <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']-1);?>">&laquo;</a></li>
     <?php }
     for ($i = 1;$i < 10;$i++) {?>
     <li><a href="<?php echo URL.'team/team_display/'.$i;?>"><?php echo $i?></a></li>
     <?php }?>
-    <li><a href="<?php echo URL.'team/team_display/'.$_SESSION['team_page_id']-1;?>">&raquo;</a></li>
+    <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']+1);?>">&raquo;</a></li>
   </ul>
 </nav>
 

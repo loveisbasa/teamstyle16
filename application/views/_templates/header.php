@@ -80,7 +80,7 @@ body{
     <!--if not logged in,provide a button to log-->
     <?php if (!isset($_SESSION['user_logged_in'])) {?>
       <ul class="nav navbar-nav navbar-right">
-        <li style = "color:white"><a style="font:bold;color:white" href="<?php echo URL . 'login'?>">登陆</a></li>
+        <li style = "color:white"><a style="font:bold;color:white" href="<?php echo URL . 'login'?>">登录</a></li>
       </ul>
     <?php } else {?>
     <script>

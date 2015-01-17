@@ -62,7 +62,7 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'info');
-define('DB_USER', 'duishi16');
+define('DB_USER', 'admin');
 //define('DB_USER','root');
 //define('DB_PASS', 'wangjianyu');
 define('DB_PASS', '******');

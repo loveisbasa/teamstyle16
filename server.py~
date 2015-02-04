@@ -39,7 +39,7 @@ def timelimited(timeout):
 
             if t.isAlive():
                 t._stop()
-		(status, output) = commands.getstatusoutput('docker kill'+)
+		(status, output) = commands.getstatusoutput('killall app')
                 print "wrong"
 
             if t._error is None:
@@ -48,7 +48,6 @@ def timelimited(timeout):
         return decorator2
     return decorator
 
-docker_id=[]
 @timelimited(5)
 def open_docker(user_id)
     (status,output) = commands.getstatusoutput('docker run -rm -v /home/duishi16/teamstyle16/public/online_compile/'+user_id+'/:/home/ -e user_id='+user_id+' online_battle:fix_bug')      
@@ -69,9 +68,7 @@ if __name__ == '__main__':
             print buf   
             if buf[0] == 'c':  
                 connection.send('welcome to server!')
-                t = threading.Thread(target=open_docker,args=(buf[1],))
-                trr = [元素].setDaemon(True)
-                t.start()
+                  
             else:  
                 connection.send('Not Support')  
         except socket.timeout:  

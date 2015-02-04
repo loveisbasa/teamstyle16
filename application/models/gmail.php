@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>PHPMailer - GMail SMTP test</title> </head>
+    <title>PHPMailer- for teamstyle16</title> </head>
 <body>
 <?php
 
@@ -23,31 +23,30 @@ $mail->isSMTP();
 // 1 = client messages
 // 2 = client and server messages
  $mail->CharSet = "utf-8";
-$mail->SMTPDebug = 2;
+$mail->SMTPDebug = 0;
 
 //Ask for HTML-friendly debug output
 $mail->Debugoutput = 'html';
 
 //Set the hostname of the mail server
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'eesast.com';
 
-//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
-
+//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submissio$mail->Port = 25;
+$mail->Port = 25;
 //Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
+//$mail->SMTPSecure = 'tls';
 
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
 
 //Username to use for SMTP authentication - use full email address for gmail
-$mail->Username = "teamstyle16@gmail.com";
+$mail->Username = "teamstyle16@eesast.com";
 
 //Password to use for SMTP authentication
 $mail->Password = "/[F=ma/]";
 
 //Set who the message is to be sent from
-$mail->setFrom('teamstyle16@gmail.com', 'teamstyle16 web');
+$mail->setFrom('teamstyle16@eesast.com', 'teamstyle16 web');
 
 //Set an alternative reply-to address
 $mail->addReplyTo('teamstyle16@gmail.com', 'teamstyle16 web');

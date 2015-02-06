@@ -1,58 +1,25 @@
 # -*- coding: utf-8 -*-
-from threading import Thread
 import time
 import commands
 import threading
 from time import ctime,sleep
 
-#修饰器用于处理
-class TimeoutException(Exception):
-    pass
-
-ThreadStop = Thread._Thread__stop#获取私有函数
-
-def timelimited(timeout):
-    def decorator(function):
-        def decorator2(*args,**kwargs):
-            class TimeLimited(Thread):
-                def __init__(self,_error= None,):
-                    Thread.__init__(self)
-                    self._error =  _error
-                    
-                def run(self):
-                    try:
-                        self.result = function(*args,**kwargs)
-                    except Exception,e:
-                        self._error =e
-
-                def _stop(self):
-                    if self.isAlive():
-                        ThreadStop(self)
-
-            t = TimeLimited()
-            t.start()
-            t.join(timeout)
-     
-            if isinstance(t._error,TimeoutException):
-                t._stop()
-                raise TimeoutException('timeout for %s' % (repr(function)))
-
-            if t.isAlive():
-                t._stop()
-		(status, output) = commands.getstatusoutput('docker kill'+)
-                print "wrong"
-
-            if t._error is None:
-                return 1
-
-        return decorator2
-    return decorator
-
-docker_id=[]
-@timelimited(5)
-def open_docker(user_id)
-    (status,output) = commands.getstatusoutput('docker run -rm -v /home/duishi16/teamstyle16/public/online_compile/'+user_id+'/:/home/ -e user_id='+user_id+' online_battle:fix_bug')      
-    return;
+def compile(timeout,user_id,connection):  
+		(status, output0) = commands.getstatusoutput('docker run  -i -t -d -v $(pwd)/public/source/'+user_id+'/:/home/ online_battle:with_file gcc -o /home/app -O1 /home/'+user_id+'.c')
+		for i in range(timeout):			
+			(status, output1) = commands.getstatusoutput('docker logs '+output0)
+			time.sleep(1)
+			if output1:
+				connection.send('%d.'+output1)
+				(status, output0) = commands.getstatusoutput('docker rm '+output0)
+				connection.close()
+				return 1	
+		(status, output0) = commands.getstatusoutput('docker kill '+output0)
+		(status, output0) = commands.getstatusoutput('docker rm '+output0)
+		print "something wrong"%num	
+		connection.close()		
+		return 0
+		
 
 threads = []
 if __name__ == '__main__':  
@@ -69,11 +36,11 @@ if __name__ == '__main__':
             print buf   
             if buf[0] == 'c':  
                 connection.send('welcome to server!')
-                t = threading.Thread(target=open_docker,args=(buf[1],))
-                trr = [元素].setDaemon(True)
+                t = threading.Thread(target=compile,args=(5,buf[1],connection))
+                t.setDaemon(True)
                 t.start()
             else:  
                 connection.send('Not Support')  
         except socket.timeout:  
             print 'time out'  
-        connection.close()  
+          

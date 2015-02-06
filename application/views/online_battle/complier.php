@@ -11,12 +11,13 @@
                 <h3 class="panel-title">提交代码</h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo URL; ?>online_battle/upload" method="post" enctype="multipart/form-data">
-                    <label for="file">Select source file(C || Cpp <50k)):</label>
+                <form action="<?php echo URL; ?>online_battle/uploads" method="post" enctype="multipart/form-data">
+                    <label for="file">Select source file(C || Cpp <50k ):</label>
                     <input type="file" name="file" id="file" />
                     <input type="hidden" name="MAX_FILE_SIZE" value="50000" />
-                    <button type="submit" class="btn  btn-default" >编译</button>
-                </form>
+                    <button type="submit" class="btn  btn-default" >上传</button>
+								</form>
+<a href="<?php echo  URL . 'online_battle/compile_action'?>" rel="leanModal" class="btn btn-primary">编译</a>
             </div>
         </div>
     </div>

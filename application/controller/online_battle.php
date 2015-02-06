@@ -10,19 +10,19 @@ class online_battle extends controller
 		$this->view->render('online_battle/complier');
 	}
 
-	public function complier(){
+	public function compiler(){
 		$this->view->render('online_battle/complier');
 	}
 
-	public function uplodas(){
+	public function uploads(){
 		$ob_model=$this->loadModel('online_battle');
 		$ob_model->upload();
-		$this->view->render('online_battle/complier')
+		header('location:' .URL. 'online_battle/index/');
 	}
 
-	public function complier_action(){
+	public function compile_action(){
 		$ob_model=$this->loadModel('online_battle');
-		$ob_model->complier();
+		$ob_model->compile();
 	}
 				
 }

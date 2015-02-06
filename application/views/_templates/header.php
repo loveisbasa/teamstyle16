@@ -100,6 +100,7 @@ body{
       </script> 
       <ul class="nav navbar-nav navbar-right">
         <li><a  style="font:bold;color:white" href="<?php echo URL.'forum/index'?>">论坛</a></li>
+        <li><a  style="font:bold;color:white" href="<?php echo URL.'online_battle/index'?>">在线编译</a></li>
         <li ><a style="font:bold;color:white" href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         
             <li><a style="font:bold;color:white" href = "<?php echo URL.'file';?>">文档列表</a></li>

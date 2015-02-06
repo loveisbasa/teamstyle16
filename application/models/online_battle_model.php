@@ -1,6 +1,6 @@
 <?php
 
-class online_battleModel {
+class Online_battleModel {
     public function __construct($db) {
         try {
             $this->db = $db;
@@ -18,22 +18,20 @@ class online_battleModel {
             echo "Type: " . $_FILES["file"]["type"] . "<br />";
             echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
             echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-						$file='public/source'. $_SESSION['user_id'] .'/' . $_SESSION['user_id'].'.c';
+						$file='public/source/'. $_SESSION['user_id'] .'/' . $_SESSION['user_id'].'.c';
             if (file_exists($file)) {
 							unlink($file);
             } 
                 @mkdir("public/source/" . $_SESSION['user_id']);
                 move_uploaded_file($_FILES["file"]["tmp_name"], $file);
-								$_SESSION[feedback_positive][]="上传成功"
+								$_SESSION["feedback_positive"][]="上传成功";
         }
     }
-    public function complie() {
-        if ($_SESSION['user_logged_in'] != ture) return false;
-        if ($_FILES["file"]["error"] > 0) {
-            echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-        } else {
+    public function compile() {
+        if (!$_SESSION['user_logged_in']) return false;
+         else {
             $service_port = 8001;
-            $address = URL;
+            $address = ADDRESS;
             $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
             if ($socket === false) {
                 $_SESSION["feedback_negative"][] = "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
@@ -48,7 +46,8 @@ class online_battleModel {
             socket_write($socket, $in2, strlen($in2));
             $out = '';
             while ($out = socket_read($socket, 8192)) {
-                echo $out . "<br />";
+                echo $out; 
+								echo "</br>";
             };
             socket_close($socket);
         }

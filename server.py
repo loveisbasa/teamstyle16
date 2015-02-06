@@ -5,7 +5,7 @@ import threading
 from time import ctime,sleep
 
 def compile(timeout,user_id,connection):  
-		(status, output0) = commands.getstatusoutput('docker run  -i -t -d -v $(pwd)/public/source/'+user_id+'/:/home/ online_battle:with_file gcc -o /home/app -O1 /home/'+user_id+'.c')
+		(status, output0) = commands.getstatusoutput('docker run  -i -t -d -v $(pwd)/public/source/'+user_id+'/:/home/ 37fa18301751 sh /compile.sh')
 		for i in range(timeout):			
 			(status, output1) = commands.getstatusoutput('docker logs '+output0)
 			time.sleep(1)

@@ -11,7 +11,7 @@
                 <h3 class="panel-title">提交代码</h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo URL; ?>online_battle/compile" method="post" enctype="multipart/form-data">
+                <form action="<?php echo URL; ?>online_battle/upload" method="post" enctype="multipart/form-data">
                     <label for="file">Select source file(C || Cpp <50k)):</label>
                     <input type="file" name="file" id="file" />
                     <input type="hidden" name="MAX_FILE_SIZE" value="50000" />

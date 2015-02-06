@@ -14,7 +14,15 @@ class online_battle extends controller
 		$this->view->render('online_battle/complier');
 	}
 
+	public function uplodas(){
+		$ob_model=$this->loadModel('online_battle');
+		$ob_model->upload();
+		$this->view->render('online_battle/complier')
+	}
+
 	public function complier_action(){
 		$ob_model=$this->loadModel('online_battle');
+		$ob_model->complier();
+	}
 				
 }

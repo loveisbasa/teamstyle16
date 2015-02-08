@@ -49,9 +49,9 @@ class Team extends Controller
 
 	public function team_display($page=1)
 	{
+		$_SESSION['team_page_id'] = $page;
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->GetAllTeams($page);
-		$_SESSION['page_id'] = $page;
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/index.php';
 		require 'application/views/_templates/footer.php';

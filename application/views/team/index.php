@@ -22,7 +22,7 @@
       <div class="collection-title">
         <h1 class="collection-header">战队展示</h1>
         <div class="collection-info">
-          <span class="meta-info"><span class="octicon octicon-repo"></span>战队风云再起</span>
+          <span class="meta-info">战队风云再起</span>
         </div>
       </div>
     </div>
@@ -54,12 +54,12 @@
 
             <p class="repo-list-description">
               <?php if (isset($team->team_slogan)) echo "<strong>".$team->team_slogan."</strong><br/>"; ?>
-            <?php if (isset($team->team_captain)) echo "队长:  ".$team->team_captain."<br/>";
-            if (isset($team->team_member1)) echo "      队伍成员:  ".$team->team_member1; 
+              <?php if (isset($team->team_captain)) echo "队长:  ".$team->team_captain."<br/>";
+              if (isset($team->team_member1)) echo "      队伍成员:  ".$team->team_member1; 
                 if (isset($team->team_member2)) echo "  ".$team->team_member2;
                   echo "<br/><br/>";
-            ?>
-          </p>
+                  ?>
+            </p>
             <?php if (!$team->team_full ) {
               if (!isset($_SESSION['user_team']) AND !isset($_SESSION['in_team'])){?>
               <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
@@ -92,7 +92,17 @@
         </li>
       </ul>
       <?php } ?>
-
+<nav>
+  <ul class="pagination">
+    <?php if ($_SESSION['team_page_id']!=1){?>
+    <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']-1);?>">&laquo;</a></li>
+    <?php }
+    for ($i = 1;$i < 10;$i++) {?>
+    <li><a href="<?php echo URL.'team/team_display/'.$i;?>"><?php echo $i?></a></li>
+    <?php }?>
+    <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']+1);?>">&raquo;</a></li>
+  </ul>
+</nav>
 
       </div>
       
@@ -101,21 +111,21 @@
             <h3 class="other-content-title">论坛入口</h3>
             <ul class="side-collection-list"  data-pjax>
               <li class="side-collection-list-item">
-                <a href="#" class="side-collection-link">
+                <a href="<?php echo URL;?>forum/threads/1" class="side-collection-link">
                   <span class="side-collection-image" style="background-image: url(<?php echo URL;?>public/img/allteam-2.jpg)">
                     <span class="side-collection-item-title">队友招募区</span>
                   </span>
                 </a>  
               </li>
               <li class="side-collection-list-item">
-                <a href="#" class="side-collection-link">
+                <a href="<?php echo URL;?>forum/threads/2" class="side-collection-link">
                   <span class="side-collection-image" style="background-image: url(<?php echo URL;?>public/img/allteam-4.jpg)">
                     <span class="side-collection-item-title">吐槽灌水区</span>
                   </span>
                 </a>  
               </li>
               <li class="side-collection-list-item">
-                <a href="#" class="side-collection-link">
+                <a href="<?php echo URL;?>forum/threads/3" class="side-collection-link">
                   <span class="side-collection-image" style="background-image: url(<?php echo URL;?>public/img/allteam-3.jpg)">
                     <span class="side-collection-item-title">平台报错区</span>
                   </span>

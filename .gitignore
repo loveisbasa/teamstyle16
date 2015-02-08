@@ -1,2 +1,4 @@
 public/avatar/*
+application/db_backup/*
 application/config/config.php
+public/source/*

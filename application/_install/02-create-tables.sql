@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `info`.`files` (
 `file_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `file_title` varchar(128) NOT NULL,
 `file_author` int(11) NOT NULL,
-`file_type` varchar(5) NOT NULL,
+`file_type` varchar(20) NOT NULL,
 `file_date` datetime NOT NULL,
 `file_ip` varchar(20) NOT NULL,
 `file_size` int(11) NOT NULL

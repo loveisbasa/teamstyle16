@@ -19,9 +19,11 @@ ini_set("display_errors", 1);
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
 
-//define('URL', 'http://166.111.223.20/');
-//define('URL','http://teamstyle16.eesast.com/');
+
 define('URL', 'http://localhost/teamstyle16/');
+//define('URL','http://teamstyle16.eesast.com/');
+//define('ADDRESS','teamstyle16.eesast.com');
+
 define("HASH_COST_FACTOR", "10");
 
 define('AVATAR_PATH', 'public/avatars/');
@@ -45,7 +47,7 @@ define('UP_FILE_PATH', '/var/www/html/teamstyle16/uploads/');
 define('COOKIE_RUNTIME', 1209600);
 // the domain where the cookie is valid for, for local development ".127.0.0.1" and ".localhost" will work
 // IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
-define('COOKIE_DOMAIN', '.localhost');
+define('COOKIE_DOMAIN', '127.0.0.1');
 
 define("TEAM_INVITATION", "");
 define("TEAM_INVITATION_CONTENT", "");
@@ -60,13 +62,12 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
  * This is the place where you define your database credentials, database type etc.
  */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'info');
-//define('DB_USER', 'duishi16');
+
 define('DB_USER','root');
 define('DB_PASS', 'wangjianyu');
-//define('DB_PASS', '******');
-//define('DB_PASS', 'niehao');
+
 
 
 

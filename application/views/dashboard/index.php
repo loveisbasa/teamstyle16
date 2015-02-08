@@ -6,6 +6,7 @@
         require  'application/views/_templates/feedback.php'; 
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);
+        $_SESSION['team_page_id'] = 1;
         ?>
 <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
 <div class="tm-grid-truncate uk-text-center">
@@ -48,25 +49,6 @@
 </div>
 <div class="row">
 
-
-<?php if ($_SESSION['user_type'] == 'dev' OR $_SESSION['user_type'] == 'admin') {?>
-<div class="col-xs-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">File</h3>
-            </div>
-            <div class="panel-body">
-                <form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
-                    <label for="file">Filename:</label>
-                    <input type="file" name="devfile" id="file" /> 
-                    <br />
-                    <input type="submit" name="submit" value="Submit" />
-                </form>
-            </div>
-            
-        </div>
-    </div>
-<?php } ?>
 
 
 

@@ -3,16 +3,53 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
         <br/>
-             <h2 class = "text-center"><strong>文档列表</strong></h2>
-	<div class = "row">
-	<div class = "col-md-6 col-xs-8 col-xs-offset-2 col-md-offset-3 ">
-	<ul>
-            <?php foreach ($all_file as $file) {?>
-            	       <div class = "well">
-                    <li><a href="<?php echo URL. 'file/download/'.$file->file_title;?>"><?php echo $file->file_title;?></a></li>
-            	       </div>
-            <?php }?>
-            </ul>
+        <div class = "row">
+            <?php if ($_SESSION['user_type'] == 'dev' OR $_SESSION['user_type'] == 'admin') {?>
+            <div class="col-md-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">上传文件</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
+                            <label for="file">文件名:</label>
+                            <input type="file" name="devfile" id="file" /> 
+                            <br />
+                            <input type="submit" name="submit" value="Submit" />
+                        </form>
+                    </div>
+                </div>
             </div>
+            <?php } ?>
+           
+            <div class = "col-md-8 col-xs-8">
+             <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class = "text-center"><strong>资源列表</strong></h2>
+                </div>
+                <div class= "panel-body">
+            <table class = "table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>文件名</th>
+                        <th>上传时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($all_file as $file) {?>
+                        <tr>
+                            <td><?php echo $file->file_id; ?></td>
+            	               <td>
+                                <li><a href="<?php echo URL. 'file/download/'. $file->file_id;?>"><?php echo $file->file_title;?></a></li>
+            	               </td>
+                            <td><?php echo $file->file_date; ?></td>
+                        </tr>
+                    <?php }?>
+                </tbody>
+            </table>
             </div>
+        </div>
+        </div>
+        </div>
 </div>

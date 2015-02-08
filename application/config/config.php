@@ -19,8 +19,10 @@ ini_set("display_errors", 1);
  * Put your URL here, for local development "127.0.0.1" or "localhost" (plus sub-folder) is fine
  */
 
-define('URL','http://teamstyle16.eesast.com/');
-define('ADDRESS','teamstyle16.eesast.com');
+
+define('URL', 'http://localhost/teamstyle16/');
+//define('URL','http://teamstyle16.eesast.com/');
+//define('ADDRESS','teamstyle16.eesast.com');
 
 define("HASH_COST_FACTOR", "10");
 
@@ -62,8 +64,10 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'info');
-define('DB_USER', 'duishi16');
-define('DB_PASS', '******');
+
+define('DB_USER','root');
+define('DB_PASS', 'wangjianyu');
+
 
 
 
@@ -139,3 +143,4 @@ define("FEEDBACK_NOTE_EDITING_FAILED", "Note editing failed.");
 define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
+define("FEEDBACK_TEAM_NOT_FOUND", "Sorry, the team is not found in the database.");

@@ -106,7 +106,7 @@ body{
 				?>
         <li ><a style="font:bold;color:white" href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         
-            <li><a style="font:bold;color:white" href = "<?php echo URL.'file';?>">文档列表</a></li>
+            <li><a style="font:bold;color:white" href = "<?php echo URL.'file';?>">资源列表</a></li>
 
         <li><a style="font:bold;color:white" href="<?php echo URL.'login/logout'?>">退出</a></li>  
       </ul>

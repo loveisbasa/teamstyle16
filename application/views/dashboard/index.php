@@ -50,25 +50,6 @@
 <div class="row">
 
 
-<?php if ($_SESSION['user_type'] == 'dev' OR $_SESSION['user_type'] == 'admin') {?>
-<div class="col-xs-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">File</h3>
-            </div>
-            <div class="panel-body">
-                <form action="<?php echo URL; ?>file/upload" method="post" enctype="multipart/form-data">
-                    <label for="file">Filename:</label>
-                    <input type="file" name="devfile" id="file" /> 
-                    <br />
-                    <input type="submit" name="submit" value="Submit" />
-                </form>
-            </div>
-            
-        </div>
-    </div>
-<?php } ?>
-
 
 
 </div>

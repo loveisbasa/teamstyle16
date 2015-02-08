@@ -1,5 +1,5 @@
 
-<link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
+
 <style>
 #wrap{word-break:break-all; width:250px;}
 #deepblue{color:white;font-family: times}

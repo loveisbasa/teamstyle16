@@ -358,6 +358,7 @@ class TeamModel
 			where u1.user_nickname like '%{$keyword}%' or u2.user_nickname like '%{$keyword}%' or u3.user_nickname like '%{$keyword}%'  or  team_name like '%{$keyword}%' or team_slogan like '%{$keyword}%' or team_id='$keyword'";
 			$query= $this->db->prepare($sql);
 			$query->execute();
+			$result = $query->fetchall();
 				
 			return $query->fetchall();
 		}

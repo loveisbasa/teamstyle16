@@ -25,6 +25,7 @@ class FileModel
 		if (is_uploaded_file($_FILES['devfile']['tmp_name'])) {
 			if ( !move_uploaded_file($_FILES['devfile']['tmp_name'], UP_FILE_PATH. $_FILES['devfile']['name'])) {
 				$_SESSION["feedback_negative"][] = "error";
+				echo $_FILES['devfile']['error'];
 				return FALSE;
 			}
 			$fname = strip_tags($_FILES['devfile']['name']);
@@ -49,14 +50,17 @@ class FileModel
 			return TRUE;
 		}
 	}
-	public function Download($file_name)
+	public function Download($id)
 	{
-		header("Content-type:text/html;charset=utf-8");
-		//$file_name="icons.png";
-		//用以解决中文不能显示出来的问题
-		$file_name=iconv("utf-8","gb2312",$file_name);
+		$sql = "SELECT file_title FROM files WHERE file_id = :file_id";
+		$query  = $this->db->prepare($sql);
+		$query->execute(array(':file_id'=>$id));
+		$result = $query->fetch();
+		$file_name = $result->file_title;
+
 		$file_sub_path = "/var/www/html/teamstyle16/uploads/";
 		$file_path = $file_sub_path . $file_name;
+		echo $file_path;//debug
 		//首先要判断给定的文件存在与否
 		 if(!file_exists($file_path)){
 		 	echo "没有该文件";
@@ -77,11 +81,11 @@ class FileModel
 			$file_count+=$buffer;
 			echo $file_con;
 		}
-		fclose($fp);it ();  
+		fclose($fp);  
 	}
 	public function GetAllFiles()
 	{
-		$query = $this->db->prepare("SELECT file_title, file_type, file_size, file_author, file_date 
+		$query = $this->db->prepare("SELECT file_id, file_title, file_type, file_size, file_author, file_date 
 			FROM files");
 		$query->execute();
 		$result = $query->fetchAll();

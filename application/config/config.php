@@ -20,9 +20,8 @@ ini_set("display_errors", 1);
  */
 
 
-define('URL', 'http://localhost/teamstyle16/');
-//define('URL','http://teamstyle16.eesast.com/');
-//define('ADDRESS','teamstyle16.eesast.com');
+define('URL','http://teamstyle16.eesast.com/');
+define('ADDRESS','teamstyle16.eesast.com');
 
 define("HASH_COST_FACTOR", "10");
 
@@ -65,8 +64,8 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'info');
 
-define('DB_USER','root');
-define('DB_PASS', 'wangjianyu');
+define('DB_USER','duishi16');
+define('DB_PASS', '******');
 
 
 

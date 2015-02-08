@@ -14,6 +14,11 @@ class online_battle extends controller
 		$this->view->render('online_battle/compile_view');
 	}
 
+
+	public function battle(){
+		$this->view->render('online_battle/compile_view');
+	}
+
 	public function uploads(){
 		$ob_model=$this->loadModel('online_battle');
 		$ob_model->upload();

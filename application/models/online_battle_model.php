@@ -46,9 +46,9 @@ class Online_battleModel {
             socket_write($socket, $in2, strlen($in2));
             $out = '';
             while ($out = socket_read($socket, 8192)) {
-                echo $out; 
-								echo "</br>";
+                $response[]=$out; 
             };
+						return $response;
             socket_close($socket);
         }
     }

@@ -33,8 +33,10 @@ class LoginModel
 			user_first_login,
 			user_type,
 			user_team,
-			user_real_name
-			FROM users
+			user_real_name,
+			score,
+			with_ai
+			FROM users LEFT JOIN teams on users.user_team=teams.team_name
 				WHERE (user_nickname = :user_nickname OR user_email = :user_nickname) ";
 		$query = $this->db->prepare($sql);
 		$query->execute(array(':user_nickname' => $_POST['user_nickname']));
@@ -62,7 +64,8 @@ class LoginModel
 			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
-
+		  $_SESSION['with_ai']=$result->with_ai;
+		  $_SESSION['score']=$result->score;	
 			//下面这些是可以选择扩展的一些功能
 			//Session::set('user_account_type', $result->user_account_type);
 			//Session::set('user_provider_type', 'DEFAULT');
@@ -148,9 +151,16 @@ class LoginModel
 			return false;
 		}
 
-		$query = $this->db->prepare("SELECT user_id, user_nickname, user_email, user_password_hash,
-			user_failed_logins, user_last_failed_login,user_type,user_team, user_first_login, user_real_name
-			FROM users 
+		$query = $this->db->prepare("SELECT user_id,
+			user_nickname,
+			user_email,
+		 	user_password_hash,
+			user_failed_logins,
+			user_last_failed_login,
+			user_type,user_team,
+			user_first_login,
+		 	user_real_name
+			FROM users LEFT JOIN teams on users.user_team=teams.team_name
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
 			AND user_rememberme_token IS NOT NULL");
@@ -168,6 +178,9 @@ class LoginModel
 			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
 			$_SESSION['user_first_login']=$result->user_first_login;
+		  $_SESSION['with_ai']=$result->with_ai;
+		  $_SESSION['score']=$result->score;	
+
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {

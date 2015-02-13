@@ -1,5 +1,5 @@
 
-<div class="uk-container">
+<div class="uk-container uk-container-center" style="background-color:#C4E1E1">
  <!--    <h1 >Dashboard</h1> -->
     <!-- echo out the system feedback (error and success messages) -->
         <?php 
@@ -8,51 +8,80 @@
         Session::set('feedback_negative', null);
         $_SESSION['team_page_id'] = 1;
         ?>
-<h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
-<div class="tm-grid-truncate uk-text-center">
-    <div class="uk-grid" data-uk-grid-match>
-        <div class="uk-width-large-1-4 uk-width-medium-1-1">
-            <a href="#offcanvas-1" data-uk-offcanvas>
-                <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#00CCFF">
-                    <h3><icon class="uk-icon-user uk-icon-large"></i> 我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
-                </div>
-            </a>
-        </div>
 
-        <div class="uk-width-large-1-4 uk-width-medium-1-1">
-            <a href="#offcanvas-2" data-uk-offcanvas>
-                <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#CC99FF">
-                    <h3><icon class="uk-icon-home uk-icon-large"></i> 我的队伍<br/><small>励志被别人“抱大腿”</small><br/><br/></h3>
+    <div class="uk-grid" data-uk-grid-match >
+        <div class="uk-panel uk-panel-box uk-panel-box-primary uk-width-2-3 uk-push-1-6 uk-text-center">
+            <h3>队式进度条</h3>
+            <div class="uk-progress uk-progress-striped">
+                <div class="uk-progress-bar" style="width: 40%;">
+                    <p id="date"></p>
+                    <script>
+                    function showdate()
+                    {
+                        var today,date;
+                        today=new Date();
+                        date = today.getDate();
+                        document.getElementById('date').innerHTML = date ; //显示时间
+                        setTimeout("showdate();", 1000); //设定函数自动执行时间为 1000 ms(1 s)
+                    }
+                    showdate();
+                    </script>
                 </div>
-            </a>
+            </div>    
+                <p id="left_date"></p>
+                <script>
+                function leftdate(){
+                    var today,date,left_date;
+                    today = new Date();
+                    date = today.getDate();
+                    left_date = "31" - date;
+                    document.getElementById('left_date').innerHTML = "距离称霸罗姆走上人生巅峰还剩" + left_date + "天";
+                    setTimeout("leftdate()",1000 * 60)
+                }
+                leftdate();
+                </script>
         </div>
+    </div>
+    <div class="uk-grid" data-uk-grid-match uk-grid-preserve>
+        <div class="uk-panel uk-panel-box uk-width-2-3 uk-push-1-6 uk-text-center">
+            <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
+            <div class="uk-grid" data-uk-grid-match>
+            <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                <a href="#offcanvas-1" data-uk-offcanvas>
+                    <div class="uk-panel uk-panel-box uk-panel-success uk-text-center uk-panel-space">
+                        <h3><icon class="uk-icon-user uk-icon-large"></i> 我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
+                    </div>
+                </a>
+            </div>
 
-        <div class="uk-width-large-1-4 uk-width-medium-1-1">
-            <a href="#offcanvas-3" data-uk-offcanvas>
-                <div class="uk-panel uk-panel-box-danger uk-text-center uk-panel-space" style="background-color:#33FF99">
-                    <h3><icon class="uk-icon-bookmark uk-icon-large"></i> 我的帖子<br/><small>想不起来我都说过什么梦话呢</small><br/><br/></h3>
-                </div>
-            </a>
+            <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                <a href="#offcanvas-2" data-uk-offcanvas>
+                    <div class="uk-panel uk-panel-box uk-text-center uk-panel-space">
+                        <h3><icon class="uk-icon-home uk-icon-large"></i> 我的队伍<br/><small>励志被别人“抱大腿”</small><br/><br/></h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                <a href="#offcanvas-3" data-uk-offcanvas>
+                    <div class="uk-panel uk-panel-box uk-text-center uk-panel-space">
+                        <h3><icon class="uk-icon-bookmark uk-icon-large"></i> 我的帖子<br/><small>想不起来我都说过什么梦话呢</small><br/><br/></h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                <a href="#offcanvas-5" data-uk-offcanvas>
+                    <div class="uk-panel uk-panel-box uk-text-center uk-panel-space">
+                        <h3><icon class="uk-icon-comment uk-icon-large"></i >发送消息<br/><small>我要给女神发私信！</small><br/><br/></h3>
+                    </div>
+                </a>
+            </div>
         </div>
-
-        <div class="uk-width-large-1-4 uk-width-medium-1-1">
-            <a href="#offcanvas-5" data-uk-offcanvas>
-                <div class="uk-panel uk-panel-box uk-text-center uk-panel-space" style="background-color:#FF99FF">
-                    <h3><icon class="uk-icon-comment uk-icon-large"></i >发送消息<br/><small>我要给女神发私信！</small><br/><br/></h3>
-                </div>
-            </a>
         </div>
     </div>
 </div>
 
-
-</div>
-<div class="row">
-
-
-
-
-</div>
 <div id="offcanvas-1" class="uk-offcanvas">
     <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">
         <div class="thumbnail">
@@ -184,14 +213,6 @@
                 
             
     </div>
-</div>
-<!--
-<?php
-foreach($All_user as $user){?>
-<a href=<?php echo URL . "home/index/" . $user->user_id;?>>
-<img title="<?php echo $user->user_nickname;?>" src="<?php echo  $user->user_avatar_link;?>" width="80px" height="80px"/ >
-</a>
-<?php			}
-?>
--->
 
+
+</div>

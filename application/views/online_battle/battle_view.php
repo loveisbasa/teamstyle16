@@ -2,24 +2,22 @@
  <?php require  'application/views/_templates/feedback.php'; 
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
- <div class="row">
 
-
-    <div class="col-sm-6">
-        <div class="panel panel-default" id="profile">
-            <div class="panel-heading">
-                <h3 class="panel-title">提交代码</h3>
-            </div>
-            <div class="panel-body">
-                <form action="<?php echo URL; ?>online_battle/uploads" method="post" enctype="multipart/form-data">
-                    <label for="file">Select source file(C || Cpp <50k ):</label>
-                    <input type="file" name="file" id="file" />
-                    <input type="hidden" name="MAX_FILE_SIZE" value="50000" />
-                    <button type="submit" class="btn  btn-default" >上传</button>
-								</form>
-<a href="<?php echo  URL . 'online_battle/compile_action'?>" rel="leanModal" class="btn btn-primary">编译</a>
-            </div>
-        </div>
-    </div>
-
-</div>
+ 
+		<form action="<?php echo URL; ?>online_battle/battle_action" method="post" enctype="multipart/form-data">
+		<h2>地图</h2>
+		<select name="map">
+		<?php foreach($maps as $map){
+		echo "<option value='$map->name'>$map->name</option>";
+		}
+		?>
+		</select>
+		<h2>对手</h2>
+		<select name="player">
+		<?php foreach($teams as $team){
+		echo "<option value='$team->team_name'>目前得分:$team->score.$team->team_name</option>";
+		}
+		?>
+		</select></br></br></br>
+		<button type="submit" class="btn  btn-default" >战斗吧骚年</button>
+		</form>

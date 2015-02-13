@@ -27,7 +27,7 @@ def battle(timeout,a_id,b_id,connection,map_name):
                                                     -v $(pwd)/public/source/'+a_id+'/:/home/a/\
                                                     -v $(pwd)/public/source/'+b_id+'/:/home/b/\
                                                     -v $(pwd)/public/source/'+a_id+'vs'+b_id+'/:/home/result/\
-                                                    -e MAP=map_name 5b46ff5017e sh /battle.sh')
+                                                    -e MAP='+map_name+' c5b46ff5017e sh /battle.sh')
 	for i in range(timeout):			
 		(status, output1) = commands.getstatusoutput('docker logs '+output0)
 		time.sleep(1)
@@ -61,13 +61,14 @@ if __name__ == '__main__':
                 t = threading.Thread(target=compile,args=(5,buf[1],connection))
                 t.setDaemon(True)
                 t.start()
-            else if buf[0] == 'b' :  
-                connection.send('welcome to server!')  
-                t = threading.Thread(target=battle,args=(30,buf[1],buf[2],connection,buf[3]))
-                t.setDaemon(True)
-                t.start()
             else:
-                connection.send('Not supported!')
+                if buf[0] == 'b' :  
+                    connection.send('welcome to server!')  
+                    t = threading.Thread(target=battle,args=(60,buf[1],buf[2],connection,buf[3]))
+                    t.setDaemon(True)
+                    t.start()
+                else:
+                    connection.send('Not supported!')
         except socket.timeout:  
             print 'time out'  
       

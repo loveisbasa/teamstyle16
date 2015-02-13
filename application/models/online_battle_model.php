@@ -44,14 +44,21 @@ class Online_battleModel {
       }
 		}
 
-		public function show_maps_and_others(){
+		public function show_maps(){
 				$sql = "SELECT round,name from maps";
         $query = $this->db->prepare($sql);
         $query->execute();
-        $s[]=$query->fetchAll();
-				$sql= "SELECT team_name from teams where with_ai='ture'";
-
+        return $query->fetchAll();
 		}
+		
+		//显示已经有ai的队伍
+		public  function show_others(){
+			  $sql= "SELECT team_name,score FROM teams WHERE with_ai=1 ORDER BY score";
+	      $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+		}
+
 
     public function compile() {
 			$file='public/source/'. $_SESSION['user_team'] .'/' . $_SESSION['user_team'].'.c';
@@ -59,37 +66,37 @@ class Online_battleModel {
 				$_SESSION['feedback_negative'][]='未登录！';
 				return false;
 			}
-				$file='public/source/'. $_SESSION['user_team'] .'/player';
-         $service_port = 8001;
-         $address = ADDRESS;
-         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-         if ($socket === false) {
-             $_SESSION["feedback_negative"][] = "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
-         }
-         $result = socket_connect($socket, $address, $service_port);
-         if ($result === false) {
-             $SELECT["feedback_negative"][] = "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
-         }
-         $in1 = "c\n";
-         $in2 = $_SESSION['user_team'];
-         socket_write($socket, $in1, strlen($in1));
-         socket_write($socket, $in2, strlen($in2));
-         $out = '';
-         while ($out = socket_read($socket, 8192)) {
-             $response[]=$out; 
-         };
-			 	return $response;
-         socket_close($socket);
+			$file='public/source/'. $_SESSION['user_team'] .'/player';
+      $service_port = 8001;
+      $address = ADDRESS;
+      $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+      if ($socket === false) {
+          $_SESSION["feedback_negative"][] = "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
+      }
+      $result = socket_connect($socket, $address, $service_port);
+      if ($result === false) {
+          $SELECT["feedback_negative"][] = "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
+      }
+      $in1 = "c\n";
+      $in2 = $_SESSION['user_team'];
+      socket_write($socket, $in1, strlen($in1));
+      socket_write($socket, $in2, strlen($in2));
+      $out = '';
+      while ($out = socket_read($socket, 8192)) {
+          $response[]=$out; 
+      };
+			$sql = "update teams set with_ai=1 where team_name='{$_SESSION["user_team"]}'";
+      $query = $this->db->prepare($sql);
+      $query->execute();
+      socket_close($socket);
+		 	return $response;
 		}
 
-		public function battle() {
-			$file='public/source/'. $_SESSION['user_team'] .'/player';
+		public function fight() {
 			if (!$_SESSION['user_logged_in']){
 				$_SESSION['feedback_negative'][]='未登录！';
 				return false;
 			}
-			if (!file_exists($file)){
-			}
 				$file='public/source/'. $_SESSION['user_team'] .'/player';
          $service_port = 8001;
          $address = ADDRESS;
@@ -101,21 +108,22 @@ class Online_battleModel {
          if ($result === false) {
              $SELECT["feedback_negative"][] = "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
          }
-         $in1 = "c\n";
-         $in2 = $_SESSION['user_team'];
-         socket_write($socket, $in1, strlen($in1));
-         socket_write($socket, $in2, strlen($in2));
+         $type = "b\n";
+         $a = $_SESSION['user_team']."\n";
+				 $b = $_POST['player']."\n";
+				 $c = $_POST['map']."\n";
+				 echo $a.$b.$c;
+         socket_write($socket, $type, strlen($type));
+         socket_write($socket, $a, strlen($a));
+         socket_write($socket, $b, strlen($b));
+         socket_write($socket, $c, strlen($c));
          $out = '';
          while ($out = socket_read($socket, 8192)) {
-             $response[]=$out; 
+         $response[]=$out; 
          };
-			 	return $response;
+
          socket_close($socket);
+			  return $response;
     }
 }
-
-}
 ?>
-
-
-

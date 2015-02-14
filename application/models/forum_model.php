@@ -102,7 +102,6 @@ class ForumModel {
 						VALUES
 						(:title,:intro,'{$d}',0,0)";
 
-					echo $sql;
 					$query=$this->db->prepare($sql);
 					if($query->execute(array(':title'=>$title,':intro'=>$intro))) return 'true'; 
 					else $_SESSION["feedback_negative"][]=FEEDBACK_FORUM_INSERT_ERROR;								

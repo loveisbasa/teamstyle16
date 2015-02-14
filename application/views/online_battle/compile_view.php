@@ -3,6 +3,7 @@
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);?>
 <link href="<?php echo URL; ?>public/css/online.css" rel="stylesheet" type="text/css">
+
 <main class="container" role="main">
  <div class="row">
     <div class="col-lg-8 col-lg-push-2" style="background-image:'<?php echo URL; ?>public/img/online_background.jpg'">
@@ -25,6 +26,9 @@
                     <input type="hidden" name="MAX_FILE_SIZE" value="50000" />
                     <button type="submit" class="btn  btn-default" >上传</button>
                     <a href="<?php echo  URL . 'online_battle/compile_action'?>" rel="leanModal" class="btn btn-primary">编译</a>
+										<?php if($_SESSION['with_ai'])
+										echo  "<a href='" .URL . "online_battle/battle' rel='leanModal' class='btn btn-primary'>PK</a>";
+										?>
                 </form>
             </div>
         </div>
@@ -32,7 +36,6 @@
     </div>    
 
 
-    
 
 </div>
 </main>

@@ -46,7 +46,7 @@ class Forum extends Controller
 			$posts=$forum_model->Showposts($thread_id);
 		  $thread_link=$forum_model->Showthread($thread_id);
 			$forum_link=$forum_model->Showforums();
-		  $writer_link=$forum_model->ShowUSERposts($thread_link->user_id);
+		  $writer_link=$forum_model->ShowUSERthreads($thread_link->user_id);
 			require 'application/views/_templates/header.php';
 			require 'application/views/forum/post.php';
 			require 'application/views/_templates/footer.php';

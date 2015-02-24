@@ -56,7 +56,7 @@ p{white-space: pre-line;}
 
       </div>
 
-      <div class="uk-width-medium-1-4">
+      <div class="uk-width-medium-1-4  uk-hidden-small">
         <div class="uk-panel uk-panel-header">
             <h3 class="uk-panel-title">热帖排行</h3>
             <ul class="uk-list uk-list-line">

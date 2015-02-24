@@ -60,6 +60,7 @@
               if (isset($team->team_member1)) echo "      队伍成员:  ".$team->team_member1; 
                 if (isset($team->team_member2)) echo "  ".$team->team_member2;
                   echo "<br/><br/>";
+                  echo $j;
                   ?>
             </p>
             <?php if (!$team->team_full ) {

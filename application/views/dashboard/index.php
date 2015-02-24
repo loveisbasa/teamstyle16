@@ -13,7 +13,11 @@
         <div class="uk-panel uk-panel-box uk-panel-box-primary uk-width-2-3 uk-push-1-6 uk-text-center">
             <h3>队式进度条</h3>
             <div class="uk-progress uk-progress-striped">
-                <div class="uk-progress-bar" style="width: 40%;">
+                <div class="uk-progress-bar" style="width: <?php
+                $d1=strtotime("March 31");
+                $d2=ceil(($d1-time())/60/60/24);
+                echo $d2.'%';
+                ?>">
                     <p id="date"></p>
                     <script>
                     function showdate()

@@ -9,8 +9,9 @@
         $_SESSION['team_page_id'] = 1;
         ?>
 
-    <div class="uk-grid" data-uk-grid-match >
-        <div class="uk-panel uk-panel-box uk-panel-box-primary uk-width-2-3 uk-push-1-6 uk-text-center">
+    <div class="uk-grid" data-uk-grid-match>
+        <div class="tm-main uk-width-1-1">
+        <div class="uk-panel uk-panel-box uk-panel-box-primary uk-width-large-2-3 uk-width-medium-5-6 uk-container-center uk-text-center">
             <h3>队式进度条</h3>
             <div class="uk-progress uk-progress-striped">
                 <div class="uk-progress-bar" style="width: <?php
@@ -46,10 +47,13 @@
                 </script>
         </div>
     </div>
-    <div class="uk-grid" data-uk-grid-match uk-grid-preserve>
-        <div class="uk-panel uk-panel-box uk-width-2-3 uk-push-1-6 uk-text-center">
+    </div>
+    <div class="uk-grid" data-uk-grid-match>
+        <div class="tm-main uk-width-1-1">
+        <div class="uk-panel uk-panel-box uk-width-large-2-3 uk-width-medium-5-6 uk-container-center uk-text-center">
             <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
             <div class="uk-grid" data-uk-grid-match>
+
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
                 <a href="#offcanvas-1" data-uk-offcanvas>
                     <div class="uk-panel uk-panel-box uk-panel-success uk-text-center uk-panel-space">
@@ -84,6 +88,7 @@
         </div>
         </div>
     </div>
+</div>
 </div>
 
 <div id="offcanvas-1" class="uk-offcanvas">

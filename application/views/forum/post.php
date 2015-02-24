@@ -31,13 +31,29 @@ p{white-space: pre-line;}
                         <p class="uk-comment-meta"><?php echo $posts->posted ;?></p>
                     </header>
                     <div class="uk-comment-body"><?php echo $posts->message; ?></div>
+										<hr />
                 </article>
             </li>
             <?php } ?>
         </ul>
+<div class="container">   
+   <h3>快速回复</h3>
+        <form action="<?php echo URL; ?>forum/create_post_action" method="post" class="auth-form form-horizontal">
+           <div class="form-field">
+            <textarea type="text" name="message" placeholder='回复' autocomplete="off" required cols=50></textarea>
+            <span class="icon icon-user-bold"></span>
+          </div>
+          
+                        <input type="hidden" checked='checked' name='thread_id' value="<?php echo $thread_id; ?>"/>
+          <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
+           回复
+          </button>
+        </form>
+</div>
+
     </div>
 
-                <div class="uk-width-medium-1-4">
+                <div class="uk-width-medium-1-4   uk-hidden-small">
                     <div class="uk-panel uk-panel-box uk-text-center">
                         <img class="uk-border-circle" width="120" height="120" src="<?php echo $thread_link->user_avatar_link; ?>" alt="">
                         <h3><a href="<?php echo URL. 'message/send_mail/'. $thread_link->user_nickname;?>"><?php echo $thread_link->user_nickname;?></a></h3>
@@ -64,24 +80,6 @@ p{white-space: pre-line;}
                 </div>
 
             </div>
-</div>
-<div class="container">   
-
-
-
-
-   <h3>快速回复</h3>
-        <form action="<?php echo URL; ?>forum/create_post_action" method="post" class="auth-form form-horizontal">
-           <div class="form-field">
-            <textarea type="text" name="message" placeholder='回复' autocomplete="off" required cols=50></textarea>
-            <span class="icon icon-user-bold"></span>
-          </div>
-          
-                        <input type="hidden" checked='checked' name='thread_id' value="<?php echo $thread_id; ?>"/>
-          <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
-           回复
-          </button>
-        </form>
 </div>
 
 <div style="display:none"><script type="text/javascript">

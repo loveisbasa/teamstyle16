@@ -65,7 +65,7 @@ class ForumModel {
 						return $result;
         }
     }
-    public function ShowUSERPosts($user_id) {
+    public function ShowUSERthreads($user_id) {
         if (isset($user_id) and filter_var($user_id, FILTER_VALIDATE_INT, array(
             'min_range' => 1
         ))) {
@@ -78,6 +78,20 @@ class ForumModel {
 							threads
 							WHERE user_id={$user_id} ORDER BY establish_date ASC limit 6";
 
+            $query = $this->db->prepare($sql);
+            $query->execute();
+            return $query->fetchAll();
+        }
+    }
+		public function ShowUSERPosts($user_id) {
+        if (isset($user_id) and filter_var($user_id, FILTER_VALIDATE_INT, array(
+            'min_range' => 1
+        ))) {
+           $sql = "SELECT p.user_id as user_id,t.subject as subject,p.thread_id as thread_id,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
+						FROM
+						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
+						WHERE p.user_id={$user_id} ORDER BY p.post_on ASC";
+					     
             $query = $this->db->prepare($sql);
             $query->execute();
             return $query->fetchAll();

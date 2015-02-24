@@ -6,34 +6,34 @@ p{white-space: pre-line;}
 </style>
 
 <div class="container">   
-<div class="uk-grid">
-<div class="tm-sidebar uk-width-medium-1-4 ">
+		<div class="uk-grid">
+				<div class="tm-sidebar uk-width-medium-1-4 ">
 						<ul class="tm-nav uk-nav" data-uk-nav="">
             <h3 class="uk-panel-title">未读消息</h3>
 						     <?php foreach ($new_message as $message) {
 								 if($message->message_is_read==1) break; ?>
 								   <li>
-									<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>" >
-                    <font color='#FF0000'>
-                    <?php  if (isset($message->message_title))  echo $message->message_title;?>
-                    </font>
+											<a href="<?php echo URL . 'message/is_read/' . $message->message_id; ?>" >
+										   <font color='#FF0000'>
+										    <?php  if (isset($message->message_title))  echo $message->message_title;?>
+										  </font>
 								     </a>        
-								</li>
-										<?php } ?>
+										</li>
+								<?php } ?>
                   <br><br>
             <h3 class="uk-panel-title">所有消息</h3>
 						     <?php foreach ($new_message as $message) {
 								 if($message->message_is_read==1){ ?>
-								   <li>
-									<a href="<?php echo URL . 'message/all_message/' . $message->message_id; ?>" >
-                    <?php  if (isset($message->message_title))  echo $message->message_title;?>
-								     </a>        
-								</li>
+								  <li>
+								    	<a href="<?php echo URL . 'message/all_message/' . $message->message_id; ?>" >
+                      <?php  if (isset($message->message_title))  echo $message->message_title;?>
+								      </a>        
+									</li>
 
 
-						<?php } } ?><br><br>
+								<?php } } ?><br><br>
 
-             </ul>
+            </ul>
       </div>
 
 <?php 
@@ -47,23 +47,25 @@ p{white-space: pre-line;}
 					}
 					if($j)		$message=$new_message[$i];
 ?>
-<div class="tm-sidebar uk-width-medium-3-4">
+
+				<div class="tm-sidebar uk-width-medium-3-4">
 
         <article class="uk-article">
-          <h2><?php if ($j==0) echo "empty message box</h2>"; else{ echo $message->message_title; ?></h2>
+						  <h2><?php if ($j==0) echo "empty message box</h2>"; else{ echo $message->message_title; ?></h2>
 
-          <p id="wrap"><?php echo substr($message->message_content,0,400);?></p>
+						<p id="wrap"><?php echo substr($message->message_content,0,400);?></p>
             <p class="uk-article-meta">
             <?php if ($i!=-1) echo "From <a href="; echo URL . "home/index/" .  $message->message_from_id . "><font color='0x1E90FF'>" . $message->user_nickname ."</font></a>@" . $message->message_send_date; ?>
             </p>
 
-          <li data-uk-offcanvas="{target:'#offcanvas-5'}"><button type="button" class="btn btn-deafault">回复</button></li>
-        </article>
+						<li data-uk-offcanvas="{target:'#offcanvas-5'}"><button type="button" class="btn btn-deafault">回复</button></li>
+				</article>
         <br><br>
-<?php } ?>
-</div>
+						<?php } ?>
+				</div>
     </div>
 </div>
+
 <div id="offcanvas-5" class="uk-offcanvas">
   <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">
     <section class="content">

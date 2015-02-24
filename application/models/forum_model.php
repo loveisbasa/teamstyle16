@@ -65,26 +65,36 @@ class ForumModel {
 						return $result;
         }
     }
-    public function ShowUSERPosts($user_id) {
+    public function ShowUSERthreads($user_id) {
         if (isset($user_id) and filter_var($user_id, FILTER_VALIDATE_INT, array(
             'min_range' => 1
         ))) {
-            $sql = "SELECT p.user_id as user_id,t.subject as subject,p.thread_id as thread_id,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
+   /*         $sql = "SELECT p.user_id as user_id,t.subject as subject,p.thread_id as thread_id,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
 						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
-						WHERE t.user_id={$user_id} ORDER BY p.post_on ASC limit 6";
+						WHERE t.user_id={$user_id} ORDER BY p.post_on ASC";*/
+					     $sql = "SELECT user_id,subject,thread_id,establish_date
+						  FROM
+							threads
+							WHERE user_id={$user_id} ORDER BY establish_date ASC limit 6";
+
             $query = $this->db->prepare($sql);
             $query->execute();
-            $result=$query->fetchAll();
-						$sql = "SELECT t.user_id as user_id,t.subject as subject,t.content as message,thread_id,user_nickname,t.establish_date as establish_date
+            return $query->fetchAll();
+        }
+    }
+		public function ShowUSERPosts($user_id) {
+        if (isset($user_id) and filter_var($user_id, FILTER_VALIDATE_INT, array(
+            'min_range' => 1
+        ))) {
+           $sql = "SELECT p.user_id as user_id,t.subject as subject,p.thread_id as thread_id,p.message as message,user_nickname,p.post_on AS posted,t.establish_date as establish_date
 						FROM
-						threads AS t INNER JOIN users AS u on t.user_id=u.user_id
-						WHERE t.user_id={$user_id} ORDER BY establish_date ASC limit 6";
+						threads AS t LEFT JOIN posts AS p USING (thread_id) INNER JOIN users AS u on p.user_id=u.user_id
+						WHERE p.user_id={$user_id} ORDER BY p.post_on ASC";
+					     
             $query = $this->db->prepare($sql);
-						$query->execute();
-						$tmp=$query->fetchAll();
-						foreach($tmp as $tmp) $result[]=$tmp;
-						return $result;
+            $query->execute();
+            return $query->fetchAll();
         }
     }
     //管理员专用
@@ -144,10 +154,8 @@ class ForumModel {
 	//	}			
 
 		public function Create_Post($thread_id){
-						if($_POST['vcode']!=$_SESSION['captcha'])
-				$_SESSION['feedback_negative'][]=FEEDBACK_WRONG_VC;
 
-			elseif (empty($_POST['message'])) {
+			if (empty($_POST['message'])) {
 			$_SESSION["feedback_negative"][] =FEEDBACK_POST_MESSAGE_EMPTY;
 			}
 			elseif(empty($_SESSION['user_id'])) $_SESSION['feedback_negative'][] =FEEDBACK_NO_LOGIN;

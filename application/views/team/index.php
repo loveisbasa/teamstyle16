@@ -17,9 +17,11 @@
 
 <?php
           $j=count($all_team);
+          $i = 0;
 ?>
 <div class="explore-pjax-container">
-  <div class="collection-head js-showcase-page" style="background:url(<?php echo URL; ?>public/img/allteam.jpg)">
+
+	<div class="collection-head js-showcase-page" style="background:url(<?php echo URL; ?>public/img/allteam.jpg)">
     <div class="container">
       <div class="collection-title">
         <h1 class="collection-header">战队展示</h1>
@@ -27,17 +29,19 @@
           <span class="meta-info">战队风云再起</span>
         </div>
       </div>
-    </div>
-  </div>
+		</div>
+
+	</div>
 
   <div class="container collection-page">
-    <div class="columns">
+		<div class="columns">
       <div class="column three-fourths">
         <div class="markdown-body collection-description">
           <p>祝选手们好运！</p>
         </div>
-        <?php foreach ($all_team as $team) { 
-          if (($team->team_id > 8 * $_SESSION['team_page_id'] - 8) && ($team->team_id <= 8 * $_SESSION['team_page_id'])) {?>
+        <?php foreach ($all_team as $team) {
+					$i++; 
+          if (($i > 6 * $_SESSION['team_page_id'] - 6) && ($i <= 6 * $_SESSION['team_page_id'])) {?>
         <ul class="repo-list">
           <li class="repo-list-item">
             <h3 class="repo-list-name">
@@ -61,7 +65,6 @@
               if (isset($team->team_member1)) echo "      队伍成员:  ".$team->team_member1; 
                 if (isset($team->team_member2)) echo "  ".$team->team_member2;
                   echo "<br/><br/>";
-                  echo $j;
                   ?>
             </p>
             <?php if (!$team->team_full ) {
@@ -93,15 +96,17 @@
             <?php } else { ?>
             <a href="#" class="btn btn-default" role="button">人员已满</a>
             <?php }?>
-        </li>
+
+				</li>
       </ul>
-      <?php }} ?>
+
+			<?php }} ?>
 <nav>
   <ul class="pagination">
     <?php if ($_SESSION['team_page_id']!=1){?>
     <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']-1);?>">&laquo;</a></li>
     <?php }
-    for ($i = 1;$i < $j / 8 + 1;$i++) {?>
+    for ($i = 1;$i < $j / 6 + 1;$i++) {?>
     <li><a href="<?php echo URL.'team/team_display/'.$i;?>"><?php echo $i?></a></li>
     <?php }?>
     <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']+1);?>">&raquo;</a></li>

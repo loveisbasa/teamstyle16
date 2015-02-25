@@ -55,7 +55,7 @@ function showtime()
 
 
     <ul class="bs-docs-footer-links muted">
-      <li>当前版本： v1.2.0</li>
+      <li>当前版本： v1.2.3</li>
       <li>&middot;</li>
       <!--链接到论坛中的报名帖-->
       <li><a href="<?php echo URL;?>">关于队式</a></li>
@@ -63,7 +63,7 @@ function showtime()
       <!--链接到信息中的发消息贴，收件人为管理员-->
       <li><a href="<?php echo URL;?>">平台报错</a></li>
       <li>&middot;</li>
-      <li><a href="<?php echo URL;?>">联系我们</a></li>
+      <li><a href="mailto:teamstyle16@gmail.com">联系我们</a></li>
       <li>&middot;</li>
     </ul>
   </div>

@@ -20,7 +20,8 @@
           $i = 0;
 ?>
 <div class="explore-pjax-container">
-  <div class="collection-head js-showcase-page" style="background:url(<?php echo URL; ?>public/img/allteam.jpg)">
+
+	<div class="collection-head js-showcase-page" style="background:url(<?php echo URL; ?>public/img/allteam.jpg)">
     <div class="container">
       <div class="collection-title">
         <h1 class="collection-header">战队展示</h1>
@@ -28,18 +29,19 @@
           <span class="meta-info">战队风云再起</span>
         </div>
       </div>
-    </div>
-  </div>
+		</div>
+
+	</div>
 
   <div class="container collection-page">
-    <div class="columns">
+		<div class="columns">
       <div class="column three-fourths">
         <div class="markdown-body collection-description">
           <p>祝选手们好运！</p>
         </div>
         <?php foreach ($all_team as $team) {
-          $i++; 
-          if ($i > 6 * $_SESSION['team_page_id'] - 6) && ($i <= 6 * $_SESSION['team_page_id'])) {?>
+					$i++; 
+          if (($i > 6 * $_SESSION['team_page_id'] - 6) && ($i <= 6 * $_SESSION['team_page_id'])) {?>
         <ul class="repo-list">
           <li class="repo-list-item">
             <h3 class="repo-list-name">
@@ -94,9 +96,11 @@
             <?php } else { ?>
             <a href="#" class="btn btn-default" role="button">人员已满</a>
             <?php }?>
-        </li>
+
+				</li>
       </ul>
-      <?php }} ?>
+
+			<?php }} ?>
 <nav>
   <ul class="pagination">
     <?php if ($_SESSION['team_page_id']!=1){?>

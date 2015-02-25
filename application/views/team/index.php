@@ -17,6 +17,7 @@
 
 <?php
           $j=count($all_team);
+          $i = 0;
 ?>
 <div class="explore-pjax-container">
   <div class="collection-head js-showcase-page" style="background:url(<?php echo URL; ?>public/img/allteam.jpg)">
@@ -36,8 +37,9 @@
         <div class="markdown-body collection-description">
           <p>祝选手们好运！</p>
         </div>
-        <?php foreach ($all_team as $team) { 
-          if (($team->team_id > 6 * $_SESSION['team_page_id'] - 6) && ($team->team_id <= 6 * $_SESSION['team_page_id'])) {?>
+        <?php foreach ($all_team as $team) {
+          $i++; 
+          if ($i > 6 * $_SESSION['team_page_id'] - 6) && ($i <= 6 * $_SESSION['team_page_id'])) {?>
         <ul class="repo-list">
           <li class="repo-list-item">
             <h3 class="repo-list-name">

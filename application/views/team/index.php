@@ -36,7 +36,8 @@
         <div class="markdown-body collection-description">
           <p>祝选手们好运！</p>
         </div>
-        <?php foreach ($all_team as $team) { ?>
+        <?php foreach ($all_team as $team) { 
+          if (($team->team_id > 8 * $_SESSION['team_page_id'] - 8) && ($team->team_id <= 8 * $_SESSION['team_page_id'])) {?>
         <ul class="repo-list">
           <li class="repo-list-item">
             <h3 class="repo-list-name">
@@ -94,13 +95,13 @@
             <?php }?>
         </li>
       </ul>
-      <?php } ?>
+      <?php }} ?>
 <nav>
   <ul class="pagination">
     <?php if ($_SESSION['team_page_id']!=1){?>
     <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']-1);?>">&laquo;</a></li>
     <?php }
-    for ($i = 1;$i < $j / 4 + 1;$i++) {?>
+    for ($i = 1;$i < $j / 8 + 1;$i++) {?>
     <li><a href="<?php echo URL.'team/team_display/'.$i;?>"><?php echo $i?></a></li>
     <?php }?>
     <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']+1);?>">&raquo;</a></li>

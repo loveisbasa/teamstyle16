@@ -37,7 +37,7 @@
           <p>祝选手们好运！</p>
         </div>
         <?php foreach ($all_team as $team) { 
-          if (($team->team_id > 8 * $_SESSION['team_page_id'] - 8) && ($team->team_id <= 8 * $_SESSION['team_page_id'])) {?>
+          if (($team->team_id > 6 * $_SESSION['team_page_id'] - 6) && ($team->team_id <= 6 * $_SESSION['team_page_id'])) {?>
         <ul class="repo-list">
           <li class="repo-list-item">
             <h3 class="repo-list-name">
@@ -61,7 +61,6 @@
               if (isset($team->team_member1)) echo "      队伍成员:  ".$team->team_member1; 
                 if (isset($team->team_member2)) echo "  ".$team->team_member2;
                   echo "<br/><br/>";
-                  echo $j;
                   ?>
             </p>
             <?php if (!$team->team_full ) {
@@ -101,7 +100,7 @@
     <?php if ($_SESSION['team_page_id']!=1){?>
     <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']-1);?>">&laquo;</a></li>
     <?php }
-    for ($i = 1;$i < $j / 8 + 1;$i++) {?>
+    for ($i = 1;$i < $j / 6 + 1;$i++) {?>
     <li><a href="<?php echo URL.'team/team_display/'.$i;?>"><?php echo $i?></a></li>
     <?php }?>
     <li><a href="<?php echo URL.'team/team_display/'.($_SESSION['team_page_id']+1);?>">&raquo;</a></li>

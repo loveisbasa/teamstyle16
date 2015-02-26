@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-p{font-family: sans-serif,Georgia, "Times New Roman", 
-             "Microsoft YaHei", "微软雅黑", 
-             STXihei, "华文细黑", 
-             serif;}
-h1,h2,h3,h4,h5,h6{font-family: Georgia, "Times New Roman", 
-             "Microsoft YaHei", "微软雅黑", 
-             STXihei, "华文细黑", 
-             serif;}
-a{font-family: Georgia, "Times New Roman", 
-             "Microsoft YaHei", "微软雅黑", 
-             STXihei, "华文细黑", 
-             serif;}
-li{font-family: Georgia, "Times New Roman", 
-             "Microsoft YaHei", "微软雅黑", 
-             STXihei, "华文细黑", 
-             serif;}
-</style>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,6 +41,25 @@ body{
 }
 </style>
 <?php }?>
+
+<style>
+p{font-family: sans-serif,Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+h1,h2,h3,h4,h5,h6{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+a{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+li{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+</style>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#101010">
   <div class="container">

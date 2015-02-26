@@ -56,7 +56,7 @@ p{white-space: pre-line;}
                 <div class="uk-width-medium-1-4   uk-hidden-small">
                     <div class="uk-panel uk-panel-box uk-text-center">
                         <img class="uk-border-circle" width="120" height="120" src="<?php echo $thread_link->user_avatar_link; ?>" alt="">
-                        <h3><a href="<?php echo URL. 'message/send_mail/'. $thread_link->user_nickname;?>"><?php echo $thread_link->user_nickname;?></a></h3>
+                        <h3><a href="<?php echo URL. 'home/index/'. $thread_link->user_id;?>"><?php echo $thread_link->user_nickname;?></a></h3>
                         <p><?php echo $thread_link->user_email;?></p>
                     </div>
                     <div class="uk-panel">

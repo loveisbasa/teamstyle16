@@ -4,6 +4,10 @@ TeamStyle16 Web Dev.
 
 ## Log
 ----
+#### 03-01 by ricky
+两位辛苦啦~劳动成果真心赞！停工了这么多天我也要加油啦~
+
+
 #### 9-28 by ricky
 - 文件上传下载功能基本完成，中文名有bug,测试功能之前需要先建./teamstyle16/uploads目录
 - 测试前需要重新加载数据库，测试时输入localhost/teamstyle16/file即可查看所有文件

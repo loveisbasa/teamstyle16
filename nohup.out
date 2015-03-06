@@ -1,0 +1,7 @@
+['c', 'TEST']
+['c', 'TEST']
+['b', 'TEST', 'TEST', '50round.map', '']
+Traceback (most recent call last):
+  File "server.py", line 56, in <module>
+    buf = connection.recv(1024)
+socket.error: [Errno 104] Connection reset by peer

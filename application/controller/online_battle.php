@@ -24,23 +24,24 @@ class online_battle extends controller
 		require 'application/views/_templates/footer.php';
 	}
 
-	public function battle_action(){
+	public function battle_action($user_team){
 		$ob_model=$this->loadModel('online_battle');
-		$response=$ob_model->fight();
+		$response=$ob_model->fight($user_team);
 		require 'application/views/_templates/header.php';
 		require 'application/views/online_battle/compile_info.php';
 		require 'application/views/_templates/footer.php';
 	}
 
-	public function uploads(){
+	public function uploads($user_team){
 		$ob_model=$this->loadModel('online_battle');
-		$ob_model->upload();
+		$ob_model->upload($user_team);
 		header('location:' .URL. 'online_battle/index/');
 	}
 
-	public function compile_action(){
+	public function compile_action($user_team){
+		echo $user_team;
 		$ob_model=$this->loadModel('online_battle');
-		$response=$ob_model->compile();
+		$response=$ob_model->compile($user_team);
 		require 'application/views/_templates/header.php';
 		require 'application/views/online_battle/compile_info.php';
 		require 'application/views/_templates/footer.php';

@@ -10,17 +10,13 @@ class Online_battleModel {
         }
     }
 
-    public function upload() {
-			$file='public/source/'. $_SESSION['user_team'] .'/' . $_SESSION['user_team'].'.c';
+    public function upload($user_team) {
+			$file='public/source/'. $user_team .'/' .$user_team.'.c';
       if (file_exists($file)) {
 			  unlink($file);
       } 
  
-			if ($_SESSION['user_logged_in'] != ture) {
-				$_SESSION['feedback_negative'][]="没有登陆呦";
-				return false;
-			}
-			if ($_SESSION['user_team']==NULL){
+			if ($user_team==NULL){
 				$_SESSION['feedback_negative'][]="童鞋你还没有组队呢!";
 				return false;
 			}
@@ -36,7 +32,7 @@ class Online_battleModel {
           echo "Type: " . $_FILES["file"]["type"] . "<br />";
           echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
           echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-             @mkdir("public/source/" . $_SESSION['user_team']);
+             @mkdir("public/source/" . $user_team);
               move_uploaded_file($_FILES["file"]["tmp_name"], $file);
 					  if (file_exists($file)) 
 							$_SESSION["feedback_positive"][]="上传成功";
@@ -60,13 +56,9 @@ class Online_battleModel {
 		}
 
 
-    public function compile() {
-			$file='public/source/'. $_SESSION['user_team'] .'/' . $_SESSION['user_team'].'.c';
-			if (!$_SESSION['user_logged_in']){
-				$_SESSION['feedback_negative'][]='未登录！';
-				return false;
-			}
-			$file='public/source/'. $_SESSION['user_team'] .'/player';
+    public function compile($user_team) {
+			$file='public/source/'. $user_team.'/' . $user_team.'.c';
+			$file='public/source/'. $user_team .'/player';
       $service_port = 8001;
       $address = ADDRESS;
       $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -78,26 +70,22 @@ class Online_battleModel {
           $SELECT["feedback_negative"][] = "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
       }
       $in1 = "c\n";
-      $in2 = $_SESSION['user_team'];
+      $in2 = $user_team;
       socket_write($socket, $in1, strlen($in1));
       socket_write($socket, $in2, strlen($in2));
       $out = '';
       while ($out = socket_read($socket, 8192)) {
           $response[]=$out; 
       };
-			$sql = "update teams set with_ai=1 where team_name='{$_SESSION["user_team"]}'";
+			$sql = "update teams set with_ai=1 where team_name='{$user_team}'";
       $query = $this->db->prepare($sql);
       $query->execute();
       socket_close($socket);
 		 	return $response;
 		}
 
-		public function fight() {
-			if (!$_SESSION['user_logged_in']){
-				$_SESSION['feedback_negative'][]='未登录！';
-				return false;
-			}
-				$file='public/source/'. $_SESSION['user_team'] .'/player';
+		public function fight($user_team) {
+				$file='public/source/'. $user_team .'/player';
          $service_port = 8001;
          $address = ADDRESS;
          $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -109,7 +97,7 @@ class Online_battleModel {
              $SELECT["feedback_negative"][] = "socket_connect() failed.\nReason: ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
          }
          $type = "b\n";
-         $a = $_SESSION['user_team']."\n";
+         $a = $user_team."\n";
 				 $b = $_POST['player']."\n";
 				 $c = $_POST['map']."\n";
 				 echo $a.$b.$c;

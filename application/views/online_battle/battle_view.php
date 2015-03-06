@@ -4,7 +4,7 @@
         Session::set('feedback_negative', null);?>
 
  
-		<form action="<?php echo URL; ?>online_battle/battle_action" method="post" enctype="multipart/form-data">
+				<form action="<?php echo URL; ?>online_battle/battle_action/<?php echo $_SESSION['user_team'];?>" method="post" enctype="multipart/form-data">
 		<h2>地图</h2>
 		<select name="map">
 		<?php foreach($maps as $map){

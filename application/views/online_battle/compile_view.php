@@ -20,12 +20,12 @@
                 <h3 class="panel-title">提交代码<code>.C</code> || <code>.Cpp</code></h3>
             </div>
             <div class="panel-body">
-                <form action="<?php echo URL; ?>online_battle/uploads" method="post" enctype="multipart/form-data">
+						<form action="<?php echo URL; ?>online_battle/uploads/<?php echo $_SESSION['user_team'];?>" method="post" enctype="multipart/form-data">
                     <label for="file">选择文件(小于50kib)</label>
                     <input type="file" name="file" id="file" />
                     <input type="hidden" name="MAX_FILE_SIZE" value="50000" />
                     <button type="submit" class="btn  btn-default" >上传</button>
-                    <a href="<?php echo  URL . 'online_battle/compile_action'?>" rel="leanModal" class="btn btn-primary">编译</a>
+										<a href="<?php echo  URL . 'online_battle/compile_action/'.$_SESSION['user_team'];?>" rel="leanModal" class="btn btn-primary">编译</a>
 										<?php if($_SESSION['with_ai'])
 										echo  "<a href='" .URL . "online_battle/battle' rel='leanModal' class='btn btn-primary'>PK</a>";
 										?>

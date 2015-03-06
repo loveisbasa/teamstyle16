@@ -20,8 +20,8 @@ ini_set("display_errors", 1);
  */
 
 
-define('URL','http://teamstyle16.eesast.com/');
-define('ADDRESS','teamstyle16.eesast.com');
+define('URL','http://deepblue.eesast.com/');
+define('ADDRESS','deepblue.eesast.com');
 
 define("HASH_COST_FACTOR", "10");
 

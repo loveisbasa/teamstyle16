@@ -7,7 +7,7 @@
     <?php echo "&nbsp;&nbsp;&nbsp;&nbsp;";?><a href="<?php echo URL. 'login/register'?>" class="btn btn-primary btn-lg" role="button">现在就加入!  &raquo;</a>
 </div>
 </div>
-        <div class="tm-section">
+
             <div class="uk-container uk-container-center uk-text-center">
                 <h1 class="uk-heading-large">参加队式</h1>
                 <p class="uk-text-large">热爱编程的你，心动了吗？<br class="uk-hidden-small">真正的“零基础”，走过路过不要错过哦！</p>
@@ -39,39 +39,42 @@
                 </div>
 
             </div>
+
+</br>
+    <div class = "uk-grid" style="background-color:#3399FF">
+
+        <div class = "uk-width-medium-1-2">
+        </br>
+            <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register" method="post">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">昵称</label>
+                    <div class="col-md-5 col-xs-8">
+                        <input type="text" name="user_nickname" class="form-control" placeholder="Nickname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">密码 </label>
+                    <div class="col-md-5 col-xs-8">
+                        <input type="password" name="user_password_new" class="form-control" placeholder="Password"required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">确认</label>
+                    <div class="col-md-5 col-xs-8">
+                        <input type="password" name="user_password_repeat" class="form-control" placeholder="Password repeat" required >
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-sm-10 col-xs-offset-4">
+                        <button type="submit" class="btn btn-default">快速加入</button>
+                    </div>
+                </div>
+            </form>
         </div>
-<div class="tm-section tm-section-color-1">
-    <div class = "uk-grid">
-        <div class = "uk-width-1-2">
-    <form class = "form-horizontal" role="form" action="<?php echo URL; ?>login/register" method="post">
-        <div class="form-group">
-            <label class="col-xs-3 control-label">昵称</label>
-            <div class="col-md-5 col-xs-8">
-                <input type="text" name="user_nickname" class="form-control" placeholder="Nickname" required>
-            </div>
+        <div class = "uk-width-medium-1-2">
+            <br/><br/>
+            <h1 class = "uk-heading-large" style = "color:white;"><strong>现在就加入!</strong></h1>
+            <br/>
         </div>
-        <div class="form-group">
-            <label class="col-xs-3 control-label"> 密码 </label>
-            <div class="col-md-5 col-xs-8">
-                <input type="password" name="user_password_new" class="form-control" placeholder="Password"required />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-xs-3 control-label">确认</label>
-            <div class="col-md-5 col-xs-8">
-                <input type="password" name="user_password_repeat" class="form-control" placeholder="Password repeat" required >
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-3 col-sm-10 col-xs-offset-4">
-                <button type="submit" class="btn btn-default">快速加入</button>
-            </div>
-        </div>
-    </form>
-    </div>
-    <div class = "uk-width-1-2">
-    <br/><br/>
-    <h1 class = "uk-heading-large" style = "color:white;"><strong>现在就加入!</strong></h1>
-    </div>
-    </div>
+
 </div>

@@ -83,11 +83,12 @@ p{white-space: pre-line;}
 
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-medium-1-2">
-                    <h1>【队式十六】最新规则介绍</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <h2>规则吐槽</h2>
-                    <p>在这里，你可以尽情吐槽，我们相信，您的吐槽会使队式更加完美</p>
-                    <a class="uk-button uk-button-primary" href="#">进入帖子</a>
+                    <h1>【队式十六】听老人们说</h1>
+                    <p>队式嘛，就是，认识新同学，结识新朋友；学习新姿势，掌握新技能。队式让我认识了许多靠谱的小伙伴和给力的队友，也在参与和开发的过程中学习巩固了编程的知识水平和应用能力。</p>
+                    <p>作为经历过许多系办的许多编程比赛的老学长表示，这次比赛的3D界面特效假的简直是DUANG~DUANG~DUANG~这么棒的特效你们忍心拒绝参赛吗！</p>
+                    <h2>我在队式get的新技能</h2>
+                    <p>自从参加了队式，感觉逼格都不一样了呢</p>
+                    <a class="uk-button uk-button-primary" href="http://deepblue.eesast.com/forum/posts/11">进入帖子</a>
                 </div>
 
                 <div class="uk-width-medium-1-2">

@@ -85,4 +85,20 @@ class Team extends Controller
 			header('location:' .URL. 'team/create_team');
 		}
 	}
+
+	public function quit_team()
+	{
+		$team_model = $this->loadModel('Team');
+		$quit_team_success = $team_model->QuitTeam($_SESSION['user_profile']->team_id);
+				require 'application/views/_templates/header.php';
+		if ($quit_team_success == true) {
+			$login_model = $this->loadModel('Login');
+			$_SESSION['user_profile'] = $login_model->getUserProfile($_SESSION['user_id']);
+			$_SESSION['user_team'] = null;
+			header('location:' .URL. 'dashboard');
+		}
+		else{
+			header('location:' .URL. 'dashboard');
+		}
+	}
 }

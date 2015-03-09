@@ -33,11 +33,11 @@ a > img{
 .brand {
   display: block;
   margin: 0px auto;
-  width: 432px;
-  height: 108px;
+  width: 270px;
+  height: 130px;
   background-image: url('logo.jpg');
-  background-size: 540px 105px;
-  background-position: right;
+  background-size: 270px 130px;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -64,36 +64,6 @@ a > img{
   background-repeat: no-repeat;
 }
 
-.binding .cooperator.github{
-  width: 92px;
-  background-image: url(https://dn-st.qbox.me/pages/images/github@2x.jpg);
-  background-position: left center;
-  background-size: 92px 36px;
-}
-
-.binding .cooperator.mingdao{
-  width: 60px;
-  background-image: url(https://dn-st.qbox.me/pages/images/mingdao@2x.jpg);
-  background-position: -4px bottom;
-  background-size: 60px 36px;
-}
-
-.binding .arrow{
-  width: 27px;
-  height: 38px;
-  margin-left: 16px;
-  background-image: url(https://dn-st.qbox.me/pages/images/arrow@2x.png);
-  background-position: left center;
-  background-size: 27px 25px;
-}
-
-.binding .teambition {
-  width: 185px;
-  margin-left: 20px;
-  background-image: url(https://dn-st.qbox.me/pages/images/logo@2x.jpg);
-  background-position: left top;
-  background-size: 185px 36px;
-}
 
 .slide-wrapper {
   width: 300px;

@@ -326,8 +326,21 @@ class TeamModel
 
 		$query = $this->db->prepare("SELECT team_captain, team_member1, team_member2
 			FROM teams
-			WHERE team_id = :team_id");
+			WHERE (team_id = :team_id)");
 		$result = $query->execute(array(':team_id' => $team_id));
+#		return $result->rowCount();
+
+		$sql = "SELECT team_id, 
+			team_name, 
+			team_password_hash,  
+			team_member1,
+			team_member2,
+			team_full
+			FROM teams
+		             WHERE (team_id = :team_id) ";
+		$query = $this->db->prepare($sql);
+		$query->execute(array(':team_id' => $team_id));
+		return $query->rowCount();
 
 		if ($user_id == $result->team_member1) {
 			$query = $this->db->prepare("UPDATE teams SET team_member1 = ''

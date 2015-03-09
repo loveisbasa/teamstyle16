@@ -176,6 +176,8 @@
                     <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+                <li class="uk-nav-divider"></li>
+                <li><a href="<?php echo URL;?>team/quit_team">退出队伍</a></li>
                 <?php }?>
             </ul>
     </div>

@@ -55,7 +55,6 @@ if __name__ == '__main__':
             connection.settimeout(15)  
             buf = connection.recv(1024)
             buf =buf.split('\n')
-            print buf   
             if buf[0] == 'c':  
                 connection.send('welcome to server!')
                 t = threading.Thread(target=compile,args=(5,buf[1],connection))

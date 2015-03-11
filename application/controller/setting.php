@@ -13,6 +13,10 @@ class setting extends controller
 	{
 		$model = $this->loadModel('Setting');
 		$model->editUserName();
+			$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->LoginWithCookie();
+
+
 		if ($model)
 			header('location:'.URL.'setting');
 	}
@@ -20,6 +24,10 @@ class setting extends controller
 	{
 		$model = $this->loadModel('Setting');
 		$model->editUserEmail();
+			$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->LoginWithCookie();
+
+
 		if ($model)
 			header('location:'.URL.'setting');
 	}

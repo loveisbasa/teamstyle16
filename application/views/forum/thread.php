@@ -1,10 +1,10 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.gradient.min.css">
-<link rel='stylesheet' href="<?php echo URL; ?>public/css/awesome.css">
+
 <style>
 #wrap{word-break:break-all; width:780px;}
 p{white-space: pre-line;}
 </style>
-<div class="container">   
+<div class="uk-container">   
   <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>
   <div class="uk-article">
     <div class="uk-article-lead">

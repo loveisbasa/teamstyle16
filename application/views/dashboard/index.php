@@ -12,11 +12,11 @@
     <div class="uk-grid" data-uk-grid-match>
         <div class="tm-main uk-width-1-1">
         <div class="uk-panel uk-panel-box uk-panel-box-primary uk-width-large-2-3 uk-width-medium-5-6 uk-container-center uk-text-center">
-            <h3>队式进度条</h3>
+            <h3>深蓝进度条</h3>
             <div class="uk-progress uk-progress-striped">
                 <div class="uk-progress-bar" style="width: <?php
-                $d1=strtotime("March 31");
-                $d2=ceil(($d1-time())/60/60/24);
+                $d1=strtotime("May 4");
+                $d2=100-ceil(($d1-time())/3600/24/60*100);
                 echo $d2.'%';
                 ?>">
                     <p id="date"></p>
@@ -26,32 +26,30 @@
                         var today,date;
                         today=new Date();
                         date = today.getDate();
-                        document.getElementById('date').innerHTML = date ; //显示时间
+                        document.getElementById('date').innerHTML = date +"\ passed" ; //显示时间
                         setTimeout("showdate();", 1000); //设定函数自动执行时间为 1000 ms(1 s)
                     }
                     showdate();
                     </script>
                 </div>
             </div>    
-                <p id="left_date"></p>
-                <script>
-                function leftdate(){
-                    var today,date,left_date;
-                    today = new Date();
-                    date = today.getDate();
-                    left_date = "31" - date;
-                    document.getElementById('left_date').innerHTML = "距离称霸罗姆走上人生巅峰还剩" + left_date + "天";
-                    setTimeout("leftdate()",1000 * 60)
-                }
-                leftdate();
-                </script>
+                <p>
+                    <?php
+                    $d1 = strtotime("May 4");
+                    $d2 = strtotime("April 19");
+                    $dl1 = ceil(($d1 - time())/24/3600);
+                    $dl2 = ceil(($d2 - time())/24/3600);
+                    if ($dl2 >= 0) echo "距离初赛还剩".$dl2."天";
+                    if ($dl1 >= 0) echo "\r\n距离决赛称霸罗姆走上人生巅峰还剩".$dl1."天";
+                    ?>
+                </p>
         </div>
     </div>
     </div>
     <div class="uk-grid" data-uk-grid-match>
         <div class="tm-main uk-width-1-1">
         <div class="uk-panel uk-panel-box uk-width-large-2-3 uk-width-medium-5-6 uk-container-center uk-text-center">
-            <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
+            <h2>欢迎您，深蓝的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
             <div class="uk-grid" data-uk-grid-match>
 
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
@@ -184,11 +182,13 @@
 </div>
 <div id="offcanvas-3" class="uk-offcanvas">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:70px">
+        <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
         <h2 style="color:#B0B0B0;text-align:center">我的帖子</h2>
         <?php foreach ($mythreads as $results) {?>
             <li style="color:#B0B0B0"><a href = "<?php echo URL. 'forum/posts/'. $results->thread_id?>">
                 <?php echo $results->subject . ":    " . $results->message;?></a></li>
         <?php }?>
+    </ul>
     </div>
 </div>
 

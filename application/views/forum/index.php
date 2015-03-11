@@ -19,8 +19,8 @@ p{white-space: pre-line;}
             </div>
              <div class="uk-width-1-1">
                 <br>
-            <h2 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>队式人自己的论坛</strong></h2>
-            <h4 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>让队式成为大学里最温暖的回忆</strong></h4>
+            <h2 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>EE&AD人自己的论坛</strong></h2>
+            <h4 style="color:white;text-align:center;font-family:Georgia, "Times New Roman";"><strong>让深蓝成为大学里最温暖的回忆</strong></h4>
             <br/>
             <br/>
         </div>
@@ -102,13 +102,13 @@ p{white-space: pre-line;}
                 <div class="uk-width-medium-1-1">
                     <div class="uk-panel uk-panel-box uk-text-center">
                         <p>
-                            <strong>Teamstyle16 欢迎你的加入</strong> 浏览完了意犹未尽？<a class="uk-button uk-button-primary uk-margin-left" href="#">回到顶部</a>
+                            <strong>Deap Blue 欢迎你的加入</strong> 浏览完了意犹未尽？<a class="uk-button uk-button-primary uk-margin-left" href="#">回到顶部</a>
                         </p>
                     </div>
                 </div>
             </div>
 
-            <h1 class="uk-text-center">队式十六开发组</h1>
+            <h1 class="uk-text-center">深蓝开发组</h1>
 
             <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-1-2 uk-width-medium-1-3 uk-width-large-1-6">

@@ -323,6 +323,7 @@ class TeamModel
 	public function QuitTeam($team_id)
 	{
 		$user_id = $_SESSION['user_id'];
+		$oriental_id = 0;
 
 		$query = $this->db->prepare("SELECT team_captain, team_member1, team_member2
 			FROM teams
@@ -332,7 +333,6 @@ class TeamModel
 
 		$sql = "SELECT team_id, 
 			team_name, 
-			team_password_hash,  
 			team_member1,
 			team_member2,
 			team_full
@@ -343,15 +343,20 @@ class TeamModel
 		return $query->rowCount();
 
 		if ($user_id == $result->team_member1) {
-			$query = $this->db->prepare("UPDATE teams SET team_member1 = ''
+				$query = $this->db->prepare("UPDATE teams SET team_member1 = 0 
 					WHERE team_id = :team_id");
-			$query->execute(array(':team_id' => $result->team_id));
+				$query->execute(array(':team_id' => $result->team_id));
+				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+				$query->execute(array('user_team' => '', ':user_id' => $user_id));
 			$_SESSION['feedback_positive'][] = FEEDBACK_QUIT_SUCCESSFULLY;
 			return true;
 		} else if ($user_id == $result->team_member2) {
-			$query = $this->db->prepare("UPDATE teams SET team_member2 = ''
+			$query = $this->db->prepare("UPDATE teams SET team_member2 = NULL
 					WHERE team_id = :team_id");
 			$query->execute(array(':team_id' => $result->team_id));
+			$query = $this->db->prepare("UPDATE users SET user_team = 0
+			WHERE user_id = :user_id");
+			$query->execute(array(':user_id' => $result->team_member2 ));
 			$_SESSION['feedback_positive'][] = FEEDBACK_QUIT_SUCCESSFULLY;
 			return true;
 		}

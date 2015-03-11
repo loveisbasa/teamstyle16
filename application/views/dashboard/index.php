@@ -49,7 +49,7 @@
     <div class="uk-grid" data-uk-grid-match>
         <div class="tm-main uk-width-1-1">
         <div class="uk-panel uk-panel-box uk-width-large-2-3 uk-width-medium-5-6 uk-container-center uk-text-center">
-            <h2>欢迎您，队式十六的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
+            <h2>欢迎您，深蓝的第<?php echo $_SESSION['user_profile']->user_id;?>位加入者</h2>
             <div class="uk-grid" data-uk-grid-match>
 
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
@@ -182,11 +182,13 @@
 </div>
 <div id="offcanvas-3" class="uk-offcanvas">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="padding-top:70px">
+        <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
         <h2 style="color:#B0B0B0;text-align:center">我的帖子</h2>
         <?php foreach ($mythreads as $results) {?>
             <li style="color:#B0B0B0"><a href = "<?php echo URL. 'forum/posts/'. $results->thread_id?>">
                 <?php echo $results->subject . ":    " . $results->message;?></a></li>
         <?php }?>
+    </ul>
     </div>
 </div>
 

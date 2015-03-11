@@ -95,10 +95,9 @@ class Team extends Controller
 			$login_model = $this->loadModel('Login');
 			$_SESSION['user_profile'] = $login_model->getUserProfile($_SESSION['user_id']);
 			$_SESSION['user_team'] = null;
-			header('location:' .URL. 'dashboard');
 		}
-		else{
-			header('location:' .URL. 'dashboard');
-		}
+		require 'application/views/_templates/header.php';
+		require 'application/views/dashboard/index.php';
+		require 'application/views/_templates/footer.php';
 	}
 }

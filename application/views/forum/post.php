@@ -1,21 +1,21 @@
 <style>
-#wrap{word-break:break-all; width:850px;}
-p{white-space: pre-line;}
+p{white-space: pre-line;text-indent: 2em;}
 </style>
 
-<link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.css">
 
     <title><?php echo $thread_link->subject;?></title>
 
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
   <div class="uk-grid" data-uk-grid-margin>
-    <div class="uk-width-medium-3-4">
+    <div class="uk-width-medium-3-4 uk-width-small-1-1">
       <article class="uk-article">
         <h1 class="uk-article-title"><?php echo $thread_link->subject;?></h1>
         <p class="uk-article-meta">作者：<?php echo $thread_link->user_nickname;?> 发表于<?php echo $thread_link->establish_date; ?>. 
         </p>
-        <p id="wrap"><?php echo $thread_link->content;?></p>
-        <p><img src="<?php echo URL;?>public/img/theme.jpg" width="900" height="300" alt=""></p>
+        <div class="uk-container">
+                <p><?php echo $thread_link->content;?></p>
+        </div>
+        <p><img src="<?php echo URL;?>public/img/theme.jpg" width="800" height="300" alt=""></p>
 
       </article>
 
@@ -36,7 +36,7 @@ p{white-space: pre-line;}
             </li>
             <?php } ?>
         </ul>
-<div class="container">   
+<div class="uk-container">   
    <h3>快速回复</h3>
         <form action="<?php echo URL; ?>forum/create_post_action" method="post" class="auth-form form-horizontal">
            <div class="form-field">
@@ -53,7 +53,7 @@ p{white-space: pre-line;}
 
     </div>
 
-                <div class="uk-width-medium-1-4   uk-hidden-small">
+                <div class="uk-width-medium-1-4  uk-width-small-1-1 uk-hidden-small">
                     <div class="uk-panel uk-panel-box uk-text-center">
                         <img class="uk-border-circle" width="120" height="120" src="<?php echo $thread_link->user_avatar_link; ?>" alt="">
                         <h3><a href="<?php echo URL. 'home/index/'. $thread_link->user_id;?>"><?php echo $thread_link->user_nickname;?></a></h3>

@@ -70,10 +70,13 @@ p{white-space: pre-line;}
                 </div>
 <!--这两个链接分别连接到通知公告区的规则介绍和活动时间两个帖子-->
                 <div class="uk-width-medium-1-2">
-                    <h1>【队式十六】官方报名通知</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <h1>【深蓝】官方报名通知</h1>
+                    <p style="text-indent:2em"> 洪荒之中，大小岛屿星罗棋布，各类资源隐没期间。人类以岛为界各自为营，不同基地合纵连横，抢夺对战经年不断。上百年间，大洋局势分分合合，最终形成的两大基地隔海而对，双方互相戒备互探有无，却都不敢贸然而动。但百年战争的疮痍使两大基地的资源储备所剩无几，唯一的可能，便是扬帆前往两地间未知的水域，夺取资源，扩充自己，直至在对方领土上竖起己方的大旗！大战将至，洪荒且乱，阳光下的海面，却依旧是那片平静的蓝……</p>
                     <h2>竞赛流程</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>大战来袭，你还在观望？！
+                        听说有宣讲会咳咳
+                        听说宣讲会上的女主持很漂亮呢；听说3D酷炫的不得了呢；听说会有“大神”手把手教你写ai呢</p>
+                    <p>快带上小伙伴一起来吧！本周日下午2:00于三教2102举行哦</p>
                     <a class="uk-button uk-button-primary" href="#">进入帖子</a>
                 </div>
 

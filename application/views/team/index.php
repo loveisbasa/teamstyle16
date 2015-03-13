@@ -68,7 +68,7 @@
                   ?>
             </p>
             <?php if (!$team->team_full ) {
-              if (!isset($_SESSION['user_team']) AND !isset($_SESSION['in_team'])){?>
+              if (!isset($_SESSION['user_team']) ){?>
               <a href="#testModal<?php echo $team->team_id;?>" rel = "leanModal" class="btn btn-primary">加入战队</a>
               <?php } else {?>
               <a href="#" class="btn btn-default" role="button">亲不能加两个队啦</a> 

@@ -320,48 +320,51 @@ class TeamModel
 
 	}
 	//退出当前队伍
-	public function QuitTeam($team_id)
+	public function QuitTeam()
 	{
 		$user_id = $_SESSION['user_id'];
-		$oriental_id = 0;
-
-		$query = $this->db->prepare("SELECT team_captain, team_member1, team_member2
+		$team_name=$_SESSION['user_team'];
+		$query = $this->db->prepare("SELECT team_id,team_captain, team_member1, team_member2, team_full
 			FROM teams
-			WHERE (team_id = :team_id)");
-		$result = $query->execute(array(':team_id' => $team_id));
-#		return $result->rowCount();
-
-		$sql = "SELECT team_id, 
-			team_name, 
-			team_member1,
-			team_member2,
-			team_full
-			FROM teams
-		             WHERE (team_id = :team_id) ";
-		$query = $this->db->prepare($sql);
-		$query->execute(array(':team_id' => $team_id));
-		return $query->rowCount();
-
+			WHERE (team_name='{$team_name}')");
+		$query->execute();
+		$result = $query->fetch();
 		if ($user_id == $result->team_member1) {
-				$query = $this->db->prepare("UPDATE teams SET team_member1 = 0 
+				$query = $this->db->prepare("UPDATE teams SET team_member1 = 0,team_full = 0 
 					WHERE team_id = :team_id");
 				$query->execute(array(':team_id' => $result->team_id));
 				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
-				$query->execute(array('user_team' => '', ':user_id' => $user_id));
-			$_SESSION['feedback_positive'][] = FEEDBACK_QUIT_SUCCESSFULLY;
+				$query->execute(array(':user_team' => '', ':user_id' => $user_id));
+			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		} else if ($user_id == $result->team_member2) {
-			$query = $this->db->prepare("UPDATE teams SET team_member2 = NULL
+			$query = $this->db->prepare("UPDATE teams SET team_member2 = 0, team_full = 0
 					WHERE team_id = :team_id");
 			$query->execute(array(':team_id' => $result->team_id));
-			$query = $this->db->prepare("UPDATE users SET user_team = 0
+			
+			$query = $this->db->prepare("UPDATE users SET user_team = :user_team
 			WHERE user_id = :user_id");
-			$query->execute(array(':user_id' => $result->team_member2 ));
-			$_SESSION['feedback_positive'][] = FEEDBACK_QUIT_SUCCESSFULLY;
+			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member2 ));
+			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
+			return true;
+		} else {
+			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+			$query->execute(array(':user_team' => '', ':user_id' => $result->team_captain));
+		
+			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member1));
+
+			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
+			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member2));
+
+			$query = $this->db->prepare("DELETE FROM teams WHERE team_id = :team_id");
+			$query->execute(array(':team_id' => $result->team_id));
+		
+			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		}
 
-		$_SESSION['feedback_negative'][] = FEEDBACK_QUIT_EEROR;
+		$_SESSION['feedback_negative'][] = '出了些奇怪的问题……';
 		return false;
 	}
 

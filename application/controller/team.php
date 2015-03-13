@@ -16,6 +16,10 @@ class Team extends Controller
 		if (isset($team_id)) {
 			$team_model = $this->loadModel('Team');
 			$team_model->JoinTeam($team_id);
+			$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->refreshsession();
+
+
 		}
 		header('location:' .URL. 'team/team_display');
 		
@@ -32,12 +36,20 @@ class Team extends Controller
 		$team_id=$_POST['team_id'];
 		$team_model = $this->loadModel('Team');
 		$team_model->Join_team_byinvite($team_id,$key);
+			$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->refreshsession();
+
+
 	}	
 	
 	public function create_team()
 	{
 		$team_model = $this->loadModel('Team');
 		if (!$team_model->IsUserInTeam($_SESSION['user_id'])) {
+	$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->refreshsession();
+
+
 			require 'application/views/_templates/header.php';
 			require 'application/views/team/createam.php';
 			require 'application/views/_templates/footer.php';
@@ -79,6 +91,9 @@ class Team extends Controller
 		$create_team_success = $team_model->CreateTeam();
 		if ($create_team_success == true) {
 			//echo "successful";
+			$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->refreshsession();
+
 			header('location:' .URL. 'dashboard');
 		} else {
 			//echo "failed";
@@ -91,11 +106,10 @@ class Team extends Controller
 		$team_model = $this->loadModel('Team');
 		$quit_team_success = $team_model->QuitTeam($_SESSION['user_profile']->team_id);
 				require 'application/views/_templates/header.php';
-		if ($quit_team_success == true) {
-			$login_model = $this->loadModel('Login');
-			$_SESSION['user_profile'] = $login_model->getUserProfile($_SESSION['user_id']);
-			$_SESSION['user_team'] = null;
-		}
+		$login_model = $this->loadModel('Login');
+		$login_successful = $login_model->refreshsession();
+
+
 		require 'application/views/_templates/header.php';
 		require 'application/views/dashboard/index.php';
 		require 'application/views/_templates/footer.php';

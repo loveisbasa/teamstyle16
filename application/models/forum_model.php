@@ -145,7 +145,7 @@ class ForumModel {
 						(0,{$forum_id},{$user_id},:subject,:content,'{$d}','{$d}' )";
 				$query=$this->db->prepare($sql);
 				$query->execute(array(':subject'=>$subject,':content'=>$content, ));
-				$sql="UPDATE forums SET count_thread=count_thread+1 where forum_id={$forum_id}";
+				$sql="UPDATE forums SET count_thread=count_thread+1,latest_reply='{$d}' where forum_id={$forum_id}";
 				$query=$this->db->prepare($sql);
 				if(!$query->execute())   $_SESSION["feedback_negative"][] =FEEDBACK_THREAD_INSESRT_ERROR;	
 				else return 'true';
@@ -185,7 +185,7 @@ class ForumModel {
                         ':message_content' => $_SESSION['user_nickname'] . "回复到" . $message,
                         ':message_send_date' => $d,
                     ));
-            $sql = "UPDATE forums SET count_post=count_post+1 where forum_id={$result->forum_id}";
+            $sql = "UPDATE forums SET count_post=count_post+1,latest_reply='{$d}' where forum_id={$result->forum_id}";
             $query = $this->db->prepare($sql);
             $query->execute();
             $sql = "UPDATE threads SET latest_reply='{$d}',reply_count=reply_count+1 where thread_id={$thread_id}";

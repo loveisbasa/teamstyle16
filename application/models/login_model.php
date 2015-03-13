@@ -159,7 +159,10 @@ class LoginModel
 			user_last_failed_login,
 			user_type,user_team,
 			user_first_login,
-		 	user_real_name
+		 	user_real_name,
+		  score,
+			with_ai
+
 			FROM users LEFT JOIN teams on users.user_team=teams.team_name
 			WHERE user_id = :user_id
 			AND user_rememberme_token = :user_rememberme_token
@@ -182,6 +185,47 @@ class LoginModel
 		  $_SESSION['score']=$result->score;	
 
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
+			return true;
+		} else {
+			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID.'failed';
+			return false;
+		}
+	}
+
+	public function refreshsession()
+{
+		$user_id=$_SESSION['user_id'];
+		$query = $this->db->prepare("SELECT user_id,
+			user_nickname,
+			user_email,
+		 	user_password_hash,
+			user_failed_logins,
+			user_last_failed_login,
+			user_type,user_team,
+			user_first_login,
+		 	user_real_name,
+			score,
+			with_ai
+
+			FROM users LEFT JOIN teams on users.user_team=teams.team_name
+			WHERE user_id = :user_id
+			");
+		$query->execute(array(':user_id' => $user_id ));
+		$count = $query->rowCount();
+		if ($count == 1) {
+			$result = $query->fetch();
+
+			$_SESSION['user_logged_in'] = true;
+			$_SESSION['user_id'] = $result->user_id;
+			$_SESSION['user_real_name'] = $result->user_real_name;
+			$_SESSION['user_nickname'] = $result->user_nickname;
+			$_SESSION['user_email'] = $result->user_email;
+			$_SESSION['user_type']=$result->user_type;
+			$_SESSION['user_team']=$result->user_team;
+			$_SESSION['user_first_login']=$result->user_first_login;
+		  $_SESSION['with_ai']=$result->with_ai;
+		  $_SESSION['score']=$result->score;	
+
 			return true;
 		} else {
 			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID.'failed';

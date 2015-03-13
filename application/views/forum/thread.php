@@ -6,22 +6,23 @@ p{white-space: pre-line;}
 </style>
 <div class="uk-container">   
   <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>
-  <div class="uk-article">
-    <div class="uk-article-lead">
-      <p style="text-indent:3em"><?php echo $forum->intro; ?></p>
+  <article class="uk-article">
+    <div class="uk-article-lead" style="text-indent:2em">
+      <p><?php echo $forum->intro; ?></p>
     </div>
-  </div>
+  </article>
   <div class="uk-container uk-container-center">
     <div class="uk-grid">
       <div class="uk-width-medium-3-4">
-        <?php foreach ($threads as $threads) { 
-?> 
+        <?php foreach ($threads as $threads) { ?> 
         <article class="uk-article">
-          <h2><a target="_blank" href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>"><?php echo $threads->subject; ?></a></h2>
-          <p class="uk-article-meta">
+        <h2><a target="_blank" href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>"><?php echo $threads->subject; ?></a></h2>
+        <p class="uk-article-meta">
             <?php echo $threads->user_nickname; ?>发表于<?php echo $threads->establish_date."  ";?>回复(<?php echo $threads->reply_count; ?>)
           </p>
-          <p id="wrap"><?php echo substr($threads->content,0,100);?></p>
+          <div class="uk-container">
+          <p><?php echo substr($threads->content,0,100);?></p>
+        </div>
             <p class="uk-article-meta">最新回复:<?php echo $threads->latest_reply?></p>
             <a href="<?php echo URL. 'forum/posts/'. $threads->thread_id?>">继续阅读<i class="uk-icon-angle-double-right"></i>
             </a>

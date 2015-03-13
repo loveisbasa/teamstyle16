@@ -5,8 +5,9 @@
 p{white-space: pre-line;}
 </style>
 <div class="uk-container">   
+    <article class="uk-article">
   <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>
-  <article class="uk-article">
+
     <div class="uk-article-lead" style="text-indent:2em">
       <p><?php echo $forum->intro; ?></p>
     </div>

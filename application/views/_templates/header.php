@@ -43,12 +43,12 @@ body{
 <?php }?>
 
 <style>
-p{font-family: sans-serif,Georgia, "Times New Roman", 
-             "Microsoft YaHei", "微软雅黑", 
+p{font-family: sans-serif,Georgia, "微软雅黑",
+             "Microsoft YaHei", "Times New Roman", 
              STXihei, "华文细黑", 
              serif;}
-h1,h2,h3,h4,h5,h6{font-family: Georgia, "Times New Roman", 
-             "Microsoft YaHei", "微软雅黑", 
+h1,h2,h3,h4,h5,h6{font-family: Georgia, 
+             "Microsoft YaHei", "微软雅黑", "Times New Roman", 
              STXihei, "华文细黑", 
              serif;}
 a{font-family: Georgia, "Times New Roman", 

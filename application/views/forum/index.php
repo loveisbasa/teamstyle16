@@ -6,7 +6,7 @@
 p{white-space: pre-line;}
 </style>
 <style>
-p{font-family: sans-serif,Georgia,  
+p{font-family: Georgia,  
              "Microsoft YaHei", "微软雅黑", 
              STXihei, "华文细黑", 
              serif;}

@@ -1,8 +1,5 @@
 <link rel='stylesheet' href="<?php echo URL; ?>public/css/uikit.gradient.min.css">
 
-<style>
-p{white-space: pre-line;font-family: Georgia}
-</style>
 <div class="uk-container">   
     <h1 class="uk-heading-large"><?php echo $forum->title;?></h1>
     <div class="uk-article-lead" style="text-indent:2em">

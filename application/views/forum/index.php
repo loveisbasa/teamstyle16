@@ -5,7 +5,24 @@
 #deepblue{color:white;font-family: times}
 p{white-space: pre-line;}
 </style>
-
+<style>
+p{font-family: sans-serif,Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+h1,h2,h3,h4,h5,h6{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+a{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+li{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
+             STXihei, "华文细黑", 
+             serif;}
+</style>
 <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
 

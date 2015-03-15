@@ -195,27 +195,22 @@ class LoginModel
 
 	public function refreshsession()
 {
-				$user_profile = $this->getUserProfile($_SESSION['user_id']);
-				$result=$user_profile;
-		  $_SESSION['user_profile']=$user_profile;
-			$_SESSION['user_logged_in'] = true;
-			$_SESSION['user_id'] = $result->user_id;
+		  $result=$user_profile=$this->getUserProfile($_SESSION['user_id']);
+			$_SESSION['user_profile']=$result;
 			$_SESSION['user_real_name'] = $result->user_real_name;
 			$_SESSION['user_nickname'] = $result->user_nickname;
 			$_SESSION['user_email'] = $result->user_email;
-			$_SESSION['user_type']=$result->user_type;
 			$_SESSION['user_team']=$result->user_team;
 			$_SESSION['user_first_login']=$result->user_first_login;
 		  $_SESSION['with_ai']=$result->with_ai;
 		  $_SESSION['score']=$result->score;	
 			$_SESSION['in_team']=0;
-if ($_SESSION['user_team']!=null) {
+					if ($_SESSION['user_team']!=null) {
 				$_SESSION['team_captain'] = $this->getUserProfile($user_profile->team_captain);
 				if ($user_profile->team_member1!=0) {$_SESSION['team_member1'] = $this->getUserProfile($user_profile->team_member1);}
 				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $this->getUserProfile($user_profile->team_member2);}
 		
 					}
-
 			return true;
 	}
 

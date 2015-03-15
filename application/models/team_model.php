@@ -335,6 +335,7 @@ class TeamModel
 				$query->execute(array(':team_id' => $result->team_id));
 				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
 				$query->execute(array(':user_team' => '', ':user_id' => $user_id));
+			$_SESSION['in_team'] = 0;
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		} else if ($user_id == $result->team_member2) {
@@ -345,6 +346,7 @@ class TeamModel
 			$query = $this->db->prepare("UPDATE users SET user_team = :user_team
 			WHERE user_id = :user_id");
 			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member2 ));
+			$_SESSION['in_team'] = 0;
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		} else {
@@ -359,7 +361,8 @@ class TeamModel
 
 			$query = $this->db->prepare("DELETE FROM teams WHERE team_id = :team_id");
 			$query->execute(array(':team_id' => $result->team_id));
-		
+			
+			$_SESSION['in_team'] = 0;
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		}

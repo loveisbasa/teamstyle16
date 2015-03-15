@@ -73,7 +73,7 @@ class Team extends Controller
 	{
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->Search($_POST['keyword']);
-
+		$page=1;
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/index.php';
 		require 'application/views/_templates/footer.php';

@@ -222,7 +222,7 @@ class TeamModel
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams($page)
 	{
-		$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
+		$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2,team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 		  left JOIN users as u3 on teams.team_member2=u3.user_id");
@@ -371,20 +371,19 @@ class TeamModel
 	public function Search($keyword)
 	{
 		if(!empty($keyword)){
-			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
+			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2,team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 			left JOIN users as u3 on teams.team_member2=u3.user_id
 			where u1.user_nickname like '%{$keyword}%' or u2.user_nickname like '%{$keyword}%' or u3.user_nickname like '%{$keyword}%'  or  team_name like '%{$keyword}%' or team_slogan like '%{$keyword}%' or team_id='$keyword'";
 			$query= $this->db->prepare($sql);
 			$query->execute();
-			$result = $query->fetchall();
 				
-			return $query->fetchall();
+			return $query->fetchAll();
 		}
 		else 
 		{
-			$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
+			$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2,team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 		  left JOIN users as u3 on teams.team_member2=u3.user_id");

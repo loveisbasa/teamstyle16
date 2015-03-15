@@ -33,7 +33,7 @@
                             <img class="tm-image-pull" src="<?php echo URL;?>public/img/home3.jpg" width="400" height="280" alt="Themes">
                             <br><br>
                             <h2 class="uk-margin-top-remove">巅峰</h2>
-                            <p>还记得罗母楼那晚的欢呼，走上人生巅峰</p>
+                            <p>还记得罗姆，走上人生巅峰</p>
                         </div>
                     </div>
                 </div>

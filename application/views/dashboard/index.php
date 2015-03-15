@@ -175,7 +175,11 @@
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <li class="uk-nav-divider"></li>
-                <li><a href="<?php echo URL;?>team/quit_team">退出队伍</a></li>
+								<?php if($_SESSION['team_captain']->user_id==$_SESSION['user_id']){?>
+								<li><a href="<?php echo URL;?>team/quit_team">解散队伍</a></li>
+								<?php }else{ ?>
+								<li><a href="<?php echo URL;?>team/quit_team">退出队伍</a></li>
+								<?php } ?>
                 <?php }?>
             </ul>
     </div>

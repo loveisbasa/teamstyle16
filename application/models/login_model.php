@@ -195,27 +195,9 @@ class LoginModel
 
 	public function refreshsession()
 {
-		$user_id=$_SESSION['user_id'];
-		$query = $this->db->prepare("SELECT user_id,
-			user_nickname,
-			user_email,
-		 	user_password_hash,
-			user_failed_logins,
-			user_last_failed_login,
-			user_type,user_team,
-			user_first_login,
-		 	user_real_name,
-			score,
-			with_ai
-
-			FROM users LEFT JOIN teams on users.user_team=teams.team_name
-			WHERE user_id = :user_id
-			");
-		$query->execute(array(':user_id' => $user_id ));
-		$count = $query->rowCount();
-		if ($count == 1) {
-			$result = $query->fetch();
-
+				$user_profile = $this->getUserProfile($_SESSION['user_id']);
+				$result=$user_profile;
+		  $_SESSION['user_profile']=$user_profile;
 			$_SESSION['user_logged_in'] = true;
 			$_SESSION['user_id'] = $result->user_id;
 			$_SESSION['user_real_name'] = $result->user_real_name;
@@ -227,12 +209,14 @@ class LoginModel
 		  $_SESSION['with_ai']=$result->with_ai;
 		  $_SESSION['score']=$result->score;	
 			$_SESSION['in_team']=0;
+if ($_SESSION['user_team']!=null) {
+				$_SESSION['team_captain'] = $this->getUserProfile($user_profile->team_captain);
+				if ($user_profile->team_member1!=0) {$_SESSION['team_member1'] = $this->getUserProfile($user_profile->team_member1);}
+				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $this->getUserProfile($user_profile->team_member2);}
+		
+					}
 
 			return true;
-		} else {
-			$_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID.'failed';
-			return false;
-		}
 	}
 
 	public function RegisterNewUser()

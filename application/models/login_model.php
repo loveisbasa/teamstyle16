@@ -184,6 +184,7 @@ class LoginModel
 		  $_SESSION['with_ai']=$result->with_ai;
 		  $_SESSION['score']=$result->score;	
 
+			$_SESSION['in_team']=0;
 			$_SESSION['feedback_positive'][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
 			return true;
 		} else {
@@ -225,6 +226,7 @@ class LoginModel
 			$_SESSION['user_first_login']=$result->user_first_login;
 		  $_SESSION['with_ai']=$result->with_ai;
 		  $_SESSION['score']=$result->score;	
+			$_SESSION['in_team']=0;
 
 			return true;
 		} else {

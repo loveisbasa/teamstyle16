@@ -359,7 +359,8 @@ class TeamModel
 
 			$query = $this->db->prepare("DELETE FROM teams WHERE team_id = :team_id");
 			$query->execute(array(':team_id' => $result->team_id));
-		
+			
+			$_SESSION['in_team'] = 0;
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		}

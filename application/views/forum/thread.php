@@ -21,6 +21,7 @@
           <hr>
           <?php } ?>
           <br><br>
+						<?php if(isset($_SESSION['user_id'])) {?>
           <div class="uk-width-medium-3-4">
             <h3>发表新帖</h3>
             <form action="<?php echo URL . 'forum/create_thread_action/'. $forum_id; ?>" method="post" class="auth-form form-horizontal">
@@ -36,8 +37,9 @@
                 <button type="submit" onclick="_hmt.push(['_trackEvent', 'signup_submit', 'click'])" class="btn btn-primary btn-large">
                  创建 
                 </button>
-            </form>
+						</form>
           </div>
+						<?php }?>
           <br>
         </div>
         <div class="uk-width-medium-1-4  uk-hidden-small">

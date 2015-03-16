@@ -73,7 +73,7 @@ class Team extends Controller
 	{
 		$team_model = $this->loadModel('Team');
 		$all_team = $team_model->Search($_POST['keyword']);
-
+		$page=1;
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/index.php';
 		require 'application/views/_templates/footer.php';
@@ -91,7 +91,7 @@ class Team extends Controller
 		$create_team_success = $team_model->CreateTeam();
 		if ($create_team_success == true) {
 			//echo "successful";
-			$login_model = $this->loadModel('Login');
+		$login_model = $this->loadModel('Login');
 		$login_successful = $login_model->refreshsession();
 
 			header('location:' .URL. 'dashboard');

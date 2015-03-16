@@ -50,6 +50,25 @@ class FileModel
 			return TRUE;
 		}
 	}
+	public function Delete($id){
+		$sql = "SELECT file_title FROM files WHERE file_id = :file_id";
+		$query  = $this->db->prepare($sql);
+		$query->execute(array(':file_id'=>$id));
+		$result = $query->fetch();
+		$file_path = "uploads/".$result->file_title;
+		if(file_exists($file_path)){
+			unlink($file_path);
+		}
+		$sql = "DELETE FROM files WHERE file_id ={$id}";
+		$query  = $this->db->prepare($sql);
+		$query->execute();	
+		if(file_exists($file_path)){
+			$_SEESION['feedback_positive'][]="删除成功";
+		}
+		else   
+			$_SEESION['feedback_negative'][]="删除失败";
+		return ;
+	}
 	public function Download($id)
 	{
 		$sql = "SELECT file_title FROM files WHERE file_id = :file_id";
@@ -75,7 +94,7 @@ class FileModel
 		Header("Content-Disposition: attachment; filename=".$file_name); 
 		$buffer=1024;
 		$file_count=0;
-		ob_clean()；
+		ob_clean();
 		flush();
 		//向浏览器返回数据
 		while(!feof($fp) && $file_count<$file_size){
@@ -88,7 +107,7 @@ class FileModel
 	public function GetAllFiles()
 	{
 		$query = $this->db->prepare("SELECT file_id, file_title, file_type, file_size, file_author, file_date 
-			FROM files");
+			FROM files ORDER BY file_date DESC");
 		$query->execute();
 		$result = $query->fetchAll();
 		return $result;

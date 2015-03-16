@@ -49,7 +49,6 @@
         </section>
     </div>
     <?php }?>
-
 <div id="offcanvas-5" class="uk-offcanvas">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-flip" style="background-color:white;padding-top:70px">            
                 
@@ -59,7 +58,7 @@
                             <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
                             
                         
-														<input type="text" placeholder="收信人昵称" name="user_to_nickname" value="<?php echo $user_profile->user_nickname;?>" required class="form-control name" />
+														<input value='<?php echo $user_profile->user_nickname;?>' type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
                             
                         
                         
@@ -82,6 +81,6 @@
                 
             
     </div>
-</div>
 
-<div>
+
+</div>

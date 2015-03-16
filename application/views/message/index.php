@@ -75,7 +75,7 @@ p{white-space: pre-line;}
           <input type="text" name="message_title" placeholder='消息标题' autocomplete="off" value="" required class="form-control" />
           <span class="icon icon-user-bold"></span>
           <div class="form-field">
-					<input type="text" placeholder="收信人昵称" name="user_to_nickname" value="<?php echo $message->user_nickname;?>" required class="form-control name" />
+					<input value="<?php echo $message->user_nickname?>"type="text" placeholder="收信人昵称" name="user_to_nickname" required class="form-control name" />
             <span class="icon icon-envelope-bold"></span>
           </div>
           <textarea type="text" name="message_content" placeholder="内容" value="" required cols="24" rows="14">

@@ -6,7 +6,7 @@
             <div class="form-unit">
                 <div class="uk-panel uk-panel-box-primary uk-text-center uk-panel-space">
                     <h3><i class="uk-icon-user"></i><?php echo $user_profile->user_nickname;?></h3>
-                    <li data-uk-offcanvas="{target:'#offcanvas-5'}"><a href="<?php echo URL. 'message/send_mail';?>">发消息</a></li>
+                    <li data-uk-offcanvas="{target:'#offcanvas-5'}"><a href="#offcanvas-5">发消息</a></li>
                     <?php echo '<img src="'.$user_profile->user_avatar_link.'" class="img-rounded"/>'; ?>
                     <p><?php echo $user_profile->user_real_name;?></p>
                     <p><?php echo $user_profile->user_class;?></p>

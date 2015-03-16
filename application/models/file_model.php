@@ -60,7 +60,7 @@ class FileModel
 
 		$file_sub_path = "/var/www/html/teamstyle16/uploads/";
 		$file_path = $file_sub_path . $file_name;
-		echo $file_path;//debug
+		//echo $file_path;//debug
 		//首先要判断给定的文件存在与否
 		 if(!file_exists($file_path)){
 		 	echo "没有该文件";
@@ -75,6 +75,8 @@ class FileModel
 		Header("Content-Disposition: attachment; filename=".$file_name); 
 		$buffer=1024;
 		$file_count=0;
+		ob_clean()；
+		flush();
 		//向浏览器返回数据
 		while(!feof($fp) && $file_count<$file_size){
 			$file_con=fread($fp,$buffer);

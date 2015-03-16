@@ -103,10 +103,11 @@ li{font-family: Georgia, "Times New Roman",
       </script> 
       <ul class="nav navbar-nav navbar-right">
         <li><a  style="font:bold;color:white" href="<?php echo URL.'forum/index'?>">论坛</a></li>
+		<!--暂时不开放
 				<?php
 						if($_SESSION['user_team']!=NULL)
 						 echo "<li><a  style='font:bold;color:white' href='". URL."online_battle/index'>在线编译</a></li>"
-				?>
+				?> -->
         <li ><a style="font:bold;color:white" href="<?php echo URL. 'message/all_message';?>" id="result">未读</a></li>
         
             <li><a style="font:bold;color:white" href = "<?php echo URL.'file';?>">资源列表</a></li>

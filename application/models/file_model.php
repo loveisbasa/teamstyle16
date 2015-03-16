@@ -23,7 +23,7 @@ class FileModel
 	public function MoveFile()
 	{
 		if (is_uploaded_file($_FILES['devfile']['tmp_name'])) {
-			if ( !move_uploaded_file($_FILES['devfile']['tmp_name'], UP_FILE_PATH. $_FILES['devfile']['name'])) {
+			if ( !move_uploaded_file($_FILES['devfile']['tmp_name'], 'uploads/'. $_FILES['devfile']['name'])) {
 				$_SESSION["feedback_negative"][] = "error";
 				echo $_FILES['devfile']['error'];
 				return FALSE;
@@ -58,7 +58,7 @@ class FileModel
 		$result = $query->fetch();
 		$file_name = $result->file_title;
 
-		$file_sub_path = "/var/www/html/teamstyle16/uploads/";
+		$file_sub_path = "uploads/";
 		$file_path = $file_sub_path . $file_name;
 		echo $file_path;//debug
 		//首先要判断给定的文件存在与否

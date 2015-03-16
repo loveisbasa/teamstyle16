@@ -27,7 +27,7 @@ p{white-space: pre-line;text-indent: 2em;}
                 <article class="uk-comment">
                     <header class="uk-comment-header">
                         <img class="uk-comment-avatar" width="50" height="50" src="<?php echo $posts->user_avatar_link; ?>" alt="">
-                        <h4 class="uk-comment-title"><?php echo $posts->user_nickname; ?></h4>
+											 <a target='_blank' href="<?php echo URL .'/home/index/'.$posts->user_id;?>"> <h4 class="uk-comment-title"><?php echo $posts->user_nickname; ?></a></h4>
                         <p class="uk-comment-meta"><?php echo $posts->posted ;?></p>
                     </header>
                     <div class="uk-comment-body"><?php echo $posts->message; ?></div>
@@ -36,6 +36,7 @@ p{white-space: pre-line;text-indent: 2em;}
             </li>
             <?php } ?>
         </ul>
+<?php if(isset($_SESSION['user_id'])) {?>
 <div class="uk-container">   
    <h3>快速回复</h3>
         <form action="<?php echo URL; ?>forum/create_post_action" method="post" class="auth-form form-horizontal">
@@ -50,7 +51,7 @@ p{white-space: pre-line;text-indent: 2em;}
           </button>
         </form>
 </div>
-
+<?php } ?>
     </div>
 
                 <div class="uk-width-medium-1-4  uk-width-small-1-1 uk-hidden-small">
@@ -73,7 +74,7 @@ p{white-space: pre-line;text-indent: 2em;}
                     <div class="uk-panel">
                         <h3 class="uk-panel-title">关注队式</h3>
                         <ul class="uk-list">
-                            <li><a href="#">清华队式</a></li><!--人人网链接-->
+                            <li><a target='_blank' href="http://www.renren.com/486450516/profile">清华队式</a></li><!--人人网链接-->
                             <li><a href="#">电子科协</a></li>
                         </ul>
                     </div>

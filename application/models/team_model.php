@@ -222,7 +222,7 @@ class TeamModel
 	//返回一个array，TODO:分页显示
 	public function GetAllTeams($page)
 	{
-		$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
+		$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2,team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 		  left JOIN users as u3 on teams.team_member2=u3.user_id");
@@ -333,8 +333,8 @@ class TeamModel
 				$query = $this->db->prepare("UPDATE teams SET team_member1 = 0,team_full = 0 
 					WHERE team_id = :team_id");
 				$query->execute(array(':team_id' => $result->team_id));
-				$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
-				$query->execute(array(':user_team' => '', ':user_id' => $user_id));
+				$query = $this->db->prepare("UPDATE users SET user_team =NULL WHERE user_id = :user_id");
+				$query->execute(array(':user_id' => $user_id));
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		} else if ($user_id == $result->team_member2) {
@@ -342,24 +342,25 @@ class TeamModel
 					WHERE team_id = :team_id");
 			$query->execute(array(':team_id' => $result->team_id));
 			
-			$query = $this->db->prepare("UPDATE users SET user_team = :user_team
+			$query = $this->db->prepare("UPDATE users SET user_team = NULL
 			WHERE user_id = :user_id");
-			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member2 ));
+			$query->execute(array(':user_id' => $result->team_member2 ));
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		} else {
-			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
-			$query->execute(array(':user_team' => '', ':user_id' => $result->team_captain));
+			$query = $this->db->prepare("UPDATE users SET user_team = NULL WHERE user_id = :user_id");
+			$query->execute(array( ':user_id' => $result->team_captain));
 		
-			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
-			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member1));
+			$query = $this->db->prepare("UPDATE users SET user_team =NULL WHERE user_id = :user_id");
+			$query->execute(array(':user_id' => $result->team_member1));
 
-			$query = $this->db->prepare("UPDATE users SET user_team = :user_team WHERE user_id = :user_id");
-			$query->execute(array(':user_team' => '', ':user_id' => $result->team_member2));
+			$query = $this->db->prepare("UPDATE users SET user_team = NULL WHERE user_id = :user_id");
+			$query->execute(array(':user_id' => $result->team_member2));
 
 			$query = $this->db->prepare("DELETE FROM teams WHERE team_id = :team_id");
 			$query->execute(array(':team_id' => $result->team_id));
-		
+			
+			$_SESSION['in_team'] = 0;
 			$_SESSION['feedback_positive'][] = '成功退出，好聚好散';
 			return true;
 		}
@@ -371,20 +372,19 @@ class TeamModel
 	public function Search($keyword)
 	{
 		if(!empty($keyword)){
-			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
+			$sql="SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2,team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 			left JOIN users as u3 on teams.team_member2=u3.user_id
 			where u1.user_nickname like '%{$keyword}%' or u2.user_nickname like '%{$keyword}%' or u3.user_nickname like '%{$keyword}%'  or  team_name like '%{$keyword}%' or team_slogan like '%{$keyword}%' or team_id='$keyword'";
 			$query= $this->db->prepare($sql);
 			$query->execute();
-			$result = $query->fetchall();
 				
-			return $query->fetchall();
+			return $query->fetchAll();
 		}
 		else 
 		{
-			$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2, team_full
+			$query = $this->db->prepare("SELECT u1.user_nickname as team_captain,team_id, team_name, team_slogan, u2.user_nickname as team_member1, u3.user_nickname as team_member2,team_full
 			FROM teams inner JOIN users as u1 on teams.team_captain=u1.user_id 
 			left JOIN users as u2 on teams.team_member1=u2.user_id
 		  left JOIN users as u3 on teams.team_member2=u3.user_id");

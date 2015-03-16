@@ -34,7 +34,7 @@ li{font-family: Georgia,
             </div>
             <div class="uk-width-1-1">
                 <br>
-                <h2 style="color:white;text-align:center;font-family:Georgia"><strong>EE&AD人自己的论坛</strong></h2>
+                <h2 style="color:white;text-align:center;font-family:Georgia"><strong>EE&DA人自己的论坛</strong></h2>
                 <h4 style="color:white;text-align:center;font-family:Georgia"><strong>让深蓝成为大学里最温暖的回忆</strong></h4>
                 <br/>
                 <br/>

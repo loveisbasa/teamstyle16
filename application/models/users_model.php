@@ -10,10 +10,12 @@ class UsersModel
 			exit('Database connection could not be established.');
 		}
 	}
-	public function all_users()
+	public function all_users($page)
 	{
-		$sql="select	* from users ";
-		$query=$this->db->prepare($sql);
+		$_SESSION['user_page'] = $page;
+		$start = $page * 12;
+		$query=$this->db->prepare("SELECT user_id,user_nickname,user_real_name,user_has_avatar,user_class FROM users
+			LIMIT {$start} , 12");
 		$query->execute();
 		$result=$query->fetchAll();
 		foreach($result as $user){

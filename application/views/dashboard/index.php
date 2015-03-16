@@ -55,7 +55,7 @@
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
                 <a href="#offcanvas-1" data-uk-offcanvas>
                     <div class="uk-panel uk-panel-box uk-panel-success uk-text-center uk-panel-space">
-                        <h3><icon class="uk-icon-user uk-icon-large"></i> 我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
+                        <h3><icon class="uk-icon-user uk-icon-large"></icon> 我的资料<br/><small>看看我自己英俊潇洒的头像，想想还有点小激动呢</small></h3>
                     </div>
                 </a>
             </div>
@@ -63,7 +63,7 @@
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
                 <a href="#offcanvas-2" data-uk-offcanvas>
                     <div class="uk-panel uk-panel-box uk-text-center uk-panel-space">
-                        <h3><icon class="uk-icon-home uk-icon-large"></i> 我的队伍<br/><small>励志被别人“抱大腿”</small><br/><br/></h3>
+                        <h3><icon class="uk-icon-home uk-icon-large"></icon> 我的队伍<br/><small>励志被别人“抱大腿”</small><br/><br/></h3>
                     </div>
                 </a>
             </div>
@@ -71,7 +71,7 @@
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
                 <a href="#offcanvas-3" data-uk-offcanvas>
                     <div class="uk-panel uk-panel-box uk-text-center uk-panel-space">
-                        <h3><icon class="uk-icon-bookmark uk-icon-large"></i> 我的帖子<br/><small>想不起来我都说过什么梦话呢</small><br/><br/></h3>
+                        <h3><icon class="uk-icon-bookmark uk-icon-large"></icon> 我的帖子<br/><small>想不起来我都说过什么梦话呢</small><br/><br/></h3>
                     </div>
                 </a>
             </div>
@@ -79,7 +79,7 @@
             <div class="uk-width-large-1-2 uk-width-medium-1-1">
                 <a href="#offcanvas-5" data-uk-offcanvas>
                     <div class="uk-panel uk-panel-box uk-text-center uk-panel-space">
-                        <h3><icon class="uk-icon-comment uk-icon-large"></i >发送消息<br/><small>我要给女神发私信！</small><br/><br/></h3>
+                        <h3><icon class="uk-icon-comment uk-icon-large"></icon>发送消息<br/><small>我要给女神发私信！</small><br/><br/></h3>
                     </div>
                 </a>
             </div>

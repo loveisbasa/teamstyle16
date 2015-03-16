@@ -28,6 +28,7 @@
     <script src="<?php echo URL; ?>public/js/highlight.js"></script>
     <script src="<?php echo URL; ?>public/js/bootstrap-checkbox.js"></script>
 
+
 <?php if (!isset($_SESSION['user_logged_in'])) {?>
 <style>
 body{
@@ -43,12 +44,12 @@ body{
 <?php }?>
 
 <style>
-p{font-family: sans-serif,Georgia, "微软雅黑",
-             "Microsoft YaHei", "Times New Roman", 
+p{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
              STXihei, "华文细黑", 
              serif;}
-h1,h2,h3,h4,h5,h6{font-family: Georgia, 
-             "Microsoft YaHei", "微软雅黑", "Times New Roman", 
+h1,h2,h3,h4,h5,h6{font-family: Georgia, "Times New Roman", 
+             "Microsoft YaHei", "微软雅黑", 
              STXihei, "华文细黑", 
              serif;}
 a{font-family: Georgia, "Times New Roman", 
@@ -60,7 +61,7 @@ li{font-family: Georgia, "Times New Roman",
              STXihei, "华文细黑", 
              serif;}
 </style>
-
+</head>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#101010">
   <div class="container">
     <div class="navbar-header">
@@ -117,4 +118,3 @@ li{font-family: Georgia, "Times New Roman",
     </div><!--/.nav-collapse -->
   </div>
   </div> 
-</header>

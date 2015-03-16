@@ -32,4 +32,12 @@ class File extends Controller
 		require 'application/views/file/index.php';
 		require 'application/views/_templates/footer.php';
 	}
+	
+	public function delete($file_id)
+	{
+		$file_model = $this->loadModel('File');
+		$file_success = $file_model->Delete($file_id);
+		header('location:' .URL. 'file');
+	}
+
 }

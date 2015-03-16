@@ -30,7 +30,7 @@ CREATE TABLE `battle` (
   `b_score` int(11) NOT NULL,
   `winner` int(11) NOT NULL,
   PRIMARY KEY (`battle_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `files` (
   `file_ip` varchar(20) NOT NULL,
   `file_size` int(11) NOT NULL,
   PRIMARY KEY (`file_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,9 +82,9 @@ DROP TABLE IF EXISTS `maps`;
 CREATE TABLE `maps` (
   `map_id` int(11) NOT NULL AUTO_INCREMENT,
   `round` int(11) DEFAULT NULL,
-  `name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`map_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='user data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `messages` (
   KEY `message_from_id` (`message_from_id`),
   CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`message_from_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`message_to_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=536 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1052 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`post_id`),
   KEY `thread_id` (`thread_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +151,7 @@ CREATE TABLE `teams` (
   `score` int(11) DEFAULT '0',
   `with_ai` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`team_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,7 +173,7 @@ CREATE TABLE `threads` (
   PRIMARY KEY (`thread_id`),
   KEY `thread_id` (`thread_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,19 +185,19 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_nickname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `user_team` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
-  `user_email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `user_real_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `user_phone` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
-  `user_class` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
+  `user_nickname` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_team` varchar(20) DEFAULT NULL,
+  `user_email` varchar(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_real_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_phone` varchar(14) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `user_class` varchar(8) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user_failed_logins` tinyint(1) NOT NULL DEFAULT '0',
   `user_last_failed_login` int(10) DEFAULT NULL,
-  `user_rememberme_token` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_rememberme_token` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_first_login` tinyint(1) DEFAULT '1',
-  `user_type` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
+  `user_type` varchar(6) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `user_has_avatar` tinyint(1) NOT NULL DEFAULT '0' COMMENT '1 if user has a local avatar, 0 if not',
-  `user_password_hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_password_hash` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_refind_date` datetime DEFAULT NULL,
   `test_battle` int(11) DEFAULT '0',
   PRIMARY KEY (`user_id`),
@@ -207,7 +207,7 @@ CREATE TABLE `users` (
   KEY `user_email_2` (`user_email`),
   KEY `user_nickname` (`user_nickname`),
   KEY `user_team` (`user_team`)
-) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data';
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8 COMMENT='user data';
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -219,4 +219,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-15 14:50:50
+-- Dump completed on 2015-03-16 10:53:39

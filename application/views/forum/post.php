@@ -27,7 +27,7 @@ p{white-space: pre-line;text-indent: 2em;}
                 <article class="uk-comment">
                     <header class="uk-comment-header">
                         <img class="uk-comment-avatar" width="50" height="50" src="<?php echo $posts->user_avatar_link; ?>" alt="">
-                        <h4 class="uk-comment-title"><?php echo $posts->user_nickname; ?></h4>
+											 <a target='_blank' href="<?php echo URL .'/home/index/'.$posts->user_id;?>"> <h4 class="uk-comment-title"><?php echo $posts->user_nickname; ?></a></h4>
                         <p class="uk-comment-meta"><?php echo $posts->posted ;?></p>
                     </header>
                     <div class="uk-comment-body"><?php echo $posts->message; ?></div>

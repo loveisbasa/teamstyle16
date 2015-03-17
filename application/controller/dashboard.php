@@ -30,9 +30,10 @@ class dashboard extends Controller
 
 		$alluser_model=$this->loadModel('Users');
 		$All_user=$alluser_model->all_users($page);
+				$_SESSION['user_page'] = $page;
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/users.php';
-		$_SESSION['user_page'] = $page;
+
 		require 'application/views/_templates/footer.php';
 	}
 

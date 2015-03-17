@@ -25,12 +25,14 @@ class dashboard extends Controller
 		}	
 	}
 
-	public function alluser($page = 0)
+	public function alluser($page)
 	{
+
 		$alluser_model=$this->loadModel('Users');
 		$All_user=$alluser_model->all_users($page);
 		require 'application/views/_templates/header.php';
 		require 'application/views/team/users.php';
+		$_SESSION['user_page'] = $page;
 		require 'application/views/_templates/footer.php';
 	}
 

@@ -37,15 +37,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($all_file as $file) {?>
+										<?php
+												$i=1;
+												foreach ($all_file as $file) {?>
+
                         <tr>
-                            <td><?php echo $file->file_id; ?></td>
+                            <td><?php echo $i; ?></td>
             	               <td>
                                 <li><a href="<?php echo URL. 'file/download/'. $file->file_id;?>"><?php echo $file->file_title;?></a></li>
             	               </td>
                             <td><?php echo $file->file_date; ?></td>
+														<?php if($_SESSION['user_type']='admin'){
+																echo "<td><a href='".URL."file/delete/".$file->file_id."'>删除资源</a></td>";} ?>
                         </tr>
-                    <?php }?>
+                    <?php $i=$i+1; }?>
                 </tbody>
             </table>
             </div>

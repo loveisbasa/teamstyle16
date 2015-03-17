@@ -12,7 +12,6 @@ class UsersModel
 	}
 	public function all_users($page)
 	{
-		$_SESSION['user_page'] = $page;
 		$start = $page * 12;
 		$query=$this->db->prepare("SELECT user_id,user_nickname,user_real_name,user_has_avatar,user_class FROM users
 			LIMIT {$start} , 12");

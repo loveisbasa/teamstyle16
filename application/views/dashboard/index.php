@@ -114,7 +114,7 @@
                 <a href="<?php echo URL. 'login/uploadavatar_action'?>"><button type = "button" class="btn btn-default">修改个人信息</button></a>
                 </div>
                 <div class = "btn-group">
-                <a href="<?php echo URL. 'dashboard/alluser'?>"><button type = "button" class="btn btn-default">所有用户</button></a>
+                <a href="<?php echo URL. 'dashboard/alluser/0'?>"><button type = "button" class="btn btn-default">所有用户</button></a>
                 </div>
                 </div>
             </div>

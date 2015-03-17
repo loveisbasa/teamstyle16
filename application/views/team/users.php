@@ -1,7 +1,6 @@
 <div class="uk-container">
 	<div class="uk-grid uk-grid-medium" data-uk-grid-match data-uk-grid-margin >
 		<?php
-		$_SESSION['user_page'] = 0;
 		foreach($All_user as $user){?>
 		<div class="uk-width-medium-1-6 uk-width-small-1-3">
 			<div class="thumbnail">

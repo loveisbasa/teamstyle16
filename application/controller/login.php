@@ -45,7 +45,7 @@ class Login extends Controller
 			if ($login_success == true) {
 				  $user_profile = $login_model->getUserProfile($_SESSION['user_id']);
 					$_SESSION['user_profile'] = $user_profile;
-					if ($_SESSION['user_team']!=null) {
+				if ($_SESSION['user_team']!=null) {
 				$_SESSION['team_captain'] = $login_model->getUserProfile($user_profile->team_captain);
 				if ($user_profile->team_member1!=0) {$_SESSION['team_member1'] = $login_model->getUserProfile($user_profile->team_member1);}
 				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $login_model->getUserProfile($user_profile->team_member2);}

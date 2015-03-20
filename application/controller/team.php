@@ -91,7 +91,7 @@ class Team extends Controller
 		$create_team_success = $team_model->CreateTeam();
 		if ($create_team_success == true) {
 			//echo "successful";
-			$login_model = $this->loadModel('Login');
+		$login_model = $this->loadModel('Login');
 		$login_successful = $login_model->refreshsession();
 
 			header('location:' .URL. 'dashboard');

@@ -138,9 +138,9 @@
 
                 <li><a href="<?php echo URL. 'team/team_display'; ?>">查看所有队伍</a></li>
                 <li class="uk-nav-divider"></li>
-                <li class="uk-nav-header">查找队伍</li>
+                <li class="uk-nav-header">查找队伍、队长或队员</li>
                 <form class="navbar-form navbar-left" role="search" action="<?php echo URL;?>team/team_search" method="post">
-                    <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
+                    <input type="text" class="form-control" placeholder="输入战队名或昵称" name="keyword"></input>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <?php } else {?>

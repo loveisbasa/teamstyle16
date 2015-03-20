@@ -87,7 +87,21 @@
         </div>
     </div>
 </div>
+<hr>
+<div class="uk-container uk-container-center">
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-1">
+            <div class="uk-panel uk-panel-box uk-text-center">
+                <p>
+                    本次比赛由<strong>SenseTime</strong>特约赞助  SenseTime,识得千面 知觉万物<a class="uk-button uk-button-primary uk-margin-left" href="http://www.sensetime.com/zh/">进入官网</a>
+                <a class="uk-button uk-margin-left" href="<?php echo URL . 'dashboard/money'; ?>">了解更多</a>
+</p>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+
 
 <div id="offcanvas-1" class="uk-offcanvas">
     <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">

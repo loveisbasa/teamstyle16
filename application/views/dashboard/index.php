@@ -87,7 +87,21 @@
         </div>
     </div>
 </div>
+<hr>
+<div class="uk-container uk-container-center">
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-1">
+            <div class="uk-panel uk-panel-box uk-text-center">
+                <p>
+                    本次比赛由<strong>SenseTime</strong>特约赞助  SenseTime,识得千面 知觉万物<a class="uk-button uk-button-primary uk-margin-left" href="http://www.sensetime.com/zh/">进入官网</a>
+                <a class="uk-button uk-margin-left" href="<?php echo URL . 'dashboard/money'; ?>">了解更多</a>
+</p>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+
 
 <div id="offcanvas-1" class="uk-offcanvas">
     <div class="uk-offcanvas-bar" style="padding-top:70px;background-color:white">
@@ -138,9 +152,9 @@
 
                 <li><a href="<?php echo URL. 'team/team_display'; ?>">查看所有队伍</a></li>
                 <li class="uk-nav-divider"></li>
-                <li class="uk-nav-header">查找队伍</li>
+                <li class="uk-nav-header">查找队伍、队长或队员</li>
                 <form class="navbar-form navbar-left" role="search" action="<?php echo URL;?>team/team_search" method="post">
-                    <input type="text" class="form-control" placeholder="输入战队名" name="keyword"></input>
+                    <input type="text" class="form-control" placeholder="输入战队名或昵称" name="keyword"></input>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <?php } else {?>

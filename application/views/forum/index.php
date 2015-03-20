@@ -120,7 +120,7 @@ li{font-family: Georgia,
         <div class="uk-width-medium-1-1">
             <div class="uk-panel uk-panel-box uk-text-center">
                 <p>
-                    <strong>Deap Blue 欢迎你的加入</strong> 浏览完了意犹未尽？<a class="uk-button uk-button-primary uk-margin-left" href="#">回到顶部</a>
+                    本次比赛由<strong>SenseTime</strong>特约赞助  SenseTime,识得千面 知觉万物<a class="uk-button uk-button-primary uk-margin-left" href="http://www.sensetime.com/zh/">进入官网</a><a class="uk-button uk-margin-left" href="<?php echo URL . 'dashboard/money'; ?>">了解更多</a>
                 </p>
             </div>
         </div>

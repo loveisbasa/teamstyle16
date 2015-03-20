@@ -211,8 +211,6 @@ class LoginModel
 				if ($user_profile->team_member2!=0) {$_SESSION['team_member2'] = $this->getUserProfile($user_profile->team_member2);}
 		
 					}
-
-
 			return true;
 	}
 
